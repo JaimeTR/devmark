@@ -28,7 +28,7 @@ const content = {
     aiAssistantTooltip: '¡Hola! Soy tu asistente de IA.',
   },
   hero: {
-    badge: 'Tu Socio Digital Global',
+    badge: 'Devmark Tu Socio Digital',
     title: 'Impulsa Tu Negocio con',
     animatedPhrases: [
       'Tecnología de Punta',
