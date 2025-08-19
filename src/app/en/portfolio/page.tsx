@@ -139,7 +139,8 @@ export default function PortfolioPage() {
               <Button onClick={() => setVisibleProjects(prev => prev + PROJECTS_PER_PAGE)}>
                 Load More
               </Button>
-            )}
+            </div>
+          )}
 
           <div className="pt-16 sm:pt-24">
             <TechStack {...techStackContent} />
