@@ -52,6 +52,9 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['@genkit-ai/googleai', 'genkit'],
   },
+  turbopack: {
+    root: __dirname,
+  },
 };
 
 export default nextConfig;

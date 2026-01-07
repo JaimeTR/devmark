@@ -12,33 +12,67 @@
 
 import { openai } from '@/ai/openai';
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 
 export type Message = {
   role: 'user' | 'model';
   content: string;
 };
 
-const SYSTEM_PROMPT = `Eres un asistente virtual amigable y profesional para DevMark, una empresa global de desarrollo web y soluciones digitales. Responde preguntas sobre la empresa, sus servicios y precios de forma concisa y útil. Información relevante:
-Servicios Principales:
-- Desarrollo Web a Medida: Desde $499. Sitios personalizados, corporativos, landing pages, PWAs.
-- Desarrollo con CMS: Desde $999. WordPress, Shopify, E-commerce.
-- Desarrollo de Software a Medida: Precio a medida. ERP, CRM, SaaS, APIs.
-- Automatización de Procesos: Precio a medida. Zapier, Make, APIs.
-- Chatbots con IA: Precio a medida. Para web, redes sociales, soporte 24/7.
-- SEO y Optimización Web: Precio a medida. Estrategia, SEO técnico y de contenidos.
-Servicios Complementarios:
-- Diseño UI/UX
-- Marketing Digital
-- Soporte y Mantenimiento
-- Consultoría Tecnológica
-Precios:
-- Plan Básico: $499 (Ideal para startups)
-- Plan Profesional: $999 (Para empresas en crecimiento)
-- Plan Empresa: A medida (Soluciones corporativas)
-Contacto:
-- Email: contacto@devmarkpe.com
-- Teléfono: +51 975 646 074
-- Código de descuento "DEVMARK" para Hostinger.`;
+const SYSTEM_PROMPT = `Eres un asistente virtual amigable y profesional para DevMark, una empresa global de desarrollo web y soluciones digitales. Responde preguntas sobre la empresa, sus servicios y precios de forma concisa y útil.
+
+Usa SIEMPRE el contexto provisto (extraído de la base de conocimiento Supabase o del sitio). Si falta contexto, responde con la información base y aclara que es una estimación. No inventes precios ni features.
+
+Información base (solo si no hay contexto):
+- Servicios principales: Desarrollo Web a Medida (desde $499), CMS/E-commerce (desde $999), Software a Medida (precio a medida), Automatización (precio a medida), Chatbots con IA (precio a medida), SEO y Optimización (precio a medida).
+- Servicios complementarios: Diseño UI/UX, Marketing Digital, Soporte y Mantenimiento, Consultoría Tecnológica.
+- Planes: Básico $499, Profesional $999, Empresa a medida.
+- Contacto: contacto@devmarkpe.com | +51 975 646 074 | Código de descuento "DEVMARK" en Hostinger.`;
+
+function detectLang(message: string): 'es' | 'en' {
+  const text = message.toLowerCase();
+  const spanishHints = ['¿', '¡', 'precio', 'servicio', 'hola', 'ayuda', 'solución', 'cotización'];
+  return spanishHints.some(h => text.includes(h)) ? 'es' : 'en';
+}
+
+async function fetchKnowledgeContext(question: string, lang: 'es' | 'en'): Promise<string> {
+  if (!isSupabaseConfigured() || !supabase) {
+    console.warn('⚠️ Supabase no configurado: sin contexto dinámico');
+    return '';
+  }
+
+  const keywords = Array.from(new Set(
+    question
+      .toLowerCase()
+      .split(/[^a-záéíóúñü0-9]+/i)
+      .filter(w => w.length >= 3)
+  )).slice(0, 4);
+
+  const term = keywords[0] ?? '';
+
+  const query = supabase
+    .from('knowledge_docs')
+    .select('title, content, tags')
+    .eq('lang', lang)
+    .limit(5);
+
+  if (term) {
+    query.ilike('content', `%${term}%`);
+  }
+
+  const { data, error } = await query;
+
+  if (error) {
+    console.error('❌ Error fetching knowledge from Supabase:', error.message);
+    return '';
+  }
+
+  if (!data || data.length === 0) return '';
+
+  return data
+    .map(doc => `- ${doc.title}: ${doc.content}${doc.tags?.length ? ` (tags: ${doc.tags.join(', ')})` : ''}`)
+    .join('\n');
+}
 
 /**
  * Fallback a OpenAI cuando Gemini falla
@@ -47,8 +81,15 @@ async function askWithOpenAI(history: Message[]): Promise<Message> {
   try {
     console.log('🔄 Usando OpenAI GPT-3.5-turbo como fallback...');
     
+    const lastUserMessage = history.filter(m => m.role === 'user').pop()?.content || '';
+    const lang = detectLang(lastUserMessage);
+    const knowledge = await fetchKnowledgeContext(lastUserMessage, lang);
+
     const messages: { role: 'system' | 'user' | 'assistant'; content: string }[] = [
       { role: 'system', content: SYSTEM_PROMPT },
+      knowledge
+        ? { role: 'system', content: `Contexto de conocimiento (lang=${lang}):\n${knowledge}` }
+        : { role: 'system', content: 'Sin contexto dinámico, responde solo con la información base.' },
       ...history.map(m => {
         if (m.role === 'user') return { role: 'user' as const, content: m.content };
         return { role: 'assistant' as const, content: m.content };
@@ -89,12 +130,14 @@ export async function askDevMark(history: Message[]): Promise<Message> {
     }
 
     const genAI = new GoogleGenerativeAI(apiKey);
-    // Usar gemini-1.5-flash que es el modelo actual gratuito de Google
+    // Usar el endpoint vigente con sufijo -latest
     const model = genAI.getGenerativeModel({ 
-      model: 'gemini-1.5-flash'
+      model: 'gemini-1.5-flash-001'
     });
 
     const lastUserMessage = history.filter(m => m.role === 'user').pop()?.content || '';
+    const lang = detectLang(lastUserMessage);
+    const knowledge = await fetchKnowledgeContext(lastUserMessage, lang);
     
     const chat = model.startChat({
       generationConfig: {
@@ -103,7 +146,9 @@ export async function askDevMark(history: Message[]): Promise<Message> {
       },
     });
 
-    const result = await chat.sendMessage(SYSTEM_PROMPT + '\n\nUsuario: ' + lastUserMessage);
+    const enrichedPrompt = `${SYSTEM_PROMPT}\n\nContexto (lang=${lang}):\n${knowledge || 'Sin contexto dinámico, usa la información base.'}\n\nUsuario: ${lastUserMessage}`;
+
+    const result = await chat.sendMessage(enrichedPrompt);
     const response = await result.response;
     const text = response.text();
 
