@@ -27,16 +27,16 @@ export function Footer({ copyright }: FooterProps) {
             &copy; {year} {copyright}
           </p>
           <div className="flex gap-4">
-            <Link href="https://instagram.com/devmarkpe" target="_blank" aria-label="Instagram">
+            <Link href="https://instagram.com/devmarkpe" target="_blank" rel="noopener noreferrer" aria-label="Instagram - Abre en una nueva ventana">
               <Instagram className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
             </Link>
-            <Link href="https://facebook.com/devmarkpe" target="_blank" aria-label="Facebook">
+            <Link href="https://facebook.com/devmarkpe" target="_blank" rel="noopener noreferrer" aria-label="Facebook - Abre en una nueva ventana">
               <Facebook className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
             </Link>
-            <Link href="https://github.com/devmarkpe" target="_blank" aria-label="GitHub">
+            <Link href="https://github.com/devmarkpe" target="_blank" rel="noopener noreferrer" aria-label="GitHub - Abre en una nueva ventana">
               <Github className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
             </Link>
-            <Link href="https://linkedin.com/company/devmarkpe" target="_blank" aria-label="LinkedIn">
+            <Link href="https://linkedin.com/company/devmarkpe" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn - Abre en una nueva ventana">
               <Linkedin className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
             </Link>
           </div>

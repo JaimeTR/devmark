@@ -5,7 +5,7 @@ import { AiChatbot } from '@/components/ai/ai-chatbot';
 import { SeoOptimizer } from '@/components/ai/seo-optimizer';
 
 const headerContent = {
-  lang: 'en',
+  lang: 'en' as const,
   navLinks: [],
   contactButton: 'Contact',
   aiAssistant: 'AI Assistant',

@@ -23,7 +23,7 @@ interface TestimonialsProps {
   badge: string;
   title: string;
   subtitle: string;
-  items: Testimonial[];
+  items: readonly Testimonial[];
 }
 
 export function Testimonials({ badge, title, subtitle, items }: TestimonialsProps) {

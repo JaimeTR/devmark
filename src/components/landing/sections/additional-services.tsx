@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 interface Service {
-  icon: 'DraftingCompass' | 'Megaphone' | 'Wrench' | 'Lightbulb';
+  icon: string;
   title: string;
   description: string;
   href: string;
@@ -14,7 +14,7 @@ interface Service {
 interface AdditionalServicesProps {
   title: string;
   subtitle: string;
-  items: Service[];
+  items: readonly Service[];
   moreInfoButton: string;
 }
 

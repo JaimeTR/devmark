@@ -6,7 +6,13 @@ import { SeoOptimizer } from '@/components/ai/seo-optimizer';
 
 const headerContent = {
   lang: 'es' as const,
-  navLinks: [],
+  navLinks: [
+    { href: '/#hero', label: 'Inicio' },
+    { href: '/#services', label: 'Servicios' },
+    { href: '/portfolio', label: 'Portafolio' },
+    { href: '/blog', label: 'Blog' },
+    { href: '/contacto', label: 'Contacto' },
+  ],
   contactButton: 'Contactar',
   aiAssistant: 'Asistente IA',
   aiAssistantTooltip: '¡Hola! Soy tu asistente de IA.',

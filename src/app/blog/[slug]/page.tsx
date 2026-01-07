@@ -37,8 +37,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug, 'es');
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
+  const post = getPostBySlug(resolvedParams.slug, 'es');
 
   if (!post) {
     notFound();

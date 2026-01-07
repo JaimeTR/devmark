@@ -14,6 +14,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { Calendar, ArrowRight, Bot, ShoppingCart, Code, Globe, Search, Paintbrush, Zap } from 'lucide-react';
 
 const POSTS_PER_PAGE = 9;
 
@@ -38,6 +39,15 @@ const footerContent = {
 };
 
 const curatedTags = ['Desarrollo Web', 'Software a Medida', 'SEO', 'Diseño UI/UX', 'Marketing Digital', 'Automatización'];
+
+const TAG_ICONS: Record<string, JSX.Element> = {
+  'Desarrollo Web': <Globe className="mr-2 h-4 w-4" aria-hidden="true" />,
+  'Software a Medida': <Code className="mr-2 h-4 w-4" aria-hidden="true" />,
+  'SEO': <Search className="mr-2 h-4 w-4" aria-hidden="true" />,
+  'Diseño UI/UX': <Paintbrush className="mr-2 h-4 w-4" aria-hidden="true" />,
+  'Marketing Digital': <Zap className="mr-2 h-4 w-4" aria-hidden="true" />,
+  'Automatización': <Bot className="mr-2 h-4 w-4" aria-hidden="true" />,
+};
 
 export default function BlogPage() {
   const posts = getPosts('es');
@@ -94,7 +104,10 @@ export default function BlogPage() {
                   selectedTag === tag ? "bg-primary/20" : ""
                 )}
               >
-                {tag}
+                <span className="inline-flex items-center">
+                  {TAG_ICONS[tag]}
+                  {tag}
+                </span>
               </Button>
             ))}
           </div>
@@ -114,7 +127,8 @@ export default function BlogPage() {
                   </div>
                   <CardContent className="p-6 flex flex-col flex-grow">
                     <div className="flex-grow">
-                      <p className="text-sm text-muted-foreground mb-2">
+                      <p className="text-sm text-muted-foreground mb-2 flex items-center gap-2">
+                        <Calendar className="h-4 w-4" aria-hidden="true" />
                         {format(new Date(post.date), "d 'de' MMMM, yyyy", { locale: es })}
                       </p>
                       <h2 className="font-headline text-xl font-bold mb-2 text-gradient-blue">{post.title}</h2>
@@ -122,8 +136,9 @@ export default function BlogPage() {
                         {post.description}
                       </p>
                     </div>
-                    <div className="mt-4 flex items-center gap-2">
-                       <span className="text-sm font-medium text-primary">Leer más</span>
+                      <div className="mt-4 flex items-center gap-2 text-primary">
+                        <span className="text-sm font-medium">Leer más</span>
+                        <ArrowRight className="h-4 w-4" aria-hidden="true" />
                     </div>
                   </CardContent>
                 </Card>

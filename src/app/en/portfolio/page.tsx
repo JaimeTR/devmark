@@ -11,6 +11,7 @@ import { getProjects } from '@/data/projects';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { ShoppingCart, Bot, Code, Globe, Search, Paintbrush } from 'lucide-react';
 import Link from 'next/link';
 import { Eye } from 'lucide-react';
 import { TechStack } from '@/components/landing/sections/tech-stack';
@@ -40,6 +41,15 @@ const footerContent = {
 };
 
 const curatedTags = ['E-commerce', 'AI Chatbot', 'Custom Software', 'Web Development', 'SEO', 'UI/UX Design'];
+
+const TAG_ICONS: Record<string, JSX.Element> = {
+  'E-commerce': <ShoppingCart className="mr-2 h-4 w-4" aria-hidden="true" />,
+  'AI Chatbot': <Bot className="mr-2 h-4 w-4" aria-hidden="true" />,
+  'Custom Software': <Code className="mr-2 h-4 w-4" aria-hidden="true" />,
+  'Web Development': <Globe className="mr-2 h-4 w-4" aria-hidden="true" />,
+  'SEO': <Search className="mr-2 h-4 w-4" aria-hidden="true" />,
+  'UI/UX Design': <Paintbrush className="mr-2 h-4 w-4" aria-hidden="true" />,
+};
 
 
 export default function PortfolioPage() {
@@ -97,7 +107,10 @@ export default function PortfolioPage() {
                   selectedTag === tag ? "bg-primary/20" : ""
                 )}
               >
-                {tag}
+                <span className="inline-flex items-center">
+                  {TAG_ICONS[tag]}
+                  {tag}
+                </span>
               </Button>
             ))}
           </div>
@@ -119,7 +132,12 @@ export default function PortfolioPage() {
                     <h3 className="font-headline text-xl font-bold mb-2">{project.title}</h3>
                     <p className="text-muted-foreground mb-4">{project.description}</p>
                     <div className="flex gap-2 flex-wrap mb-4">
-                      {project.tags.map(tag => <Badge key={tag} variant="secondary">{tag}</Badge>)}
+                      {project.tags.map(tag => (
+                        <Badge key={tag} variant="secondary" className="inline-flex items-center gap-1">
+                          {TAG_ICONS[tag] ? <span aria-hidden>{TAG_ICONS[tag]}</span> : null}
+                          {tag}
+                        </Badge>
+                      ))}
                     </div>
                      {project.link && (
                       <Button asChild variant="outline" className="border-primary/50 text-primary hover:bg-primary/10">

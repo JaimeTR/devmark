@@ -12,7 +12,7 @@ interface HostingProps {
   badge: string;
   title: string;
   subtitle: string;
-  features: string[];
+  features: readonly string[];
   guaranteeText: string;
   ctaButton: string;
   couponCode: string;

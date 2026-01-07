@@ -20,7 +20,7 @@ const content = {
       { href: '/en/portfolio', label: 'Portfolio' },
       { href: '#hosting', label: 'Hosting' },
       { href: '#testimonials', label: 'Reviews' },
-      { href: '/en/blog', label: 'Blog' },
+      // { href: '/en/blog', label: 'Blog' },
       { href: '#contact', label: 'Contact' },
     ],
     contactButton: 'Contact Us',
@@ -283,7 +283,7 @@ const content = {
   footer: {
     copyright: "DevMark. All rights reserved."
   }
-};
+} as const;
 
 
 export default function Home() {

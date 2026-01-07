@@ -12,7 +12,7 @@ import { Hosting } from '@/components/landing/sections/hosting';
 
 
 const content = {
-  lang: 'es' as const,
+  lang: 'es',
   header: {
     navLinks: [
       { href: '#hero', label: 'Inicio' },
@@ -20,7 +20,7 @@ const content = {
       { href: '/portfolio', label: 'Portafolio' },
       { href: '#hosting', label: 'Hosting' },
       { href: '#testimonials', label: 'Reseñas' },
-      { href: '/blog', label: 'Blog' },
+      // { href: '/blog', label: 'Blog' },
       { href: '#contact', label: 'Contacto' },
     ],
     contactButton: 'Contactar',
@@ -283,7 +283,7 @@ const content = {
   footer: {
     copyright: "DevMark. Todos los derechos reservados."
   }
-};
+} as const;
 
 
 export default function Home() {

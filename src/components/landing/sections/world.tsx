@@ -21,7 +21,7 @@ interface WorldProps {
   ctaButton: string;
   ctaButton2: string;
   ctaButton2Link?: string;
-  stats: Stat[];
+  stats: readonly Stat[];
 }
 
 const D3_SCALE = 150;

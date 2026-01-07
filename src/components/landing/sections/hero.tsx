@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 interface HeroProps {
   badge: string;
   title: string;
-  animatedPhrases: string[];
+  animatedPhrases: readonly string[];
   description: string;
   servicesButton: string;
   contactButton: string;

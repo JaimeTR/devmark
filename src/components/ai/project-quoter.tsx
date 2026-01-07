@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useActionState, useEffect, useRef } from 'react';
+import { useActionState, useEffect, useRef, useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -82,7 +82,8 @@ type FormData = z.infer<typeof formSchema>;
 
 
 export function ProjectQuoter({ content }: ProjectQuoterProps) {
-  const [state, formAction, isPending] = useActionState<FormState, FormData>(quoteProjectAction, {
+  const [isPendingTransition, startTransition] = useTransition();
+  const [state, formAction] = useActionState<FormState, FormData>(quoteProjectAction, {
     message: null,
     data: null,
     errors: null,
@@ -166,7 +167,9 @@ export function ProjectQuoter({ content }: ProjectQuoterProps) {
           </CardHeader>
           <CardContent>
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(formAction)} className="space-y-8">
+              <form onSubmit={form.handleSubmit((data) => {
+                startTransition(() => formAction(data));
+              })} className="space-y-8">
                  <input type="hidden" {...form.register('lang')} />
                 <FormField
                   control={form.control}
@@ -310,8 +313,8 @@ export function ProjectQuoter({ content }: ProjectQuoterProps) {
                     </FormItem>
                   )}
                 />
-                <Button type="submit" disabled={isPending} className="w-full btn-gradient text-white">
-                  {isPending ? (
+                <Button type="submit" disabled={isPendingTransition} className="w-full btn-gradient text-white">
+                  {isPendingTransition ? (
                     <>
                       <Bot className="mr-2 h-4 w-4 animate-spin" />
                       {content.form.submitButtonPending}

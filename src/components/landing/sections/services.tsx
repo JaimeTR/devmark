@@ -5,17 +5,17 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 interface Service {
-  icon: 'CodeXml' | 'Palette' | 'ServerCog' | 'Zap' | 'Bot' | 'LineChart';
+  icon: string;
   title: string;
   description: string;
-  tags: string[];
+  tags: readonly string[];
   href: string;
 }
 
 interface ServicesProps {
   title: string;
   subtitle: string;
-  items: Service[];
+  items: readonly Service[];
   moreInfoButton: string;
 }
 

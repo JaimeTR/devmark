@@ -17,7 +17,7 @@ interface NavLink {
 
 interface HeaderProps {
   lang?: 'es' | 'en';
-  navLinks: NavLink[];
+  navLinks: readonly NavLink[];
   contactButton: string;
   aiAssistant: string;
   aiAssistantTooltip: string;
@@ -28,6 +28,7 @@ export function Header({ lang = 'es', navLinks, contactButton, aiAssistant, aiAs
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const aiAssistantLink = lang === 'en' ? '/en/ai-assistant' : '/ai-assistant';
+  const contactLink = lang === 'en' ? '/en/contact' : '/contacto';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -77,6 +78,9 @@ export function Header({ lang = 'es', navLinks, contactButton, aiAssistant, aiAs
       "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out",
       isScrolled ? "top-4" : ""
     )}>
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-2 focus:bg-primary focus:text-white focus:rounded">
+        Saltar al contenido principal
+      </a>
       <TooltipProvider>
         <div className={cn(
           "container mx-auto flex items-center justify-between transition-all duration-300 ease-in-out",
@@ -135,7 +139,7 @@ export function Header({ lang = 'es', navLinks, contactButton, aiAssistant, aiAs
             </Tooltip>
             
             <Button asChild className={cn('btn-gradient text-white', !isScrolled && 'shadow-[0_0_20px_rgba(59,130,246,0.5)]')}>
-              <Link href="#contact"><Phone className="mr-2 h-4 w-4" />{contactButton}</Link>
+              <Link href={contactLink}><Phone className="mr-2 h-4 w-4" />{contactButton}</Link>
             </Button>
           </div>
           
@@ -183,7 +187,7 @@ export function Header({ lang = 'es', navLinks, contactButton, aiAssistant, aiAs
                     </div>
 
                   <Button asChild className="mt-6">
-                    <Link href="#contact" onClick={() => setIsOpen(false)}>{contactButton}</Link>
+                    <Link href={contactLink} onClick={() => setIsOpen(false)}>{contactButton}</Link>
                   </Button>
                 </div>
               </SheetContent>
