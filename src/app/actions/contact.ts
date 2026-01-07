@@ -53,16 +53,16 @@ export async function sendContactEmail(
       };
     }
 
-    // Configurar transporte SMTP de Hostinger
+    // Configurar transporte SMTP de Hostinger para Vercel
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST || 'smtp.hostinger.com',
-      port: parseInt(process.env.SMTP_PORT || '465'),
-      secure: true, // true para puerto 465
+      port: parseInt(process.env.SMTP_PORT || '587'), // Puerto 587 para Vercel
+      secure: false, // false para puerto 587 (STARTTLS)
       auth: {
         user: process.env.SMTP_EMAIL,
         pass: process.env.SMTP_PASSWORD,
       },
-      // Opciones adicionales para mejorar compatibilidad
+      // Opciones adicionales para mejorar compatibilidad con Vercel
       tls: {
         rejectUnauthorized: false, // Permite certificados autofirmados
         minVersion: 'TLSv1.2',
