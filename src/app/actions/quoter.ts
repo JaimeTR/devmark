@@ -4,6 +4,7 @@
 
 import { z } from 'zod';
 import { quoteProject, type QuoteProjectOutput } from '@/ai/flows/quote-project-flow';
+import { supabase, type QuoteRecord, isSupabaseConfigured } from '@/lib/supabase';
 
 const formSchema = z.object({
     projectName: z.string().min(3, 'Project name must be at least 3 characters.'),
@@ -39,6 +40,42 @@ export async function quoteProjectAction(
   
   try {
     const result = await quoteProject(validatedFields.data);
+
+    // Guardar en Supabase si está configurado
+    if (isSupabaseConfigured() && supabase) {
+      try {
+        const quoteRecord: QuoteRecord = {
+          project_name: validatedFields.data.projectName,
+          project_type: validatedFields.data.projectType,
+          features: validatedFields.data.features,
+          design: validatedFields.data.design,
+          additional_info: validatedFields.data.additionalInfo,
+          contact_email: validatedFields.data.contactEmail,
+          lang: validatedFields.data.lang,
+          summary: result.summary,
+          scope: result.scope,
+          price: result.price,
+          recommendations: result.recommendations,
+          payment_methods: result.paymentMethods,
+        };
+
+        const { error } = await supabase
+          .from('quotes')
+          .insert([quoteRecord]);
+
+        if (error) {
+          console.error('Error saving to Supabase:', error);
+          // No bloqueamos el flujo si falla el guardado en BD
+        } else {
+          console.log('✅ Quote saved to Supabase successfully');
+        }
+      } catch (dbError) {
+        console.error('Database error:', dbError);
+        // Continuamos aunque falle el guardado
+      }
+    } else {
+      console.warn('⚠️ Supabase not configured. Quote not saved to database.');
+    }
 
     return {
       message: 'Project quoted successfully!',
