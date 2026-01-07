@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -80,7 +80,7 @@ const messages: Record<MessageType, MessageConfig> = {
   },
 };
 
-export default function ThankYouPage() {
+function ThankYouContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
@@ -125,7 +125,7 @@ export default function ThankYouPage() {
       <div className="relative z-10">
         <Header {...headerData} />
         
-        <main className="container mx-auto px-4 py-20 md:py-32">
+        <main className="container mx-auto px-4 py-20 md:py-32 min-h-[calc(100vh-300px)]">
           <div className="max-w-3xl mx-auto">
             <Card className="bg-card/50 backdrop-blur-xl border-primary/20 shadow-2xl overflow-hidden">
               <div className="bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-8 md:p-12">
@@ -278,5 +278,17 @@ export default function ThankYouPage() {
         <Footer {...footerData} />
       </div>
     </div>
+  );
+}
+
+export default function ThankYouPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+      </div>
+    }>
+      <ThankYouContent />
+    </Suspense>
   );
 }

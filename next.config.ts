@@ -22,6 +22,36 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 60 * 60 * 24 * 365, // 1 year
   },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        'genkit': false,
+        '@genkit-ai/firebase': false,
+        '@genkit-ai/flow': false,
+        '@opentelemetry/exporter-jaeger': false,
+        '@opentelemetry/sdk-node': false,
+        'handlebars': false,
+        'dotprompt': false,
+        'fs': false,
+        'path': false,
+        'crypto': false,
+        'module': false,
+      };
+    }
+    
+    // Don't try to resolve these modules
+    config.externals = [...(config.externals || []), 
+      '@genkit-ai/firebase',
+      '@opentelemetry/exporter-jaeger',
+      'dotprompt',
+    ];
+    
+    return config;
+  },
+  experimental: {
+    optimizePackageImports: ['@genkit-ai/googleai', 'genkit'],
+  },
 };
 
 export default nextConfig;
