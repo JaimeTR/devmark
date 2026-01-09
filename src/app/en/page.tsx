@@ -9,6 +9,8 @@ import { Contact } from '@/components/landing/sections/contact';
 import { Footer } from '@/components/landing/footer';
 import { AdditionalServices } from '@/components/landing/sections/additional-services';
 import { Hosting } from '@/components/landing/sections/hosting';
+import { FeaturedProjectsCarousel } from '@/components/landing/sections/featured-projects-carousel';
+import { getProjects } from '@/data/projects';
 
 
 const content = {
@@ -287,6 +289,8 @@ const content = {
 
 
 export default function Home() {
+  const projects = getProjects('en');
+  
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
@@ -295,6 +299,13 @@ export default function Home() {
         <Hero {...content.hero} />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-16 sm:gap-24 md:gap-32 lg:gap-40 pt-0">
+              <FeaturedProjectsCarousel 
+                projects={projects}
+                lang="en"
+                title="Featured Projects"
+                subtitle="Discover some of our best work"
+                viewMoreText="View Full Portfolio"
+              />
               <Services {...content.services} />
               <World {...content.world} />
               <AdditionalServices {...content.additionalServices} />
