@@ -27,6 +27,15 @@ export async function sendContactEmail(
   prevState: ContactFormState | null,
   formData: FormData
 ): Promise<ContactFormState> {
+  // Honeypot anti-spam: si el campo oculto viene relleno, cortar.
+  const botField = (formData.get('company') || '').toString().trim();
+  if (botField.length > 0) {
+    return {
+      success: false,
+      message: 'Hubo un problema al enviar el mensaje. Por favor inténtalo de nuevo.',
+    };
+  }
+
   const validatedFields = contactSchema.safeParse({
     firstName: formData.get('firstName'),
     lastName: formData.get('lastName'),
@@ -53,23 +62,25 @@ export async function sendContactEmail(
       };
     }
 
-    // Configurar transporte SMTP de Hostinger para Vercel
+    const port = parseInt(process.env.SMTP_PORT || '587');
+    const secure = port === 465; // Titan usa 465 con SSL
+
+    // Configurar transporte SMTP (Titan/Hostinger)
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST || 'smtp.hostinger.com',
-      port: parseInt(process.env.SMTP_PORT || '587'), // Puerto 587 para Vercel
-      secure: false, // false para puerto 587 (STARTTLS)
+      port,
+      secure,
       auth: {
         user: process.env.SMTP_EMAIL,
         pass: process.env.SMTP_PASSWORD,
       },
-      // Opciones adicionales para mejorar compatibilidad con Vercel
       tls: {
-        rejectUnauthorized: false, // Permite certificados autofirmados
+        rejectUnauthorized: false,
         minVersion: 'TLSv1.2',
       },
-      connectionTimeout: 10000, // 10 segundos
+      connectionTimeout: 10000,
       greetingTimeout: 10000,
-      socketTimeout: 20000, // 20 segundos
+      socketTimeout: 20000,
     });
 
     // Verificar la conexión con mejor manejo de errores

@@ -9,10 +9,10 @@ export function generateJsonLd() {
     logo: 'https://devmarkpe.com/logo.png',
     description: 'DevMark - Tu Socio Digital. Agencia de desarrollo web y software a medida',
     sameAs: [
-      'https://instagram.com/devmarkpe',
-      'https://facebook.com/devmarkpe',
-      'https://github.com/devmarkpe',
-      'https://linkedin.com/company/devmarkpe',
+      'https://www.instagram.com/devmark.pe/',
+      'https://www.facebook.com/devmark.pe/',
+      'https://github.com/JaimeTR',
+      'https://www.linkedin.com/company/devmarkpe/',
     ],
     address: {
       '@type': 'PostalAddress',

@@ -52,10 +52,10 @@ export function Hero({ badge, title, animatedPhrases, description, servicesButto
       <div className="absolute top-0 left-1/2 -translate-x-1/2 -z-10 w-full max-w-4xl h-96 bg-primary/10 rounded-full filter blur-3xl" />
       
       <div className="max-w-4xl mx-auto">
-        <div className="inline-block px-4 py-1.5 mb-4 text-sm font-medium text-white bg-gradient-to-r from-primary/20 via-[#6564f1]/20 to-primary/20 rounded-full">
+        <div className="inline-block px-4 py-1.5 mb-4 text-sm font-medium text-white bg-gradient-to-r from-primary/20 via-[#6564f1]/20 to-primary/20 rounded-full animate-fade-in-up">
           {badge}
         </div>
-        <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-12 h-auto sm:h-32">
+        <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-12 h-auto sm:h-32 animate-fade-in-up stagger-1">
           {title} <br/>
           <span
             className='text-gradient relative'
@@ -64,10 +64,10 @@ export function Hero({ badge, title, animatedPhrases, description, servicesButto
             <span className="typing-cursor"></span>
           </span>
         </h1>
-        <p className="max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground mb-12">
+        <p className="max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground mb-12 animate-fade-in-up stagger-2">
           {description}
         </p>
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className="flex flex-wrap justify-center gap-4 animate-fade-in-up stagger-3">
           <Button size="lg" asChild className="btn-gradient text-white shadow-[0_0_20px_rgba(59,130,246,0.5)]">
             <Link href="#services">
               <Code className="mr-2 h-5 w-5" />

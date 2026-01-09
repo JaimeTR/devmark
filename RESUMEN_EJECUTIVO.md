@@ -270,7 +270,7 @@ npx axe-core <url>      # Testing de accesibilidad
 - 📧 Email: contact@devmarkpe.com
 - 🌐 Web: https://devmarkpe.com
 - 📱 WhatsApp: [Tu número]
-- 💼 LinkedIn: https://linkedin.com/company/devmarkpe
+- 💼 LinkedIn: https://www.linkedin.com/company/devmarkpe/
 
 ---
 

@@ -134,8 +134,37 @@ OPENAI_API_KEY=
 
 ## 📚 Documentación Adicional
 
-- Ver [blueprint.md](docs/blueprint.md) para arquitectura detallada
+### 🚀 Configuración del Entorno
+
+- **[INICIO_RAPIDO.md](./INICIO_RAPIDO.md)** - Guía rápida para empezar en 5 minutos
+- **[SETUP_ENTORNO.md](./SETUP_ENTORNO.md)** - Guía completa de configuración del entorno
+- **[CONFIGURACION_CURSOR_MCP.md](./CONFIGURACION_CURSOR_MCP.md)** - Configuración de Cursor IDE con MCP
+- **[SOLUCION_PROBLEMA_IA.md](./SOLUCION_PROBLEMA_IA.md)** - Solución de problemas del chat de IA
+
+### 📖 Arquitectura y Desarrollo
+
+- [blueprint.md](docs/blueprint.md) - Arquitectura detallada del proyecto
+- [docs/SUPABASE_SETUP.md](docs/SUPABASE_SETUP.md) - Configuración de Supabase
 - Consulta `src/app/page.tsx` para la página principal
+
+### ✅ Verificar Configuración
+
+Ejecuta el script de verificación para asegurarte de que todo está configurado:
+
+```bash
+npm run check-env
+```
+
+### 🔌 Configurar MCP para Cursor (Opcional pero Recomendado)
+
+Para que Cursor IDE pueda acceder directamente a tu base de datos Supabase:
+
+```bash
+# Primero asegúrate de tener .env.local configurado
+npm run setup-mcp
+```
+
+Luego reinicia Cursor IDE. Ver [GUIA_CONFIGURACION_MCP.md](./GUIA_CONFIGURACION_MCP.md) para más detalles.
 
 ## 👨‍💻 Desarrollado por
 

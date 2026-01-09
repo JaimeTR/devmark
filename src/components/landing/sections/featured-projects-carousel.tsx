@@ -33,8 +33,8 @@ export function FeaturedProjectsCarousel({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
 
-  // Mostrar solo los primeros 3 proyectos
-  const displayProjects = projects.slice(0, 3);
+  // Mostrar solo los primeros 5 proyectos
+  const displayProjects = projects.slice(0, 5);
 
   useEffect(() => {
     if (!isAutoPlay) return;
@@ -66,18 +66,18 @@ export function FeaturedProjectsCarousel({
   const currentProject = displayProjects[currentIndex];
 
   return (
-    <section id="featured-projects" className="py-16 md:py-24">
+    <section id="portfolio" className="py-16 md:py-24">
       <div className="flex flex-col items-center text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 animate-fade-in-up">
           {title}
         </h2>
-        <p className="text-lg text-muted-foreground max-w-2xl">
+        <p className="text-lg text-muted-foreground max-w-2xl animate-fade-in-up stagger-1">
           {subtitle}
         </p>
       </div>
 
       {/* Carrusel Principal */}
-      <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden group">
+      <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden group animate-fade-in-up stagger-2">
         {/* Imagen de fondo */}
         <div className="absolute inset-0">
           <Image
@@ -148,12 +148,12 @@ export function FeaturedProjectsCarousel({
       </div>
 
       {/* Tarjetas de preview debajo */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 mb-8">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-3 mt-6 mb-8">
         {displayProjects.map((project, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`relative h-32 md:h-40 rounded-lg overflow-hidden transition-all duration-300 cursor-pointer group ${
+            className={`relative h-24 md:h-28 rounded-md overflow-hidden transition-all duration-300 cursor-pointer group ${
               index === currentIndex ? 'ring-2 ring-primary scale-105' : 'opacity-60 hover:opacity-100'
             }`}
           >
@@ -163,8 +163,8 @@ export function FeaturedProjectsCarousel({
               fill
               className="object-cover transition-transform duration-300 group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors" />
-            <p className="absolute inset-0 flex items-center justify-center text-white font-semibold text-center px-2 text-sm line-clamp-2">
+            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors" />
+            <p className="absolute inset-0 flex items-center justify-center text-white font-semibold text-center px-1 text-xs md:text-sm line-clamp-2">
               {project.title}
             </p>
           </button>
@@ -173,8 +173,8 @@ export function FeaturedProjectsCarousel({
 
       {/* Botón Ver Portafolio Completo */}
       <div className="flex justify-center">
-        <Link href="/portfolio">
-          <button className="flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors duration-200 font-semibold">
+        <Link href={lang === 'en' ? '/en/portfolio' : '/portfolio'}>
+          <button className="flex items-center gap-2 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-8 py-3 rounded-lg hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 font-semibold backdrop-blur-sm border border-primary/30 hover:border-primary/60">
             {viewMoreText}
             <ArrowRight className="w-4 h-4" />
           </button>

@@ -64,7 +64,7 @@ export default function AiAssistantPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
           <div className="flex flex-col gap-16 sm:gap-24 md:gap-32 lg:gap-40">
             <AiChatbot {...chatbotContent} />
-            <SeoOptimizer {...seoOptimizerContent} />
+            {/* <SeoOptimizer {...seoOptimizerContent} /> */}
           </div>
         </div>
       </main>

@@ -82,9 +82,9 @@ export function Contact(props: ContactProps) {
     <section id="contact" className="py-12 md:py-20">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div className="max-w-xl">
-          <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter text-gradient">{props.title}</h2>
-          <p className="mt-4 text-lg text-muted-foreground">{props.description}</p>
-          <div className="mt-8 space-y-4">
+          <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter text-gradient animate-fade-in-left">{props.title}</h2>
+          <p className="mt-4 text-lg text-muted-foreground animate-fade-in-left stagger-1">{props.description}</p>
+          <div className="mt-8 space-y-4 animate-fade-in-left stagger-2">
             <p className="font-bold uppercase tracking-wider text-primary mb-2">{props.contactSubtitle}</p>
             <div className="text-muted-foreground space-y-2">
                 <div className="flex items-center gap-2">
@@ -121,13 +121,22 @@ export function Contact(props: ContactProps) {
             </div>
           </div>
         </div>
-        <Card className="bg-primary/5 backdrop-blur-sm border-primary/10">
-          <CardHeader>
+        <Card className="bg-primary/5 backdrop-blur-sm border-primary/10 animate-fade-in-right">
+          <CardHeader className="animate-fade-in-right stagger-1">
             <CardTitle>{props.formTitle}</CardTitle>
             <CardDescription>{props.formDescription}</CardDescription>
           </CardHeader>
           <CardContent>
             <form action={formAction} className="space-y-4">
+              {/* Honeypot anti-spam */}
+              <input
+                type="text"
+                name="company"
+                tabIndex={-1}
+                autoComplete="off"
+                className="hidden"
+                aria-hidden="true"
+              />
               {state?.success && (
                 <div className="p-4 bg-green-50 border border-green-200 rounded-lg flex items-start gap-3">
                   <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />

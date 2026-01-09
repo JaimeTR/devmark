@@ -33,14 +33,14 @@ export function Hosting(props: HostingProps) {
 
   return (
       <section id="hosting" className="py-12 md:py-20">
-           <Card className="bg-primary/5 backdrop-blur-sm border-primary/10">
+           <Card className="bg-primary/5 backdrop-blur-sm border-primary/10 animate-fade-in-up">
               <CardHeader className="items-center text-center">
-                  <Badge variant="outline" className="mb-4 text-primary border-primary/50">{props.badge}</Badge>
-                  <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter pt-4 text-gradient">{props.title}</h2>
-                  <CardDescription className="max-w-2xl">{props.subtitle}</CardDescription>
+                  <Badge variant="outline" className="mb-4 text-primary border-primary/50 animate-fade-in-up">{props.badge}</Badge>
+                  <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter pt-4 text-gradient animate-fade-in-up stagger-1">{props.title}</h2>
+                  <CardDescription className="max-w-2xl animate-fade-in-up stagger-2">{props.subtitle}</CardDescription>
               </CardHeader>
               <CardContent className="flex flex-col items-center gap-8">
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-muted-foreground">
+                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-muted-foreground animate-fade-in-up stagger-3">
                       {props.features.map((feature, index) => (
                       <li key={index} className="flex items-center">
                           <Check className="h-5 w-5 text-green-500 mr-2" />

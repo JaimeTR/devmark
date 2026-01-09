@@ -84,7 +84,7 @@ function ThankYouContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
-  const [countdown, setCountdown] = useState(10);
+  const [countdown, setCountdown] = useState(60);
 
   const type = (searchParams.get('type') as MessageType) || 'default';
   const customTitle = searchParams.get('title');
@@ -96,6 +96,8 @@ function ThankYouContent() {
 
   useEffect(() => {
     setMounted(true);
+    // Scroll to top when page loads
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   useEffect(() => {
@@ -193,7 +195,7 @@ function ThankYouContent() {
                   <Button asChild size="lg" variant="outline" className="w-full sm:w-auto border-primary/50 hover:bg-primary/10">
                     <Link href="/en/ai-assistant">
                       <Sparkles className="mr-2 h-5 w-5" />
-                      Talk to AI
+                      Talk to AI Assistant
                     </Link>
                   </Button>
                 </div>
@@ -208,7 +210,7 @@ function ThankYouContent() {
                   <div className="mt-3 h-2 bg-secondary rounded-full overflow-hidden max-w-xs mx-auto">
                     <div 
                       className="h-full bg-gradient-to-r from-primary to-primary/60 transition-all duration-1000 ease-linear rounded-full"
-                      style={{ width: `${((10 - countdown) / 10) * 100}%` }}
+                      style={{ width: `${((60 - countdown) / 60) * 100}%` }}
                     />
                   </div>
                 </div>

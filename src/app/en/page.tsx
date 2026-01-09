@@ -18,12 +18,10 @@ const content = {
   header: {
     navLinks: [
       { href: '#hero', label: 'Home' },
-      { href: '#services', label: 'Services' },
+      { href: '/en/services', label: 'Services' },
       { href: '/en/portfolio', label: 'Portfolio' },
-      { href: '#hosting', label: 'Hosting' },
-      { href: '#testimonials', label: 'Reviews' },
-      // { href: '/en/blog', label: 'Blog' },
-      { href: '#contact', label: 'Contact' },
+      { href: '/en/hosting', label: 'Hosting' },
+      { href: '/en/contact', label: 'Contact' },
     ],
     contactButton: 'Contact Us',
     aiAssistant: 'AI Assistant',
@@ -178,7 +176,7 @@ const content = {
         name: "Carlos Rodriguez",
         company: "Inka Corp, Peru",
         avatar: "CR",
-        image: "https://placehold.co/100x100.png",
+        image: "/testimonials/uifaces-human-avatar.jpg",
         hint: "man portrait",
         quote: "DevMark transformed our online presence. Their knowledge of the international market is unmatched. Highly recommended!"
       },
@@ -186,7 +184,7 @@ const content = {
         name: "John Smith",
         company: "USA Tech, USA",
         avatar: "JS",
-        image: "https://placehold.co/100x100.png",
+        image: "/testimonials/uifaces-human-avatar (1).jpg",
         hint: "woman portrait",
         quote: "The software development team exceeded our expectations. They delivered a robust and timely product for our global operations."
       },
@@ -194,7 +192,7 @@ const content = {
         name: "Luis Torres",
         company: "Andes Adventures, Bolivia",
         avatar: "LT",
-        image: "https://placehold.co/100x100.png",
+        image: "/testimonials/uifaces-human-avatar (2).jpg",
         hint: "man smiling",
         quote: "Thanks to their SEO strategy, our online bookings increased by 70% worldwide. They are true experts."
       },
@@ -202,7 +200,7 @@ const content = {
         name: "Ana García",
         company: "Soluciones Digitales, Spain",
         avatar: "AG",
-        image: "https://placehold.co/100x100.png",
+        image: "/testimonials/uifaces-human-avatar (3).jpg",
         hint: "woman professional",
         quote: "An exceptional team that understands the nuances of different markets. They helped us expand into Latin America successfully."
       },
@@ -210,7 +208,7 @@ const content = {
         name: 'Sophie Dubois',
         company: 'Chic Boutique, France',
         avatar: 'SD',
-        image: 'https://placehold.co/100x100.png',
+        image: '/testimonials/uifaces-human-avatar (4).jpg',
         hint: 'woman stylish',
         quote: 'The AI chatbot they developed for us has revolutionized our customer service. It is intelligent, fast and has increased our sales.'
       },
@@ -218,7 +216,7 @@ const content = {
         name: 'David Chen',
         company: 'Innovate Start-up, Canada',
         avatar: 'DC',
-        image: 'https://placehold.co/100x100.png',
+        image: '/testimonials/uifaces-popular-avatar.jpg',
         hint: 'man thinking',
         quote: 'The process automation saved us hundreds of hours. Their ability to understand our needs and implement effective solutions is incredible.'
       },
@@ -226,7 +224,7 @@ const content = {
         name: 'Fatima Al-Jamil',
         company: 'Global Exports, UAE',
         avatar: 'FA',
-        image: 'https://placehold.co/100x100.png',
+        image: '/testimonials/uifaces-popular-avatar (1).jpg',
         hint: 'woman smiling',
         quote: 'We commissioned a custom CRM and the result was perfect. It fits our workflow and has significantly improved our team\'s efficiency.'
       },
@@ -234,7 +232,7 @@ const content = {
         name: 'Liam Murphy',
         company: 'Creative Agency, Ireland',
         avatar: 'LM',
-        image: 'https://placehold.co/100x100.png',
+        image: '/testimonials/uifaces-popular-avatar (2).jpg',
         hint: 'man creative',
         quote: 'The design and user experience of our new website is simply spectacular. They have captured the essence of our brand perfectly.'
       },
@@ -242,7 +240,7 @@ const content = {
         name: 'Yuki Tanaka',
         company: 'Tokyo Games, Japan',
         avatar: 'YT',
-        image: 'https://placehold.co/100x100.png',
+        image: '/testimonials/uifaces-popular-avatar (3).jpg',
         hint: 'man gaming',
         quote: 'Their technical support and maintenance service gives us the peace of mind we need. They are always available and solve any problem quickly.'
       },
@@ -250,7 +248,7 @@ const content = {
         name: 'Maria Rossi',
         company: 'Gastronomía Italiana, Italy',
         avatar: 'MR',
-        image: 'https://placehold.co/100x100.png',
+        image: '/testimonials/uifaces-popular-avatar (4).jpg',
         hint: 'woman cooking',
         quote: 'The technology consulting was key to our digital transformation. They guided us step by step in choosing the best tools for our business.'
       }
@@ -299,6 +297,7 @@ export default function Home() {
         <Hero {...content.hero} />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-16 sm:gap-24 md:gap-32 lg:gap-40 pt-0">
+              <Services {...content.services} />
               <FeaturedProjectsCarousel 
                 projects={projects}
                 lang="en"
@@ -306,7 +305,6 @@ export default function Home() {
                 subtitle="Discover some of our best work"
                 viewMoreText="View Full Portfolio"
               />
-              <Services {...content.services} />
               <World {...content.world} />
               <AdditionalServices {...content.additionalServices} />
               <Hosting {...content.hosting} />

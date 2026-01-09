@@ -1,8 +1,11 @@
+'use client';
+
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { DraftingCompass, Megaphone, Wrench, Lightbulb, ArrowRight } from 'lucide-react';
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useState } from "react";
 
 interface Service {
   icon: string;
@@ -26,20 +29,25 @@ const icons = {
 };
 
 export function AdditionalServices({ title, subtitle, items, moreInfoButton }: AdditionalServicesProps) {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
     <section id="additional-services" className="py-12 md:py-20">
       <div className="text-center max-w-3xl mx-auto mb-12">
-        <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter">{title}</h2>
-        <p className="mt-4 text-lg text-muted-foreground">{subtitle}</p>
+        <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter animate-fade-in-up">{title}</h2>
+        <p className="mt-4 text-lg text-muted-foreground animate-fade-in-up stagger-1">{subtitle}</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {items.map((service, index) => (
-          <div key={index} className="group">
+          <div key={index} className="group animate-fade-in-up" style={{animationDelay: `${(index % 4) * 0.1}s`}}>
              <Card className={cn(
                 "relative h-full transition-all duration-300 flex flex-col",
-                "bg-primary/5 backdrop-blur-sm border border-primary/10",
-                "hover:bg-gradient-to-br hover:from-primary/10 hover:to-primary/20 hover:border-primary/30 hover:shadow-2xl"
-              )}>
+                "bg-primary/3 backdrop-blur-sm border border-primary/10",
+                hoveredIndex === index && "gradient-border-hover"
+              )}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              >
                 <CardHeader className="p-8 h-full flex flex-col items-start text-left flex-grow">
                   <div className="p-3 bg-primary/10 rounded-lg mb-4 w-fit">
                     {icons[service.icon as keyof typeof icons]}

@@ -61,12 +61,12 @@ export function World(props: WorldProps) {
     <section id="world" className="py-12 md:py-20">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div className="max-w-xl text-center lg:text-left">
-          <p className="font-bold uppercase tracking-wider text-gradient-blue mb-2">{props.subtitle}</p>
-          <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter">{props.title}</h2>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="font-bold uppercase tracking-wider text-gradient-blue mb-2 animate-fade-in-left">{props.subtitle}</p>
+          <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter animate-fade-in-left stagger-1">{props.title}</h2>
+          <p className="mt-4 text-lg text-muted-foreground animate-fade-in-left stagger-2">
             {props.description}
           </p>
-          <div className="flex flex-wrap gap-4 mt-8 justify-center lg:justify-start">
+          <div className="flex flex-wrap gap-4 mt-8 justify-center lg:justify-start animate-fade-in-left stagger-3">
             <Button asChild className="btn-gradient text-white" size="lg">
               <Link href="#contact">{props.ctaButton} <Rocket className="ml-2 h-5 w-5"/></Link>
             </Button>
@@ -77,7 +77,7 @@ export function World(props: WorldProps) {
             </Button>
           </div>
         </div>
-        <div className="relative flex items-center justify-center h-96">
+        <div className="relative flex items-center justify-center h-96 animate-fade-in-right">
           <div className="absolute inset-0 -z-10 w-full h-full bg-primary/10 rounded-full filter blur-3xl" />
           {isClient ? (
             <svg
@@ -111,10 +111,10 @@ export function World(props: WorldProps) {
         </div>
       </div>
       <div className="mt-16 md:mt-24">
-        <div className="bg-primary/5 backdrop-blur-sm border-primary/10 rounded-2xl p-8">
+        <div className="bg-primary/5 backdrop-blur-sm border-primary/10 rounded-2xl p-8 animate-fade-in-up">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {props.stats.map((stat, index) => (
-              <div key={index} className="text-center">
+              <div key={index} className="text-center animate-fade-in-up" style={{animationDelay: `${(index % 4) * 0.1}s`}}>
                 <h3 className="font-headline text-5xl md:text-6xl font-bold text-primary mb-2">
                   {stat.value}
                 </h3>

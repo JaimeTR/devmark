@@ -1,4 +1,6 @@
 
+'use client';
+
 import { AnimatedBackground } from '@/components/landing/animated-background';
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
@@ -7,6 +9,8 @@ import { Contact } from '@/components/landing/sections/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import { Zap, Bot, BarChart, Settings2 } from 'lucide-react';
+import { useState } from 'react';
+import { cn } from '@/lib/utils';
 
 const headerContent = {
   lang: 'es' as const,
@@ -68,7 +72,7 @@ const pricingContent = {
     plans: [
       {
         name: "Básico",
-        price: "$499",
+        price: "S/ 2000",
         description: "Ideal para startups y proyectos personales.",
         features: [
           "Diseño web responsivo",
@@ -76,12 +80,12 @@ const pricingContent = {
           "Optimización SEO básica",
           "Soporte por email"
         ],
-        buttonText: "Comprar ahora",
+        buttonText: "Cotizar servicio",
         priceId: "price_1..." // Reemplazar con tu Price ID de Stripe
       },
       {
         name: "Profesional",
-        price: "$999",
+        price: "S/ 3800",
         description: "Perfecto para empresas en crecimiento.",
         features: [
           "Todo lo del plan Básico",
@@ -89,7 +93,7 @@ const pricingContent = {
           "Integración con CMS",
           "Soporte prioritario"
         ],
-        buttonText: "Comprar ahora",
+        buttonText: "Cotizar servicio",
         priceId: "price_2..." // Reemplazar con tu Price ID de Stripe
       },
       {
@@ -140,6 +144,8 @@ const footerContent = {
 };
 
 export default function ProcessAutomationPage() {
+  const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);
+
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
@@ -155,7 +161,15 @@ export default function ProcessAutomationPage() {
             <section id="features" className="py-12 md:py-20">
                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {serviceDetails.features.map((feature, index) => (
-                        <div key={index} className="flex flex-col items-center text-center p-6 rounded-lg bg-primary/5">
+                        <div
+                          key={index}
+                          className={cn(
+                            'flex flex-col items-center text-center p-6 rounded-lg bg-primary/3 transition-all duration-300 cursor-pointer',
+                            hoveredFeature === index && 'gradient-border-hover'
+                          )}
+                          onMouseEnter={() => setHoveredFeature(index)}
+                          onMouseLeave={() => setHoveredFeature(null)}
+                        >
                             <feature.icon className="h-10 w-10 text-primary mb-4" />
                             <h3 className="font-headline text-xl font-bold mb-2">{feature.title}</h3>
                             <p className="text-muted-foreground">{feature.description}</p>

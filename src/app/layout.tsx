@@ -1,6 +1,7 @@
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
+import { PageLoader } from "@/components/page-loader"
 import { Inter, Space_Grotesk } from 'next/font/google';
 
 const inter = Inter({
@@ -59,6 +60,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
       <body className="font-body antialiased">
+        <PageLoader />
         {children}
         <Toaster />
       </body>

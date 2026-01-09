@@ -34,14 +34,14 @@ export function Testimonials({ badge, title, subtitle, items }: TestimonialsProp
   return (
     <section id="testimonials" className="py-12 md:py-20">
       <div className="text-center max-w-3xl mx-auto mb-12">
-        <Badge variant="outline" className="mb-4 text-primary border-primary/50">{badge}</Badge>
-        <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter">{title}</h2>
-        <p className="mt-4 text-lg text-muted-foreground">{subtitle}</p>
+        <Badge variant="outline" className="mb-4 text-primary border-primary/50 animate-fade-in-up">{badge}</Badge>
+        <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter animate-fade-in-up stagger-1">{title}</h2>
+        <p className="mt-4 text-lg text-muted-foreground animate-fade-in-up stagger-2">{subtitle}</p>
       </div>
 
       <Carousel
         plugins={[plugin.current]}
-        className="w-full"
+        className="w-full animate-fade-in-up"
         opts={{
           align: "start",
           loop: true,

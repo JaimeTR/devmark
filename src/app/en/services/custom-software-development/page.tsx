@@ -68,7 +68,7 @@ const pricingContent = {
     plans: [
       {
         name: "Basic",
-        price: "$499",
+        price: "S/ 3500",
         description: "Ideal for startups and personal projects.",
         features: [
           "Responsive web design",
@@ -76,12 +76,12 @@ const pricingContent = {
           "Basic SEO optimization",
           "Email support"
         ],
-        buttonText: "Buy Now",
+        buttonText: "Get a quote",
         priceId: "price_1..." // Replace with your Stripe Price ID
       },
       {
         name: "Professional",
-        price: "$999",
+        price: "S/ 6000",
         description: "Perfect for growing businesses.",
         features: [
           "Everything in Basic",
@@ -89,7 +89,7 @@ const pricingContent = {
           "CMS integration",
           "Priority support"
         ],
-        buttonText: "Buy Now",
+        buttonText: "Get a quote",
         priceId: "price_2..." // Replace with your Stripe Price ID
       },
       {

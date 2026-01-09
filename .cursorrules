@@ -1,0 +1,66 @@
+# Reglas de Cursor AI para DevMark
+
+## Estilo de Código
+- Usa TypeScript estricto con tipos explícitos
+- Prefiere componentes funcionales de React con hooks
+- Usa Next.js 15 App Router patterns
+- Sigue las convenciones de nombrado de Next.js (page.tsx, layout.tsx)
+- Usa tailwind-merge para estilos condicionales
+
+## Arquitectura del Proyecto
+- Frontend: Next.js 15 + React 18 + TypeScript + Tailwind CSS
+- UI Components: Radix UI + shadcn/ui
+- Backend: Next.js Server Actions + API Routes
+- Base de Datos: Supabase (PostgreSQL)
+- IA: Google Genkit + OpenAI
+- Pagos: Stripe
+- Email: Nodemailer con SMTP de Hostinger
+
+## Convenciones
+- Rutas: usar app router de Next.js 15
+- Componentes: colocar en src/components con estructura modular
+- Server Actions: usar 'use server' directive
+- Types: definir en los mismos archivos o en tipos compartidos
+- Imports: usar alias @/ para imports absolutos desde src/
+
+## Patrones Específicos
+- Usar Server Actions para mutaciones de datos
+- Usar Zod para validación de schemas
+- Manejar errores con try-catch y mensajes user-friendly
+- Logging: usar console.log para desarrollo, evitar en producción
+- Accesibilidad: seguir WCAG 2.1 AA mínimo
+
+## Estructura de Archivos
+- `/src/app` - Rutas y layouts de Next.js
+- `/src/components` - Componentes reutilizables
+- `/src/ai` - Lógica de IA y Genkit flows
+- `/src/lib` - Utilidades y clientes (Supabase, etc.)
+- `/src/actions` - Server Actions de Next.js
+- `/src/hooks` - Custom React hooks
+- `/src/data` - Datos estáticos y mock data
+
+## Tecnologías y Librerías
+- Next.js 15 con Turbopack para desarrollo
+- React Hook Form + Zod para formularios
+- Radix UI para componentes accesibles
+- Tailwind CSS para estilos
+- Lucide React para iconos
+- date-fns para manejo de fechas
+
+## Consideraciones de Seguridad
+- Validar todas las entradas del usuario
+- Usar variables de entorno para credenciales
+- Implementar rate limiting en APIs públicas
+- Sanitizar datos antes de mostrar en UI
+- Usar HTTPS en producción
+
+## Testing y Calidad
+- Escribir código TypeScript tipado
+- Verificar con npm run typecheck antes de commits
+- Usar ESLint con config de Next.js
+- Manejar casos edge y errores gracefully
+
+## Internacionalización
+- Soporte para español (default) e inglés (/en)
+- Usar estructura de carpetas para i18n
+- Mantener traducciones consistentes

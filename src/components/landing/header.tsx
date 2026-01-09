@@ -3,6 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu, Code, Bot, Phone, Globe } from 'lucide-react';
@@ -27,10 +28,23 @@ export function Header({ lang = 'es', navLinks, contactButton, aiAssistant, aiAs
   const [isOpen, setIsOpen] = React.useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const pathname = usePathname();
   const aiAssistantLink = lang === 'en' ? '/en/ai-assistant' : '/ai-assistant';
   const contactLink = lang === 'en' ? '/en/contact' : '/contacto';
 
   useEffect(() => {
+    // Mapear rutas de página a IDs de sección
+    const routeToSectionId: Record<string, string> = {
+      '/servicios': 'services',
+      '/en/services': 'services',
+      '/portfolio': 'portfolio',
+      '/en/portfolio': 'portfolio',
+      '/hosting': 'hosting',
+      '/en/hosting': 'hosting',
+      '/contacto': 'contact',
+      '/en/contact': 'contact',
+    };
+
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       if (scrollPosition > 20) {
@@ -40,16 +54,28 @@ export function Header({ lang = 'es', navLinks, contactButton, aiAssistant, aiAs
       }
 
       const sections = navLinks.map(link => {
-        const id = link.href.substring(1);
-        return document.getElementById(id);
+        // Si el link es a una página, buscar su ID de sección correspondiente
+        const sectionId = routeToSectionId[link.href] || link.href.substring(1);
+        return document.getElementById(sectionId);
       }).filter(Boolean);
+
+      // Detectar si estamos cerca del final de la página
+      const isNearBottom = (window.innerHeight + scrollPosition) >= document.documentElement.scrollHeight - 100;
 
       let currentSection = 'hero';
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i];
-        if (section && section.offsetTop <= scrollPosition + 150) {
-          currentSection = section.id;
-          break;
+        if (section) {
+          // Para la última sección, activar si estamos cerca del final o dentro de su área
+          if (i === sections.length - 1 && isNearBottom) {
+            currentSection = section.id;
+            break;
+          }
+          // Para otras secciones, usar el threshold normal
+          if (section.offsetTop <= scrollPosition + 150) {
+            currentSection = section.id;
+            break;
+          }
         }
       }
        setActiveSection(currentSection);
@@ -64,7 +90,42 @@ export function Header({ lang = 'es', navLinks, contactButton, aiAssistant, aiAs
   }, [navLinks]);
   
   const navLinkClass = (href: string) => {
-    const isActive = activeSection === href.substring(1);
+    // Mapear rutas de página a IDs de sección
+    const routeToSectionId: Record<string, string> = {
+      '/servicios': 'services',
+      '/en/services': 'services',
+      '/portfolio': 'portfolio',
+      '/en/portfolio': 'portfolio',
+      '/hosting': 'hosting',
+      '/en/hosting': 'hosting',
+      '/contacto': 'contact',
+      '/en/contact': 'contact',
+    };
+    
+    // Detectar si el link es a una página (comienza con /) o a una sección (#)
+    const isPageLink = href.startsWith('/') && !href.includes('#');
+    
+    let isActive = false;
+    
+    if (isPageLink) {
+      // Verificar si estamos en una página separada
+      const isOnSeparatePage = pathname !== '/' && pathname !== '/en';
+      
+      if (isOnSeparatePage) {
+        // Estamos en una página separada (/servicios, /portfolio, etc.)
+        isActive = pathname === href || pathname?.startsWith(href + '/');
+      } else {
+        // Estamos en la página de inicio, detectar por scroll de sección
+        const sectionId = routeToSectionId[href];
+        if (sectionId) {
+          isActive = activeSection === sectionId;
+        }
+      }
+    } else {
+      // Para secciones (#), usar la lógica de scroll existente
+      isActive = activeSection === href.substring(1);
+    }
+    
     return cn(
       'text-sm font-medium transition-colors hover:text-primary px-3 py-1.5 rounded-full',
       isActive

@@ -20,9 +20,10 @@ const PROJECTS_PER_PAGE = 4;
 const headerContent = {
   lang: 'es' as const,
   navLinks: [
-    { href: '/', label: 'Inicio' },
+    { href: '/#hero', label: 'Inicio' },
+    { href: '/servicios', label: 'Servicios' },
     { href: '/portfolio', label: 'Portafolio' },
-    { href: '/blog', label: 'Blog' },
+    { href: '/hosting', label: 'Hosting' },
     { href: '/#contact', label: 'Contacto' },
   ],
   contactButton: 'Contactar',
@@ -70,17 +71,17 @@ export default function PortfolioPage() {
       <Header {...headerContent} />
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
-          <header className="text-center mb-16">
-            <Badge variant="outline" className="text-primary border-primary/50 mb-4">Nuestro Trabajo</Badge>
-            <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-gradient">
+          <header className="text-center mb-16 animate-fade-in-up">
+            <Badge variant="outline" className="text-primary border-primary/50 mb-4 animate-fade-in-up">Nuestro Trabajo</Badge>
+            <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-gradient animate-fade-in-up stagger-1">
               Proyectos Destacados
             </h1>
-            <p className="max-w-2xl mx-auto mt-4 text-lg text-muted-foreground">
+            <p className="max-w-2xl mx-auto mt-4 text-lg text-muted-foreground animate-fade-in-up stagger-2">
               Una selección de nuestros trabajos que demuestra nuestro compromiso con la excelencia y la innovación.
             </p>
           </header>
 
-          <div className="flex flex-wrap justify-center gap-2 mb-12">
+          <div className="flex flex-wrap justify-center gap-2 mb-12 animate-fade-in-up stagger-3">
             <Button
               variant="outline"
               onClick={() => {
@@ -117,7 +118,7 @@ export default function PortfolioPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {projectsToShow.map((project, index) => (
-              <Card key={index} className="overflow-hidden bg-primary/5 backdrop-blur-sm border-primary/10 group transition-all duration-300 hover:shadow-2xl hover:border-primary/30">
+              <Card key={index} className="overflow-hidden bg-primary/5 backdrop-blur-sm border-primary/10 group transition-all duration-300 hover:shadow-2xl hover:border-primary/30 animate-fade-in-up" style={{animationDelay: `${(index % 2) * 0.1}s`}}>
                 <CardContent className="p-0">
                   <div className="relative h-60 w-full">
                     <Image

@@ -9,7 +9,7 @@ const headerContent = {
     { href: '/en#hero', label: 'Home' },
     { href: '/en#services', label: 'Services' },
     { href: '/en/portfolio', label: 'Portfolio' },
-    { href: '/en/blog', label: 'Blog' },
+    { href: '/en/hosting', label: 'Hosting' },
     { href: '/en/contact', label: 'Contact' },
   ],
   contactButton: 'Contact',
