@@ -49,6 +49,10 @@ const ctaContent = {
       title: '¿No sabes por dónde empezar tecnológicamente?',
       text: 'Te asesoramos para elegir la tecnología correcta, optimizar tus procesos y planificar tu crecimiento digital. Un consultor estratégico para cada una de tus decisiones tecnológicas.',
     },
+    support: {
+      title: '¿Tu web necesita mantenimiento continuo?',
+      text: 'Un sitio desactualizado es vulnerable a fallos de seguridad y pierde velocidad con el tiempo. En DEVMARK ofrecemos planes de soporte y mantenimiento con actualizaciones, copias de seguridad, monitoreo de rendimiento y soporte técnico continuo, para que tu web funcione siempre al 100%.',
+    },
     contactButton: 'Hablemos de tu proyecto',
   },
   en: {
@@ -88,6 +92,10 @@ const ctaContent = {
       title: 'Not sure where to start tech-wise?',
       text: 'We advise you on choosing the right technology, optimizing your processes, and planning your digital growth. A strategic consultant for every one of your technology decisions.',
     },
+    support: {
+      title: 'Does your website need ongoing maintenance?',
+      text: 'An outdated site is vulnerable to security failures and loses speed over time. At DEVMARK we offer support and maintenance plans with updates, backups, performance monitoring, and continuous technical support, so your website always runs at 100%.',
+    },
     contactButton: 'Let\'s talk about your project',
   }
 }
@@ -125,7 +133,7 @@ const posts: Record<'es' | 'en', Post[]> = {
       slug: 'como-elegir-la-agencia-de-desarrollo-web-correcta',
       title: 'Cómo elegir la agencia de desarrollo web correcta para tu negocio',
       description: 'Descubre las claves para seleccionar al socio tecnológico ideal que impulse tu presencia digital. Desde la experiencia hasta la comunicación, te guiamos en cada paso.',
-      date: new Date().toISOString(),
+      date: '2026-05-04',
       author: 'Jaime Tarazona (JaimeTR)',
       image: '/undraw_team-up_qeem.svg',
       imageHint: 'office meeting',
@@ -147,7 +155,7 @@ const posts: Record<'es' | 'en', Post[]> = {
         slug: '5-razones-para-invertir-en-software-a-medida',
         title: '5 razones clave por las que tu empresa debería invertir en software a medida',
         description: '¿Usar un software genérico o invertir en una solución a medida? Analizamos las ventajas competitivas que el desarrollo de software personalizado puede ofrecer a tu negocio.',
-        date: new Date().toISOString(),
+        date: '2026-05-08',
         author: 'Jaime Tarazona (JaimeTR)',
         image: '/undraw_programming_j1zw.svg',
         imageHint: 'custom software',
@@ -171,7 +179,7 @@ const posts: Record<'es' | 'en', Post[]> = {
         slug: 'el-poder-de-los-chatbots-con-ia-en-el-servicio-al-cliente',
         title: 'El poder de los chatbots con IA para revolucionar tu servicio al cliente',
         description: 'Descubre cómo los asistentes virtuales inteligentes pueden ofrecer soporte 24/7, aumentar las ventas y liberar a tu equipo humano para que se centre en tareas estratégicas.',
-        date: new Date().toISOString(),
+        date: '2026-05-12',
         author: 'Jaime Tarazona (JaimeTR)',
         image: '/undraw_coding_joxb.svg',
         imageHint: 'ai chatbot',
@@ -193,7 +201,7 @@ const posts: Record<'es' | 'en', Post[]> = {
       slug: 'seo-tecnico-la-base-para-un-buen-posicionamiento',
       title: 'SEO técnico: la base sólida para un buen posicionamiento en buscadores',
       description: 'Mucho más que palabras clave. Descubre por qué el SEO técnico es el cimiento indispensable de cualquier estrategia de marketing digital exitosa y cómo impacta en tu visibilidad.',
-      date: new Date().toISOString(),
+      date: '2026-05-16',
       author: 'Jaime Tarazona (JaimeTR)',
       image: '/undraw_web-devices_i15y.svg',
       imageHint: 'seo optimization',
@@ -217,7 +225,7 @@ const posts: Record<'es' | 'en', Post[]> = {
       slug: 'automatizacion-de-procesos-trabaja-mas-inteligentemente',
       title: 'Automatización de procesos: Trabaja de forma más inteligente, no más dura',
       description: 'Libera a tu equipo de tareas repetitivas y propensas a errores. La automatización de procesos es la clave para aumentar la eficiencia, reducir costos y escalar tu negocio.',
-      date: new Date().toISOString(),
+      date: '2026-05-20',
       author: 'Jaime Tarazona (JaimeTR)',
       image: '/undraw_dev-environment_n5by.svg',
       imageHint: 'process automation',
@@ -240,7 +248,7 @@ const posts: Record<'es' | 'en', Post[]> = {
       slug: 'pwa-vs-aplicacion-nativa-cual-es-mejor-para-ti',
       title: 'PWA vs. aplicación nativa: ¿Cuál es la mejor opción para tu proyecto?',
       description: 'Analizamos las diferencias, ventajas y desventajas entre las Aplicaciones Web Progresivas (PWA) y las aplicaciones nativas para ayudarte a tomar la mejor decisión tecnológica.',
-      date: new Date().toISOString(),
+      date: '2026-05-24',
       author: 'Jaime Tarazona (JaimeTR)',
       image: '/undraw_device-sync_d9ei.svg',
       imageHint: 'mobile application',
@@ -272,7 +280,7 @@ const posts: Record<'es' | 'en', Post[]> = {
       slug: 'principios-de-diseno-ui-ux-para-crear-productos-que-enamoran',
       title: 'Principios de diseño UI/UX para crear productos que enamoran',
       description: 'Un buen diseño no es solo cómo se ve, sino cómo se siente y funciona. Explora los principios fundamentales de UI/UX que transforman un producto funcional en una experiencia memorable.',
-      date: new Date().toISOString(),
+      date: '2026-05-28',
       author: 'Jaime Tarazona (JaimeTR)',
       image: '/illustrations/programming.svg',
       imageHint: 'user interface design',
@@ -296,7 +304,7 @@ const posts: Record<'es' | 'en', Post[]> = {
       slug: 'marketing-digital-para-startups',
       title: 'Marketing digital para startups: estrategias clave para crecer con un presupuesto limitado',
       description: 'Lanzar una startup es un reto. Te mostramos estrategias de marketing digital de alto impacto y bajo costo para ganar tracción, atraer a tus primeros clientes y validar tu idea de negocio.',
-      date: new Date().toISOString(),
+      date: '2026-06-01',
       author: 'Jaime Tarazona (JaimeTR)',
       image: '/undraw_team-up_qeem.svg',
       imageHint: 'startup growth chart',
@@ -320,7 +328,7 @@ const posts: Record<'es' | 'en', Post[]> = {
       slug: 'por-que-tu-proximo-sitio-deberia-ser-una-pwa',
       title: 'Más allá de la web: 5 razones por las que tu próximo proyecto debería ser una PWA',
       description: 'Las Aplicaciones Web Progresivas (PWA) combinan lo mejor de la web y las apps nativas. Descubre por qué esta tecnología es el futuro para la mayoría de los negocios online.',
-      date: new Date().toISOString(),
+      date: '2026-06-05',
       author: 'Jaime Tarazona (JaimeTR)',
       image: '/undraw_device-sync_d9ei.svg',
       imageHint: 'progressive web app',
@@ -345,7 +353,7 @@ const posts: Record<'es' | 'en', Post[]> = {
       slug: 'construyendo-para-el-manana-la-importancia-de-la-escalabilidad',
       title: 'Construyendo para el mañana: la importancia de la escalabilidad en el desarrollo de software',
       description: 'Tu software funciona bien hoy, pero ¿soportará el éxito de mañana? La escalabilidad no es un lujo, es una necesidad para cualquier negocio con ambición de crecimiento. Te explicamos por qué.',
-      date: new Date().toISOString(),
+      date: '2026-06-09',
       author: 'Jaime Tarazona (JaimeTR)',
       image: '/undraw_dev-environment_n5by.svg',
       imageHint: 'cloud infrastructure',
@@ -375,7 +383,7 @@ const posts: Record<'es' | 'en', Post[]> = {
       slug: 'mas-alla-del-lanzamiento-el-valor-del-soporte-y-mantenimiento-web',
       title: 'Más allá del lanzamiento: el valor oculto del soporte y mantenimiento web',
       description: 'Lanzar tu sitio web es solo el comienzo. Descubre por qué un plan de soporte y mantenimiento continuo es una de las inversiones más inteligentes que puedes hacer para proteger tu activo digital.',
-      date: new Date().toISOString(),
+      date: '2026-06-13',
       author: 'Jaime Tarazona (JaimeTR)',
       image: '/illustrations/coding.svg',
       imageHint: 'website maintenance',
@@ -398,7 +406,7 @@ const posts: Record<'es' | 'en', Post[]> = {
       slug: 'como-elegir-el-stack-tecnologico-adecuado',
       title: '¿React, WordPress, Shopify? Cómo elegir el stack tecnológico adecuado para tu proyecto',
       description: 'La elección de la tecnología puede determinar el éxito o el fracaso de tu proyecto digital. Te guiamos a través de las opciones más populares y te ayudamos a entender cuál es la mejor para ti.',
-      date: new Date().toISOString(),
+      date: '2026-06-17',
       author: 'Jaime Tarazona (JaimeTR)',
       image: '/undraw_web-devices_i15y.svg',
       imageHint: 'technology stack code',
@@ -964,13 +972,184 @@ const posts: Record<'es' | 'en', Post[]> = {
         <div class="cta-block"><h3>${ctaContent.es.consulting.title}</h3><p>${ctaContent.es.consulting.text}</p><a href="${ctaButtonLinks.es.consulting}" class="cta-button">${ctaContent.es.contactButton}</a></div>
       `,
     },
+    {
+      slug: 'cuanto-cuesta-chatbot-ia-peru',
+      title: '¿Cuánto cuesta un chatbot con IA para tu negocio en Perú? (precios 2026)',
+      description: 'Precios reales de chatbots con inteligencia artificial en Perú: desde chatbots básicos de WhatsApp hasta soluciones a medida con CRM. Factores de costo y retorno de inversión.',
+      date: '2026-08-06',
+      author: 'Jaime Tarazona',
+      image: '/portfolio/chatbot-ia.jpg',
+      imageHint: 'precio de chatbot con inteligencia artificial en Perú',
+      tags: ['Chatbots', 'IA', 'Precios', 'Peru'],
+      content: `
+        <p>Si estás evaluando implementar un chatbot con inteligencia artificial para tu negocio, la primera pregunta suele ser: <strong>¿cuánto cuesta?</strong> La respuesta depende del canal, la complejidad de las integraciones y el volumen de conversaciones que necesitas atender. En esta guía te damos rangos de precio reales para el mercado peruano en 2026.</p>
+        <h2>Precios de chatbots con IA en Perú por tipo de proyecto</h2>
+        <table><thead><tr><th>Tipo de chatbot</th><th>Precio estimado</th><th>Incluye</th></tr></thead><tbody>
+        <tr><td>Chatbot básico (FAQ + WhatsApp)</td><td>S/ 1,200 - S/ 1,800</td><td>Respuestas a preguntas frecuentes, integración con WhatsApp Business, entrenamiento con tu información</td></tr>
+        <tr><td>Chatbot de ventas y agendamiento</td><td>S/ 2,000 - S/ 3,500</td><td>Calificación de leads, integración con CRM, catálogo de productos, agendamiento de citas</td></tr>
+        <tr><td>Chatbot a medida (multi-canal)</td><td>Desde S/ 5,000</td><td>Integraciones con ERP y pasarela de pago, flujos conversacionales avanzados, múltiples canales e idiomas</td></tr>
+        </tbody></table>
+        <p>En DEVMARK, nuestros planes de <a href="${ctaButtonLinks.es.chatbot}">chatbots con IA</a> parten desde S/ 1,200 en el plan Emprendedor, S/ 2,500 en el plan Negocio, y llegan a soluciones 100% a medida en el plan Empresa.</p>
+        <h2>Qué factores influyen en el precio de un chatbot con IA</h2>
+        <ul>
+          <li><strong>Canal de despliegue:</strong> un chatbot solo para tu web es más económico que uno que además opera en WhatsApp, Instagram y Facebook Messenger simultáneamente.</li>
+          <li><strong>Complejidad de integración:</strong> conectar el chatbot a tu CRM, tu sistema de agendamiento, tu pasarela de pago (Culqi, Niubiz) o tu ERP añade horas de desarrollo.</li>
+          <li><strong>Volumen de conversaciones:</strong> a mayor volumen mensual, mayor es el costo de los modelos de IA que procesan cada mensaje.</li>
+          <li><strong>Base de conocimiento:</strong> entrenar al chatbot con tu catálogo completo, tus políticas y tus documentos internos toma más tiempo que una configuración básica de preguntas frecuentes.</li>
+          <li><strong>Mantenimiento:</strong> igual que una web, un chatbot necesita ajustes periódicos según cambian tus productos, precios y promociones.</li>
+        </ul>
+        <h2>¿Vale la pena la inversión? El ROI de un chatbot con IA</h2>
+        <p>Un chatbot con IA puede resolver entre el 60% y el 80% de las consultas frecuentes sin intervención humana, según estudios de IBM y Juniper Research. Si tu equipo dedica hoy 3 horas diarias a responder las mismas preguntas por WhatsApp, un chatbot puede recuperar ese tiempo casi por completo, además de responder fuera de horario y capturar leads mientras duermes. Para la mayoría de negocios peruanos, la inversión se recupera entre 2 y 4 meses, considerando el ahorro en horas de atención y el aumento en conversión por respuesta inmediata.</p>
+        <h2>Preguntas frecuentes</h2>
+        <h3>¿Un chatbot con IA reemplaza a mi equipo de ventas?</h3>
+        <p>No. Automatiza las consultas repetitivas y califica leads, pero los casos complejos, las negociaciones y la atención de alto valor siguen requiriendo a una persona.</p>
+        <h3>¿Cuánto tiempo toma implementar un chatbot con IA?</h3>
+        <p>Un chatbot básico puede estar operativo en 1 a 2 semanas. Un proyecto con integraciones a CRM o ERP toma entre 3 y 6 semanas, dependiendo de la complejidad.</p>
+        <h3>¿Necesito tener ChatGPT Plus o alguna licencia de IA para tener un chatbot?</h3>
+        <p>No. El costo de los modelos de IA que usa tu chatbot ya está incluido en el desarrollo y el plan mensual; no necesitas contratar licencias por separado.</p>
+        <div class="cta-block"><h3>${ctaContent.es.chatbot.title}</h3><p>${ctaContent.es.chatbot.text}</p><a href="${ctaButtonLinks.es.chatbot}" class="cta-button">${ctaContent.es.contactButton}</a></div>
+      `,
+    },
+    {
+      slug: 'seo-vs-sem-que-elegir-primero-peru',
+      title: 'SEO vs SEM: ¿qué debe elegir primero tu negocio en Perú?',
+      description: 'Comparamos SEO y SEM para negocios peruanos: costos, tiempos de resultado y cuándo conviene cada uno. Una guía práctica para decidir dónde invertir primero tu presupuesto de marketing.',
+      date: '2026-08-09',
+      author: 'Jaime Tarazona',
+      image: '/undraw_web-devices_i15y.svg',
+      imageHint: 'comparativa SEO vs SEM para negocios en Perú',
+      tags: ['SEO', 'SEM', 'Marketing Digital', 'Peru'],
+      content: `
+        <p>Tienes un presupuesto de marketing limitado y necesitas decidir: ¿inviertes en <strong>SEO</strong> (posicionamiento orgánico) o en <strong>SEM</strong> (anuncios pagados en Google Ads)? Es una de las preguntas más frecuentes de las pymes peruanas, y la respuesta correcta depende de tu urgencia, tu presupuesto y tus objetivos de negocio.</p>
+        <h2>SEO vs SEM: diferencias clave</h2>
+        <table><thead><tr><th>Aspecto</th><th>SEO</th><th>SEM</th></tr></thead><tbody>
+        <tr><td>Tiempo para ver resultados</td><td>3 a 6 meses</td><td>Inmediato (desde el primer día)</td></tr>
+        <tr><td>Costo por clic</td><td>Gratis una vez posicionado</td><td>S/ 0.50 - S/ 3.00 por clic en promedio en Perú</td></tr>
+        <tr><td>Duración del efecto</td><td>Duradero, se mantiene con mantenimiento</td><td>Se detiene apenas dejas de pagar</td></tr>
+        <tr><td>Confianza del usuario</td><td>Alta, los resultados orgánicos generan más clics a largo plazo</td><td>Menor, algunos usuarios evitan los anuncios</td></tr>
+        <tr><td>Inversión inicial en Perú</td><td>Desde S/ 300 al mes (plan Emprendedor)</td><td>Variable según presupuesto de campaña, más el costo de gestión</td></tr>
+        </tbody></table>
+        <h2>¿Cuándo elegir SEO primero?</h2>
+        <p>El SEO es la mejor opción si tienes un horizonte de al menos 6 meses, quieres construir un activo digital que genere tráfico gratuito de forma sostenida, y tu categoría de negocio tiene búsquedas frecuentes en Google (por ejemplo, "clínica dental en Miraflores" o "abogado laboral Lima"). Es la inversión con mejor retorno a mediano y largo plazo porque el tráfico que consigues no tiene costo por clic.</p>
+        <h2>¿Cuándo elegir SEM primero?</h2>
+        <p>El SEM (Google Ads) tiene sentido cuando necesitas resultados inmediatos: un lanzamiento de producto, una campaña estacional (Cyber Days, Navidad) o cuando tu negocio es nuevo y todavía no tiene autoridad de dominio para competir en resultados orgánicos. También funciona bien para probar rápidamente qué palabras clave convierten antes de invertir en contenido SEO sobre esos mismos temas.</p>
+        <h2>La estrategia recomendada: SEO como base, SEM como acelerador</h2>
+        <p>La mayoría de negocios peruanos con presupuesto limitado obtienen el mejor retorno combinando ambos de forma escalonada: empezar con SEO técnico y de contenidos para construir una base de tráfico orgánico sostenible, y usar SEM en campañas puntuales de alto impacto (lanzamientos, temporadas altas) mientras el SEO madura. Con el tiempo, la dependencia del SEM disminuye y el costo de adquisición de clientes baja significativamente.</p>
+        <h2>Preguntas frecuentes</h2>
+        <h3>¿Puedo hacer SEO y SEM al mismo tiempo?</h3>
+        <p>Sí, y de hecho es lo ideal si el presupuesto lo permite: el SEM te da visibilidad inmediata mientras el SEO construye posicionamiento a largo plazo.</p>
+        <h3>¿Cuánto debo invertir en SEO al mes si recién empiezo?</h3>
+        <p>Para una pyme en Perú, un plan de SEO desde S/ 300 al mes ya permite trabajar optimización técnica y contenido básico. Negocios con más competencia suelen requerir planes desde S/ 600 al mes.</p>
+        <div class="cta-block"><h3>${ctaContent.es.seo.title}</h3><p>${ctaContent.es.seo.text}</p><a href="${ctaButtonLinks.es.seo}" class="cta-button">${ctaContent.es.contactButton}</a></div>
+      `,
+    },
+    {
+      slug: 'senales-tu-web-necesita-rediseno',
+      title: '7 señales de que tu página web necesita un rediseño urgente',
+      description: 'No se trata solo de que "se vea vieja". Descubre las 7 señales reales de que tu web está perdiendo clientes: velocidad, conversión, responsive, SEO y experiencia de usuario.',
+      date: '2026-08-11',
+      author: 'Jaime Tarazona',
+      image: '/undraw_device-sync_d9ei.svg',
+      imageHint: 'señales de que una página web necesita rediseño',
+      tags: ['Diseño UI/UX', 'Desarrollo Web', 'Peru'],
+      content: `
+        <p>Muchos empresarios piensan que su web necesita un rediseño solo cuando "se ve anticuada". Pero el diseño visual es apenas una de las razones. A menudo, una web con problemas más profundos sigue vendiendo mal aunque tenga colores modernos. Estas son las 7 señales reales de que tu página web necesita un rediseño, más allá de la estética.</p>
+        <h2>1. Tu tasa de rebote es alta y el tiempo en página es bajo</h2>
+        <p>Si los visitantes entran y salen en menos de 10 segundos, algo en la primera impresión no está funcionando: puede ser la velocidad de carga, un mensaje poco claro o una navegación confusa. Revisa Google Analytics: una tasa de rebote superior al 70% en tu página de inicio es una señal de alarma.</p>
+        <h2>2. No se ve bien (o no funciona bien) en celular</h2>
+        <p>Más del 80% de las búsquedas en Perú se hacen desde smartphone. Si tu web no es completamente responsive, tabletas y celulares se llevan una experiencia rota: botones diminutos, texto cortado, menús que no abren. Cada visita móvil frustrada es una venta perdida.</p>
+        <h2>3. Carga lento (más de 3 segundos)</h2>
+        <p>Cada segundo adicional de carga reduce las conversiones de forma medible. Si tu web tarda más de 3 segundos en mostrar contenido, especialmente en conexiones móviles, estás perdiendo visitantes antes de que vean tu propuesta de valor. Herramientas como Google PageSpeed Insights te dan un diagnóstico gratuito en segundos.</p>
+        <h2>4. Los formularios de contacto casi no reciben envíos</h2>
+        <p>Si tienes tráfico pero pocos leads, el problema suele estar en la claridad de tus llamados a la acción (CTA), la ubicación de los formularios o la cantidad de campos que pides. Un rediseño enfocado en conversión puede duplicar tu tasa de contacto sin aumentar el presupuesto de publicidad.</p>
+        <h2>5. Tu diseño no refleja lo que vendes hoy</h2>
+        <p>Si tu negocio evolucionó (nuevos servicios, nuevo público, nuevo posicionamiento de precio) pero tu web sigue mostrando la versión de hace 3 años, generas una desconexión entre lo que el cliente espera y lo que realmente ofreces.</p>
+        <h2>6. No cumple con lo básico de SEO técnico</h2>
+        <p>Webs antiguas suelen tener URLs poco amigables, sin datos estructurados, sin sitemap actualizado y con imágenes sin optimizar. Estos problemas no se ven a simple vista, pero le cuestan posiciones en Google todos los días.</p>
+        <h2>7. Actualizar el contenido requiere llamar a un desarrollador</h2>
+        <p>Si cada cambio de precio, texto o imagen depende de terceros y toma días, tu web te está frenando en lugar de ayudarte a crecer. Un CMS bien implementado te da autonomía real para mantener el contenido actualizado.</p>
+        <h2>¿Rediseño total o mejora progresiva?</h2>
+        <p>No siempre se necesita empezar de cero. En muchos casos, un diagnóstico de UX identifica 2 o 3 cambios de alto impacto (velocidad, formularios, jerarquía visual) que resuelven la mayoría del problema sin rehacer todo el sitio. La decisión correcta depende de cuántas de estas señales reconoces en tu web.</p>
+        <div class="cta-block"><h3>${ctaContent.es.uiux.title}</h3><p>${ctaContent.es.uiux.text}</p><a href="${ctaButtonLinks.es.uiux}" class="cta-button">${ctaContent.es.contactButton}</a></div>
+      `,
+    },
+    {
+      slug: 'que-es-geo-posicionamiento-ia-chatgpt-perplexity',
+      title: 'Qué es GEO (Generative Engine Optimization) y cómo lograr que ChatGPT recomiende tu negocio',
+      description: 'GEO es la optimización para motores de búsqueda con IA como ChatGPT, Perplexity y Gemini. Descubre en qué se diferencia del SEO tradicional y cómo empezar a aplicarlo en tu web.',
+      date: '2026-08-13',
+      author: 'Jaime Tarazona',
+      image: '/undraw_coding_joxb.svg',
+      imageHint: 'optimización GEO para motores de búsqueda con inteligencia artificial',
+      tags: ['GEO', 'SEO', 'IA', 'Marketing Digital'],
+      content: `
+        <p>Cada vez más personas ya no buscan "restaurante en Miraflores" en Google: le preguntan directamente a ChatGPT, Perplexity o Gemini y esperan una respuesta lista. Si tu negocio no aparece en esas respuestas, estás perdiendo un canal de clientes que crece cada mes. A esta disciplina se le llama <strong>GEO (Generative Engine Optimization)</strong>, y aunque comparte fundamentos con el SEO tradicional, tiene reglas propias.</p>
+        <h2>¿Qué es GEO exactamente?</h2>
+        <p>GEO es el conjunto de prácticas para que los motores de búsqueda con inteligencia artificial generativa (ChatGPT, Perplexity, Gemini, Copilot) encuentren, entiendan y citen tu contenido como fuente al responder preguntas de los usuarios. A diferencia del SEO clásico, donde el objetivo es aparecer en una lista de 10 enlaces, en GEO el objetivo es que la IA use directamente tu información para construir su respuesta, con o sin enlace visible.</p>
+        <h2>GEO vs SEO tradicional: diferencias clave</h2>
+        <table><thead><tr><th>Aspecto</th><th>SEO tradicional</th><th>GEO</th></tr></thead><tbody>
+        <tr><td>Objetivo</td><td>Aparecer en el top 10 de resultados</td><td>Ser citado dentro de la respuesta generada por la IA</td></tr>
+        <tr><td>Formato de contenido ideal</td><td>Artículos largos optimizados por palabra clave</td><td>Respuestas directas, datos concretos, estructura de pregunta-respuesta</td></tr>
+        <tr><td>Señal de autoridad</td><td>Backlinks y antigüedad del dominio</td><td>Claridad, precisión, datos verificables y consistencia entre fuentes</td></tr>
+        <tr><td>Métricas</td><td>Posición, tráfico orgánico, CTR</td><td>Menciones y citas dentro de respuestas de IA (más difícil de medir hoy)</td></tr>
+        </tbody></table>
+        <h2>Cómo optimizar tu web para GEO: 5 prácticas concretas</h2>
+        <ul>
+          <li><strong>Responde preguntas directamente:</strong> estructura tu contenido con títulos en formato de pregunta (¿Cuánto cuesta...? ¿Cómo funciona...?) seguidos de una respuesta clara en las primeras líneas, antes de profundizar.</li>
+          <li><strong>Usa datos concretos, no vaguedades:</strong> los modelos de IA prefieren citar cifras, rangos de precio y ejemplos específicos antes que afirmaciones genéricas como "depende de varios factores".</li>
+          <li><strong>Implementa datos estructurados (Schema.org):</strong> marcado de FAQ, artículo y organización ayuda a que los rastreadores de IA entiendan el contexto de tu contenido sin ambigüedad.</li>
+          <li><strong>Sé consistente en toda la web:</strong> si tu nombre, precios o datos de contacto varían entre tu web, tus redes y directorios, la IA pierde confianza en la información y evita citarte.</li>
+          <li><strong>Publica contenido original y verificable:</strong> los motores de IA generativa priorizan fuentes que aportan experiencia real (casos, cifras propias, opiniones fundamentadas) por encima de contenido genérico reciclado de otras webs.</li>
+        </ul>
+        <h2>¿El SEO tradicional ya no importa?</h2>
+        <p>Sí importa, y sigue siendo la base. Un sitio con buen SEO técnico (velocidad, indexación, HTTPS, estructura semántica) es más fácil de rastrear tanto para Google como para los crawlers de IA. GEO no reemplaza al SEO: lo extiende. Las empresas que ya invierten en SEO técnico y de contenidos tienen ventaja para adaptarse a GEO, porque la base técnica y editorial ya está construida.</p>
+        <div class="cta-block"><h3>${ctaContent.es.seo.title}</h3><p>${ctaContent.es.seo.text}</p><a href="${ctaButtonLinks.es.seo}" class="cta-button">${ctaContent.es.contactButton}</a></div>
+      `,
+    },
+    {
+      slug: 'mantenimiento-web-planes-precios-peru',
+      title: 'Mantenimiento web en Perú: cada cuánto hacerlo y cuánto cuesta (planes 2026)',
+      description: 'Cuándo hacer mantenimiento a tu página web y cuánto cuesta en Perú. Planes desde S/ 60 al mes, qué incluyen y por qué un sitio sin mantenimiento pierde seguridad y posicionamiento.',
+      date: '2026-08-16',
+      author: 'Jaime Tarazona',
+      image: '/illustrations/coding.svg',
+      imageHint: 'mantenimiento de página web en Perú',
+      tags: ['Mantenimiento', 'Soporte', 'Peru'],
+      content: `
+        <p>Lanzaste tu página web y funciona bien. Pero, ¿cada cuánto tiempo hay que darle mantenimiento? Es una de las preguntas que más subestiman los negocios en Perú, hasta que un día el sitio se cae, es hackeado o simplemente deja de aparecer en Google. Aquí te explicamos la frecuencia recomendada y los precios reales del mantenimiento web en 2026.</p>
+        <h2>¿Cada cuánto tiempo se debe hacer mantenimiento web?</h2>
+        <table><thead><tr><th>Tarea</th><th>Frecuencia recomendada</th></tr></thead><tbody>
+        <tr><td>Actualización de plugins, temas y núcleo (WordPress u otro CMS)</td><td>Semanal a quincenal</td></tr>
+        <tr><td>Copia de seguridad (backup)</td><td>Diaria o semanal, según el volumen de cambios</td></tr>
+        <tr><td>Monitoreo de seguridad y escaneo de malware</td><td>Continuo (24/7)</td></tr>
+        <tr><td>Revisión de velocidad y Core Web Vitals</td><td>Mensual</td></tr>
+        <tr><td>Auditoría de SEO técnico (enlaces rotos, sitemap, errores de rastreo)</td><td>Mensual o trimestral</td></tr>
+        <tr><td>Renovación de certificado SSL y dominio</td><td>Anual (con recordatorio automático)</td></tr>
+        </tbody></table>
+        <h2>Cuánto cuesta el mantenimiento web en Perú</h2>
+        <p>Los planes de mantenimiento en Perú suelen escalar según el nivel de soporte y la complejidad del sitio:</p>
+        <ul>
+          <li><strong>Plan Básico (desde S/ 60 al mes):</strong> actualizaciones de seguridad, copias de seguridad periódicas y soporte técnico por correo. Ideal para sitios informativos pequeños.</li>
+          <li><strong>Plan Profesional (desde S/ 150 al mes):</strong> todo lo anterior más monitoreo de rendimiento, optimización de velocidad y soporte con tiempos de respuesta más rápidos. Recomendado para webs corporativas y tiendas online pequeñas.</li>
+          <li><strong>Plan Empresa (desde S/ 300 al mes):</strong> soporte prioritario, monitoreo 24/7, revisiones de seguridad avanzadas y cambios de contenido incluidos. Pensado para e-commerce y plataformas con tráfico alto.</li>
+        </ul>
+        <h2>Qué pasa si no le das mantenimiento a tu web</h2>
+        <p>Un sitio sin mantenimiento acumula riesgos silenciosos: plugins desactualizados con vulnerabilidades conocidas, certificados SSL vencidos que muestran advertencias de "sitio no seguro" a tus visitantes, backups inexistentes que te dejan sin forma de recuperar el sitio ante un ataque, y una velocidad de carga que se degrada con el tiempo, afectando directamente tu posicionamiento en Google. Reparar un sitio hackeado o restaurarlo desde cero casi siempre cuesta más que meses de mantenimiento preventivo.</p>
+        <h2>Preguntas frecuentes</h2>
+        <h3>¿El mantenimiento web incluye cambios de contenido?</h3>
+        <p>Depende del plan. Los planes Profesional y Empresa suelen incluir un número de cambios menores al mes; el plan Básico se enfoca en seguridad y backups.</p>
+        <h3>¿Puedo hacer el mantenimiento yo mismo?</h3>
+        <p>Si tienes conocimientos técnicos, sí. Pero la mayoría de negocios prefieren delegarlo para evitar errores que puedan dejar el sitio caído, y para tener respaldo profesional ante un problema de seguridad.</p>
+        <div class="cta-block"><h3>${ctaContent.es.support.title}</h3><p>${ctaContent.es.support.text}</p><a href="${ctaButtonLinks.es.support}" class="cta-button">${ctaContent.es.contactButton}</a></div>
+      `,
+    },
   ],
   en: [
     {
       slug: 'how-to-choose-the-right-web-development-agency',
       title: 'How to choose the right web development agency for your business',
       description: 'Discover the keys to selecting the ideal technology partner to boost your digital presence. From experience to communication, we guide you every step of the way.',
-      date: new Date().toISOString(),
+      date: '2026-05-04',
       author: 'Jaime Tarazona (JaimeTR)',
       image: '/undraw_team-up_qeem.svg',
       imageHint: 'office meeting',
@@ -992,7 +1171,7 @@ const posts: Record<'es' | 'en', Post[]> = {
         slug: '5-reasons-to-invest-in-custom-software',
         title: '5 key reasons your company should invest in custom software',
         description: 'Use off-the-shelf software or invest in a custom solution? We analyze the competitive advantages that custom software development can offer your business.',
-        date: new Date().toISOString(),
+        date: '2026-05-08',
         author: 'Jaime Tarazona (JaimeTR)',
         image: '/undraw_programming_j1zw.svg',
         imageHint: 'custom software',
@@ -1016,7 +1195,7 @@ const posts: Record<'es' | 'en', Post[]> = {
         slug: 'the-power-of-ai-chatbots-in-customer-service',
         title: 'The power of AI chatbots to revolutionize your customer service',
         description: 'Discover how intelligent virtual assistants can provide 24/7 support, increase sales, and free up your human team to focus on strategic tasks.',
-        date: new Date().toISOString(),
+        date: '2026-05-12',
         author: 'Jaime Tarazona (JaimeTR)',
         image: '/undraw_coding_joxb.svg',
         imageHint: 'ai chatbot',
@@ -1038,7 +1217,7 @@ const posts: Record<'es' | 'en', Post[]> = {
       slug: 'technical-seo-the-foundation-for-good-ranking',
       title: 'Technical SEO: the solid foundation for good search engine ranking',
       description: 'Much more than keywords. Discover why technical SEO is the indispensable foundation of any successful digital marketing strategy and how it impacts your visibility.',
-      date: new Date().toISOString(),
+      date: '2026-05-16',
       author: 'Jaime Tarazona (JaimeTR)',
       image: '/undraw_web-devices_i15y.svg',
       imageHint: 'seo optimization',
@@ -1062,7 +1241,7 @@ const posts: Record<'es' | 'en', Post[]> = {
       slug: 'process-automation-work-smarter-not-harder',
       title: 'Process automation: Work smarter, not harder',
       description: 'Free your team from repetitive and error-prone tasks. Process automation is the key to increasing efficiency, reducing costs, and scaling your business.',
-      date: new Date().toISOString(),
+      date: '2026-05-20',
       author: 'Jaime Tarazona (JaimeTR)',
       image: '/undraw_dev-environment_n5by.svg',
       imageHint: 'process automation',
@@ -1085,7 +1264,7 @@ const posts: Record<'es' | 'en', Post[]> = {
       slug: 'pwa-vs-native-app-which-is-better-for-you',
       title: 'PWA vs. native app: Which is the best option for your project?',
       description: 'We analyze the differences, advantages, and disadvantages between Progressive Web Apps (PWAs) and native applications to help you make the best technological decision.',
-      date: new Date().toISOString(),
+      date: '2026-05-24',
       author: 'Jaime Tarazona (JaimeTR)',
       image: '/undraw_device-sync_d9ei.svg',
       imageHint: 'mobile application',
@@ -1117,7 +1296,7 @@ const posts: Record<'es' | 'en', Post[]> = {
       slug: 'ui-ux-design-principles-for-creating-products-people-love',
       title: 'UI/UX design principles for creating products people love',
       description: 'Good design is not just what it looks like, but how it feels and works. Explore the fundamental principles of UI/UX that transform a functional product into a memorable experience.',
-      date: new Date().toISOString(),
+      date: '2026-05-28',
       author: 'Jaime Tarazona (JaimeTR)',
       image: '/illustrations/programming.svg',
       imageHint: 'user interface design',
@@ -1141,7 +1320,7 @@ const posts: Record<'es' | 'en', Post[]> = {
       slug: 'digital-marketing-for-startups',
       title: 'Digital marketing for startups: key strategies to grow on a limited budget',
       description: 'Launching a startup is a challenge. We show you high-impact, low-cost digital marketing strategies to gain traction, attract your first customers, and validate your business idea.',
-      date: new Date().toISOString(),
+      date: '2026-06-01',
       author: 'Jaime Tarazona (JaimeTR)',
       image: '/undraw_team-up_qeem.svg',
       imageHint: 'startup growth chart',
@@ -1165,7 +1344,7 @@ const posts: Record<'es' | 'en', Post[]> = {
       slug: 'why-your-next-website-should-be-a-pwa',
       title: 'Beyond the web: 5 reasons why your next project should be a PWA',
       description: 'Progressive Web Apps (PWAs) combine the best of the web and native apps. Discover why this technology is the future for most online businesses.',
-      date: new Date().toISOString(),
+      date: '2026-06-05',
       author: 'Jaime Tarazona (JaimeTR)',
       image: '/undraw_device-sync_d9ei.svg',
       imageHint: 'progressive web app',
@@ -1190,7 +1369,7 @@ const posts: Record<'es' | 'en', Post[]> = {
       slug: 'building-for-tomorrow-the-importance-of-scalability',
       title: 'Building for tomorrow: the importance of scalability in software development',
       description: 'Your software works well today, but will it support tomorrow\'s success? Scalability is not a luxury, it is a necessity for any business with growth ambitions. We explain why.',
-      date: new Date().toISOString(),
+      date: '2026-06-09',
       author: 'Jaime Tarazona (JaimeTR)',
       image: '/undraw_dev-environment_n5by.svg',
       imageHint: 'cloud infrastructure',
@@ -1220,7 +1399,7 @@ const posts: Record<'es' | 'en', Post[]> = {
       slug: 'beyond-the-launch-the-value-of-web-support-and-maintenance',
       title: 'Beyond the launch: the hidden value of web support and maintenance',
       description: 'Launching your website is just the beginning. Discover why an ongoing support and maintenance plan is one of the smartest investments you can make to protect your digital asset.',
-      date: new Date().toISOString(),
+      date: '2026-06-13',
       author: 'Jaime Tarazona (JaimeTR)',
       image: '/illustrations/coding.svg',
       imageHint: 'website maintenance',
@@ -1243,7 +1422,7 @@ const posts: Record<'es' | 'en', Post[]> = {
       slug: 'how-to-choose-the-right-tech-stack',
       title: 'React, WordPress, Shopify? How to choose the right tech stack for your project',
       description: 'The choice of technology can determine the success or failure of your digital project. We guide you through the most popular options and help you understand which is best for you.',
-      date: new Date().toISOString(),
+      date: '2026-06-17',
       author: 'Jaime Tarazona (JaimeTR)',
       image: '/undraw_web-devices_i15y.svg',
       imageHint: 'technology stack code',
@@ -1778,6 +1957,177 @@ const posts: Record<'es' | 'en', Post[]> = {
         <h3>To prepare for growth</h3>
         <p>When your business is ready to scale, planning the right architecture and integrations from the start prevents painful migrations in the future.</p>
         <div class="cta-block"><h3>${ctaContent.en.consulting.title}</h3><p>${ctaContent.en.consulting.text}</p><a href="${ctaButtonLinks.en.consulting}" class="cta-button">${ctaContent.en.contactButton}</a></div>
+      `,
+    },
+    {
+      slug: 'how-much-does-ai-chatbot-cost-peru',
+      title: 'How much does an AI chatbot cost for your business in Peru? (2026 prices)',
+      description: 'Real prices for AI chatbots in Peru: from basic WhatsApp chatbots to custom solutions with CRM integration. Cost factors and return on investment.',
+      date: '2026-08-06',
+      author: 'Jaime Tarazona',
+      image: '/portfolio/chatbot-ia.jpg',
+      imageHint: 'price of an AI chatbot in Peru',
+      tags: ['Chatbots', 'AI', 'Pricing', 'Peru'],
+      content: `
+        <p>If you are evaluating an AI-powered chatbot for your business, the first question is usually: <strong>how much does it cost?</strong> The answer depends on the channel, the complexity of the integrations, and the volume of conversations you need to handle. Here are real price ranges for the Peruvian market in 2026.</p>
+        <h2>AI chatbot prices in Peru by project type</h2>
+        <table><thead><tr><th>Chatbot type</th><th>Estimated price</th><th>Includes</th></tr></thead><tbody>
+        <tr><td>Basic chatbot (FAQ + WhatsApp)</td><td>$320 - $480</td><td>FAQ answers, WhatsApp Business integration, trained on your information</td></tr>
+        <tr><td>Sales and booking chatbot</td><td>$530 - $930</td><td>Lead qualification, CRM integration, product catalog, appointment booking</td></tr>
+        <tr><td>Custom multi-channel chatbot</td><td>From $1,300</td><td>ERP and payment gateway integrations, advanced conversational flows, multiple channels and languages</td></tr>
+        </tbody></table>
+        <p>At DEVMARK, our <a href="${ctaButtonLinks.en.chatbot}">AI chatbot plans</a> start at S/ 1,200 on the Starter plan, S/ 2,500 on the Business plan, and scale to fully custom solutions on the Enterprise plan.</p>
+        <h2>What factors affect the price of an AI chatbot</h2>
+        <ul>
+          <li><strong>Deployment channel:</strong> a chatbot for your website alone is cheaper than one that also runs on WhatsApp, Instagram, and Facebook Messenger simultaneously.</li>
+          <li><strong>Integration complexity:</strong> connecting the chatbot to your CRM, your booking system, your payment gateway (Culqi, Niubiz), or your ERP adds development hours.</li>
+          <li><strong>Conversation volume:</strong> the higher the monthly volume, the higher the cost of the AI models processing each message.</li>
+          <li><strong>Knowledge base:</strong> training the chatbot on your full catalog, policies, and internal documents takes longer than a basic FAQ setup.</li>
+          <li><strong>Maintenance:</strong> like a website, a chatbot needs periodic adjustments as your products, prices, and promotions change.</li>
+        </ul>
+        <h2>Is it worth the investment? The ROI of an AI chatbot</h2>
+        <p>An AI chatbot can resolve between 60% and 80% of frequent inquiries without human intervention, according to studies by IBM and Juniper Research. If your team spends 3 hours a day answering the same questions on WhatsApp, a chatbot can recover almost all of that time, while also responding after hours and capturing leads while you sleep. For most Peruvian businesses, the investment pays off within 2 to 4 months, factoring in saved support hours and higher conversion from instant responses.</p>
+        <h2>Frequently asked questions</h2>
+        <h3>Does an AI chatbot replace my sales team?</h3>
+        <p>No. It automates repetitive inquiries and qualifies leads, but complex cases, negotiations, and high-value service still need a person.</p>
+        <h3>How long does it take to implement an AI chatbot?</h3>
+        <p>A basic chatbot can be live in 1 to 2 weeks. A project with CRM or ERP integrations takes 3 to 6 weeks, depending on complexity.</p>
+        <h3>Do I need a ChatGPT Plus subscription or a separate AI license?</h3>
+        <p>No. The cost of the AI models your chatbot uses is already included in the development and monthly plan; you don't need to buy separate licenses.</p>
+        <div class="cta-block"><h3>${ctaContent.en.chatbot.title}</h3><p>${ctaContent.en.chatbot.text}</p><a href="${ctaButtonLinks.en.chatbot}" class="cta-button">${ctaContent.en.contactButton}</a></div>
+      `,
+    },
+    {
+      slug: 'seo-vs-sem-what-to-choose-first-peru',
+      title: 'SEO vs SEM: what should your business in Peru choose first?',
+      description: 'We compare SEO and SEM for Peruvian businesses: costs, time to results, and when each one makes sense. A practical guide to deciding where to invest your marketing budget first.',
+      date: '2026-08-09',
+      author: 'Jaime Tarazona',
+      image: '/undraw_web-devices_i15y.svg',
+      imageHint: 'SEO vs SEM comparison for businesses in Peru',
+      tags: ['SEO', 'SEM', 'Digital Marketing', 'Peru'],
+      content: `
+        <p>You have a limited marketing budget and need to decide: invest in <strong>SEO</strong> (organic ranking) or in <strong>SEM</strong> (paid Google Ads)? It's one of the most common questions among Peruvian SMEs, and the right answer depends on your urgency, your budget, and your business goals.</p>
+        <h2>SEO vs SEM: key differences</h2>
+        <table><thead><tr><th>Aspect</th><th>SEO</th><th>SEM</th></tr></thead><tbody>
+        <tr><td>Time to see results</td><td>3 to 6 months</td><td>Immediate (from day one)</td></tr>
+        <tr><td>Cost per click</td><td>Free once ranked</td><td>S/ 0.50 - S/ 3.00 per click on average in Peru</td></tr>
+        <tr><td>Duration of effect</td><td>Lasting, sustained with maintenance</td><td>Stops as soon as you stop paying</td></tr>
+        <tr><td>User trust</td><td>High, organic results earn more clicks long-term</td><td>Lower, some users avoid ads</td></tr>
+        <tr><td>Initial investment in Peru</td><td>From S/ 300 per month (Starter plan)</td><td>Variable based on campaign budget, plus management fees</td></tr>
+        </tbody></table>
+        <h2>When to choose SEO first</h2>
+        <p>SEO is the best option if you have a horizon of at least 6 months, want to build a digital asset that generates sustained free traffic, and your business category has frequent Google searches (e.g., "dental clinic in Miraflores" or "labor lawyer Lima"). It offers the best medium- and long-term return because the traffic you earn has no cost per click.</p>
+        <h2>When to choose SEM first</h2>
+        <p>SEM (Google Ads) makes sense when you need immediate results: a product launch, a seasonal campaign (Cyber Days, Christmas), or when your business is new and doesn't yet have the domain authority to compete in organic results. It also works well to quickly test which keywords convert before investing in SEO content around those same topics.</p>
+        <h2>The recommended strategy: SEO as the foundation, SEM as the accelerator</h2>
+        <p>Most Peruvian businesses with limited budgets get the best return by combining both in stages: start with technical and content SEO to build a sustainable organic traffic base, and use SEM for high-impact one-off campaigns (launches, peak seasons) while SEO matures. Over time, dependence on SEM decreases and customer acquisition cost drops significantly.</p>
+        <h2>Frequently asked questions</h2>
+        <h3>Can I do SEO and SEM at the same time?</h3>
+        <p>Yes, and it's actually ideal if your budget allows it: SEM gives you immediate visibility while SEO builds long-term ranking.</p>
+        <h3>How much should I invest in SEO per month if I'm just starting?</h3>
+        <p>For an SME in Peru, an SEO plan from S/ 300 per month already covers technical optimization and basic content. Businesses in more competitive niches usually need plans from S/ 600 per month.</p>
+        <div class="cta-block"><h3>${ctaContent.en.seo.title}</h3><p>${ctaContent.en.seo.text}</p><a href="${ctaButtonLinks.en.seo}" class="cta-button">${ctaContent.en.contactButton}</a></div>
+      `,
+    },
+    {
+      slug: 'signs-your-website-needs-a-redesign',
+      title: '7 signs your website urgently needs a redesign',
+      description: 'It\'s not just about looking outdated. Discover the 7 real signs your website is losing customers: speed, conversion, mobile responsiveness, SEO, and user experience.',
+      date: '2026-08-11',
+      author: 'Jaime Tarazona',
+      image: '/undraw_device-sync_d9ei.svg',
+      imageHint: 'signs a website needs a redesign',
+      tags: ['UI/UX Design', 'Web Development', 'Peru'],
+      content: `
+        <p>Many business owners think their website needs a redesign only when it "looks outdated." But visual design is just one of the reasons. Often, a website with deeper problems keeps underperforming even with a modern color scheme. Here are the 7 real signs your website needs a redesign, beyond aesthetics.</p>
+        <h2>1. High bounce rate and low time on page</h2>
+        <p>If visitors leave in under 10 seconds, something about the first impression isn't working: it could be load speed, an unclear message, or confusing navigation. Check Google Analytics: a bounce rate above 70% on your homepage is a warning sign.</p>
+        <h2>2. It doesn't look (or work) well on mobile</h2>
+        <p>Over 80% of searches in Peru happen on smartphones. If your site isn't fully responsive, mobile visitors get a broken experience: tiny buttons, cut-off text, menus that don't open. Every frustrated mobile visit is a lost sale.</p>
+        <h2>3. It loads slowly (over 3 seconds)</h2>
+        <p>Every extra second of load time measurably lowers conversions. If your site takes more than 3 seconds to show content, especially on mobile connections, you're losing visitors before they even see your value proposition. Tools like Google PageSpeed Insights give you a free diagnosis in seconds.</p>
+        <h2>4. Contact forms barely get submissions</h2>
+        <p>If you have traffic but few leads, the problem is usually the clarity of your calls-to-action (CTAs), where forms are placed, or how many fields you ask for. A conversion-focused redesign can double your contact rate without increasing your ad budget.</p>
+        <h2>5. Your design doesn't reflect what you sell today</h2>
+        <p>If your business evolved (new services, new audience, new price positioning) but your website still shows the version from 3 years ago, you create a mismatch between what customers expect and what you actually offer.</p>
+        <h2>6. It fails basic technical SEO</h2>
+        <p>Older sites often have unfriendly URLs, no structured data, an outdated sitemap, and unoptimized images. These issues aren't visible at first glance, but they cost you Google rankings every day.</p>
+        <h2>7. Updating content requires calling a developer</h2>
+        <p>If every price change, text edit, or new image depends on a third party and takes days, your website is holding you back instead of helping you grow. A properly implemented CMS gives you real autonomy to keep content current.</p>
+        <h2>Full redesign or progressive improvement?</h2>
+        <p>You don't always need to start from scratch. In many cases, a UX audit identifies 2 or 3 high-impact changes (speed, forms, visual hierarchy) that solve most of the problem without rebuilding the entire site. The right decision depends on how many of these signs you recognize in your own website.</p>
+        <div class="cta-block"><h3>${ctaContent.en.uiux.title}</h3><p>${ctaContent.en.uiux.text}</p><a href="${ctaButtonLinks.en.uiux}" class="cta-button">${ctaContent.en.contactButton}</a></div>
+      `,
+    },
+    {
+      slug: 'what-is-geo-ai-search-optimization-chatgpt-perplexity',
+      title: 'What is GEO (Generative Engine Optimization) and how to get ChatGPT to recommend your business',
+      description: 'GEO is the optimization discipline for AI search engines like ChatGPT, Perplexity, and Gemini. Discover how it differs from traditional SEO and how to start applying it to your website.',
+      date: '2026-08-13',
+      author: 'Jaime Tarazona',
+      image: '/undraw_coding_joxb.svg',
+      imageHint: 'GEO optimization for AI search engines',
+      tags: ['GEO', 'SEO', 'AI', 'Digital Marketing'],
+      content: `
+        <p>More and more people no longer search "restaurant in Miraflores" on Google: they ask ChatGPT, Perplexity, or Gemini directly and expect a ready-made answer. If your business doesn't show up in those answers, you're missing out on a customer channel that grows every month. This discipline is called <strong>GEO (Generative Engine Optimization)</strong>, and while it shares foundations with traditional SEO, it has its own rules.</p>
+        <h2>What exactly is GEO?</h2>
+        <p>GEO is the set of practices that help generative AI search engines (ChatGPT, Perplexity, Gemini, Copilot) find, understand, and cite your content as a source when answering user questions. Unlike classic SEO, where the goal is to appear in a list of 10 links, GEO's goal is for the AI to directly use your information to build its answer, with or without a visible link.</p>
+        <h2>GEO vs traditional SEO: key differences</h2>
+        <table><thead><tr><th>Aspect</th><th>Traditional SEO</th><th>GEO</th></tr></thead><tbody>
+        <tr><td>Goal</td><td>Appear in the top 10 results</td><td>Be cited within the AI-generated answer</td></tr>
+        <tr><td>Ideal content format</td><td>Long keyword-optimized articles</td><td>Direct answers, concrete data, question-and-answer structure</td></tr>
+        <tr><td>Authority signal</td><td>Backlinks and domain age</td><td>Clarity, accuracy, verifiable data, and consistency across sources</td></tr>
+        <tr><td>Metrics</td><td>Ranking position, organic traffic, CTR</td><td>Mentions and citations within AI answers (harder to measure today)</td></tr>
+        </tbody></table>
+        <h2>How to optimize your website for GEO: 5 concrete practices</h2>
+        <ul>
+          <li><strong>Answer questions directly:</strong> structure your content with question-style headings (How much does...? How does...work?) followed by a clear answer in the first lines, before going deeper.</li>
+          <li><strong>Use concrete data, not vague claims:</strong> AI models prefer to cite figures, price ranges, and specific examples over generic statements like "it depends on several factors."</li>
+          <li><strong>Implement structured data (Schema.org):</strong> FAQ, article, and organization markup helps AI crawlers understand your content's context without ambiguity.</li>
+          <li><strong>Stay consistent across the web:</strong> if your business name, prices, or contact details vary between your website, social profiles, and directories, the AI loses confidence in the information and avoids citing you.</li>
+          <li><strong>Publish original, verifiable content:</strong> generative AI engines prioritize sources that show real experience (case studies, original figures, informed opinions) over generic content recycled from other sites.</li>
+        </ul>
+        <h2>Does traditional SEO still matter?</h2>
+        <p>Yes, and it remains the foundation. A site with good technical SEO (speed, indexability, HTTPS, semantic structure) is easier for both Google and AI crawlers to crawl. GEO doesn't replace SEO: it extends it. Businesses that already invest in technical and content SEO have an advantage adapting to GEO, because the technical and editorial foundation is already in place.</p>
+        <div class="cta-block"><h3>${ctaContent.en.seo.title}</h3><p>${ctaContent.en.seo.text}</p><a href="${ctaButtonLinks.en.seo}" class="cta-button">${ctaContent.en.contactButton}</a></div>
+      `,
+    },
+    {
+      slug: 'website-maintenance-plans-pricing-peru',
+      title: 'Website maintenance in Peru: how often and how much it costs (2026 plans)',
+      description: 'When to perform maintenance on your website and how much it costs in Peru. Plans starting at S/ 60 per month, what they include, and why an unmaintained site loses security and rankings.',
+      date: '2026-08-16',
+      author: 'Jaime Tarazona',
+      image: '/illustrations/coding.svg',
+      imageHint: 'website maintenance in Peru',
+      tags: ['Maintenance', 'Support', 'Peru'],
+      content: `
+        <p>You launched your website and it works well. But how often does it actually need maintenance? It's one of the most underestimated questions among businesses in Peru, until the day the site goes down, gets hacked, or simply stops showing up on Google. Here's the recommended frequency and real website maintenance prices for 2026.</p>
+        <h2>How often should website maintenance be done?</h2>
+        <table><thead><tr><th>Task</th><th>Recommended frequency</th></tr></thead><tbody>
+        <tr><td>Plugin, theme, and core updates (WordPress or other CMS)</td><td>Weekly to biweekly</td></tr>
+        <tr><td>Backups</td><td>Daily or weekly, depending on how often content changes</td></tr>
+        <tr><td>Security monitoring and malware scanning</td><td>Continuous (24/7)</td></tr>
+        <tr><td>Speed and Core Web Vitals review</td><td>Monthly</td></tr>
+        <tr><td>Technical SEO audit (broken links, sitemap, crawl errors)</td><td>Monthly or quarterly</td></tr>
+        <tr><td>SSL certificate and domain renewal</td><td>Annual (with automatic reminder)</td></tr>
+        </tbody></table>
+        <h2>How much website maintenance costs in Peru</h2>
+        <p>Maintenance plans in Peru typically scale with the level of support and the complexity of the site:</p>
+        <ul>
+          <li><strong>Basic plan (from S/ 60 per month):</strong> security updates, periodic backups, and email support. Ideal for small informational sites.</li>
+          <li><strong>Professional plan (from S/ 150 per month):</strong> everything above plus performance monitoring, speed optimization, and faster response times. Recommended for corporate websites and small online stores.</li>
+          <li><strong>Enterprise plan (from S/ 300 per month):</strong> priority support, 24/7 monitoring, advanced security reviews, and included content changes. Built for e-commerce and high-traffic platforms.</li>
+        </ul>
+        <h2>What happens if you skip website maintenance</h2>
+        <p>A site without maintenance accumulates silent risks: outdated plugins with known vulnerabilities, expired SSL certificates that show "not secure" warnings to your visitors, missing backups that leave you with no way to recover the site after an attack, and load speed that degrades over time, directly hurting your Google rankings. Repairing a hacked site or rebuilding it from scratch almost always costs more than months of preventive maintenance.</p>
+        <h2>Frequently asked questions</h2>
+        <h3>Does website maintenance include content changes?</h3>
+        <p>It depends on the plan. Professional and Enterprise plans usually include a number of minor changes per month; the Basic plan focuses on security and backups.</p>
+        <h3>Can I do the maintenance myself?</h3>
+        <p>If you have technical knowledge, yes. But most businesses prefer to delegate it to avoid mistakes that could take the site down, and to have professional backup in case of a security incident.</p>
+        <div class="cta-block"><h3>${ctaContent.en.support.title}</h3><p>${ctaContent.en.support.text}</p><a href="${ctaButtonLinks.en.support}" class="cta-button">${ctaContent.en.contactButton}</a></div>
       `,
     },
   ],
