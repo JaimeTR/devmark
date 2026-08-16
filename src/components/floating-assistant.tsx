@@ -3,8 +3,15 @@
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { Bot, X, Calculator, MessageCircle } from 'lucide-react';
-import { AiChatbot } from '@/components/ai/ai-chatbot';
+
+// Cargado bajo demanda: el chat solo se monta cuando el usuario abre el
+// widget, así su JS no entra en el bundle inicial de cada página (el
+// widget flotante vive en el layout raíz y se renderiza en todo el sitio).
+const AiChatbot = dynamic(() => import('@/components/ai/ai-chatbot').then((mod) => mod.AiChatbot), {
+  ssr: false,
+});
 
 const WHATSAPP_NUMBER = '+51975646074';
 

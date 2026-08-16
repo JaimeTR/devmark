@@ -1,5 +1,3 @@
-'use client';
-
 import { DraftingCompass, Megaphone, Wrench, Lightbulb, Calculator } from 'lucide-react';
 import Link from "next/link";
 import { getStartingPrice, getQuoteHrefForService } from '@/data/services';

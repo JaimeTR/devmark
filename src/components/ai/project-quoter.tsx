@@ -19,8 +19,6 @@ import { type FormState, quoteProjectAction, notifyProposalDownloaded } from '@/
 import { ProposalDocument } from '@/components/ai/proposal-document';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 
 const WHATSAPP_NUMBER = '+51975646074';
 const VALID_DAYS = 15;
@@ -258,6 +256,10 @@ export function ProjectQuoter({ content }: ProjectQuoterProps) {
     if (!input || !state.data) return;
 
     try {
+        const [{ default: html2canvas }, { default: jsPDF }] = await Promise.all([
+          import('html2canvas'),
+          import('jspdf'),
+        ]);
         const canvas = await html2canvas(input, {
             scale: 2,
             backgroundColor: '#ffffff',

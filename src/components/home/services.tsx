@@ -1,5 +1,3 @@
-'use client';
-
 import { CodeXml, Palette, ServerCog, Zap, Bot, LineChart, ArrowRight, Calculator } from "lucide-react";
 import Link from "next/link";
 import { getStartingPrice, getQuoteHrefForService } from '@/data/services';
