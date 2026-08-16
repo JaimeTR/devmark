@@ -6,6 +6,28 @@ import { ServiceMethodology } from '@/components/home/service-methodology';
 import { Pricing } from '@/components/home/pricing';
 import { Contact } from '@/components/home/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Process Automation with Zapier, Make & APIs',
+  description: 'We optimize your workflows and eliminate repetitive tasks with custom automations using Zapier, Make, or APIs, saving you time and reducing errors.',
+  alternates: {
+    canonical: 'https://devmarkpe.com/en/services/process-automation',
+    languages: {
+      es: 'https://devmarkpe.com/servicios/automatizacion-procesos',
+      en: 'https://devmarkpe.com/en/services/process-automation',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://devmarkpe.com/en/services/process-automation',
+    title: 'Process Automation | Devmark Peru',
+    description: 'We optimize your workflows and eliminate repetitive tasks through automation.',
+    siteName: 'Devmark',
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Process automation - DEVMARK' }],
+  },
+};
 
 const headerContent = {
   lang: 'en' as const,
@@ -16,13 +38,13 @@ const headerContent = {
 };
 
 const heroContent = {
-  badge: "Efficiency and Productivity",
+  badge: "Efficiency and productivity",
   title: "Process automation",
   description: "We optimize your workflows and eliminate repetitive tasks through automation with tools like Zapier, Make, or custom APIs.",
   lang: 'en' as const,
   form: {
     title: 'Tell us about your project',
-    firstNameLabel: 'First Name',
+    firstNameLabel: 'First name',
     firstNamePlaceholder: 'Your first name',
     emailLabel: 'Email',
     emailPlaceholder: 'your@email.com',
@@ -111,7 +133,7 @@ const pricingContent = {
         "Robotic automation (RPA)",
         "24/7 support"
       ],
-      buttonText: "Contact Us",
+      buttonText: "Contact us",
       priceId: ""
     }
   ]
@@ -127,31 +149,94 @@ const contactContent = {
   phoneLabel: "Phone:",
   phone: "+51 975 646 074",
   timeZoneLabel: "Schedule:",
-  formTitle: "Contact Form",
+  formTitle: "Contact form",
   formDescription: "Send us a message and let's start building something amazing together.",
-  firstNameLabel: "First Name",
+  firstNameLabel: "First name",
   firstNamePlaceholder: "Your first name",
-  lastNameLabel: "Last Name",
+  lastNameLabel: "Last name",
   lastNamePlaceholder: "Your last name",
-  emailFormLabel: "Email Address",
+  emailFormLabel: "Email address",
   emailPlaceholder: "your@email.com",
   phoneFormLabel: "Phone",
   phonePlaceholder: "Your phone number",
   messageLabel: "Message",
   messagePlaceholder: "Tell us about your project...",
-  submitButton: "Send Message",
+  submitButton: "Send message",
   scheduleButton: "Schedule a meeting with Meet",
-  quoteButton: "Quote your Project with our AI"
+  quoteButton: "Quote your project with our AI"
 };
 
 const footerContent = {
-  copyright: "DevMark. All rights reserved."
+  copyright: "DEVMARK. All rights reserved."
 };
 
 export default function ProcessAutomationPage() {
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Process automation",
+            "description": "We optimize your workflows and eliminate repetitive tasks through automation with tools like Zapier, Make, or custom APIs.",
+            "provider": {
+              "@type": "Organization",
+              "name": "Devmark",
+              "url": "https://devmarkpe.com"
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Lima"
+              },
+              {
+                "@type": "Country",
+                "name": "Peru"
+              }
+            ],
+            "url": "https://devmarkpe.com/en/services/process-automation",
+            "inLanguage": "en-US"
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Which of my company's processes can be automated?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Virtually any repetitive, rule-based digital task can be automated. From marketing and sales to finance and human resources. We analyze your processes and propose the best solutions."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do I need technical knowledge to manage the automations?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. We use intuitive platforms like Zapier or Make that allow you to visualize and understand the workflows. We also offer training and support so you can manage them yourself."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the return on investment for automation?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The ROI is reflected in time savings, reduction of human errors, increased productivity, and the ability of your team to focus on higher-value strategic tasks."
+                }
+              }
+            ]
+          }),
+        }}
+      />
       <Header {...headerContent} />
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
@@ -176,7 +261,7 @@ export default function ProcessAutomationPage() {
           <Contact {...contactContent} />
         </div>
       </main>
-      <Footer copyright={footerContent.copyright} />
+      <Footer lang="en" copyright={footerContent.copyright} />
     </div>
   );
 }

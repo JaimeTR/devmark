@@ -47,6 +47,114 @@
         ],
         "createdAt": "2026-08-15T21:33:15.115Z",
         "reason": "CSS mask compositing trick for gradient-border-hover (mask-image marker color, never visually rendered)"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/app/actions/quoter.ts"
+        ],
+        "createdAt": "2026-08-16T19:46:49.039Z",
+        "reason": "plantilla HTML de email transaccional, no UI de app, patrón preexistente"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/app/actions/chat-lead.ts"
+        ],
+        "createdAt": "2026-08-16T19:46:49.121Z",
+        "reason": "plantilla HTML de email transaccional, no UI de app, patrón preexistente"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/app/actions/contact.ts"
+        ],
+        "createdAt": "2026-08-16T19:46:49.200Z",
+        "reason": "plantilla HTML de email transaccional, no UI de app, patrón preexistente"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "*",
+        "files": [
+          "src/app/actions/quoter.ts"
+        ],
+        "createdAt": "2026-08-16T20:08:46.439Z",
+        "reason": "plantilla HTML de email transaccional, colores inline necesarios para clientes de correo"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "*",
+        "files": [
+          "src/app/actions/quoter.ts"
+        ],
+        "createdAt": "2026-08-16T20:08:46.517Z",
+        "reason": "plantilla HTML de email transaccional, tamaños inline necesarios para clientes de correo"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          "src/app/actions/quoter.ts"
+        ],
+        "createdAt": "2026-08-16T20:08:46.596Z",
+        "reason": "plantilla HTML de email transaccional, fuente del sistema por compatibilidad de clientes de correo"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "*",
+        "files": [
+          "src/app/actions/chat-lead.ts"
+        ],
+        "createdAt": "2026-08-16T20:08:46.673Z",
+        "reason": "plantilla HTML de email transaccional, colores inline necesarios para clientes de correo"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "*",
+        "files": [
+          "src/app/actions/chat-lead.ts"
+        ],
+        "createdAt": "2026-08-16T20:08:46.749Z",
+        "reason": "plantilla HTML de email transaccional, tamaños inline necesarios para clientes de correo"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          "src/app/actions/chat-lead.ts"
+        ],
+        "createdAt": "2026-08-16T20:08:46.827Z",
+        "reason": "plantilla HTML de email transaccional, fuente del sistema por compatibilidad de clientes de correo"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "*",
+        "files": [
+          "src/app/actions/contact.ts"
+        ],
+        "createdAt": "2026-08-16T20:08:46.903Z",
+        "reason": "plantilla HTML de email transaccional, colores inline necesarios para clientes de correo"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "*",
+        "files": [
+          "src/app/actions/contact.ts"
+        ],
+        "createdAt": "2026-08-16T20:08:46.978Z",
+        "reason": "plantilla HTML de email transaccional, tamaños inline necesarios para clientes de correo"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          "src/app/actions/contact.ts"
+        ],
+        "createdAt": "2026-08-16T20:08:47.053Z",
+        "reason": "plantilla HTML de email transaccional, fuente del sistema por compatibilidad de clientes de correo"
       }
     ]
   }

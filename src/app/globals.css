@@ -164,6 +164,15 @@ html {
     animation: blink-caret 0.75s step-end infinite;
   }
 
+  /* Scroll queda habilitado, solo se oculta la barra visual (chat widget y /ai-assistant). */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
  
   @property --angle {
     syntax: '<angle>';
@@ -281,6 +290,20 @@ html {
 
   .marquee-pause:hover .animate-marquee {
     animation-play-state: paused;
+  }
+
+  /* Celebratory "copied!" toast — pops in with a little overshoot, holds, fades out.
+     Duration matches the 2s isCopied window in hosting.tsx so it never gets cut off. */
+  @keyframes toast-pop {
+    0% { opacity: 0; transform: translate(-50%, 6px) scale(0.85); }
+    15% { opacity: 1; transform: translate(-50%, -4px) scale(1.06); }
+    25% { transform: translate(-50%, 0) scale(1); }
+    80% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -6px) scale(0.95); }
+  }
+
+  .animate-toast-pop {
+    animation: toast-pop 2s ease-out forwards;
   }
 
   @keyframes fade-in-up {

@@ -1,5 +1,5 @@
 
-import { getPostBySlug, getPosts } from '@/data/blog-posts';
+import { getPostBySlug, getPosts, getTranslatedSlug } from '@/data/blog-posts';
 import { notFound } from 'next/navigation';
 import { AnimatedBackground } from '@/components/home/animated-background';
 import { Footer } from '@/components/home/footer';
@@ -10,6 +10,50 @@ import Link from 'next/link';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { Calendar, User, ArrowRight, Clock } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPostBySlug(slug, 'es');
+
+  if (!post) {
+    return {};
+  }
+
+  const canonicalUrl = `https://devmarkpe.com/blog/${slug}`;
+  const enSlug = getTranslatedSlug(slug, 'es');
+
+  return {
+    title: post.title,
+    description: post.description,
+    alternates: {
+      canonical: canonicalUrl,
+      languages: enSlug
+        ? {
+            es: canonicalUrl,
+            en: `https://devmarkpe.com/en/blog/${enSlug}`,
+          }
+        : undefined,
+    },
+    openGraph: {
+      type: 'article',
+      locale: 'es_PE',
+      url: canonicalUrl,
+      title: post.title,
+      description: post.description,
+      siteName: 'Devmark',
+      publishedTime: post.date,
+      authors: [post.author],
+      images: [{ url: post.image, width: 1200, height: 630, alt: post.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.description,
+      images: [post.image],
+    },
+  };
+}
 
 const headerContent = {
   lang: 'es' as const,
@@ -28,17 +72,17 @@ const headerContent = {
 };
 
 const footerContent = {
-  copyright: 'DevMark. Todos los derechos reservados.',
+  copyright: 'DEVMARK. Todos los derechos reservados.',
 };
 
 const servicios = [
-  { label: 'Desarrollo Web', href: '/servicios/desarrollo-web-a-medida' },
-  { label: 'Software a Medida', href: '/servicios/desarrollo-software' },
+  { label: 'Desarrollo web', href: '/servicios/desarrollo-web-a-medida' },
+  { label: 'Software a medida', href: '/servicios/desarrollo-software' },
   { label: 'SEO / Posicionamiento', href: '/servicios/seo-optimizacion' },
   { label: 'Automatización', href: '/servicios/automatizacion-procesos' },
   { label: 'Chatbots IA', href: '/servicios/chatbots-ia' },
   { label: 'Diseño UI/UX', href: '/servicios/diseno-ui-ux' },
-  { label: 'Marketing Digital', href: '/servicios/marketing-digital' },
+  { label: 'Marketing digital', href: '/servicios/marketing-digital' },
 ];
 
 export async function generateStaticParams() {
@@ -59,9 +103,44 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const allPosts = getPosts('es');
   const recentPosts = allPosts.filter(p => p.slug !== post.slug).slice(0, 3);
 
+  const canonicalUrl = `https://devmarkpe.com/blog/${resolvedParams.slug}`;
+  const absoluteImage = post.image.startsWith('http') ? post.image : `https://devmarkpe.com${post.image}`;
+
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BlogPosting',
+            headline: post.title,
+            description: post.description,
+            image: [absoluteImage],
+            datePublished: post.date,
+            dateModified: post.date,
+            inLanguage: 'es-PE',
+            mainEntityOfPage: {
+              '@type': 'WebPage',
+              '@id': canonicalUrl,
+            },
+            author: {
+              '@type': 'Person',
+              name: post.author,
+            },
+            publisher: {
+              '@type': 'Organization',
+              name: 'Devmark',
+              url: 'https://devmarkpe.com',
+              logo: {
+                '@type': 'ImageObject',
+                url: 'https://devmarkpe.com/og-image.svg',
+              },
+            },
+          }),
+        }}
+      />
       <Header {...headerContent} />
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
         <div className="mb-4">
@@ -87,12 +166,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
         </div>
 
-        <div className="aspect-video w-full relative rounded-2xl overflow-hidden mb-12">
+        <div className="aspect-video w-full relative rounded-2xl overflow-hidden mb-12 bg-gradient-to-br from-brand-light via-brand-lavender/40 to-white">
           <Image
             src={post.image}
             alt={post.title}
             fill
-            className="object-cover"
+            className="object-contain p-8 sm:p-12"
             data-ai-hint={post.imageHint}
           />
         </div>
@@ -113,8 +192,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   {recentPosts.map((rp) => (
                     <Link key={rp.slug} href={`/blog/${rp.slug}`} className="block group">
                       <div className="flex gap-3">
-                        <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
-                          <Image src={rp.image} alt={rp.title} fill className="object-cover" data-ai-hint={rp.imageHint} />
+                        <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-gradient-to-br from-brand-light to-brand-lavender/40">
+                          <Image src={rp.image} alt={rp.title} fill className="object-contain p-1.5" data-ai-hint={rp.imageHint} />
                         </div>
                         <div>
                           <h4 className="text-sm font-medium text-brand-navy group-hover:text-brand-blue transition-colors line-clamp-2">
@@ -137,8 +216,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   {servicios.map((s) => (
                     <li key={s.label}>
                       <Link href={s.href} className="flex items-center gap-2 text-slate-600 hover:text-brand-blue transition-colors text-sm group">
-                        <ArrowRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
                         {s.label}
+                        <ArrowRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
                       </Link>
                     </li>
                   ))}
@@ -156,7 +235,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </h2>
           <Link
             href="/#contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-brand-navy font-bold rounded-full hover:bg-brand-light transition-colors text-lg"
+            className="inline-flex items-center gap-2 h-[52px] px-8 bg-white border-2 border-brand-blue text-brand-blue font-bold rounded-2xl hover:bg-transparent transition-colors text-lg"
           >
             Programar reunión
             <ArrowRight className="h-5 w-5" />

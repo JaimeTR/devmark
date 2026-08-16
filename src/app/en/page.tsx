@@ -1,4 +1,4 @@
-
+import { Suspense } from 'react';
 import { AnimatedBackground } from '@/components/home/animated-background';
 import { Header } from '@/components/home/header';
 import { Hero } from '@/components/home/hero';
@@ -13,33 +13,38 @@ import { Footer } from '@/components/home/footer';
 import { AdditionalServices } from '@/components/home/additional-services';
 import { Hosting } from '@/components/home/hosting';
 import { FeaturedProjectsCarousel } from '@/components/home/featured-projects-carousel';
+import { ScrollReveal } from '@/components/home/scroll-reveal';
+import { ProjectsSkeleton } from '@/components/home/projects-skeleton';
 import { getProjects } from '@/data/projects';
 
 
 const content = {
   lang: 'en' as const,
   header: {
+    lang: 'en' as const,
     navLinks: [
       { href: '#hero', label: 'Home' },
+      { href: '/en/about', label: 'About' },
       { href: '/en/services', label: 'Services' },
       { href: '/en/portfolio', label: 'Portfolio' },
       { href: '/en/hosting', label: 'Hosting' },
       { href: '/en/contact', label: 'Contact' },
     ],
-    contactButton: 'Contact Us',
+    contactButton: 'Contact us',
     aiAssistant: 'AI Assistant',
     aiAssistantTooltip: 'Hello! I am your AI assistant.',
   },
   hero: {
-    badgeMessages: ['DEVMARK, YOUR DIGITAL PARTNER', "Let's talk about your project today"],
+    badgeMessages: ['DEVMARK, your digital partner', "Let's talk about your project"],
     title: 'Web and software development agency',
     description: 'We create websites, online stores, custom software, automations, AI chatbots, and SEO strategies in Lima, Peru. We empower Peruvian businesses into the digital world.',
     servicesButton: 'Services',
+    servicesHref: '/en/services',
     contactButton: 'Book a meeting',
     stats: [
-      { value: '100+', label: 'Happy Clients' },
-      { value: '6', label: 'Partner Brands' },
-      { value: '91%', label: 'Faster Execution' },
+      { value: '100+', label: 'Happy clients' },
+      { value: '6', label: 'Partner brands' },
+      { value: '91%', label: 'Faster execution' },
     ],
     clients: [
       'ADLIM', 'JOPCO', 'TAKLAB', 'LUCE INMOBILIARIA', 'MEMORANDUM', 'MM TECH',
@@ -52,87 +57,93 @@ const content = {
   },
   strategy: {
     headerText: 'We believe every brand has a unique story. That\'s why we combine strategy, design and technology to help businesses grow with clarity.',
-    headerTitle: 'Devmark merges strategy and design to create impactful brands',
+    headerTitle: 'DEVMARK merges strategy and design to create impactful brands',
     overlayText: 'We drive your business with purpose and clear direction.',
     cardTitle: 'Strategic thinking that drives results',
     cardDescription: 'We develop customized solutions aligned with your goals, ensuring every decision is backed by data and purpose. Our approach focuses on measurable results.',
     ctaPrimary: 'Start growing',
   },
   services: {
-    title: 'Main Services',
+    lang: 'en' as const,
+    title: 'Main services',
     subtitle: 'Comprehensive solutions to take your business to the next level.',
-    moreInfoButton: 'More Info',
+    detailsButton: 'View details',
+    quoteButton: 'Get a quote',
+    fromLabel: 'From',
     items: [
       {
         icon: 'CodeXml',
-        title: "Custom Web Development",
+        title: "Custom web development",
         description: "Custom websites programmed from scratch for corporate sites, landing pages, and PWAs with 100% responsive design.",
-        tags: ["Corporate Websites", "Landing Pages", "PWAs"],
+        tags: ["Corporate websites", "Landing pages", "PWAs"],
         href: '/en/services/custom-web-development'
       },
       {
         icon: 'Palette',
-        title: "CMS & Platform Development",
+        title: "CMS & platform development",
         description: "Websites and online stores with WordPress, Shopify, etc. E-commerce with payment and shipping integrations.",
         tags: ["WordPress", "Shopify", "E-commerce"],
         href: '/en/services/cms-development'
       },
       {
         icon: 'ServerCog',
-        title: "Custom Software Development",
+        title: "Custom software development",
         description: "Internal systems (ERP, CRM), SaaS, and APIs. Integrations to unify data and processes.",
         tags: ["ERP/CRM", "SaaS", "APIs"],
         href: '/en/services/custom-software-development'
       },
       {
         icon: 'Zap',
-        title: "Process Automation",
+        title: "Process automation",
         description: "Automatic flows with Zapier/Make/APIs for leads, sales, reports, notifications, and back-office tasks.",
-        tags: ["Zapier", "Make", "Lead Automation"],
+        tags: ["Zapier", "Make", "Lead automation"],
         href: '/en/services/process-automation'
       },
       {
         icon: 'Bot',
-        title: "AI Chatbots",
+        title: "AI chatbots",
         description: "Chatbots for web, e-commerce, and social media, trained with your knowledge base for 24/7 support and sales.",
-        tags: ["Web Chatbots", "Social Media", "24/7 Support"],
+        tags: ["Web chatbots", "Social media", "24/7 support"],
         href: '/en/services/ai-chatbots'
       },
       {
         icon: 'LineChart',
-        title: "SEO & Web Optimization",
+        title: "SEO & web optimization",
         description: "Strategy, technical and content SEO, Core Web Vitals, and e-commerce. Increase organic traffic and conversions.",
-        tags: ["SEO Strategy", "Core Web Vitals", "Traffic Growth"],
+        tags: ["SEO strategy", "Core Web Vitals", "Traffic growth"],
         href: '/en/services/seo-optimization'
       }
     ]
   },
   additionalServices: {
-    title: 'Complementary Services',
+    lang: 'en' as const,
+    title: 'Complementary services',
     subtitle: 'Services that enhance the main technological development',
-    moreInfoButton: 'More Info',
+    detailsButton: 'View details',
+    quoteButton: 'Get a quote',
+    fromLabel: 'From',
     items: [
       {
         icon: 'DraftingCompass',
-        title: 'UI/UX Design',
+        title: 'UI/UX design',
         description: 'User-centered design. Interactive prototyping and wireframes. Modern, clean, and responsive interfaces.',
         href: '/en/services/ui-ux-design'
       },
       {
         icon: 'Megaphone',
-        title: 'Digital Marketing',
+        title: 'Digital marketing',
         description: 'Growth strategies and customer acquisition. Advertising campaigns (Google Ads, Meta Ads). Email marketing and sales automation.',
         href: '/en/services/digital-marketing'
       },
       {
         icon: 'Wrench',
-        title: 'Support and Maintenance',
+        title: 'Support and maintenance',
         description: 'Periodic security and plugin updates. Performance monitoring and backups. Incident resolution and continuous technical support.',
         href: '/en/services/support-maintenance'
       },
       {
         icon: 'Lightbulb',
-        title: 'Technology Consulting',
+        title: 'Technology consulting',
         description: 'Advisory for process digitalization. Selection of appropriate platforms for each business. Scalability and security strategies.',
         href: '/en/services/tech-consulting'
       },
@@ -149,10 +160,10 @@ const content = {
       "Live support in English 24/7",
     ],
     guaranteeText: "30-day money-back guarantee",
-    ctaButton: "Get Discount",
+    ctaButton: "Get discount",
     couponCode: "DEVMARK",
-    copyButton: "Copy Code",
-    copiedButton: "Copied!",
+    copyButton: "Copy code",
+    copiedButton: "Code copied!",
     discountText: "20% discount",
     referralLink: "https://hostinger.com?REFERRALCODE=JAIMETRDEV"
   },
@@ -187,7 +198,7 @@ const content = {
   },
   testimonials: {
     badge: 'TESTIMONIALS',
-    title: 'What Our Clients Say',
+    title: 'What our clients say',
     subtitle: 'The trust of companies from all over the world is our greatest achievement.',
     items: [
       {
@@ -196,7 +207,7 @@ const content = {
         avatar: "CR",
         image: "/testimonials/uifaces-human-avatar.jpg",
         hint: "man portrait",
-        quote: "DevMark transformed our online presence. Their knowledge of the international market is unmatched. Highly recommended!"
+        quote: "DEVMARK transformed our online presence. Their knowledge of the international market is unmatched. Highly recommended!"
       },
       {
         name: "John Smith",
@@ -274,7 +285,7 @@ const content = {
   },
   contact: {
     lang: 'en',
-    title: "Let's Talk About Your Project",
+    title: "Let's talk about your project",
     description: "Ready to take your business to the next level? Complete the form or schedule a meeting and our global team will contact you shortly.",
     contactSubtitle: "Contact us now",
     emailLabel: "Email:",
@@ -282,63 +293,93 @@ const content = {
     phoneLabel: "Phone:",
     phone: "+51 975 646 074",
     timeZoneLabel: "Schedule:",
-    formTitle: "Contact Form",
+    formTitle: "Contact form",
     formDescription: "Send us a message and let's start building something amazing together.",
-    firstNameLabel: "First Name",
+    firstNameLabel: "First name",
     firstNamePlaceholder: "Your first name",
-    lastNameLabel: "Last Name",
+    lastNameLabel: "Last name",
     lastNamePlaceholder: "Your last name",
-    emailFormLabel: "Email Address",
+    emailFormLabel: "Email address",
     emailPlaceholder: "your@email.com",
     phoneFormLabel: "Phone",
     phonePlaceholder: "Your phone number",
     messageLabel: "Message",
     messagePlaceholder: "Tell us about your project...",
-    submitButton: "Send Message",
+    submitButton: "Send message",
     scheduleButton: "Schedule a meeting with Meet",
-    quoteButton: "Quote your Project with our AI"
+    quoteButton: "Quote with our AI"
   },
   footer: {
-    copyright: "DevMark. All rights reserved."
+    copyright: "DEVMARK. All rights reserved."
   }
 } as const;
 
 
+async function FeaturedProjectsSection() {
+  const projects = await getProjects('en');
+  const featured = projects.filter(p => p.isFeatured);
+  const displayProjects = featured.length >= 3 ? featured : projects;
+  return (
+    <FeaturedProjectsCarousel
+      projects={displayProjects}
+      lang="en"
+      title="Featured projects"
+      subtitle="Discover some of our best work"
+      viewMoreText="View more projects"
+      statsLabel="PROJECTS"
+      statsNumber="+140"
+      statsDescription="Continuous experience in personal projects, agencies and as a freelance developer."
+    />
+  );
+}
+
 export default function Home() {
-  const projects = getProjects('en');
-  
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
       <Header {...content.header} />
       <main>
         <Hero {...content.hero} />
-        <ClientLogos stats={content.hero.stats} clients={content.hero.clients} />
-        <Strategy {...content.strategy} />
+        <ScrollReveal>
+          <ClientLogos stats={content.hero.stats} clients={content.hero.clients} />
+        </ScrollReveal>
+        <ScrollReveal>
+          <Strategy {...content.strategy} />
+        </ScrollReveal>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-0 pt-0">
-              <Services {...content.services} />
+              <ScrollReveal>
+                <Services {...content.services} />
+              </ScrollReveal>
               <div>
-                <Advantages {...content.advantages} />
-                <FeaturedProjectsCarousel 
-                  projects={projects}
-                  lang="en"
-                  title="Featured projects"
-                  subtitle="Discover some of our best work"
-                  viewMoreText="View more projects"
-                  statsLabel="PROJECTS"
-                  statsDescription="Continuous experience in personal projects, agencies and as a freelance developer."
-                />
+                <ScrollReveal>
+                  <Advantages {...content.advantages} />
+                </ScrollReveal>
+                <ScrollReveal>
+                  <Suspense fallback={<ProjectsSkeleton />}>
+                    <FeaturedProjectsSection />
+                  </Suspense>
+                </ScrollReveal>
               </div>
-              <AdditionalServices {...content.additionalServices} />
-              <Hosting {...content.hosting} />
-              <Testimonials {...content.testimonials} />
-              <Process {...content.process} />
-              <Contact {...content.contact} />
+              <ScrollReveal>
+                <AdditionalServices {...content.additionalServices} />
+              </ScrollReveal>
+              <ScrollReveal>
+                <Hosting {...content.hosting} />
+              </ScrollReveal>
+              <ScrollReveal>
+                <Testimonials {...content.testimonials} />
+              </ScrollReveal>
+              <ScrollReveal>
+                <Process {...content.process} />
+              </ScrollReveal>
+              <ScrollReveal>
+                <Contact {...content.contact} />
+              </ScrollReveal>
             </div>
         </div>
       </main>
-      <Footer copyright={content.footer.copyright} />
+      <Footer lang="en" copyright={content.footer.copyright} />
     </div>
   );
 }

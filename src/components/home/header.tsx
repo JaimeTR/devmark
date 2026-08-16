@@ -1,15 +1,14 @@
 
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Bot, Phone, Globe } from 'lucide-react';
+import { Menu, Bot, Phone, Globe, Calculator, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 
 interface NavLink {
@@ -19,19 +18,63 @@ interface NavLink {
 
 interface HeaderProps {
   lang?: 'es' | 'en';
-  navLinks: readonly NavLink[];
+  // Deprecado: el header arma su propio menú (ver buildNavLinks) para que
+  // todas las páginas muestren siempre el mismo set de links, completo y
+  // sincronizado. Ya no se usa aunque una página lo pase.
+  navLinks?: readonly NavLink[];
   contactButton: string;
   aiAssistant: string;
   aiAssistantTooltip: string;
 }
 
-export function Header({ lang = 'es', navLinks, contactButton, aiAssistant, aiAssistantTooltip }: HeaderProps) {
+// Menú canónico del sitio — una sola fuente de verdad para que ninguna
+// página se quede con un header incompleto o desactualizado. "Inicio"/"Home"
+// apunta a la sección hero: hash simple si ya estás en la home, con el path
+// completo si estás en otra página (para navegar y luego hacer scroll).
+function buildNavLinks(lang: 'es' | 'en', pathname: string | null): NavLink[] {
+  const home = lang === 'en' ? '/en' : '/';
+  const isHome = pathname === home;
+  const heroHref = isHome ? '#hero' : `${home}#hero`;
+
+  if (lang === 'en') {
+    return [
+      { href: heroHref, label: 'Home' },
+      { href: '/en/about', label: 'About' },
+      { href: '/en/services', label: 'Services' },
+      { href: '/en/portfolio', label: 'Portfolio' },
+      { href: '/en/hosting', label: 'Hosting' },
+      { href: '/en/blog', label: 'Blog' },
+      { href: '/en/contact', label: 'Contact' },
+    ];
+  }
+
+  return [
+    { href: heroHref, label: 'Inicio' },
+    { href: '/nosotros', label: 'Nosotros' },
+    { href: '/servicios', label: 'Servicios' },
+    { href: '/portfolio', label: 'Portafolio' },
+    { href: '/hosting', label: 'Hosting' },
+    { href: '/blog', label: 'Blog' },
+    { href: '/contacto', label: 'Contacto' },
+  ];
+}
+
+export function Header({ lang = 'es', contactButton, aiAssistant, aiAssistantTooltip }: HeaderProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const pathname = usePathname();
+  const navLinks = useMemo(() => buildNavLinks(lang, pathname), [lang, pathname]);
   const aiAssistantLink = lang === 'en' ? '/en/ai-assistant' : '/ai-assistant';
+  const aiQuoterLink = lang === 'en' ? '/en/quote' : '/quote';
   const contactLink = lang === 'en' ? '/en/contact' : '/contacto';
+  const aiChooserLabels = lang === 'en'
+    ? { open: 'AI Assistant', quote: 'AI Quoter' }
+    : { open: 'Asistente con IA', quote: 'Cotizador con IA' };
+  const languageOptions = [
+    { code: 'es' as const, label: 'Español', href: '/' },
+    { code: 'en' as const, label: 'English', href: '/en' },
+  ];
 
   useEffect(() => {
     // Mapear rutas de página a IDs de sección
@@ -74,8 +117,11 @@ export function Header({ lang = 'es', navLinks, contactButton, aiAssistant, aiAs
             currentSection = section.id;
             break;
           }
-          // Para otras secciones, usar el threshold normal
-          if (section.offsetTop <= scrollPosition + 150) {
+          // getBoundingClientRect en vez de offsetTop: offsetTop se rompe cuando un
+          // ancestro (p.ej. ScrollReveal) usa transform, porque eso lo convierte en
+          // el offsetParent — getBoundingClientRect siempre es relativo al viewport real.
+          const docTop = section.getBoundingClientRect().top + window.scrollY;
+          if (docTop <= scrollPosition + 150) {
             currentSection = section.id;
             break;
           }
@@ -138,7 +184,7 @@ export function Header({ lang = 'es', navLinks, contactButton, aiAssistant, aiAs
     }
     
     return cn(
-      'text-sm font-medium transition-colors hover:text-primary px-3 py-1.5 rounded-full',
+      'text-sm font-medium transition-colors hover:text-primary px-3 py-1.5 rounded-xl',
       isActive
         ? 'bg-primary/10 text-primary'
         : 'text-muted-foreground hover:text-primary'
@@ -153,11 +199,10 @@ export function Header({ lang = 'es', navLinks, contactButton, aiAssistant, aiAs
       <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-2 focus:bg-primary focus:text-white focus:rounded">
         Saltar al contenido principal
       </a>
-      <TooltipProvider>
         <div className={cn(
           "container mx-auto flex items-center justify-between transition-all duration-300 ease-in-out",
           "h-20 px-4 sm:px-6 lg:px-8",
-          isScrolled && "h-16 w-[calc(100%-1.5rem)] sm:w-[calc(100%-2rem)] md:w-auto md:max-w-7xl bg-white/95 backdrop-blur-lg rounded-full border border-slate-100 shadow-lg"
+          isScrolled && "h-16 w-[calc(100%-1.5rem)] sm:w-[calc(100%-2rem)] md:w-auto md:max-w-7xl bg-white/95 backdrop-blur-lg rounded-3xl border border-slate-100 shadow-lg"
         )}>
           <Link href={lang === 'en' ? '/en' : '/'} className="flex items-center gap-2 shrink-0 whitespace-nowrap min-w-0" aria-label="DEVMARK - Inicio">
             <Image src="/logo-mark.svg" alt="" role="presentation" width={40} height={40} className="w-9 h-9 sm:w-10 sm:h-10 shrink-0" priority />
@@ -179,35 +224,44 @@ export function Header({ lang = 'es', navLinks, contactButton, aiAssistant, aiAs
           <div className="hidden lg:flex items-center gap-3">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="group h-11 w-11 text-slate-600 hover:text-brand-blue hover:bg-brand-blue/5 transition-all" aria-label="Cambiar idioma">
-                  <Globe className="h-5 w-5 group-hover:rotate-180 transition-transform duration-500" />
+                <Button variant="ghost" size="icon" className="group h-11 w-11 rounded-xl bg-brand-light text-brand-navy hover:text-brand-blue hover:bg-brand-blue/10 transition-all font-bold text-xs tracking-wide" aria-label="Cambiar idioma">
+                  {lang.toUpperCase()}
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem asChild>
-                  <Link href="/">Español</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/en">English</Link>
-                </DropdownMenuItem>
+              <DropdownMenuContent align="end" className="rounded-2xl">
+                {languageOptions.map((option) => (
+                  <DropdownMenuItem key={option.code} asChild className="rounded-xl cursor-pointer">
+                    <Link href={option.href} className="flex items-center justify-between gap-3">
+                      {option.label}
+                      {option.code === lang && <Check className="h-4 w-4 text-brand-blue" />}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="ghost" size="icon" asChild className="group h-11 w-11 text-slate-600 hover:text-brand-blue hover:bg-brand-blue/5 transition-all">
-                    <Link href={aiAssistantLink}>
-                        <Bot className="h-5 w-5 group-hover:scale-110 transition-transform duration-300"/>
-                    </Link>
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>{aiAssistantTooltip}</p>
-                </TooltipContent>
-            </Tooltip>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="group h-11 w-11 rounded-xl bg-brand-light text-brand-navy hover:text-brand-blue hover:bg-brand-blue/10 transition-all" aria-label={aiAssistant}>
+                  <Bot className="h-5 w-5 group-hover:scale-110 transition-transform duration-300"/>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="rounded-2xl">
+                <DropdownMenuItem asChild className="rounded-xl cursor-pointer">
+                  <Link href={aiAssistantLink}>
+                    {aiChooserLabels.open} <Bot className="ml-2 h-4 w-4" />
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild className="rounded-xl cursor-pointer">
+                  <Link href={aiQuoterLink}>
+                    {aiChooserLabels.quote} <Calculator className="ml-2 h-4 w-4" />
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             
-            <Button asChild className="group h-11 px-5 text-sm whitespace-nowrap btn-gradient text-white rounded-full shadow-lg shadow-brand-blue/20 hover:shadow-xl hover:shadow-brand-blue/30 hover:-translate-y-0.5 transition-all duration-300">
-              <Link href={contactLink}><Phone className="mr-2 h-4 w-4 shrink-0 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />{contactButton}</Link>
+            <Button asChild className="group h-11 px-5 text-sm whitespace-nowrap border-2 border-transparent bg-brand-blue hover:bg-brand-navy-dark text-white rounded-2xl shadow-xl shadow-brand-blue/30 hover:shadow-brand-blue/40 hover:-translate-y-1 transition-all duration-300">
+              <Link href={contactLink}>{contactButton}<Phone className="ml-2 h-4 w-4 shrink-0 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" /></Link>
             </Button>
           </div>
           
@@ -241,20 +295,34 @@ export function Header({ lang = 'es', navLinks, contactButton, aiAssistant, aiAs
                         onClick={() => setIsOpen(false)}
                         className="py-3 text-lg font-medium text-foreground transition-colors hover:text-primary flex items-center"
                       >
-                        <Bot className="mr-2 h-5 w-5"/> {aiAssistant}
+                        {aiAssistant} <Bot className="ml-2 h-5 w-5"/>
+                      </Link>
+                      <Link
+                        href={aiQuoterLink}
+                        onClick={() => setIsOpen(false)}
+                        className="py-3 text-lg font-medium text-foreground transition-colors hover:text-primary flex items-center"
+                      >
+                        {aiChooserLabels.quote} <Calculator className="ml-2 h-5 w-5"/>
                       </Link>
                   </nav>
                    <div className="mt-4 border-t border-border pt-4">
-                     <h3 className="mb-2 text-sm font-semibold text-muted-foreground">Language</h3>
-                      <Link href="/" className="flex items-center gap-2 py-3 text-lg font-medium text-foreground transition-colors hover:text-primary" onClick={() => setIsOpen(false)}>
-                        <Globe className="mr-2 h-5 w-5" /> Español
-                      </Link>
-                      <Link href="/en" className="flex items-center gap-2 py-3 text-lg font-medium text-foreground transition-colors hover:text-primary" onClick={() => setIsOpen(false)}>
-                        <Globe className="mr-2 h-5 w-5" /> English
-                      </Link>
+                      <p className="flex items-center gap-2 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                        <Globe className="h-4 w-4" /> {lang === 'en' ? 'Language' : 'Idioma'}
+                      </p>
+                      {languageOptions.map((option) => (
+                        <Link
+                          key={option.code}
+                          href={option.href}
+                          className="flex items-center justify-between gap-2 py-3 text-lg font-medium text-foreground transition-colors hover:text-primary"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {option.label}
+                          {option.code === lang && <Check className="h-5 w-5 text-brand-blue" />}
+                        </Link>
+                      ))}
                     </div>
 
-                  <Button asChild className="mt-6 h-12 text-base">
+                  <Button asChild className="mt-6 h-[52px] rounded-2xl text-base bg-brand-blue hover:bg-brand-navy-dark text-white">
                     <Link href={contactLink} onClick={() => setIsOpen(false)}>{contactButton}</Link>
                   </Button>
                 </div>
@@ -262,7 +330,6 @@ export function Header({ lang = 'es', navLinks, contactButton, aiAssistant, aiAs
             </Sheet>
           </div>
         </div>
-      </TooltipProvider>
     </header>
   );
 }

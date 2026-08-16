@@ -1,7 +1,8 @@
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
-import { WhatsAppButton } from "@/components/whatsapp-button"
+import { FloatingAssistant } from "@/components/floating-assistant"
+import { GoogleAnalytics } from "@/components/analytics/google-analytics"
 import { Poppins } from 'next/font/google';
 import localFont from 'next/font/local';
 
@@ -23,8 +24,8 @@ const braze = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: 'DevMark - Desarrollo Web y Software en Perú',
-    template: '%s | DevMark',
+    default: 'Devmark - Agencia de desarrollo web y software en Lima, Perú',
+    template: '%s | Devmark',
   },
   description: 'Agencia de desarrollo web en Peru. Creamos paginas web, tiendas online, software a medida, chatbots con IA y SEO en Lima. Soluciones digitales para empresas peruanas.',
   keywords: 'desarrollo web peru, agencia desarrollo web lima, software a medida peru, paginas web peru, tiendas online lima, chatbots IA peru, SEO lima, marketing digital peru, automatizacion procesos, desarrollo apps peru',
@@ -41,22 +42,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'es_PE',
     url: 'https://devmarkpe.com',
-    title: 'DevMark - Desarrollo Web y Software en Perú',
+    title: 'Devmark - Agencia de desarrollo web y software en Lima, Perú',
     description: 'Agencia de desarrollo web en Lima, Peru. Paginas web, software a medida, chatbots IA y SEO para empresas peruanas.',
-    siteName: 'DevMark Perú',
+    siteName: 'Devmark Perú',
     countryName: 'Peru',
     images: [
       {
         url: '/og-image.svg',
         width: 1200,
         height: 630,
-        alt: 'DevMark - Desarrollo Web y Software en Perú',
+        alt: 'Devmark - Agencia de desarrollo web y software en Lima, Perú',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'DevMark - Agencia de Desarrollo Web en Peru',
+    title: 'Devmark - Agencia de desarrollo web y software en Lima, Perú',
     description: 'Desarrollo web, software a medida y chatbots IA en Lima, Peru.',
     images: ['/og-image.svg'],
   },
@@ -78,6 +79,9 @@ export const metadata: Metadata = {
     'language': 'es-PE',
     'target-country': 'PE',
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  },
 };
 
 export default function RootLayout({
@@ -94,7 +98,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'LocalBusiness',
-              name: 'DevMark',
+              name: 'Devmark',
               description: 'Agencia de desarrollo web y software a medida en Lima, Peru',
               url: 'https://devmarkpe.com',
               email: 'contacto@devmarkpe.com',
@@ -128,8 +132,9 @@ export default function RootLayout({
           }}
         />
         {children}
-        <WhatsAppButton />
+        <FloatingAssistant />
         <Toaster />
+        <GoogleAnalytics />
       </body>
     </html>
   );

@@ -6,6 +6,28 @@ import { ServiceMethodology } from '@/components/home/service-methodology';
 import { Pricing } from '@/components/home/pricing';
 import { Contact } from '@/components/home/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'CMS & Platform Development: WordPress, Shopify',
+  description: 'We build websites and online stores with WordPress, Shopify, and other popular platforms, with easy content management and powerful e-commerce tools.',
+  alternates: {
+    canonical: 'https://devmarkpe.com/en/services/cms-development',
+    languages: {
+      es: 'https://devmarkpe.com/servicios/desarrollo-cms',
+      en: 'https://devmarkpe.com/en/services/cms-development',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://devmarkpe.com/en/services/cms-development',
+    title: 'CMS & Platform Development | Devmark Peru',
+    description: 'Websites and online stores built with WordPress, Shopify, and other popular platforms.',
+    siteName: 'Devmark',
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'CMS and platform development - DEVMARK' }],
+  },
+};
 
 const headerContent = {
   lang: 'en' as const,
@@ -16,13 +38,13 @@ const headerContent = {
 };
 
 const heroContent = {
-  badge: "Popular Platforms",
+  badge: "Popular platforms",
   title: "CMS & platform development",
   description: "We create and customize websites and online stores using the most popular platforms like WordPress and Shopify, ensuring easy content management and powerful e-commerce capabilities.",
   lang: 'en' as const,
   form: {
     title: 'Tell us about your project',
-    firstNameLabel: 'First Name',
+    firstNameLabel: 'First name',
     firstNamePlaceholder: 'Your first name',
     emailLabel: 'Email',
     emailPlaceholder: 'your@email.com',
@@ -111,7 +133,7 @@ const pricingContent = {
           "Multiuser",
           "24/7 support"
         ],
-        buttonText: "Contact Us",
+        buttonText: "Contact us",
         priceId: ""
       }
     ]
@@ -127,31 +149,94 @@ const contactContent = {
     phoneLabel: "Phone:",
     phone: "+51 975 646 074",
     timeZoneLabel: "Schedule:",
-    formTitle: "Contact Form",
+    formTitle: "Contact form",
     formDescription: "Send us a message and let's start building something amazing together.",
-    firstNameLabel: "First Name",
+    firstNameLabel: "First name",
     firstNamePlaceholder: "Your first name",
-    lastNameLabel: "Last Name",
+    lastNameLabel: "Last name",
     lastNamePlaceholder: "Your last name",
-    emailFormLabel: "Email Address",
+    emailFormLabel: "Email address",
     emailPlaceholder: "your@email.com",
     phoneFormLabel: "Phone",
     phonePlaceholder: "Your phone number",
     messageLabel: "Message",
     messagePlaceholder: "Tell us about your project...",
-    submitButton: "Send Message",
+    submitButton: "Send message",
     scheduleButton: "Schedule a meeting with Meet",
-    quoteButton: "Quote your Project with our AI"
+    quoteButton: "Quote your project with our AI"
 };
 
 const footerContent = {
-    copyright: "DevMark. All rights reserved."
+    copyright: "DEVMARK. All rights reserved."
 };
 
 export default function CMSDevelopmentPage() {
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "CMS & platform development",
+            "description": "We create and customize websites and online stores using the most popular platforms like WordPress and Shopify, ensuring easy content management and powerful e-commerce capabilities.",
+            "provider": {
+              "@type": "Organization",
+              "name": "Devmark",
+              "url": "https://devmarkpe.com"
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Lima"
+              },
+              {
+                "@type": "Country",
+                "name": "Peru"
+              }
+            ],
+            "url": "https://devmarkpe.com/en/services/cms-development",
+            "inLanguage": "en-US"
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Which CMS platform is best for my business?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The choice depends on your needs. WordPress is ideal for content-rich sites and blogs, while Shopify is a robust and scalable solution for e-commerce. We advise you to make the best decision."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can you migrate my existing site to WordPress or Shopify?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, we offer complete migration services to move your content, products, and customer data to a new platform safely and efficiently."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Will my online store be secure for accepting payments?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Absolutely. We implement the best security practices and set up recognized and secure payment gateways to protect your customers' transactions."
+                }
+              }
+            ]
+          }),
+        }}
+      />
       <Header {...headerContent} />
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
@@ -176,7 +261,7 @@ export default function CMSDevelopmentPage() {
             <Contact {...contactContent} />
         </div>
       </main>
-      <Footer copyright={footerContent.copyright} />
+      <Footer lang="en" copyright={footerContent.copyright} />
     </div>
   );
 }

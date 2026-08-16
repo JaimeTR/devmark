@@ -6,6 +6,28 @@ import { ServiceMethodology } from '@/components/home/service-methodology';
 import { Pricing } from '@/components/home/pricing';
 import { Contact } from '@/components/home/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Desarrollo con CMS: WordPress y Shopify en Perú',
+  description: 'Creamos sitios web y tiendas online con WordPress, Shopify y otras plataformas populares, con gestión de contenido sencilla y e-commerce potente para tu marca.',
+  alternates: {
+    canonical: 'https://devmarkpe.com/servicios/desarrollo-cms',
+    languages: {
+      es: 'https://devmarkpe.com/servicios/desarrollo-cms',
+      en: 'https://devmarkpe.com/en/services/cms-development',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'es_PE',
+    url: 'https://devmarkpe.com/servicios/desarrollo-cms',
+    title: 'Desarrollo con CMS y Plataformas | Devmark Perú',
+    description: 'Sitios y tiendas online con WordPress, Shopify y otras plataformas populares.',
+    siteName: 'Devmark',
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Desarrollo con CMS - DEVMARK' }],
+  },
+};
 
 const headerContent = {
   lang: 'es' as const,
@@ -127,7 +149,7 @@ const contactContent = {
     phoneLabel: "Teléfono:",
     phone: "+51 975 646 074",
     timeZoneLabel: "Horario:",
-    formTitle: "Formulario de Contacto",
+    formTitle: "Formulario de contacto",
     formDescription: "Envíanos un mensaje y empecemos a construir algo increíble juntos.",
     firstNameLabel: "Nombres",
     firstNamePlaceholder: "Tus nombres",
@@ -141,17 +163,80 @@ const contactContent = {
     messagePlaceholder: "Cuéntanos sobre tu proyecto...",
     submitButton: "Enviar Mensaje",
     scheduleButton: "Agendar reunión por Meet",
-    quoteButton: "Cotiza tu Proyecto con nuestra IA"
+    quoteButton: "Cotiza tu proyecto con IA"
 };
 
 const footerContent = {
-    copyright: "DevMark. Todos los derechos reservados."
+    copyright: "DEVMARK. Todos los derechos reservados."
 };
 
 export default function CMSDevelopmentPage() {
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Desarrollo con CMS y plataformas",
+            "description": "Creamos y personalizamos sitios web y tiendas online utilizando las plataformas más populares como WordPress y Shopify, garantizando una gestión de contenido sencilla y potentes capacidades de e-commerce.",
+            "provider": {
+              "@type": "Organization",
+              "name": "Devmark",
+              "url": "https://devmarkpe.com"
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Lima"
+              },
+              {
+                "@type": "Country",
+                "name": "Peru"
+              }
+            ],
+            "url": "https://devmarkpe.com/servicios/desarrollo-cms",
+            "inLanguage": "es-PE"
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "¿Qué plataforma CMS es mejor para mi negocio?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "La elección depende de tus necesidades. WordPress es ideal para sitios ricos en contenido y blogs, mientras que Shopify es una solución robusta y escalable para e-commerce. Te asesoramos para que tomes la mejor decisión."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Pueden migrar mi sitio existente a WordPress o Shopify?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Sí, ofrecemos servicios de migración completos para trasladar tu contenido, productos y datos de cliente a una nueva plataforma de manera segura y eficiente."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Mi tienda online será segura para aceptar pagos?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Absolutamente. Implementamos las mejores prácticas de seguridad y configuramos pasarelas de pago reconocidas y seguras para proteger las transacciones de tus clientes."
+                }
+              }
+            ]
+          }),
+        }}
+      />
       <Header {...headerContent} />
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">

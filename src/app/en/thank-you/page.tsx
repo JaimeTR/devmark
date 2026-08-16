@@ -5,7 +5,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { CheckCircle, Home, MessageCircle, Calendar, Sparkles, ArrowRight } from 'lucide-react';
+import { CheckCircle, MessageCircle, Calendar, Sparkles, ArrowRight } from 'lucide-react';
 import { Header } from '@/components/home/header';
 import { Footer } from '@/components/home/footer';
 import { AnimatedBackground } from '@/components/home/animated-background';
@@ -26,12 +26,12 @@ const headerData = {
 
 const footerData = {
   lang: 'en' as const,
-  companyName: 'DevMark',
+  companyName: 'DEVMARK',
   companyDescription: 'Innovative digital solutions',
   quickLinksTitle: 'Quick Links',
   servicesTitle: 'Services',
   contactTitle: 'Contact',
-  copyright: '© 2025 DevMark. All rights reserved.',
+  copyright: '© 2025 DEVMARK. All rights reserved.',
 };
 
 type MessageType = 'contact' | 'meeting' | 'quote' | 'default';
@@ -74,7 +74,7 @@ const messages: Record<MessageType, MessageConfig> = {
     icon: <CheckCircle className="w-16 h-16" />,
     title: 'Action completed! ✅',
     description: 'Your request has been successfully processed',
-    subtitle: 'Thank you for trusting DevMark. We are here to help you achieve your digital goals.',
+    subtitle: 'Thank you for trusting DEVMARK. We are here to help you achieve your digital goals.',
     ctaText: 'Back to Home',
     ctaLink: '/en',
   },
@@ -164,17 +164,17 @@ function ThankYouContent() {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full pt-8">
                     <div className="bg-background/50 backdrop-blur-sm p-4 rounded-lg border border-primary/10">
                       <div className="text-3xl mb-2">⚡</div>
-                      <div className="text-sm font-medium text-foreground">Quick Response</div>
+                      <div className="text-sm font-medium text-foreground">Quick response</div>
                       <div className="text-xs text-muted-foreground">Within 24 hours</div>
                     </div>
                     <div className="bg-background/50 backdrop-blur-sm p-4 rounded-lg border border-primary/10">
                       <div className="text-3xl mb-2">🎯</div>
-                      <div className="text-sm font-medium text-foreground">Personalized Attention</div>
+                      <div className="text-sm font-medium text-foreground">Personalized attention</div>
                       <div className="text-xs text-muted-foreground">Dedicated team</div>
                     </div>
                     <div className="bg-background/50 backdrop-blur-sm p-4 rounded-lg border border-primary/10">
                       <div className="text-3xl mb-2">💡</div>
-                      <div className="text-sm font-medium text-foreground">Innovative Solutions</div>
+                      <div className="text-sm font-medium text-foreground">Innovative solutions</div>
                       <div className="text-xs text-muted-foreground">Cutting-edge technology</div>
                     </div>
                   </div>
@@ -184,18 +184,17 @@ function ThankYouContent() {
               <CardContent className="p-8 md:p-12 space-y-6">
                 {/* Action buttons */}
                 <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
-                  <Button asChild size="lg" className="w-full sm:w-auto btn-gradient group">
+                  <Button asChild size="lg" className="w-full sm:w-auto rounded-2xl btn-gradient group">
                     <Link href={config.ctaLink}>
-                      <Home className="mr-2 h-5 w-5" />
                       {config.ctaText}
                       <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </Button>
-                  
-                  <Button asChild size="lg" variant="outline" className="w-full sm:w-auto border-primary/50 hover:bg-primary/10">
+
+                  <Button asChild size="lg" variant="outline" className="w-full sm:w-auto rounded-2xl bg-white border-2 border-brand-blue text-brand-blue hover:bg-transparent">
                     <Link href="/en/ai-assistant">
-                      <Sparkles className="mr-2 h-5 w-5" />
                       Talk to AI Assistant
+                      <Sparkles className="ml-2 h-5 w-5" />
                     </Link>
                   </Button>
                 </div>
@@ -277,7 +276,7 @@ function ThankYouContent() {
           </div>
         </main>
 
-        <Footer {...footerData} />
+        <Footer {...footerData} lang="en" />
       </div>
     </div>
   );

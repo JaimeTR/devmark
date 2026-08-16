@@ -2,13 +2,28 @@ import { AnimatedBackground } from '@/components/home/animated-background';
 import { Header } from '@/components/home/header';
 import { Footer } from '@/components/home/footer';
 import Link from 'next/link';
-import { ArrowLeft, Check, Server, Mail, Lock, Zap, Globe, HardDrive } from 'lucide-react';
+import { Check, Server, Mail, Lock, Zap, Globe, HardDrive } from 'lucide-react';
 import { Metadata } from 'next';
-import Image from 'next/image';
 
 export const metadata: Metadata = {
-  title: 'Hosting y Dominios | DevMark - Partner Oficial de Hostinger',
-  description: 'Servicios de hosting profesional, dominios, correos corporativos y SSL. Como partners de Hostinger, te ofrecemos 20% de descuento adicional.',
+  title: 'Hosting y Dominios: Partner Oficial de Hostinger',
+  description: 'Hosting profesional, dominios, correos corporativos y certificados SSL. Como partners oficiales de Hostinger, te damos 20% de descuento adicional.',
+  alternates: {
+    canonical: 'https://devmarkpe.com/hosting',
+    languages: {
+      es: 'https://devmarkpe.com/hosting',
+      en: 'https://devmarkpe.com/en/hosting',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'es_PE',
+    url: 'https://devmarkpe.com/hosting',
+    title: 'Hosting y Dominios | Devmark - Partner Oficial de Hostinger',
+    description: 'Hosting profesional, dominios, correos corporativos y SSL con 20% de descuento adicional.',
+    siteName: 'Devmark',
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Hosting y dominios - DEVMARK' }],
+  },
 };
 
 const content = {
@@ -26,14 +41,14 @@ const content = {
     aiAssistantTooltip: '¡Hola! Soy tu asistente de IA.',
   },
   footer: {
-    copyright: "DevMark. Todos los derechos reservados."
+    copyright: "DEVMARK. Todos los derechos reservados."
   }
 } as const;
 
 const hostingFeatures = [
   {
     icon: Server,
-    title: 'Hosting Web Profesional',
+    title: 'Hosting web profesional',
     description: 'Servidores optimizados para WordPress, aplicaciones web y más. 99.9% de uptime garantizado.',
     features: ['SSD NVMe ultra rápidos', 'Backups automáticos diarios', 'CDN gratuito incluido', 'Certificado SSL gratis']
   },
@@ -45,7 +60,7 @@ const hostingFeatures = [
   },
   {
     icon: Mail,
-    title: 'Correos Corporativos',
+    title: 'Correos corporativos',
     description: 'Emails profesionales con tu dominio. Configuración incluida sin costo adicional.',
     features: ['tu@tuempresa.com', 'Webmail moderno', 'Protección anti-spam', 'Soporte IMAP/SMTP']
   },
@@ -57,13 +72,13 @@ const hostingFeatures = [
   },
   {
     icon: Zap,
-    title: 'Alto Rendimiento',
+    title: 'Alto rendimiento',
     description: 'Tecnología de última generación para que tu sitio cargue en menos de 1 segundo.',
     features: ['LiteSpeed Cache', 'HTTP/3 habilitado', 'Optimización de imágenes', 'Compresión Gzip/Brotli']
   },
   {
     icon: HardDrive,
-    title: 'Almacenamiento y Bases de Datos',
+    title: 'Almacenamiento y bases de datos',
     description: 'Espacio ilimitado en planes premium y bases de datos MySQL/MariaDB optimizadas.',
     features: ['Almacenamiento SSD', 'Bases de datos MySQL', 'phpMyAdmin incluido', 'Gestión sencilla']
   }
@@ -134,7 +149,7 @@ export default function HostingPage() {
               </div>
               
               <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight mb-6 animate-fade-in-up stagger-1">
-                Hosting Profesional para tu Negocio
+                Hosting profesional para tu negocio
               </h1>
               <p className="text-xl text-muted-foreground mb-8 animate-fade-in-up stagger-2">
                 Como partners oficiales de Hostinger, te ofrecemos la mejor tecnología de alojamiento web con <span className="text-primary font-semibold">20% de descuento adicional</span> sobre sus promociones. Además, configuramos tus correos profesionales y certificado SSL de forma gratuita.
@@ -198,7 +213,7 @@ export default function HostingPage() {
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="font-headline text-3xl md:text-4xl font-bold text-center mb-4">
-              Planes de Hosting
+              Planes de hosting
             </h2>
             <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
               Todos los planes incluyen configuración gratuita de correos corporativos y certificado SSL por parte de nuestro equipo
@@ -316,7 +331,7 @@ export default function HostingPage() {
                 <div className={`relative rounded-lg p-8 border border-border/40 bg-background hover:shadow-xl transition-all duration-300`}>
                   <h3 className="text-2xl font-bold mb-2 flex items-center gap-2">
                     <Globe className="h-5 w-5 text-primary" />
-                    Registro de Dominio
+                    Registro de dominio
                   </h3>
                   <div className="text-3xl font-bold text-primary mb-2">Desde S/120/año</div>
                   <p className="text-sm text-muted-foreground mb-6">
@@ -340,7 +355,7 @@ export default function HostingPage() {
                 <div className={`relative rounded-lg p-8 border border-border/40 bg-background hover:shadow-xl transition-all duration-300`}>
                   <h3 className="text-2xl font-bold mb-2 flex items-center gap-2">
                     <Mail className="h-5 w-5 text-primary" />
-                    Correos Corporativos
+                    Correos corporativos
                   </h3>
                   <div className="text-3xl font-bold text-primary mb-2">S/60/año · 1 GB</div>
                   <p className="text-sm text-muted-foreground mb-6">

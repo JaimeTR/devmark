@@ -19,7 +19,7 @@ const headerContent = {
 
 const contactContent = {
   lang: 'en' as const,
-  title: 'Contact Us',
+  title: 'Contact us',
   description:
     'Ready to take your business to the next level? Fill out the form or schedule a meeting and our global team will get in touch with you.',
   contactSubtitle: 'Contact us now',
@@ -28,11 +28,11 @@ const contactContent = {
   phoneLabel: 'Phone:',
   phone: '+51 930 414 494',
   timeZoneLabel: 'Local Time:',
-  formTitle: 'Contact Form',
+  formTitle: 'Contact form',
   formDescription: 'Fill out the form and we will get in touch with you.',
-  firstNameLabel: 'First Name',
+  firstNameLabel: 'First name',
   firstNamePlaceholder: 'John',
-  lastNameLabel: 'Last Name',
+  lastNameLabel: 'Last name',
   lastNamePlaceholder: 'Doe',
   emailFormLabel: 'Email',
   emailPlaceholder: 'your@email.com',
@@ -40,13 +40,13 @@ const contactContent = {
   phonePlaceholder: '+1 999 999 9999',
   messageLabel: 'Message',
   messagePlaceholder: 'Tell us about your project...',
-  submitButton: 'Send Message',
+  submitButton: 'Send message',
   scheduleButton: 'Schedule Meeting',
   quoteButton: 'Get a Quote',
 };
 
 const footerContent = {
-  copyright: 'DevMark. All rights reserved.',
+  copyright: 'DEVMARK. All rights reserved.',
 };
 
 export default function ContactPage() {
@@ -59,7 +59,7 @@ export default function ContactPage() {
           <Contact {...contactContent} />
         </div>
       </main>
-      <Footer copyright={footerContent.copyright} />
+      <Footer lang="en" copyright={footerContent.copyright} />
     </div>
   );
 }

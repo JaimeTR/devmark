@@ -106,16 +106,16 @@ export function Contact(props: ContactProps) {
               )}
             </div>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button asChild variant="outline" className="group w-full sm:w-auto h-12 rounded-2xl border-2 border-brand-blue hover:border-brand-blue-darker bg-white text-brand-blue hover:text-brand-blue-darker font-semibold hover:bg-brand-blue/5 shadow-xl shadow-brand-blue/10 hover:shadow-brand-blue/20 hover:-translate-y-1 transition-all duration-300 focus-ring">
+              <Button asChild variant="outline" className="group w-full sm:w-auto h-12 rounded-2xl border-2 border-brand-blue hover:border-brand-blue-darker bg-white text-brand-blue hover:text-brand-blue-darker font-semibold hover:bg-transparent shadow-xl shadow-brand-blue/10 hover:shadow-brand-blue/20 hover:-translate-y-1 transition-all duration-300 focus-ring">
                   <Link href={googleCalendarLink} target="_blank" rel="noopener noreferrer">
-                      <Video className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                       {props.scheduleButton}
+                      <Video className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                   </Link>
               </Button>
-              <Button asChild className="group w-full sm:w-auto h-12 btn-gradient text-white rounded-2xl font-semibold shadow-lg shadow-brand-blue/20 hover:shadow-xl hover:shadow-brand-blue/30 hover:-translate-y-1 transition-all duration-300 focus-ring">
+              <Button asChild className="group w-full sm:w-auto h-12 border-2 border-transparent bg-brand-blue hover:bg-brand-navy-dark text-white rounded-2xl font-semibold shadow-xl shadow-brand-blue/30 hover:shadow-brand-blue/40 hover:-translate-y-1 transition-all duration-300 focus-ring">
                 <Link href={quoteLink}>
-                  <Bot className="mr-2 h-4 w-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
                   {props.quoteButton}
+                  <Bot className="ml-2 h-4 w-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
                 </Link>
               </Button>
             </div>
@@ -195,18 +195,18 @@ export function Contact(props: ContactProps) {
                <div className="flex flex-col sm:flex-row gap-4 pt-1">
                 <Button 
                   type="submit" 
-                  className={cn("w-full h-12 btn-gradient text-white rounded-full font-semibold shadow-lg shadow-brand-blue/20 focus-ring hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300")}
+                  className={cn("w-full h-12 border-2 border-transparent bg-brand-blue hover:bg-brand-navy-dark text-white rounded-2xl font-semibold shadow-xl shadow-brand-blue/30 hover:shadow-brand-blue/40 focus-ring hover:-translate-y-1 active:translate-y-0 transition-all duration-300")}
                   disabled={isPending || state?.success}
                 >
                   {isPending ? (
                     <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                       Enviando...
+                      <Loader2 className="ml-2 h-4 w-4 animate-spin" />
                     </>
                   ) : state?.success ? (
                     <>
-                      <CheckCircle className="mr-2 h-4 w-4" />
                       ¡Enviado!
+                      <CheckCircle className="ml-2 h-4 w-4" />
                     </>
                   ) : (
                     props.submitButton

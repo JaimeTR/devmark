@@ -7,6 +7,28 @@ import { ServiceMethodology } from '@/components/home/service-methodology';
 import { Pricing } from '@/components/home/pricing';
 import { Contact } from '@/components/home/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Consultoría Tecnológica para la Transformación Digital',
+  description: 'Te guiamos en la transformación digital de tu negocio en Perú: elegimos herramientas, optimizamos procesos y construimos una estrategia tecnológica sólida.',
+  alternates: {
+    canonical: 'https://devmarkpe.com/servicios/consultoria-tecnologica',
+    languages: {
+      es: 'https://devmarkpe.com/servicios/consultoria-tecnologica',
+      en: 'https://devmarkpe.com/en/services/tech-consulting',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'es_PE',
+    url: 'https://devmarkpe.com/servicios/consultoria-tecnologica',
+    title: 'Consultoría Tecnológica | Devmark Perú',
+    description: 'Te guiamos en la transformación digital de tu negocio con una estrategia tecnológica sólida y escalable.',
+    siteName: 'Devmark',
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Consultoría tecnológica - DEVMARK' }],
+  },
+};
 
 const headerContent = {
   lang: 'es' as const,
@@ -126,7 +148,7 @@ const contactContent = {
     phoneLabel: "Teléfono:",
     phone: "+51 975 646 074",
     timeZoneLabel: "Horario:",
-    formTitle: "Formulario de Contacto",
+    formTitle: "Formulario de contacto",
     formDescription: "Envíanos un mensaje y empecemos a construir algo increíble juntos.",
     firstNameLabel: "Nombres",
     firstNamePlaceholder: "Tus nombres",
@@ -140,17 +162,80 @@ const contactContent = {
     messagePlaceholder: "Cuéntanos sobre tu proyecto...",
     submitButton: "Enviar Mensaje",
     scheduleButton: "Agendar reunión por Meet",
-    quoteButton: "Cotiza tu Proyecto con nuestra IA"
+    quoteButton: "Cotiza tu proyecto con IA"
 };
 
 const footerContent = {
-    copyright: "DevMark. Todos los derechos reservados."
+    copyright: "DEVMARK. Todos los derechos reservados."
 };
 
 export default function TechConsultingPage() {
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Consultoría tecnológica",
+            "description": "Te guiamos en la transformación digital de tu negocio, ayudándote a elegir las herramientas adecuadas, optimizar procesos y construir una estrategia tecnológica sólida y escalable.",
+            "provider": {
+              "@type": "Organization",
+              "name": "Devmark",
+              "url": "https://devmarkpe.com"
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Lima"
+              },
+              {
+                "@type": "Country",
+                "name": "Peru"
+              }
+            ],
+            "url": "https://devmarkpe.com/servicios/consultoria-tecnologica",
+            "inLanguage": "es-PE"
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "¿Mi empresa es demasiado pequeña para una consultoría?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No, la consultoría tecnológica es valiosa para empresas de todos los tamaños. Para las pymes, puede ser clave para establecer una base tecnológica sólida que permita un crecimiento futuro sin problemas."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Cómo sé qué tecnología es la correcta para mí?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Ese es nuestro trabajo. Realizamos un análisis exhaustivo de tu negocio, tus objetivos y tu presupuesto para recomendarte soluciones a medida que realmente resuelvan tus problemas."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿La consultoría incluye la implementación?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "La consultoría se centra en la estrategia y la planificación. Sin embargo, como agencia de desarrollo, podemos ofrecerte un servicio integral que cubra desde la consultoría hasta la implementación y el soporte."
+                }
+              }
+            ]
+          }),
+        }}
+      />
       <Header {...headerContent} />
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">

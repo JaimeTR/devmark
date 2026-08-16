@@ -14,81 +14,81 @@ interface Post {
 const ctaContent = {
   es: {
     web: {
-      title: '¿Necesitas un Desarrollo Web a Medida?',
-      text: 'En DevMark, nos especializamos en crear sitios web y aplicaciones de alto rendimiento, seguras y escalables que impulsan tu negocio. No te conformes con plantillas genéricas. Construyamos juntos una solución única que te diferencie de la competencia.',
+      title: '¿Necesitas un desarrollo web a medida?',
+      text: 'En DEVMARK, nos especializamos en crear sitios web y aplicaciones de alto rendimiento, seguras y escalables que impulsan tu negocio. No te conformes con plantillas genéricas. Construyamos juntos una solución única que te diferencie de la competencia.',
     },
     software: {
-      title: '¿Buscas una Solución de Software Personalizada?',
-      text: 'Deja de adaptar tus procesos a un software genérico. En DevMark, construimos CRMs, ERPs y plataformas SaaS a la medida de tus necesidades, optimizando tus flujos de trabajo y aumentando la productividad de tu equipo.',
+      title: '¿Buscas una solución de software personalizada?',
+      text: 'Deja de adaptar tus procesos a un software genérico. En DEVMARK, construimos CRMs, ERPs y plataformas SaaS a la medida de tus necesidades, optimizando tus flujos de trabajo y aumentando la productividad de tu equipo.',
     },
     seo: {
-      title: '¿Quieres Dominar los Rankings de Búsqueda?',
+      title: '¿Quieres dominar los rankings de búsqueda?',
       text: 'Un sitio web increíble no sirve de nada si nadie lo encuentra. Nuestro equipo de expertos en SEO técnico y de contenidos puede auditar tu web, crear una estrategia ganadora y llevar tu tráfico orgánico al siguiente nivel.',
     },
     automation: {
-      title: '¿Listo para Automatizar tu Negocio?',
-      text: 'Libera a tu equipo de las tareas repetitivas y enfócalo en lo que realmente importa. En DevMark, diseñamos flujos de trabajo inteligentes que conectan tus herramientas, ahorran tiempo y reducen errores. ¡Trabaja de forma más inteligente, no más dura!',
+      title: '¿Listo para automatizar tu negocio?',
+      text: 'Libera a tu equipo de las tareas repetitivas y enfócalo en lo que realmente importa. En DEVMARK, diseñamos flujos de trabajo inteligentes que conectan tus herramientas, ahorran tiempo y reducen errores. ¡Trabaja de forma más inteligente, no más dura!',
     },
     chatbot: {
-      title: '¿Quieres un Chatbot que Realmente Venda?',
+      title: '¿Quieres un chatbot que realmente venda?',
       text: 'Ofrece a tus clientes soporte 24/7 y un asistente de ventas incansable. Implementamos chatbots con IA, entrenados con tu propia información, para revolucionar tu servicio al cliente y aumentar tus conversiones.',
     },
     uiux: {
-      title: '¿Tu Producto Digital no Enamora a tus Usuarios?',
+      title: '¿Tu producto digital no enamora a tus usuarios?',
       text: 'Una experiencia de usuario excepcional es la clave del éxito. Nuestro equipo de diseño UI/UX investiga, prototipa y diseña interfaces intuitivas y atractivas que no solo funcionan bien, sino que deleitan a tus clientes.',
     },
     marketing: {
-      title: '¿Necesitas una Estrategia de Marketing para Crecer?',
-      text: 'Atrae a tus primeros clientes y gana tracción en el mercado. En DevMark, creamos estrategias de marketing digital de alto impacto, combinando SEO, marketing de contenidos y redes sociales para que tu startup despegue.',
+      title: '¿Necesitas una estrategia de marketing para crecer?',
+      text: 'Atrae a tus primeros clientes y gana tracción en el mercado. En DEVMARK, creamos estrategias de marketing digital de alto impacto, combinando SEO, marketing de contenidos y redes sociales para que tu startup despegue.',
     },
     cms: {
-      title: '¿Necesitas un Sitio WordPress Profesional?',
-      text: 'En DevMark hacemos que tu WordPress sea rápido, seguro y fácil de gestionar. Desde el desarrollo de temas y plugins a medida hasta la migración y optimización de sitios existentes, tu contenido queda en buenas manos.',
+      title: '¿Necesitas un sitio WordPress profesional?',
+      text: 'En DEVMARK hacemos que tu WordPress sea rápido, seguro y fácil de gestionar. Desde el desarrollo de temas y plugins a medida hasta la migración y optimización de sitios existentes, tu contenido queda en buenas manos.',
     },
     consulting: {
-      title: '¿No Sabes por Dónde Empezar Tecnológicamente?',
+      title: '¿No sabes por dónde empezar tecnológicamente?',
       text: 'Te asesoramos para elegir la tecnología correcta, optimizar tus procesos y planificar tu crecimiento digital. Un consultor estratégico para cada una de tus decisiones tecnológicas.',
     },
-    contactButton: 'Hablemos de tu Proyecto',
+    contactButton: 'Hablemos de tu proyecto',
   },
   en: {
     web: {
-      title: 'Need a Custom Web Development?',
-      text: 'At DevMark, we specialize in creating high-performance, secure, and scalable websites and applications that drive your business. Don\'t settle for generic templates. Let\'s build a unique solution together that sets you apart from the competition.',
+      title: 'Need a custom web development?',
+      text: 'At DEVMARK, we specialize in creating high-performance, secure, and scalable websites and applications that drive your business. Don\'t settle for generic templates. Let\'s build a unique solution together that sets you apart from the competition.',
     },
     software: {
-      title: 'Looking for a Custom Software Solution?',
-      text: 'Stop adapting your processes to generic software. At DevMark, we build CRMs, ERPs, and SaaS platforms tailored to your needs, optimizing your workflows and increasing your team\'s productivity.',
+      title: 'Looking for a custom software solution?',
+      text: 'Stop adapting your processes to generic software. At DEVMARK, we build CRMs, ERPs, and SaaS platforms tailored to your needs, optimizing your workflows and increasing your team\'s productivity.',
     },
     seo: {
-      title: 'Want to Dominate the Search Rankings?',
+      title: 'Want to dominate the search rankings?',
       text: 'An amazing website is useless if no one can find it. Our team of experts in technical and content SEO can audit your site, create a winning strategy, and take your organic traffic to the next level.',
     },
     automation: {
-      title: 'Ready to Automate Your Business?',
-      text: 'Free your team from repetitive tasks and focus them on what really matters. At DevMark, we design intelligent workflows that connect your tools, save time, and reduce errors. Work smarter, not harder!',
+      title: 'Ready to automate your business?',
+      text: 'Free your team from repetitive tasks and focus them on what really matters. At DEVMARK, we design intelligent workflows that connect your tools, save time, and reduce errors. Work smarter, not harder!',
     },
     chatbot: {
-      title: 'Want a Chatbot That Actually Sells?',
+      title: 'Want a chatbot that actually sells?',
       text: 'Offer your customers 24/7 support and a tireless sales assistant. We implement AI-powered chatbots, trained with your own information, to revolutionize your customer service and increase your conversions.',
     },
     uiux: {
-      title: 'Is Your Digital Product Not Winning Over Users?',
+      title: 'Is your digital product not winning over users?',
       text: 'An exceptional user experience is the key to success. Our UI/UX design team researches, prototypes, and designs intuitive and attractive interfaces that not only work well but also delight your customers.',
     },
     marketing: {
-      title: 'Need a Marketing Strategy to Grow?',
-      text: 'Attract your first customers and gain traction in the market. At DevMark, we create high-impact digital marketing strategies, combining SEO, content marketing, and social media to make your startup take off.',
+      title: 'Need a marketing strategy to grow?',
+      text: 'Attract your first customers and gain traction in the market. At DEVMARK, we create high-impact digital marketing strategies, combining SEO, content marketing, and social media to make your startup take off.',
     },
     cms: {
-      title: 'Need a Professional WordPress Site?',
-      text: 'At DevMark, we make your WordPress fast, secure, and easy to manage. From custom theme and plugin development to the migration and optimization of existing sites, your content is in good hands.',
+      title: 'Need a professional WordPress site?',
+      text: 'At DEVMARK, we make your WordPress fast, secure, and easy to manage. From custom theme and plugin development to the migration and optimization of existing sites, your content is in good hands.',
     },
     consulting: {
-      title: 'Not Sure Where to Start Tech-Wise?',
+      title: 'Not sure where to start tech-wise?',
       text: 'We advise you on choosing the right technology, optimizing your processes, and planning your digital growth. A strategic consultant for every one of your technology decisions.',
     },
-    contactButton: 'Let\'s Talk About Your Project',
+    contactButton: 'Let\'s talk about your project',
   }
 }
 
@@ -123,86 +123,86 @@ const posts: Record<'es' | 'en', Post[]> = {
   es: [
     {
       slug: 'como-elegir-la-agencia-de-desarrollo-web-correcta',
-      title: 'Cómo Elegir la Agencia de Desarrollo Web Correcta para tu Negocio',
+      title: 'Cómo elegir la agencia de desarrollo web correcta para tu negocio',
       description: 'Descubre las claves para seleccionar al socio tecnológico ideal que impulse tu presencia digital. Desde la experiencia hasta la comunicación, te guiamos en cada paso.',
       date: new Date().toISOString(),
       author: 'Jaime Tarazona (JaimeTR)',
-      image: 'https://placehold.co/1200x600.png',
+      image: '/undraw_team-up_qeem.svg',
       imageHint: 'office meeting',
       tags: ['Desarrollo Web'],
       content: `
         <p>Elegir una agencia de desarrollo web es una de las decisiones más importantes para el futuro digital de tu empresa. No se trata solo de encontrar a alguien que pueda crear un sitio web atractivo, sino de hallar un socio estratégico que entienda tus objetivos de negocio y te ayude a alcanzarlos. Un buen socio tecnológico no solo construye un sitio web, sino que crea una plataforma para el crecimiento, la captación de clientes y la consolidación de tu marca en el competitivo mundo online. Aquí te dejamos algunos puntos clave a considerar para tomar la mejor decisión.</p>
-        <h3>1. Revisa su Portafolio y Experiencia</h3>
-        <p>Un portafolio sólido es la mejor carta de presentación de una agencia. No te limites a mirar la estética de los sitios; profundiza en la funcionalidad, la experiencia de usuario (UX) y los resultados obtenidos. Busca proyectos similares al tuyo en complejidad y sector. ¿Han trabajado con empresas de tu tamaño? ¿Tienen experiencia en e-commerce, software a medida o en la industria a la que perteneces? En DevMark, nos enorgullece mostrar una variedad de <a href="/portfolio">proyectos exitosos</a> que demuestran nuestra capacidad para adaptarnos a diferentes industrias y entregar resultados tangibles.</p>
-        <h3>2. Entiende su Proceso de Desarrollo</h3>
+        <h3>1. Revisa su portafolio y experiencia</h3>
+        <p>Un portafolio sólido es la mejor carta de presentación de una agencia. No te limites a mirar la estética de los sitios; profundiza en la funcionalidad, la experiencia de usuario (UX) y los resultados obtenidos. Busca proyectos similares al tuyo en complejidad y sector. ¿Han trabajado con empresas de tu tamaño? ¿Tienen experiencia en e-commerce, software a medida o en la industria a la que perteneces? En DEVMARK, nos enorgullece mostrar una variedad de <a href="/portfolio">proyectos exitosos</a> que demuestran nuestra capacidad para adaptarnos a diferentes industrias y entregar resultados tangibles.</p>
+        <h3>2. Entiende su proceso de desarrollo</h3>
         <p>Una agencia profesional debe tener un proceso claro, estructurado y transparente. Un proyecto web exitoso no sucede por casualidad. Pregunta sobre su metodología: ¿utilizan metodologías ágiles como Scrum o Kanban? ¿Cómo te mantendrán informado del progreso? Un proceso típico debería incluir fases de descubrimiento y estrategia, diseño UI/UX, desarrollo frontend y backend, pruebas exhaustivas (QA) y un plan de lanzamiento y soporte post-lanzamiento. La transparencia en este proceso es un indicador de profesionalismo y te dará la tranquilidad de saber que tu proyecto está en buenas manos.</p>
-        <h3>3. Evalúa su Conocimiento en SEO</h3>
+        <h3>3. Evalúa su conocimiento en SEO</h3>
         <p>Un sitio web bonito no sirve de nada si nadie lo encuentra. El SEO (Search Engine Optimization) no es algo que se añade al final; debe ser una parte integral del proceso de desarrollo. Asegúrate de que la agencia integre las mejores prácticas de SEO desde la fase de desarrollo (SEO técnico). Esto incluye optimización de la velocidad de carga (Core Web Vitals), una estructura de URLs amigable, un sitemap bien configurado, uso correcto de etiquetas semánticas y un diseño responsive que funcione a la perfección en todos los dispositivos. Un buen posicionamiento orgánico es el motor del crecimiento a largo plazo.</p>
-        <h3>4. La Comunicación es Clave</h3>
-        <p>Una comunicación fluida, honesta y constante es fundamental. La agencia debe ser tu socio, no solo un proveedor. Deben escuchar activamente tus necesidades, entender tus objetivos de negocio y ofrecerte soluciones proactivas, no solo ejecutar tareas. ¿Quién será tu punto de contacto? ¿Con qué frecuencia recibirás actualizaciones? En DevMark, creemos en la colaboración estrecha y en construir relaciones a largo plazo con nuestros clientes para garantizar el éxito mutuo.</p>
+        <h3>4. La comunicación es clave</h3>
+        <p>Una comunicación fluida, honesta y constante es fundamental. La agencia debe ser tu socio, no solo un proveedor. Deben escuchar activamente tus necesidades, entender tus objetivos de negocio y ofrecerte soluciones proactivas, no solo ejecutar tareas. ¿Quién será tu punto de contacto? ¿Con qué frecuencia recibirás actualizaciones? En DEVMARK, creemos en la colaboración estrecha y en construir relaciones a largo plazo con nuestros clientes para garantizar el éxito mutuo.</p>
         <div class="cta-block"><h3>${ctaContent.es.web.title}</h3><p>${ctaContent.es.web.text}</p><a href="${ctaButtonLinks.es.web}" class="cta-button">${ctaContent.es.contactButton}</a></div>
       `,
     },
     {
         slug: '5-razones-para-invertir-en-software-a-medida',
-        title: '5 Razones Clave por las que tu Empresa Debería Invertir en Software a Medida',
+        title: '5 razones clave por las que tu empresa debería invertir en software a medida',
         description: '¿Usar un software genérico o invertir en una solución a medida? Analizamos las ventajas competitivas que el desarrollo de software personalizado puede ofrecer a tu negocio.',
         date: new Date().toISOString(),
         author: 'Jaime Tarazona (JaimeTR)',
-        image: 'https://placehold.co/1200x600.png',
+        image: '/undraw_programming_j1zw.svg',
         imageHint: 'custom software',
         tags: ['Software a Medida'],
         content: `
             <p>En un mercado cada vez más competitivo, las herramientas tecnológicas que utilizas pueden marcar una diferencia abismal entre el estancamiento y el crecimiento exponencial. Mientras que el software "de estantería" o genérico puede resolver problemas comunes de forma superficial, el software a medida ofrece una serie de ventajas únicas y estratégicas que pueden transformar por completo tu operación.</p>
-            <h3>1. Soluciones que se Adaptan Perfectamente a Ti</h3>
+            <h3>1. Soluciones que se adaptan perfectamente a ti</h3>
             <p>El software a medida se diseña y construye para encajar como un guante en tus procesos de negocio existentes, no al revés. Esto elimina la necesidad de realizar dolorosos y costosos cambios en tus flujos de trabajo para adaptarte a las limitaciones y rigideces de un software genérico. Es tecnología al servicio de tu empresa, y no tu empresa al servicio de la tecnología.</p>
-            <h3>2. Mayor Eficiencia y Productividad</h3>
+            <h3>2. Mayor eficiencia y productividad</h3>
             <p>Al automatizar tareas específicas de tu operación, centralizar la información en un único lugar y eliminar pasos innecesarios, tu equipo puede trabajar de manera más inteligente, rápida y precisa. Esto no solo reduce la probabilidad de errores manuales, sino que libera tiempo valioso para que tus colaboradores se centren en tareas de mayor valor estratégico, como la innovación y la atención al cliente.</p>
-            <h3>3. Escalabilidad a Futuro Garantizada</h3>
+            <h3>3. Escalabilidad a futuro garantizada</h3>
             <p>Una solución a medida está diseñada para crecer contigo. A medida que tu negocio se expande, incorpora nuevos productos o entra en nuevos mercados, el software puede evolucionar y adaptarse para satisfacer esas nuevas necesidades. No te verás limitado por las funcionalidades de un proveedor externo; tendrás el control total para escalar tu tecnología al mismo ritmo que tu ambición.</p>
-            <h3>4. Ventaja Competitiva Sostenible</h3>
+            <h3>4. Ventaja competitiva sostenible</h3>
             <p>Un software personalizado puede incorporar funcionalidades y características únicas que tus competidores, atados a soluciones genéricas, simplemente no pueden replicar. Esto puede traducirse en una mejor experiencia para tus clientes, una mayor eficiencia en tu cadena de suministro, o la capacidad de analizar datos de una forma que te dé una visión privilegiada del mercado.</p>
-            <h3>5. Integración Total con tu Ecosistema Tecnológico</h3>
+            <h3>5. Integración total con tu ecosistema tecnológico</h3>
             <p>Es raro que una empresa utilice una única herramienta. Creamos APIs y conectores a medida para que tu nuevo software se comunique perfectamente con las herramientas que ya utilizas (CRM, ERP, sistemas de facturación, etc.), creando un ecosistema tecnológico unificado, sin silos de información y con datos que fluyen sin fricción entre departamentos.</p>
             <div class="cta-block"><h3>${ctaContent.es.software.title}</h3><p>${ctaContent.es.software.text}</p><a href="${ctaButtonLinks.es.software}" class="cta-button">${ctaContent.es.contactButton}</a></div>
         `,
     },
     {
         slug: 'el-poder-de-los-chatbots-con-ia-en-el-servicio-al-cliente',
-        title: 'El Poder de los Chatbots con IA para Revolucionar tu Servicio al Cliente',
+        title: 'El poder de los chatbots con IA para revolucionar tu servicio al cliente',
         description: 'Descubre cómo los asistentes virtuales inteligentes pueden ofrecer soporte 24/7, aumentar las ventas y liberar a tu equipo humano para que se centre en tareas estratégicas.',
         date: new Date().toISOString(),
         author: 'Jaime Tarazona (JaimeTR)',
-        image: 'https://placehold.co/1200x600.png',
+        image: '/undraw_coding_joxb.svg',
         imageHint: 'ai chatbot',
         tags: ['Automatización'],
         content: `
             <p>La era del servicio al cliente paciente y con horarios limitados ha terminado. Los consumidores de hoy esperan respuestas instantáneas, personalizadas y efectivas a cualquier hora del día. Mantener un equipo humano para cubrir esta demanda 24/7 es insostenible para la mayoría de las empresas. Aquí es donde los chatbots con Inteligencia Artificial (IA) generativa cambian por completo las reglas del juego.</p>
-            <h3>Soporte Ininterrumpido 24/7</h3>
+            <h3>Soporte ininterrumpido 24/7</h3>
             <p>Un chatbot entrenado con IA no duerme, no toma vacaciones y no tiene malos días. Puede resolver dudas frecuentes, gestionar consultas sobre pedidos, guiar a los usuarios en tu sitio web y ofrecer soporte técnico básico las 24 horas del día, los 7 días de la semana. Esto mejora drásticamente la satisfacción del cliente y reduce la tasa de abandono por falta de respuesta.</p>
-            <h3>Respuestas Precisas y Coherentes con tu Marca</h3>
-            <p>Atrás quedaron los chatbots de respuestas robóticas y limitadas. Las soluciones modernas, como las que implementamos en DevMark, se entrenan con tu propia base de conocimiento (documentos internos, catálogos de productos, sitio web, FAQs). Esto asegura que cada respuesta sea precisa, coherente con el tono y la voz de tu marca, y genuinamente útil para el usuario.</p>
-            <h3>Automatización Inteligente y Eficiencia Operativa</h3>
+            <h3>Respuestas precisas y coherentes con tu marca</h3>
+            <p>Atrás quedaron los chatbots de respuestas robóticas y limitadas. Las soluciones modernas, como las que implementamos en DEVMARK, se entrenan con tu propia base de conocimiento (documentos internos, catálogos de productos, sitio web, FAQs). Esto asegura que cada respuesta sea precisa, coherente con el tono y la voz de tu marca, y genuinamente útil para el usuario.</p>
+            <h3>Automatización inteligente y eficiencia operativa</h3>
             <p>Mientras el chatbot gestiona de forma autónoma el 80% de las consultas más frecuentes y repetitivas, tu equipo humano puede liberarse de esa carga para centrarse en lo que realmente aporta valor: resolver los casos más complejos, gestionar clientes estratégicos y realizar tareas proactivas de fidelización. El resultado es un aumento significativo en la productividad y en la moral del equipo.</p>
-            <h3>Un Asistente de Ventas Incansable</h3>
+            <h3>Un asistente de ventas incansable</h3>
             <p>Un chatbot con IA no solo resuelve dudas, también es un poderoso asistente de ventas. Puede recomendar productos de forma proactiva basándose en las necesidades del usuario, responder preguntas sobre características y stock, guiar a los clientes en el proceso de compra hasta la finalización del pago y capturar leads cualificados, incluso fuera del horario comercial. Es como tener a tu mejor vendedor trabajando sin descanso.</p>
             <div class="cta-block"><h3>${ctaContent.es.chatbot.title}</h3><p>${ctaContent.es.chatbot.text}</p><a href="${ctaButtonLinks.es.chatbot}" class="cta-button">${ctaContent.es.contactButton}</a></div>
         `,
     },
     {
       slug: 'seo-tecnico-la-base-para-un-buen-posicionamiento',
-      title: 'SEO Técnico: La Base Sólida para un Buen Posicionamiento en Buscadores',
+      title: 'SEO técnico: la base sólida para un buen posicionamiento en buscadores',
       description: 'Mucho más que palabras clave. Descubre por qué el SEO técnico es el cimiento indispensable de cualquier estrategia de marketing digital exitosa y cómo impacta en tu visibilidad.',
       date: new Date().toISOString(),
       author: 'Jaime Tarazona (JaimeTR)',
-      image: 'https://placehold.co/1200x600.png',
+      image: '/undraw_web-devices_i15y.svg',
       imageHint: 'seo optimization',
       tags: ['SEO', 'Marketing Digital'],
       content: `
         <p>Cuando la mayoría de la gente piensa en SEO (Search Engine Optimization), a menudo se centra en el contenido, los blogs y la búsqueda de palabras clave. Si bien estos elementos son cruciales, son solo una parte de la ecuación. Sin una base técnica sólida, incluso el mejor contenido del mundo puede pasar desapercibido para los motores de búsqueda. El SEO técnico se ocupa de la "fontanería" de tu sitio web, asegurando que sea rápido, fácil de rastrear e indexar para Google y otros buscadores.</p>
-        <h3>¿Qué es Exactamente el SEO Técnico?</h3>
+        <h3>¿Qué es exactamente el SEO técnico?</h3>
         <p>El SEO técnico es el conjunto de optimizaciones que se realizan en la estructura y el código de un sitio web para mejorar su rendimiento en los resultados de búsqueda. No se trata del contenido en sí, sino de cómo se presenta y se sirve ese contenido a los motores de búsqueda. Es el cimiento sobre el que se construye toda la estrategia de SEO.</p>
-        <h3>Elementos Clave del SEO Técnico</h3>
+        <h3>Elementos clave del SEO técnico</h3>
         <ul>
           <li><strong>Velocidad de Carga (Core Web Vitals):</strong> En el mundo móvil de hoy, la velocidad es reina. Un sitio lento no solo frustra a los usuarios y aumenta la tasa de rebote, sino que también es penalizado por Google. Optimizamos imágenes, minimizamos el código CSS y JavaScript, y utilizamos técnicas de caching avanzadas para garantizar una carga ultrarrápida.</li>
           <li><strong>Rastreabilidad e Indexación:</strong> Nos aseguramos de que Google pueda encontrar, entender y añadir a su índice todas tus páginas importantes. Esto se logra a través de un archivo <code>sitemap.xml</code> bien estructurado, un uso correcto del archivo <code>robots.txt</code> para guiar a los bots, y una arquitectura de enlaces internos lógica.</li>
@@ -215,18 +215,18 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'automatizacion-de-procesos-trabaja-mas-inteligentemente',
-      title: 'Automatización de Procesos: Trabaja de Forma Más Inteligente, no Más Dura',
+      title: 'Automatización de procesos: Trabaja de forma más inteligente, no más dura',
       description: 'Libera a tu equipo de tareas repetitivas y propensas a errores. La automatización de procesos es la clave para aumentar la eficiencia, reducir costos y escalar tu negocio.',
       date: new Date().toISOString(),
       author: 'Jaime Tarazona (JaimeTR)',
-      image: 'https://placehold.co/1200x600.png',
+      image: '/undraw_dev-environment_n5by.svg',
       imageHint: 'process automation',
       tags: ['Automatización', 'Software a Medida'],
       content: `
         <p>En cualquier empresa, existen innumerables horas que se dedican a tareas manuales, repetitivas y, seamos honestos, aburridas: copiar y pegar datos de una hoja de cálculo a un CRM, enviar emails de seguimiento, generar reportes semanales... Estas tareas no solo consumen tiempo valioso, sino que también son propensas a errores humanos. ¿Y si pudieras automatizar todo eso y liberar el verdadero potencial de tu equipo?</p>
-        <h3>¿Qué es la Automatización de Procesos de Negocio (BPA)?</h3>
+        <h3>¿Qué es la automatización de procesos de negocio (BPA)?</h3>
         <p>Consiste en utilizar tecnología para crear flujos de trabajo (workflows) que ejecutan secuencias de tareas de forma automática, sin necesidad de intervención humana. Usando herramientas líderes como Zapier, Make, o desarrollando integraciones a medida a través de APIs, podemos conectar tus aplicaciones favoritas (CRM, email marketing, software de contabilidad, gestores de proyectos, etc.) y hacer que trabajen juntas como una orquesta bien afinada.</p>
-        <h3>Ejemplos Prácticos de Automatización:</h3>
+        <h3>Ejemplos prácticos de automatización:</h3>
         <ul>
           <li><strong>Marketing y Ventas:</strong> Imagina que un cliente potencial llena un formulario en tu web. Automáticamente, sus datos se añaden a tu CRM, se le asigna a un vendedor, se le añade a una campaña de email marketing de bienvenida y se notifica al equipo de ventas por Slack. Todo en segundos.</li>
           <li><strong>Operaciones y Finanzas:</strong> Cuando un cliente paga una factura en Stripe, se puede generar automáticamente la factura en tu software de contabilidad, marcar el proyecto como pagado en tu gestor de tareas y enviar un email de agradecimiento al cliente.</li>
@@ -238,16 +238,16 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'pwa-vs-aplicacion-nativa-cual-es-mejor-para-ti',
-      title: 'PWA vs. Aplicación Nativa: ¿Cuál es la Mejor Opción para tu Proyecto?',
+      title: 'PWA vs. aplicación nativa: ¿Cuál es la mejor opción para tu proyecto?',
       description: 'Analizamos las diferencias, ventajas y desventajas entre las Aplicaciones Web Progresivas (PWA) y las aplicaciones nativas para ayudarte a tomar la mejor decisión tecnológica.',
       date: new Date().toISOString(),
       author: 'Jaime Tarazona (JaimeTR)',
-      image: 'https://placehold.co/1200x600.png',
+      image: '/undraw_device-sync_d9ei.svg',
       imageHint: 'mobile application',
       tags: ['Desarrollo Web', 'Software a Medida'],
       content: `
         <p>Cuando una empresa decide lanzar una aplicación móvil, se enfrenta a una decisión tecnológica crucial: ¿deberíamos construir una Aplicación Web Progresiva (PWA) o invertir en una aplicación nativa para iOS y Android? No hay una respuesta única, ya que la elección correcta depende de tus objetivos de negocio, presupuesto, público objetivo y las funcionalidades que necesitas.</p>
-        <h3>Aplicaciones Nativas (iOS/Android)</h3>
+        <h3>Aplicaciones nativas (iOS/Android)</h3>
         <p>Son las aplicaciones que todos conocemos y que se descargan e instalan desde tiendas como la App Store de Apple o Google Play. Están construidas específicamente para un sistema operativo (iOS o Android) utilizando sus lenguajes y herramientas nativas (como Swift para iOS o Kotlin para Android). Son la mejor opción si tu proyecto necesita:</p>
         <ul>
           <li><strong>Máximo rendimiento y velocidad:</strong> Al estar optimizadas para el hardware, ofrecen la experiencia más fluida y rápida posible.</li>
@@ -256,7 +256,7 @@ const posts: Record<'es' | 'en', Post[]> = {
           <li><strong>Una experiencia de usuario totalmente integrada con el SO:</strong> Siguen las guías de diseño de cada plataforma, resultando en una interfaz familiar para el usuario.</li>
         </ul>
         <p><strong>Principal desventaja:</strong> Suelen ser más caras y lentas de desarrollar y mantener, ya que normalmente requieren mantener dos bases de código separadas para iOS y Android.</p>
-        <h3>Aplicaciones Web Progresivas (PWA)</h3>
+        <h3>Aplicaciones web progresivas (PWA)</h3>
         <p>Una PWA es, en esencia, un sitio web de última generación que se comporta como una aplicación. Utiliza tecnologías web modernas para ofrecer una experiencia similar a la de una app nativa directamente desde el navegador. Los usuarios pueden "instalarla" en la pantalla de inicio de su dispositivo, funciona sin conexión y puede enviar notificaciones push. Son ideales si buscas:</p>
         <ul>
           <li><strong>Un desarrollo más rápido y económico:</strong> Se escribe una única base de código que funciona en todas las plataformas (iOS, Android, Windows, Mac), reduciendo significativamente los costos y el tiempo de desarrollo.</li>
@@ -270,97 +270,97 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'principios-de-diseno-ui-ux-para-crear-productos-que-enamoran',
-      title: 'Principios de Diseño UI/UX para Crear Productos que Enamoran',
+      title: 'Principios de diseño UI/UX para crear productos que enamoran',
       description: 'Un buen diseño no es solo cómo se ve, sino cómo se siente y funciona. Explora los principios fundamentales de UI/UX que transforman un producto funcional en una experiencia memorable.',
       date: new Date().toISOString(),
       author: 'Jaime Tarazona (JaimeTR)',
-      image: 'https://placehold.co/1200x600.png',
+      image: '/illustrations/programming.svg',
       imageHint: 'user interface design',
       tags: ['Diseño UI/UX'],
       content: `
         <p>En el corazón de cada producto digital exitoso yace un diseño excepcional. Pero, ¿qué significa "buen diseño"? Va mucho más allá de una paleta de colores atractiva o una tipografía elegante. Un gran diseño es invisible: guía al usuario de forma intuitiva, resuelve sus problemas sin fricción y crea una conexión emocional. Esto se logra a través de la aplicación de principios sólidos de Diseño de Interfaz de Usuario (UI) y Experiencia de Usuario (UX).</p>
-        <h3>1. La Empatía es el Punto de Partida (UX)</h3>
+        <h3>1. La empatía es el punto de partida (UX)</h3>
         <p>El primer y más importante principio es entender profundamente a tus usuarios. ¿Quiénes son? ¿Cuáles son sus objetivos? ¿Qué frustraciones enfrentan? La investigación de usuarios, a través de entrevistas, encuestas y la creación de "personas" (arquetipos de usuario), nos permite ponernos en sus zapatos. Cada decisión de diseño debe estar informada por esta empatía para asegurar que estamos construyendo una solución que realmente necesitan y disfrutarán usar.</p>
-        <h3>2. Claridad y Simplicidad por Encima de Todo (UI)</h3>
+        <h3>2. Claridad y simplicidad por encima de todo (UI)</h3>
         <p>La interfaz debe ser clara y fácil de entender. "No me hagas pensar" debería ser el mantra. Evita el desorden visual, utiliza un lenguaje claro y conciso en los textos y asegúrate de que cada elemento en la pantalla tenga un propósito claro. Un diseño limpio no solo es estéticamente agradable, sino que reduce la carga cognitiva del usuario, permitiéndole completar sus tareas de manera más eficiente y sin frustraciones.</p>
-        <h3>3. Consistencia: El Lenguaje Silencioso del Diseño (UI/UX)</h3>
+        <h3>3. Consistencia: el lenguaje silencioso del diseño (UI/UX)</h3>
         <p>La consistencia en el uso de colores, tipografías, iconos y patrones de interacción a lo largo de toda la aplicación crea una sensación de familiaridad y previsibilidad. Los usuarios aprenden a interactuar con tu sistema y pueden aplicar ese conocimiento en diferentes partes del producto. Un sistema de diseño robusto es la clave para mantener esta coherencia, lo que resulta en una experiencia de usuario más fluida y una marca más fuerte y reconocible.</p>
-        <h3>4. Jerarquía Visual para Guiar la Atención (UI)</h3>
+        <h3>4. Jerarquía visual para guiar la atención (UI)</h3>
         <p>No todos los elementos son igual de importantes. La jerarquía visual utiliza el tamaño, el color, el contraste y la posición para guiar el ojo del usuario hacia los elementos más importantes de la página. Un titular grande y en negrita capta la atención primero, seguido de los subtítulos y luego el cuerpo del texto. Los botones de acción principal (CTA) deben destacar para que el usuario sepa qué hacer a continuación. Una jerarquía bien implementada hace que la navegación sea intuitiva y sin esfuerzo.</p>
-        <h3>5. Feedback y Capacidad de Respuesta (UX)</h3>
+        <h3>5. Feedback y capacidad de respuesta (UX)</h3>
         <p>El sistema debe comunicar constantemente al usuario lo que está sucediendo. Cuando un usuario hace clic en un botón, este debe cambiar de estado (por ejemplo, mostrando un spinner de carga). Si se produce un error, un mensaje claro debe explicar qué salió mal y cómo solucionarlo. Este feedback constante crea un diálogo entre el usuario y la interfaz, generando confianza y evitando la incertidumbre.</p>
         <div class="cta-block"><h3>${ctaContent.es.uiux.title}</h3><p>${ctaContent.es.uiux.text}</p><a href="${ctaButtonLinks.es.uiux}" class="cta-button">${ctaContent.es.contactButton}</a></div>
       `,
     },
     {
       slug: 'marketing-digital-para-startups',
-      title: 'Marketing Digital para Startups: Estrategias Clave para Crecer con un Presupuesto Limitado',
+      title: 'Marketing digital para startups: estrategias clave para crecer con un presupuesto limitado',
       description: 'Lanzar una startup es un reto. Te mostramos estrategias de marketing digital de alto impacto y bajo costo para ganar tracción, atraer a tus primeros clientes y validar tu idea de negocio.',
       date: new Date().toISOString(),
       author: 'Jaime Tarazona (JaimeTR)',
-      image: 'https://placehold.co/1200x600.png',
+      image: '/undraw_team-up_qeem.svg',
       imageHint: 'startup growth chart',
       tags: ['Marketing Digital', 'SEO'],
       content: `
         <p>Tienes una idea brillante, un producto mínimo viable (MVP) y un equipo apasionado. ¿Ahora qué? El mayor desafío para la mayoría de las startups es conseguir sus primeros clientes y ganar tracción en el mercado, a menudo con un presupuesto de marketing muy limitado. Afortunadamente, el marketing digital ofrece un arsenal de tácticas de alto impacto que no requieren una gran inversión.</p>
-        <h3>1. Empieza con un SEO Hiper-enfocado</h3>
+        <h3>1. Empieza con un SEO hiper-enfocado</h3>
         <p>No intentes competir por palabras clave genéricas y de alto volumen como "software CRM". En su lugar, céntrate en nichos de "larga cola" (long-tail keywords) que reflejen los problemas específicos que resuelve tu producto. Por ejemplo, "CRM para pequeñas agencias de marketing en Perú". Crea contenido de blog, páginas de destino y estudios de caso que respondan a estas búsquedas específicas. El tráfico será menor, pero la tasa de conversión será mucho más alta.</p>
-        <h3>2. Marketing de Contenidos: Educa, no Solo Vendas</h3>
+        <h3>2. Marketing de contenidos: Educa, no solo vendas</h3>
         <p>Conviértete en una autoridad en tu nicho. Crea contenido valioso que ayude a tu público objetivo a resolver sus problemas, incluso si aún no están listos para comprar. Guías completas, tutoriales en video, plantillas gratuitas o informes de la industria son excelentes maneras de generar confianza y capturar correos electrónicos. Un blog bien ejecutado es tu mejor aliado a largo plazo para el SEO y la generación de leads.</p>
-        <h3>3. Aprovecha el Poder de las Redes Sociales (con Inteligencia)</h3>
+        <h3>3. Aprovecha el poder de las redes sociales (con inteligencia)</h3>
         <p>No necesitas estar en todas las redes. Investiga dónde pasa el tiempo tu cliente ideal. ¿Son profesionales de negocios? LinkedIn es tu lugar. ¿Tu producto es muy visual? Instagram es clave. Participa en grupos y comunidades relevantes, comparte tu contenido valioso y establece relaciones genuinas. No te limites a publicar promociones; aporta valor a la conversación.</p>
-        <h3>4. Email Marketing: Tu Activo Más Valioso</h3>
+        <h3>4. Email marketing: tu activo más valioso</h3>
         <p>Desde el día uno, enfócate en construir tu lista de correo. Ofrece algo de valor (un ebook, una plantilla, un webinar) a cambio del email. A diferencia de los seguidores en redes sociales, tu lista de correo es un activo que te pertenece. Nutre a tus suscriptores con contenido útil y exclusivo, y luego presenta tu oferta. La automatización del correo electrónico puede ayudarte a crear secuencias de bienvenida y nutrición que funcionan 24/7.</p>
-        <h3>5. Mide, Aprende y Pivota Rápidamente</h3>
+        <h3>5. Mide, aprende y pivota rápidamente</h3>
         <p>Utiliza herramientas como Google Analytics para entender qué canales te traen el tráfico de mayor calidad (el que más convierte, no solo el que más visita). No tengas miedo de experimentar con diferentes mensajes, canales y ofertas. La agilidad es la mayor ventaja de una startup. Aprende rápidamente qué funciona, duplica la apuesta en ello y descarta lo que no genera resultados.</p>
         <div class="cta-block"><h3>${ctaContent.es.marketing.title}</h3><p>${ctaContent.es.marketing.text}</p><a href="${ctaButtonLinks.es.marketing}" class="cta-button">${ctaContent.es.contactButton}</a></div>
       `,
     },
     {
       slug: 'por-que-tu-proximo-sitio-deberia-ser-una-pwa',
-      title: 'Más Allá de la Web: 5 Razones por las que tu Próximo Proyecto Debería ser una PWA',
+      title: 'Más allá de la web: 5 razones por las que tu próximo proyecto debería ser una PWA',
       description: 'Las Aplicaciones Web Progresivas (PWA) combinan lo mejor de la web y las apps nativas. Descubre por qué esta tecnología es el futuro para la mayoría de los negocios online.',
       date: new Date().toISOString(),
       author: 'Jaime Tarazona (JaimeTR)',
-      image: 'https://placehold.co/1200x600.png',
+      image: '/undraw_device-sync_d9ei.svg',
       imageHint: 'progressive web app',
       tags: ['Desarrollo Web', 'Software a Medida'],
       content: `
         <p>Durante años, la conversación sobre la presencia móvil de una empresa se ha centrado en una dicotomía: "¿necesitamos un sitio web responsive o una costosa aplicación nativa?". Hoy, una tercera opción está emergiendo como la solución superior para la mayoría de los casos de uso: las Aplicaciones Web Progresivas o PWA (Progressive Web Apps).</p>
         <p>Una PWA es, en esencia, un sitio web que utiliza tecnologías modernas para ofrecer una experiencia de usuario tan rica y fluida como la de una aplicación nativa. Aquí te damos 5 razones por las que tu próximo proyecto debería ser una.</p>
-        <h3>1. Lo Mejor de Ambos Mundos: Instalable y Accesible</h3>
+        <h3>1. Lo mejor de ambos mundos: instalable y accesible</h3>
         <p>Una PWA vive en la web, lo que significa que es accesible a través de una URL y es completamente indexable por los motores de búsqueda (¡hola, SEO!). Pero al mismo tiempo, permite a los usuarios "instalarla" en la pantalla de inicio de su dispositivo con un solo toque, sin necesidad de pasar por una tienda de aplicaciones. Esto elimina la fricción de la descarga y te da un lugar privilegiado en el dispositivo del usuario.</p>
-        <h3>2. Rendimiento Superior y Capacidad Offline</h3>
+        <h3>2. Rendimiento superior y capacidad offline</h3>
         <p>Gracias al uso de tecnologías como los Service Workers, las PWAs pueden precargar y almacenar en caché recursos clave. Esto se traduce en tiempos de carga casi instantáneos y, lo más impresionante, la capacidad de funcionar sin conexión a internet o en redes de baja calidad. Los usuarios pueden seguir navegando por el contenido o incluso utilizando funcionalidades básicas sin estar conectados, algo impensable para un sitio web tradicional.</p>
-        <h3>3. Notificaciones Push para Aumentar el Engagement</h3>
+        <h3>3. Notificaciones push para aumentar el engagement</h3>
         <p>Al igual que las aplicaciones nativas, las PWAs pueden solicitar permiso para enviar notificaciones push. Esta es una herramienta de marketing increíblemente poderosa para volver a atraer a los usuarios, informarles sobre nuevas ofertas, contenido o actualizaciones, y mantener tu marca en su mente, incluso cuando no están navegando activamente por tu sitio.</p>
-        <h3>4. Desarrollo Unificado y Actualizaciones Instantáneas</h3>
+        <h3>4. Desarrollo unificado y actualizaciones instantáneas</h3>
         <p>A diferencia de las aplicaciones nativas, que requieren equipos y bases de código separadas para iOS y Android, una PWA se desarrolla una sola vez y funciona en todas las plataformas. Esto reduce drásticamente los costos y el tiempo de desarrollo. Además, las actualizaciones son instantáneas: simplemente actualizas el código en tu servidor y todos los usuarios reciben la nueva versión la próxima vez que la abren. Se acabaron las esperas por la aprobación de las tiendas de apps.</p>
-        <h3>5. Seguridad por Defecto</h3>
+        <h3>5. Seguridad por defecto</h3>
         <p>Para ser una PWA, un sitio web debe servirse a través de HTTPS. Esto significa que la conexión entre el usuario y tu servidor está encriptada, protegiendo los datos sensibles y generando confianza. Es una garantía de seguridad tanto para ti como para tus usuarios.</p>
         <div class="cta-block"><h3>${ctaContent.es.web.title}</h3><p>${ctaContent.es.web.text}</p><a href="${ctaButtonLinks.es.web}" class="cta-button">${ctaContent.es.contactButton}</a></div>
       `,
     },
     {
       slug: 'construyendo-para-el-manana-la-importancia-de-la-escalabilidad',
-      title: 'Construyendo para el Mañana: La Importancia de la Escalabilidad en el Desarrollo de Software',
+      title: 'Construyendo para el mañana: la importancia de la escalabilidad en el desarrollo de software',
       description: 'Tu software funciona bien hoy, pero ¿soportará el éxito de mañana? La escalabilidad no es un lujo, es una necesidad para cualquier negocio con ambición de crecimiento. Te explicamos por qué.',
       date: new Date().toISOString(),
       author: 'Jaime Tarazona (JaimeTR)',
-      image: 'https://placehold.co/1200x600.png',
+      image: '/undraw_dev-environment_n5by.svg',
       imageHint: 'cloud infrastructure',
       tags: ['Software a Medida'],
       content: `
         <p>Cuando se lanza un nuevo producto de software o una aplicación web, la principal preocupación suele ser que funcione. Sin embargo, hay una pregunta igualmente importante que a menudo se pasa por alto en las etapas iniciales: ¿funcionará cuando tengamos 10, 100 o 1000 veces más usuarios? Esta es la esencia de la escalabilidad.</p>
-        <h3>¿Qué es la Escalabilidad?</h3>
+        <h3>¿Qué es la escalabilidad?</h3>
         <p>La escalabilidad es la capacidad de un sistema para manejar una cantidad creciente de trabajo o su potencial para ser ampliado para acomodar ese crecimiento. En el desarrollo de software, no se trata solo de que el servidor no se caiga, sino de mantener un rendimiento óptimo (velocidad, tiempo de respuesta) a medida que la base de usuarios, las transacciones y el volumen de datos aumentan.</p>
-        <h3>¿Por qué es Crucial Pensar en la Escalabilidad desde el Principio?</h3>
+        <h3>¿Por qué es crucial pensar en la escalabilidad desde el principio?</h3>
         <ul>
             <li><strong>Evitar Costosas Reestructuraciones:</strong> Construir sobre una arquitectura no escalable es como construir una casa sobre cimientos débiles. Cuando el éxito llegue, la única solución suele ser derribar todo y empezar de nuevo, lo que implica enormes costos, tiempo perdido y una mala experiencia para tus usuarios actuales. Pensar en la escalabilidad desde el día uno es una inversión que se paga con creces.</li>
             <li><strong>Mantener una Buena Experiencia de Usuario:</strong> Un sistema lento y propenso a errores ahuyenta a los usuarios. La escalabilidad garantiza que, sin importar si tienes 10 o 10.000 usuarios simultáneos, la experiencia sea siempre rápida y fiable. Esto es fundamental para la retención y la satisfacción del cliente.</li>
             <li><strong>Aprovechar las Oportunidades de Crecimiento:</strong> Imagina que una campaña de marketing se vuelve viral o tu producto es mencionado en un medio importante. Un pico repentino de tráfico puede ser una bendición o una maldición. Un sistema escalable puede manejar ese aumento de la demanda sin problemas, permitiéndote capitalizar la oportunidad. Un sistema no escalable simplemente colapsará, generando frustración y perdiendo clientes potenciales.</li>
         </ul>
-        <h3>¿Cómo se Logra la Escalabilidad?</h3>
+        <h3>¿Cómo se logra la escalabilidad?</h3>
         <p>La escalabilidad es el resultado de decisiones inteligentes en múltiples niveles:</p>
         <ul>
             <li><strong>Arquitectura de Microservicios:</strong> En lugar de construir una aplicación monolítica gigante, se divide en servicios más pequeños e independientes que se comunican entre sí. Esto permite escalar solo las partes del sistema que más lo necesitan.</li>
@@ -373,18 +373,18 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'mas-alla-del-lanzamiento-el-valor-del-soporte-y-mantenimiento-web',
-      title: 'Más Allá del Lanzamiento: El Valor Oculto del Soporte y Mantenimiento Web',
+      title: 'Más allá del lanzamiento: el valor oculto del soporte y mantenimiento web',
       description: 'Lanzar tu sitio web es solo el comienzo. Descubre por qué un plan de soporte y mantenimiento continuo es una de las inversiones más inteligentes que puedes hacer para proteger tu activo digital.',
       date: new Date().toISOString(),
       author: 'Jaime Tarazona (JaimeTR)',
-      image: 'https://placehold.co/1200x600.png',
+      image: '/illustrations/coding.svg',
       imageHint: 'website maintenance',
       tags: ['Desarrollo Web'],
       content: `
         <p>Has invertido tiempo, dinero y esfuerzo en crear un sitio web increíble. ¡Felicidades! El lanzamiento es un hito emocionante, pero es solo el primer paso de un largo viaje. Muchos empresarios cometen el error de pensar que el trabajo termina aquí, pero la realidad es que un sitio web es un activo digital vivo que necesita cuidados constantes para prosperar y seguir generando valor.</p>
-        <h3>El Mundo Digital Nunca se Detiene</h3>
+        <h3>El mundo digital nunca se detiene</h3>
         <p>La tecnología web evoluciona a un ritmo vertiginoso. CMS como WordPress, plugins, temas y las propias tecnologías subyacentes (como PHP) lanzan actualizaciones constantemente. Estas actualizaciones no son opcionales; a menudo contienen parches de seguridad críticos para proteger tu sitio de vulnerabilidades y ciberataques. Un sitio desactualizado es una puerta abierta para los hackers.</p>
-        <h3>Beneficios Clave de un Plan de Mantenimiento</h3>
+        <h3>Beneficios clave de un plan de mantenimiento</h3>
         <ul>
           <li><strong>Seguridad y Tranquilidad:</strong> Un plan de mantenimiento proactivo incluye actualizaciones regulares de software, monitoreo de seguridad 24/7 y escaneos de malware. Esto reduce drásticamente el riesgo de que tu sitio sea hackeado, lo que podría dañar tu reputación, hacerte perder datos de clientes y costarte caro en reparaciones.</li>
           <li><strong>Rendimiento Óptimo:</strong> Un sitio lento frustra a los usuarios y es penalizado por Google. El mantenimiento incluye la optimización de la base de datos, la optimización de imágenes y el monitoreo del rendimiento para garantizar que tu web cargue lo más rápido posible, mejorando tanto la experiencia del usuario como tu posicionamiento SEO.</li>
@@ -396,30 +396,30 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'como-elegir-el-stack-tecnologico-adecuado',
-      title: '¿React, WordPress, Shopify? Cómo Elegir el Stack Tecnológico Adecuado para tu Proyecto',
+      title: '¿React, WordPress, Shopify? Cómo elegir el stack tecnológico adecuado para tu proyecto',
       description: 'La elección de la tecnología puede determinar el éxito o el fracaso de tu proyecto digital. Te guiamos a través de las opciones más populares y te ayudamos a entender cuál es la mejor para ti.',
       date: new Date().toISOString(),
       author: 'Jaime Tarazona (JaimeTR)',
-      image: 'https://placehold.co/1200x600.png',
+      image: '/undraw_web-devices_i15y.svg',
       imageHint: 'technology stack code',
       tags: ['Desarrollo Web', 'Software a Medida'],
       content: `
         <p>Una de las preguntas más comunes al iniciar un proyecto web es: "¿Qué tecnología deberíamos usar?". La respuesta no siempre es sencilla y depende de una multitud de factores como tus objetivos de negocio, presupuesto, necesidades de escalabilidad y el nivel de personalización que requieres. Elegir el "stack" tecnológico incorrecto puede llevar a un rendimiento pobre, altos costos de mantenimiento y la incapacidad de crecer a futuro.</p>
-        <h3>Desarrollo a Medida con Frameworks Modernos (React, Next.js)</h3>
+        <h3>Desarrollo a medida con frameworks modernos (React, Next.js)</h3>
         <p>Este enfoque implica construir tu sitio o aplicación desde cero utilizando librerías y frameworks de JavaScript como React y Next.js. Es la opción ideal cuando la personalización, el rendimiento y la experiencia de usuario son la máxima prioridad.</p>
         <ul>
             <li><strong>Ventajas:</strong> Rendimiento ultrarrápido, flexibilidad total para crear funcionalidades únicas, experiencias de usuario altamente interactivas, y una base sólida para el SEO técnico. Ideal para aplicaciones web complejas, plataformas SaaS, y sitios corporativos que buscan diferenciarse.</li>
             <li><strong>Desventajas:</strong> Generalmente, tiene un costo y tiempo de desarrollo inicial más alto que las soluciones basadas en plantillas.</li>
             <li><strong>Cuándo elegirlo:</strong> Cuando tu proyecto tiene requisitos únicos que no pueden ser satisfechos por un CMS estándar, o cuando la velocidad y una experiencia de usuario premium son factores críticos para el éxito de tu negocio.</li>
         </ul>
-        <h3>Sistemas de Gestión de Contenidos (CMS) como WordPress</h3>
+        <h3>Sistemas de gestión de contenidos (CMS) como WordPress</h3>
         <p>WordPress es el CMS más popular del mundo, potenciando una gran parte de los sitios web en internet. Su fortaleza radica en su facilidad para la gestión de contenidos (blogs, páginas) y su enorme ecosistema de plugins y temas.</p>
         <ul>
             <li><strong>Ventajas:</strong> Ideal para sitios web centrados en el contenido como blogs, sitios de noticias y sitios corporativos sencillos. Permite a los equipos no técnicos actualizar el contenido fácilmente. Es más económico para empezar.</li>
             <li><strong>Desventajas:</strong> Puede volverse lento y difícil de mantener si se sobrecarga con demasiados plugins. La personalización profunda de funcionalidades puede ser compleja y la seguridad requiere una vigilancia constante.</li>
             <li><strong>Cuándo elegirlo:</strong> Si tu principal necesidad es publicar contenido regularmente (artículos, noticias) y no requieres funcionalidades a medida complejas.</li>
         </ul>
-        <h3>Plataformas de E-commerce como Shopify</h3>
+        <h3>Plataformas de e-commerce como Shopify</h3>
         <p>Shopify es una plataforma todo-en-uno diseñada específicamente para crear y gestionar tiendas online. Se encarga de la infraestructura, los pagos y la seguridad, permitiéndote centrarte en vender.</p>
         <ul>
             <li><strong>Ventajas:</strong> Extremadamente rápido y fácil de poner en marcha. Incluye todas las funcionalidades esenciales de e-commerce (gestión de productos, carritos de compra, pasarelas de pago). Es altamente seguro y escalable.</li>
@@ -435,7 +435,7 @@ const posts: Record<'es' | 'en', Post[]> = {
       description: 'Descubre cómo aplicar inteligencia artificial en tu negocio en Lima sin saber programar. Herramientas prácticas, casos por sector y una guía paso a paso.',
       date: '2026-06-21',
       author: 'Jaime Tarazona',
-      image: '/blog/ia-negocios.jpg',
+      image: '/undraw_coding_joxb.svg',
       imageHint: 'IA para negocios en Lima',
       tags: ['IA', 'Negocios', 'Automatización', 'Perú'],
       content: `
@@ -509,11 +509,11 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'cuanto-cuesta-pagina-web-peru',
-      title: 'Cuánto Cuesta una Página Web en Perú (Precios Actualizados 2026)',
+      title: 'Cuánto cuesta una página web en Perú (precios actualizados 2026)',
       description: 'Descubre cuánto cuesta realmente crear una página web en Perú. Precios por tipo: landing page, web corporativa, e-commerce y web apps. Factores que influyen en el costo final.',
       date: '2026-07-15',
       author: 'Jaime Tarazona',
-      image: '/blog/cuanto-cuesta-web.jpg',
+      image: '/illustrations/programming.svg',
       imageHint: 'precios de páginas web en Perú',
       tags: ['Paginas Web', 'Precios', 'Peru'],
       content: `
@@ -543,11 +543,11 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'como-crear-pagina-web-negocio-peru',
-      title: 'Cómo Crear una Página Web para Mi Negocio en Perú: Guía Paso a Paso 2026',
+      title: 'Cómo crear una página web para mi negocio en Perú: guía paso a paso 2026',
       description: 'Aprende cómo crear una página web profesional para tu negocio en Perú. Desde la definición de objetivos hasta el lanzamiento, con consejos prácticos para empresas peruanas.',
       date: '2026-07-12',
       author: 'Jaime Tarazona',
-      image: '/blog/crear-web-negocio.jpg',
+      image: '/undraw_dev-environment_n5by.svg',
       imageHint: 'guía para crear página web de negocio en Perú',
       tags: ['Paginas Web', 'Negocios', 'Peru'],
       content: `
@@ -559,7 +559,7 @@ const posts: Record<'es' | 'en', Post[]> = {
         <h2>Paso 3: Diseña la estructura y arquitectura de tu sitio</h2>
         <p>Planifica las páginas que necesitarás. Una web corporativa típica incluye: Inicio, Nosotros, Servicios/Productos, Blog, Testimonios y Contacto. Crea un sitemap visual (wireframe) que muestre cómo se conectan estas páginas. Piensa en la experiencia de usuario (UX): ¿puede un visitante encontrar lo que busca en menos de 3 clics? Define qué acción quieres que realicen los visitantes en cada página y diseña calls-to-action (CTA) claros.</p>
         <h2>Paso 4: Desarrolla tu página web (o contrata profesionales)</h2>
-        <p>Aquí tienes tres caminos: (a) usar constructores como Wix o Squarespace si tu presupuesto es muy limitado, aunque sacrificarás personalización y rendimiento; (b) implementar WordPress con un theme profesional y los plugins necesarios; o (c) contratar una agencia de desarrollo web en Perú como DevMark para crear un sitio a medida con tecnologías modernas (React, Next.js) que garantice velocidad, seguridad y escalabilidad. La opción que elijas debe alinearse con tus objetivos de negocio a largo plazo.</p>
+        <p>Aquí tienes tres caminos: (a) usar constructores como Wix o Squarespace si tu presupuesto es muy limitado, aunque sacrificarás personalización y rendimiento; (b) implementar WordPress con un theme profesional y los plugins necesarios; o (c) contratar una agencia de desarrollo web en Perú como DEVMARK para crear un sitio a medida con tecnologías modernas (React, Next.js) que garantice velocidad, seguridad y escalabilidad. La opción que elijas debe alinearse con tus objetivos de negocio a largo plazo.</p>
         <h2>Paso 5: Optimiza para SEO y motores de búsqueda</h2>
         <p>El SEO no se hace después del lanzamiento, se integra durante el desarrollo. Asegúrate de que tu web tenga: títulos y meta descriptions únicos por página, URLs amigables (tunegocio.pe/servicios en vez de tunegocio.pe/?p=123), imágenes optimizadas con atributos alt descriptivos, velocidad de carga rápida, diseño responsive para móviles, datos estructurados (Schema.org), integración con Google Search Console y Google Analytics. Si tu mercado es peruano, crea contenido relevante para tu audiencia local.</p>
         <h2>Paso 6: Lanza, mide y mejora continuamente</h2>
@@ -576,11 +576,11 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'desarrollo-software-a-medida-empresas',
-      title: 'Qué es el Desarrollo de Software a Medida y por qué tu Empresa lo Necesita',
+      title: 'Qué es el desarrollo de software a medida y por qué tu empresa lo necesita',
       description: 'Descubre qué es el desarrollo de software a medida, sus diferencias con el software genérico y cómo puede transformar la eficiencia de tu empresa con soluciones personalizadas.',
       date: '2026-07-10',
       author: 'Jaime Tarazona',
-      image: '/blog/software-a-medida.jpg',
+      image: '/undraw_programming_j1zw.svg',
       imageHint: 'desarrollo de software personalizado para empresas',
       tags: ['Software', 'CRM', 'ERP'],
       content: `
@@ -620,11 +620,11 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'tienda-online-peru-vender-internet',
-      title: 'Tienda Online en Perú: Guía Completa para Vender por Internet en 2026',
+      title: 'Tienda online en Perú: guía completa para vender por internet en 2026',
       description: 'Aprende a crear tu tienda online en Perú. Descubre las mejores plataformas, pasarelas de pago locales, logística, SEO para e-commerce y estrategias para vender por internet con éxito.',
       date: '2026-07-08',
       author: 'Jaime Tarazona',
-      image: '/blog/tienda-online-peru.jpg',
+      image: '/portfolio/ecommerce-global.jpg',
       imageHint: 'tienda online y e-commerce en Perú',
       tags: ['E-commerce', 'Tienda Online', 'Peru'],
       content: `
@@ -656,11 +656,11 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'seo-peru-posicionar-web-google',
-      title: 'SEO en Perú: Cómo Posicionar tu Web en Google (Guía Completa 2026)',
+      title: 'SEO en Perú: cómo posicionar tu web en Google (guía completa 2026)',
       description: 'Guía completa de SEO en Perú: estrategias on-page, off-page y SEO técnico para posicionar tu web en Google. SEO local para Lima y Perú, keywords research y Google My Business.',
       date: '2026-07-05',
       author: 'Jaime Tarazona',
-      image: '/blog/seo-peru.jpg',
+      image: '/undraw_web-devices_i15y.svg',
       imageHint: 'estrategia SEO para posicionar web en Google Perú',
       tags: ['SEO', 'Google', 'Peru'],
       content: `
@@ -668,13 +668,13 @@ const posts: Record<'es' | 'en', Post[]> = {
         <h2>¿Qué es el SEO y por qué es vital para tu negocio en Perú?</h2>
         <p>El SEO es el conjunto de estrategias y técnicas que permiten que tu sitio web aparezca en los primeros lugares de los resultados de búsqueda orgánicos (no pagados) de Google. En Perú, más del 75% de las experiencias online comienzan con una búsqueda. Si tu negocio no aparece en la primera página, simplemente no existes para la mayoría de tus clientes potenciales. Y considera esto: el primer resultado orgánico recibe aproximadamente el 32% de los clics, mientras que los resultados de la segunda página reciben menos del 1%.</p>
         <h2>Los tres pilares del SEO</h2>
-        <h3>1. SEO On-Page: optimiza lo que está en tu sitio</h3>
+        <h3>1. SEO on-page: optimiza lo que está en tu sitio</h3>
         <p>El SEO on-page abarca todo lo que puedes controlar dentro de tu propio sitio web. Incluye: optimización de títulos y meta descripciones con palabras clave relevantes (ej. "dentista en Lima", "abogado corporativo Perú"), estructura de encabezados jerárquica (H1, H2, H3), contenido de calidad que responda la intención de búsqueda del usuario, URLs amigables y descriptivas, imágenes optimizadas con atributos alt, enlazado interno estratégico entre páginas relacionadas, y uso de palabras clave semánticas relacionadas (LSI keywords). Cada página de tu web debe estar optimizada para una palabra clave principal y sus variantes.</p>
-        <h3>2. SEO Off-Page: construye autoridad desde fuera</h3>
+        <h3>2. SEO off-page: construye autoridad desde fuera</h3>
         <p>El SEO off-page se refiere a las señales externas que Google utiliza para medir la autoridad de tu sitio. El factor principal son los <strong>backlinks</strong>: enlaces desde otros sitios web hacia el tuyo. Pero ojo, no se trata de cantidad sino de calidad. Un enlace desde un diario peruano como El Comercio o Gestión vale más que cien enlaces de sitios irrelevantes. Estrategias efectivas: guest blogging en sitios del sector, apariciones en medios locales, directorios de empresas peruanas de calidad, participación en foros y comunidades, y creación de contenido tan valioso que otros quieran enlazarlo naturalmente (link baiting).</p>
-        <h3>3. SEO Técnico: la base invisible que sostiene todo</h3>
+        <h3>3. SEO técnico: la base invisible que sostiene todo</h3>
         <p>Por muy buen contenido que tengas, si Google no puede rastrear, entender y cargar tu sitio eficientemente, no posicionarás. El SEO técnico incluye: velocidad de carga optimizada (Core Web Vitals: LCP menor a 2.5s, FID menor a 100ms, CLS menor a 0.1), diseño responsive que funcione perfecto en móviles (en Perú, más del 80% de búsquedas son desde smartphone), certificado SSL (HTTPS), sitemaps XML correctamente configurados, archivo robots.txt que guíe a los crawlers, canonicalización para evitar contenido duplicado, datos estructurados (Schema.org) para rich snippets, y una arquitectura web limpia y navegable.</p>
-        <h2>SEO Local: domina las búsquedas en Lima y Perú</h2>
+        <h2>SEO local: domina las búsquedas en Lima y Perú</h2>
         <p>Si tu negocio tiene ubicación física o atiende en una zona geográfica específica, el SEO local es tu mejor aliado. Optimiza tu perfil de <strong>Google My Business</strong> (ahora Google Business Profile): completa toda la información, agrega fotos de calidad, responde las reseñas (positivas y negativas), publica actualizaciones regularmente y asegúrate que tu nombre, dirección y teléfono (NAP) sean consistentes en toda la web. Apunta a palabras clave locales como "restaurante en Miraflores", "clínica dental en San Isidro", "veterinaria en Surco".</p>
         <h2>Investigación de palabras clave para el mercado peruano</h2>
         <p>El keyword research es el fundamento de cualquier estrategia SEO. Para el mercado peruano, utiliza herramientas como Google Keyword Planner, Ahrefs, Semrush o alternativas gratuitas como Ubersuggest. Busca palabras clave con volumen de búsqueda decente y competencia baja o media. Considera las particularidades del español peruano: términos como "chamba", "pata", "bacán" pueden ser relevantes para ciertos nichos. No te limites a palabras clave genéricas: las long-tail keywords (frases más específicas de 3-5 palabras) convierten mejor. Ejemplo: en vez de "zapatillas", apunta a "zapatillas running marca nike lima".</p>
@@ -685,11 +685,11 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'que-es-crm-empresa-peru',
-      title: '¿Qué es un CRM y por qué tu Empresa en Perú Debería Tener Uno?',
+      title: '¿Qué es un CRM y por qué tu empresa en Perú debería tener uno?',
       description: 'Descubre qué es un CRM, sus beneficios para empresas peruanas: centralizar clientes, automatizar ventas y mejorar el seguimiento. Tipos de CRM, ejemplos y ventajas de uno a medida.',
       date: '2026-07-03',
       author: 'Jaime Tarazona',
-      image: '/blog/que-es-crm.jpg',
+      image: '/portfolio/crm-inmobiliaria.jpg',
       imageHint: 'sistema CRM para empresas en Perú',
       tags: ['CRM', 'Software', 'Ventas'],
       content: `
@@ -705,7 +705,7 @@ const posts: Record<'es' | 'en', Post[]> = {
         <p>¿En qué etapa del embudo está cada cliente potencial? ¿Cuánto tiempo pasa desde el primer contacto hasta el cierre? ¿Qué vendedor tiene mejor tasa de conversión? Un CRM te da visibilidad completa para tomar decisiones basadas en datos, no en intuiciones.</p>
         <h3>4. Mejora de la atención al cliente</h3>
         <p>Cuando un cliente llama, tienes su historial completo frente a ti en segundos. Sabes qué compró, qué problemas tuvo, qué le prometieron. Esto eleva la calidad del servicio y genera fidelización. En Perú, donde el boca a boca sigue siendo un canal de marketing poderoso, un cliente bien atendido es un embajador de tu marca.</p>
-        <h2>Tipos de CRM: Cloud vs On-Premise</h2>
+        <h2>Tipos de CRM: cloud vs on-premise</h2>
         <table><thead><tr><th>Tipo</th><th>Ventajas</th><th>Consideraciones</th></tr></thead><tbody>
         <tr><td>CRM en la nube (SaaS)</td><td>Sin instalación, accesible desde cualquier lugar, actualizaciones automáticas, pago mensual</td><td>Datos en servidores del proveedor, dependencia de internet, costos recurrentes a largo plazo</td></tr>
         <tr><td>CRM On-Premise (local)</td><td>Control total sobre datos y seguridad, personalización ilimitada, sin costos de suscripción recurrentes</td><td>Mayor inversión inicial, requiere infraestructura propia y mantenimiento técnico</td></tr>
@@ -719,11 +719,11 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'por-que-necesitas-pagina-web-profesional',
-      title: 'Por Qué tu Negocio Necesita una Página Web Profesional (Con Datos de Perú)',
+      title: 'Por qué tu negocio necesita una página web profesional (con datos de Perú)',
       description: 'Descubre por qué tu negocio necesita una página web profesional. Credibilidad, ventas 24/7, marketing digital y datos actualizados del mercado peruano que justifican la inversión.',
       date: '2026-07-01',
       author: 'Jaime Tarazona',
-      image: '/blog/necesitas-pagina-web.jpg',
+      image: '/illustrations/programming.svg',
       imageHint: 'negocio peruano con página web profesional',
       tags: ['Paginas Web', 'Negocios', 'Marketing'],
       content: `
@@ -751,16 +751,16 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'wordpress-vs-desarrollo-a-medida',
-      title: 'WordPress vs Desarrollo a Medida: ¿Cuál Elegir para tu Página Web?',
+      title: 'WordPress vs desarrollo a medida: ¿cuál elegir para tu página web?',
       description: 'Comparativa completa: WordPress vs desarrollo web a medida. Analizamos costo, tiempo, personalización, mantenimiento, seguridad, SEO y escalabilidad para ayudarte a decidir.',
       date: '2026-06-28',
       author: 'Jaime Tarazona',
-      image: '/blog/wordpress-vs-medida.jpg',
+      image: '/undraw_web-devices_i15y.svg',
       imageHint: 'comparativa WordPress vs desarrollo web a medida',
       tags: ['WordPress', 'Desarrollo Web', 'CMS'],
       content: `
         <p>Una de las decisiones más importantes al crear tu presencia digital es elegir entre dos caminos muy diferentes: <strong>WordPress</strong> (o cualquier CMS similar) o un <strong>desarrollo web a medida</strong>. Ambas opciones son válidas, pero cada una responde a necesidades distintas. En esta comparativa detallada te ayudamos a tomar la mejor decisión para tu proyecto.</p>
-        <h2>Comparativa directa: WordPress vs Desarrollo a Medida</h2>
+        <h2>Comparativa directa: WordPress vs desarrollo a medida</h2>
         <table><thead><tr><th>Aspecto</th><th>WordPress</th><th>Desarrollo a Medida</th></tr></thead><tbody>
         <tr><td><strong>Costo inicial</strong></td><td>$200 - $2,000 (theme + plugins básicos)</td><td>$1,000 - $10,000+ (según complejidad)</td></tr>
         <tr><td><strong>Tiempo de desarrollo</strong></td><td>1 - 4 semanas (usando themes)</td><td>4 - 16 semanas (desde cero)</td></tr>
@@ -777,17 +777,17 @@ const posts: Record<'es' | 'en', Post[]> = {
         <h2>¿Cuándo elegir desarrollo a medida?</h2>
         <p>El desarrollo a medida es la mejor opción cuando: tu negocio tiene procesos únicos que ningún plugin cubre, necesitas alto rendimiento y velocidad de carga (crítico para SEO y conversión), manejas datos sensibles y la seguridad es prioridad, planeas escalar significativamente tu plataforma, requieres integraciones complejas con sistemas existentes (ERP, CRM, POS), o tu sitio web es el núcleo de tu operación (SaaS, marketplace, plataforma de servicios). La inversión inicial mayor se compensa con un producto más sólido, seguro y con menor costo de mantenimiento a largo plazo.</p>
         <h2>El enfoque híbrido: lo mejor de ambos mundos</h2>
-        <p>Existe una tercera vía que muchas empresas están adoptando: usar un CMS headless (como Strapi, Contentful o Sanity) para la gestión de contenido, combinado con un frontend moderno a medida (React, Next.js, Astro). Esto permite que el equipo de marketing gestione contenido fácilmente mientras los desarrolladores mantienen control total sobre el rendimiento, diseño y funcionalidades del frontend. Es la arquitectura que usamos en DevMark para clientes que necesitan la flexibilidad editorial de un CMS sin sacrificar la velocidad y personalización de un desarrollo a medida.</p>
+        <p>Existe una tercera vía que muchas empresas están adoptando: usar un CMS headless (como Strapi, Contentful o Sanity) para la gestión de contenido, combinado con un frontend moderno a medida (React, Next.js, Astro). Esto permite que el equipo de marketing gestione contenido fácilmente mientras los desarrolladores mantienen control total sobre el rendimiento, diseño y funcionalidades del frontend. Es la arquitectura que usamos en DEVMARK para clientes que necesitan la flexibilidad editorial de un CMS sin sacrificar la velocidad y personalización de un desarrollo a medida.</p>
         <div class="cta-block"><h3>${ctaContent.es.web.title}</h3><p>${ctaContent.es.web.text}</p><a href="${ctaButtonLinks.es.web}" class="cta-button">${ctaContent.es.contactButton}</a></div>
       `,
     },
     {
       slug: 'automatizacion-procesos-pymes-peru',
-      title: 'Automatización de Procesos para PYMEs en Perú: Guía Práctica 2026',
+      title: 'Automatización de procesos para PYMEs en Perú: guía práctica 2026',
       description: 'Descubre cómo automatizar procesos en tu PYME peruana. Identifica qué procesos automatizar, herramientas recomendadas, estadísticas de ahorro de tiempo y contexto PYME en Perú.',
       date: '2026-06-25',
       author: 'Jaime Tarazona',
-      image: '/blog/automatizacion-pymes.jpg',
+      image: '/undraw_dev-environment_n5by.svg',
       imageHint: 'automatización de procesos para pequeñas y medianas empresas',
       tags: ['Automatizacion', 'PYMEs', 'Productividad'],
       content: `
@@ -831,11 +831,11 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'chatbots-ia-atencion-cliente-peru',
-      title: 'Chatbots con IA: Revoluciona tu Atención al Cliente en Perú',
+      title: 'Chatbots con IA: Revoluciona tu atención al cliente en Perú',
       description: 'Descubre cómo los chatbots con inteligencia artificial transforman la atención al cliente en Perú. Disponibilidad 24/7, ahorro de costos, integración con WhatsApp y casos reales.',
       date: '2026-06-23',
       author: 'Jaime Tarazona',
-      image: '/blog/chatbots-ia-peru.jpg',
+      image: '/portfolio/chatbot-ia.jpg',
       imageHint: 'chatbot con inteligencia artificial atendiendo clientes por WhatsApp',
       tags: ['Chatbots', 'IA', 'Atencion al Cliente'],
       content: `
@@ -867,11 +867,11 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'marketing-digital-empresas-peru-2026',
-      title: 'Marketing Digital para Empresas en Perú: Estrategias Efectivas en 2026',
+      title: 'Marketing digital para empresas en Perú: estrategias efectivas en 2026',
       description: 'Guía de marketing digital para empresas peruanas: panorama digital del Perú, estrategias de SEO, SEM, redes sociales y email marketing. Presupuesto, medición de ROI y tendencias 2026.',
       date: '2026-06-19',
       author: 'Jaime Tarazona',
-      image: '/blog/marketing-digital-peru.jpg',
+      image: '/undraw_team-up_qeem.svg',
       imageHint: 'estrategia de marketing digital para empresas en Perú',
       tags: ['Marketing Digital', 'SEO', 'Google Ads'],
       content: `
@@ -883,9 +883,9 @@ const posts: Record<'es' | 'en', Post[]> = {
         <p>El tráfico orgánico es el más valioso porque es gratuito y sostenible. Una estrategia SEO sólida incluye investigación de palabras clave con enfoque en el mercado peruano, optimización técnica de tu web (velocidad, responsive, datos estructurados), creación de contenido de calidad que responda a las preguntas de tu audiencia, y construcción de autoridad mediante backlinks de calidad. El SEO es una inversión a mediano plazo: los resultados empiezan a verse entre 3 y 6 meses, pero el retorno es duradero.</p>
         <h3>2. SEM y Google Ads</h3>
         <p>Si necesitas resultados inmediatos, la publicidad de pago por clic (PPC) es el complemento perfecto del SEO. Con Google Ads puedes aparecer en los primeros resultados de búsqueda para tus palabras clave objetivo desde el primer día. Para el mercado peruano, el costo por clic (CPC) promedio varía entre S/ 0.50 y S/ 3.00 dependiendo del sector, significativamente más bajo que en mercados como Estados Unidos o España. La clave está en una buena configuración de campañas (palabras clave negativas, segmentación geográfica, extensiones de anuncio) y en la optimización de las landing pages de destino.</p>
-        <h3>3. Redes Sociales y Contenido</h3>
+        <h3>3. Redes sociales y contenido</h3>
         <p>Las redes sociales en Perú no son solo para publicar fotos. Son canales de venta, atención al cliente y construcción de comunidad. Define una estrategia de contenido por plataforma: LinkedIn para B2B y posicionamiento profesional, Instagram y TikTok para B2C y conexión emocional con la audiencia, Facebook para comunidades y segmentos demográficos amplios, y YouTube para contenido educativo de largo formato. La consistencia es más importante que la frecuencia: mejor publicar 2 veces por semana contenido de calidad que 10 veces con contenido genérico.</p>
-        <h3>4. Email Marketing</h3>
+        <h3>4. Email marketing</h3>
         <p>El email marketing sigue siendo uno de los canales con mayor retorno de inversión: cada dólar invertido retorna en promedio $36. Construye tu lista de correos desde el primer día ofreciendo contenido de valor a cambio (guías, descuentos, webinars). Segmenta tu audiencia para enviar mensajes relevantes. Automatiza secuencias de bienvenida, nutrición y reactivación. Y mide métricas clave: tasa de apertura (promedio en Perú: 18-25%), tasa de clics (3-5%) y tasa de conversión.</p>
         <h2>Asignación de presupuesto: ¿cuánto invertir y en qué?</h2>
         <p>Una regla general para empresas en crecimiento es destinar entre el 5% y el 12% de los ingresos brutos a marketing. De ese presupuesto de marketing digital, una distribución recomendada es: SEO y contenidos (30-40%), Google Ads y SEM (25-30%), redes sociales y gestión de comunidad (20-25%), email marketing y automatización (10-15%). Ajusta estos porcentajes según tu sector y la etapa de tu empresa.</p>
@@ -904,11 +904,11 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'desarrollo-cms-wordpress-tu-contenido-bajo-control',
-      title: 'Desarrollo CMS con WordPress: Tu Sitio con Contenido Bajo Control',
+      title: 'Desarrollo CMS con WordPress: tu sitio con contenido bajo control',
       description: 'WordPress es el CMS más usado del mundo. Descubre cómo un desarrollo CMS profesional te da velocidad, seguridad y la autonomía para gestionar tu contenido sin depender de nadie.',
       date: '2026-08-01',
       author: 'Jaime Tarazona',
-      image: 'https://placehold.co/1200x600.png',
+      image: '/undraw_web-devices_i15y.svg',
       imageHint: 'wordpress cms development',
       tags: ['WordPress', 'CMS', 'Desarrollo Web'],
       content: `
@@ -935,11 +935,11 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'consultoria-tecnologica-estrategia-antes-de-codigo',
-      title: 'Consultoría Tecnológica para tu Empresa: Estrategia Antes de Código',
-      description: 'Antes de invertir en desarrollo, necesitas una ruta. Descubre cómo la consultoría tecnológica de DevMark te ayuda a elegir la tecnología correcta, optimizar procesos y planificar el crecimiento.',
+      title: 'Consultoría tecnológica para tu empresa: estrategia antes de código',
+      description: 'Antes de invertir en desarrollo, necesitas una ruta. Descubre cómo la consultoría tecnológica de DEVMARK te ayuda a elegir la tecnología correcta, optimizar procesos y planificar el crecimiento.',
       date: '2026-08-04',
       author: 'Jaime Tarazona',
-      image: 'https://placehold.co/1200x600.png',
+      image: '/undraw_team-up_qeem.svg',
       imageHint: 'technology consulting strategy',
       tags: ['Consultoría', 'Tecnología', 'Estrategia'],
       content: `
@@ -968,86 +968,86 @@ const posts: Record<'es' | 'en', Post[]> = {
   en: [
     {
       slug: 'how-to-choose-the-right-web-development-agency',
-      title: 'How to Choose the Right Web Development Agency for Your Business',
+      title: 'How to choose the right web development agency for your business',
       description: 'Discover the keys to selecting the ideal technology partner to boost your digital presence. From experience to communication, we guide you every step of the way.',
       date: new Date().toISOString(),
       author: 'Jaime Tarazona (JaimeTR)',
-      image: 'https://placehold.co/1200x600.png',
+      image: '/undraw_team-up_qeem.svg',
       imageHint: 'office meeting',
       tags: ['Web Development'],
       content: `
         <p>Choosing a web development agency is one of the most important decisions for your company's digital future. It's not just about finding someone who can create an attractive website, but about finding a strategic partner who understands your business goals and helps you achieve them. A good technology partner not only builds a website but creates a platform for growth, customer acquisition, and brand consolidation in the competitive online world. Here are some key points to consider to make the best decision.</p>
-        <h3>1. Review Their Portfolio and Experience</h3>
-        <p>A strong portfolio is an agency's best business card. Don't just look at the aesthetics of the sites; delve into the functionality, user experience (UX), and the results obtained. Look for projects similar to yours in complexity and industry. Have they worked with companies of your size? Do they have experience in e-commerce, custom software, or your specific industry? At DevMark, we are proud to showcase a variety of <a href="/en/portfolio">successful projects</a> that demonstrate our ability to adapt to different industries and deliver tangible results.</p>
-        <h3>2. Understand Their Development Process</h3>
+        <h3>1. Review their portfolio and experience</h3>
+        <p>A strong portfolio is an agency's best business card. Don't just look at the aesthetics of the sites; delve into the functionality, user experience (UX), and the results obtained. Look for projects similar to yours in complexity and industry. Have they worked with companies of your size? Do they have experience in e-commerce, custom software, or your specific industry? At DEVMARK, we are proud to showcase a variety of <a href="/en/portfolio">successful projects</a> that demonstrate our ability to adapt to different industries and deliver tangible results.</p>
+        <h3>2. Understand their development process</h3>
         <p>A professional agency should have a clear, structured, and transparent process. A successful web project doesn't happen by chance. Ask about their methodology: do they use agile methodologies like Scrum or Kanban? How will they keep you informed of progress? A typical process should include phases of discovery and strategy, UI/UX design, frontend and backend development, exhaustive testing (QA), and a plan for launch and post-launch support. Transparency in this process is an indicator of professionalism and will give you peace of mind knowing your project is in good hands.</p>
-        <h3>3. Evaluate Their SEO Knowledge</h3>
+        <h3>3. Evaluate their SEO knowledge</h3>
         <p>A beautiful website is useless if no one can find it. SEO (Search Engine Optimization) is not something that is added at the end; it must be an integral part of the development process. Ensure the agency integrates SEO best practices from the development phase (technical SEO). This includes optimizing loading speed (Core Web Vitals), a friendly URL structure, a well-configured sitemap, correct use of semantic tags, and a responsive design that works perfectly on all devices. Good organic positioning is the engine of long-term growth.</p>
-        <h3>4. Communication is Key</h3>
-        <p>Fluent, honest, and constant communication is essential. The agency should be your partner, not just a vendor. They should actively listen to your needs, understand your business goals, and offer proactive solutions, not just execute tasks. Who will be your point of contact? How often will you receive updates? At DevMark, we believe in close collaboration and building long-term relationships with our clients to ensure mutual success.</p>
+        <h3>4. Communication is key</h3>
+        <p>Fluent, honest, and constant communication is essential. The agency should be your partner, not just a vendor. They should actively listen to your needs, understand your business goals, and offer proactive solutions, not just execute tasks. Who will be your point of contact? How often will you receive updates? At DEVMARK, we believe in close collaboration and building long-term relationships with our clients to ensure mutual success.</p>
         <div class="cta-block"><h3>${ctaContent.en.web.title}</h3><p>${ctaContent.en.web.text}</p><a href="${ctaButtonLinks.en.web}" class="cta-button">${ctaContent.en.contactButton}</a></div>
       `,
     },
     {
         slug: '5-reasons-to-invest-in-custom-software',
-        title: '5 Key Reasons Your Company Should Invest in Custom Software',
+        title: '5 key reasons your company should invest in custom software',
         description: 'Use off-the-shelf software or invest in a custom solution? We analyze the competitive advantages that custom software development can offer your business.',
         date: new Date().toISOString(),
         author: 'Jaime Tarazona (JaimeTR)',
-        image: 'https://placehold.co/1200x600.png',
+        image: '/undraw_programming_j1zw.svg',
         imageHint: 'custom software',
         tags: ['Custom Software'],
         content: `
             <p>In an increasingly competitive market, the technological tools you use can make a huge difference between stagnation and exponential growth. While off-the-shelf or generic software can solve common problems superficially, custom software offers a series of unique and strategic advantages that can completely transform your operation.</p>
-            <h3>1. Solutions That Perfectly Adapt to You</h3>
+            <h3>1. Solutions that perfectly adapt to you</h3>
             <p>Custom software is designed and built to fit your existing business processes like a glove, not the other way around. This eliminates the need for painful and costly changes to your workflows to adapt to the limitations and rigidities of generic software. It's technology at the service of your company, not your company at the service of technology.</p>
-            <h3>2. Greater Efficiency and Productivity</h3>
+            <h3>2. Greater efficiency and productivity</h3>
             <p>By automating specific tasks of your operation, centralizing information in one place, and eliminating unnecessary steps, your team can work smarter, faster, and more accurately. This not only reduces the likelihood of manual errors but also frees up valuable time for your employees to focus on higher-value strategic tasks, such as innovation and customer service.</p>
-            <h3>3. Guaranteed Future Scalability</h3>
+            <h3>3. Guaranteed future scalability</h3>
             <p>A custom solution is designed to grow with you. As your business expands, incorporates new products, or enters new markets, the software can evolve and adapt to meet those new needs. You will not be limited by the functionalities of an external provider; you will have full control to scale your technology at the same pace as your ambition.</p>
-            <h3>4. Sustainable Competitive Advantage</h3>
+            <h3>4. Sustainable competitive advantage</h3>
             <p>Custom software can incorporate unique functionalities and features that your competitors, tied to generic solutions, simply cannot replicate. This can translate into a better experience for your customers, greater efficiency in your supply chain, or the ability to analyze data in a way that gives you a privileged view of the market.</p>
-            <h3>5. Total Integration with Your Technological Ecosystem</h3>
+            <h3>5. Total integration with your technological ecosystem</h3>
             <p>It is rare for a company to use a single tool. We create custom APIs and connectors so that your new software communicates perfectly with the tools you already use (CRM, ERP, billing software, etc.), creating a unified technological ecosystem, without information silos and with data flowing frictionlessly between departments.</p>
             <div class="cta-block"><h3>${ctaContent.en.software.title}</h3><p>${ctaContent.en.software.text}</p><a href="${ctaButtonLinks.en.software}" class="cta-button">${ctaContent.en.contactButton}</a></div>
         `,
     },
     {
         slug: 'the-power-of-ai-chatbots-in-customer-service',
-        title: 'The Power of AI Chatbots to Revolutionize Your Customer Service',
+        title: 'The power of AI chatbots to revolutionize your customer service',
         description: 'Discover how intelligent virtual assistants can provide 24/7 support, increase sales, and free up your human team to focus on strategic tasks.',
         date: new Date().toISOString(),
         author: 'Jaime Tarazona (JaimeTR)',
-        image: 'https://placehold.co/1200x600.png',
+        image: '/undraw_coding_joxb.svg',
         imageHint: 'ai chatbot',
         tags: ['Automation'],
         content: `
             <p>The era of patient customer service with limited hours is over. Today's consumers expect instant, personalized, and effective responses at any time of the day. Maintaining a human team to meet this 24/7 demand is unsustainable for most companies. This is where chatbots with generative Artificial Intelligence (AI) completely change the game.</p>
-            <h3>24/7 Uninterrupted Support</h3>
+            <h3>24/7 uninterrupted support</h3>
             <p>An AI-trained chatbot does not sleep, take vacations, or have bad days. It can answer frequently asked questions, manage order inquiries, guide users on your website, and offer basic technical support 24 hours a day, 7 days a week. This dramatically improves customer satisfaction and reduces the abandonment rate due to lack of response.</p>
-            <h3>Accurate and On-Brand Responses</h3>
-            <p>Gone are the days of robotic and limited-response chatbots. Modern solutions, like the ones we implement at DevMark, are trained with your own knowledge base (internal documents, product catalogs, website, FAQs). This ensures that every response is accurate, consistent with your brand's tone and voice, and genuinely helpful to the user.</p>
-            <h3>Intelligent Automation and Operational Efficiency</h3>
+            <h3>Accurate and on-brand responses</h3>
+            <p>Gone are the days of robotic and limited-response chatbots. Modern solutions, like the ones we implement at DEVMARK, are trained with your own knowledge base (internal documents, product catalogs, website, FAQs). This ensures that every response is accurate, consistent with your brand's tone and voice, and genuinely helpful to the user.</p>
+            <h3>Intelligent automation and operational efficiency</h3>
             <p>While the chatbot autonomously handles 80% of the most frequent and repetitive queries, your human team can be freed from that burden to focus on what really adds value: resolving the most complex cases, managing strategic clients, and performing proactive loyalty tasks. The result is a significant increase in productivity and team morale.</p>
-            <h3>A Tireless Sales Assistant</h3>
+            <h3>A tireless sales assistant</h3>
             <p>An AI chatbot is not only for answering questions, it is also a powerful sales assistant. It can proactively recommend products based on the user's needs, answer questions about features and stock, guide customers through the purchase process to completion, and capture qualified leads, even outside of business hours. It's like having your best salesperson working tirelessly.</p>
             <div class="cta-block"><h3>${ctaContent.en.chatbot.title}</h3><p>${ctaContent.en.chatbot.text}</p><a href="${ctaButtonLinks.en.chatbot}" class="cta-button">${ctaContent.en.contactButton}</a></div>
         `,
     },
     {
       slug: 'technical-seo-the-foundation-for-good-ranking',
-      title: 'Technical SEO: The Solid Foundation for Good Search Engine Ranking',
+      title: 'Technical SEO: the solid foundation for good search engine ranking',
       description: 'Much more than keywords. Discover why technical SEO is the indispensable foundation of any successful digital marketing strategy and how it impacts your visibility.',
       date: new Date().toISOString(),
       author: 'Jaime Tarazona (JaimeTR)',
-      image: 'https://placehold.co/1200x600.png',
+      image: '/undraw_web-devices_i15y.svg',
       imageHint: 'seo optimization',
       tags: ['SEO', 'Digital Marketing'],
       content: `
         <p>When most people think of SEO (Search Engine Optimization), they often focus on content, blogs, and keyword research. While these elements are crucial, they are only part of the equation. Without a solid technical foundation, even the best content in the world can go unnoticed by search engines. Technical SEO deals with the "plumbing" of your website, ensuring it is fast, easy to crawl, and indexable for Google and other search engines.</p>
-        <h3>What Exactly is Technical SEO?</h3>
+        <h3>What exactly is technical SEO?</h3>
         <p>Technical SEO is the set of optimizations performed on the structure and code of a website to improve its performance in search results. It's not about the content itself, but about how that content is presented and served to search engines. It is the foundation upon which the entire SEO strategy is built.</p>
-        <h3>Key Elements of Technical SEO</h3>
+        <h3>Key elements of technical SEO</h3>
         <ul>
           <li><strong>Loading Speed (Core Web Vitals):</strong> In today's mobile world, speed is king. A slow site not only frustrates users and increases the bounce rate, but it is also penalized by Google. We optimize images, minify CSS and JavaScript code, and use advanced caching techniques to ensure ultra-fast loading.</li>
           <li><strong>Crawlability and Indexability:</strong> We ensure that Google can find, understand, and add all your important pages to its index. This is achieved through a well-structured <code>sitemap.xml</code> file, correct use of the <code>robots.txt</code> file to guide bots, and a logical internal linking architecture.</li>
@@ -1060,18 +1060,18 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'process-automation-work-smarter-not-harder',
-      title: 'Process Automation: Work Smarter, Not Harder',
+      title: 'Process automation: Work smarter, not harder',
       description: 'Free your team from repetitive and error-prone tasks. Process automation is the key to increasing efficiency, reducing costs, and scaling your business.',
       date: new Date().toISOString(),
       author: 'Jaime Tarazona (JaimeTR)',
-      image: 'https://placehold.co/1200x600.png',
+      image: '/undraw_dev-environment_n5by.svg',
       imageHint: 'process automation',
       tags: ['Automation', 'Custom Software'],
       content: `
         <p>In any company, countless hours are spent on manual, repetitive, and, let's be honest, boring tasks: copying and pasting data from a spreadsheet to a CRM, sending follow-up emails, generating weekly reports... These tasks not only consume valuable time but are also prone to human error. What if you could automate all of that and unleash the true potential of your team?</p>
-        <h3>What is Business Process Automation (BPA)?</h3>
+        <h3>What is business process automation (BPA)?</h3>
         <p>It involves using technology to create workflows that execute sequences of tasks automatically, without the need for human intervention. Using leading tools like Zapier, Make, or developing custom integrations via APIs, we can connect your favorite applications (CRM, email marketing, accounting software, project managers, etc.) and make them work together like a well-tuned orchestra.</p>
-        <h3>Practical Examples of Automation:</h3>
+        <h3>Practical examples of automation:</h3>
         <ul>
           <li><strong>Marketing and Sales:</strong> Imagine a potential customer fills out a form on your website. Automatically, their data is added to your CRM, assigned to a salesperson, added to a welcome email marketing campaign, and the sales team is notified via Slack. All in seconds.</li>
           <li><strong>Operations and Finance:</strong> When a customer pays an invoice in Stripe, the invoice can be automatically generated in your accounting software, the project marked as paid in your task manager, and a thank-you email sent to the customer.</li>
@@ -1083,16 +1083,16 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'pwa-vs-native-app-which-is-better-for-you',
-      title: 'PWA vs. Native App: Which is the Best Option for Your Project?',
+      title: 'PWA vs. native app: Which is the best option for your project?',
       description: 'We analyze the differences, advantages, and disadvantages between Progressive Web Apps (PWAs) and native applications to help you make the best technological decision.',
       date: new Date().toISOString(),
       author: 'Jaime Tarazona (JaimeTR)',
-      image: 'https://placehold.co/1200x600.png',
+      image: '/undraw_device-sync_d9ei.svg',
       imageHint: 'mobile application',
       tags: ['Web Development', 'Custom Software'],
       content: `
         <p>When a company decides to launch a mobile application, it faces a crucial technological decision: should we build a Progressive Web App (PWA) or invest in a native application for iOS and Android? There is no single answer, as the right choice depends on your business goals, budget, target audience, and the functionalities you need.</p>
-        <h3>Native Apps (iOS/Android)</h3>
+        <h3>Native apps (iOS/Android)</h3>
         <p>These are the applications we all know, downloaded and installed from stores like the Apple App Store or Google Play. They are built specifically for an operating system (iOS or Android) using their native languages and tools (like Swift for iOS or Kotlin for Android). They are the best option if your project needs:</p>
         <ul>
           <li><strong>Maximum performance and speed:</strong> Being optimized for the hardware, they offer the smoothest and fastest experience possible.</li>
@@ -1101,7 +1101,7 @@ const posts: Record<'es' | 'en', Post[]> = {
           <li><strong>A user experience fully integrated with the OS:</strong> They follow the design guidelines of each platform, resulting in a familiar interface for the user.</li>
         </ul>
         <p><strong>Main disadvantage:</strong> They are usually more expensive and slower to develop and maintain, as they typically require maintaining two separate codebases for iOS and Android.</p>
-        <h3>Progressive Web Apps (PWA)</h3>
+        <h3>Progressive web apps (PWA)</h3>
         <p>A PWA is, in essence, a next-generation website that behaves like an application. It uses modern web technologies to offer an experience similar to a native app directly from the browser. Users can "install" it on their device's home screen, it works offline, and it can send push notifications. They are ideal if you are looking for:</p>
         <ul>
           <li><strong>Faster and more economical development:</strong> A single codebase is written that works on all platforms (iOS, Android, Windows, Mac), significantly reducing development costs and time.</li>
@@ -1115,97 +1115,97 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'ui-ux-design-principles-for-creating-products-people-love',
-      title: 'UI/UX Design Principles for Creating Products People Love',
+      title: 'UI/UX design principles for creating products people love',
       description: 'Good design is not just what it looks like, but how it feels and works. Explore the fundamental principles of UI/UX that transform a functional product into a memorable experience.',
       date: new Date().toISOString(),
       author: 'Jaime Tarazona (JaimeTR)',
-      image: 'https://placehold.co/1200x600.png',
+      image: '/illustrations/programming.svg',
       imageHint: 'user interface design',
       tags: ['UI/UX Design'],
       content: `
         <p>At the heart of every successful digital product lies exceptional design. But what does "good design" mean? It goes far beyond an attractive color palette or elegant typography. Great design is invisible: it guides the user intuitively, solves their problems without friction, and creates an emotional connection. This is achieved through the application of solid principles of User Interface (UI) and User Experience (UX) Design.</p>
-        <h3>1. Empathy is the Starting Point (UX)</h3>
+        <h3>1. Empathy is the starting point (UX)</h3>
         <p>The first and most important principle is to deeply understand your users. Who are they? What are their goals? What frustrations do they face? User research, through interviews, surveys, and the creation of "personas" (user archetypes), allows us to put ourselves in their shoes. Every design decision must be informed by this empathy to ensure we are building a solution they truly need and will enjoy using.</p>
-        <h3>2. Clarity and Simplicity Above All (UI)</h3>
+        <h3>2. Clarity and simplicity above all (UI)</h3>
         <p>The interface should be clear and easy to understand. "Don't make me think" should be the mantra. Avoid visual clutter, use clear and concise language in texts, and ensure that every element on the screen has a clear purpose. A clean design is not only aesthetically pleasing but also reduces the user's cognitive load, allowing them to complete their tasks more efficiently and without frustration.</p>
-        <h3>3. Consistency: The Silent Language of Design (UI/UX)</h3>
+        <h3>3. Consistency: the silent language of design (UI/UX)</h3>
         <p>Consistency in the use of colors, typographies, icons, and interaction patterns throughout the application creates a sense of familiarity and predictability. Users learn to interact with your system and can apply that knowledge in different parts of the product. A robust design system is the key to maintaining this consistency, resulting in a smoother user experience and a stronger, more recognizable brand.</p>
-        <h3>4. Visual Hierarchy to Guide Attention (UI)</h3>
+        <h3>4. Visual hierarchy to guide attention (UI)</h3>
         <p>Not all elements are equally important. Visual hierarchy uses size, color, contrast, and position to guide the user's eye to the most important elements on the page. A large, bold headline captures attention first, followed by subheadings and then the body text. Primary call-to-action (CTA) buttons should stand out so the user knows what to do next. A well-implemented hierarchy makes navigation intuitive and effortless.</p>
-        <h3>5. Feedback and Responsiveness (UX)</h3>
+        <h3>5. Feedback and responsiveness (UX)</h3>
         <p>The system should constantly communicate to the user what is happening. When a user clicks a button, it should change state (e.g., showing a loading spinner). If an error occurs, a clear message should explain what went wrong and how to fix it. This constant feedback creates a dialogue between the user and the interface, building trust and avoiding uncertainty.</p>
         <div class="cta-block"><h3>${ctaContent.en.uiux.title}</h3><p>${ctaContent.en.uiux.text}</p><a href="${ctaButtonLinks.en.uiux}" class="cta-button">${ctaContent.en.contactButton}</a></div>
       `,
     },
     {
       slug: 'digital-marketing-for-startups',
-      title: 'Digital Marketing for Startups: Key Strategies to Grow on a Limited Budget',
+      title: 'Digital marketing for startups: key strategies to grow on a limited budget',
       description: 'Launching a startup is a challenge. We show you high-impact, low-cost digital marketing strategies to gain traction, attract your first customers, and validate your business idea.',
       date: new Date().toISOString(),
       author: 'Jaime Tarazona (JaimeTR)',
-      image: 'https://placehold.co/1200x600.png',
+      image: '/undraw_team-up_qeem.svg',
       imageHint: 'startup growth chart',
       tags: ['Digital Marketing', 'SEO'],
       content: `
         <p>You have a brilliant idea, a minimum viable product (MVP), and a passionate team. Now what? The biggest challenge for most startups is getting their first customers and gaining traction in the market, often with a very limited marketing budget. Fortunately, digital marketing offers an arsenal of high-impact tactics that do not require a large investment.</p>
-        <h3>1. Start with Hyper-Focused SEO</h3>
+        <h3>1. Start with hyper-focused SEO</h3>
         <p>Don't try to compete for generic, high-volume keywords like "CRM software." Instead, focus on "long-tail" keyword niches that reflect the specific problems your product solves. For example, "CRM for small marketing agencies in Peru." Create blog content, landing pages, and case studies that answer these specific searches. The traffic will be lower, but the conversion rate will be much higher.</p>
-        <h3>2. Content Marketing: Educate, Don't Just Sell</h3>
+        <h3>2. Content marketing: Educate, don't just sell</h3>
         <p>Become an authority in your niche. Create valuable content that helps your target audience solve their problems, even if they are not yet ready to buy. Comprehensive guides, video tutorials, free templates, or industry reports are excellent ways to build trust and capture emails. A well-executed blog is your best long-term ally for SEO and lead generation.</p>
-        <h3>3. Harness the Power of Social Media (Intelligently)</h3>
+        <h3>3. Harness the power of social media (intelligently)</h3>
         <p>You don't need to be on every network. Research where your ideal customer spends their time. Are they business professionals? LinkedIn is your place. Is your product very visual? Instagram is key. Participate in relevant groups and communities, share your valuable content, and build genuine relationships. Don't just post promotions; add value to the conversation.</p>
-        <h3>4. Email Marketing: Your Most Valuable Asset</h3>
+        <h3>4. Email marketing: your most valuable asset</h3>
         <p>From day one, focus on building your email list. Offer something of value (an ebook, a template, a webinar) in exchange for the email. Unlike social media followers, your email list is an asset you own. Nurture your subscribers with useful and exclusive content, and then present your offer. Email automation can help you create welcome and nurturing sequences that work 24/7.</p>
-        <h3>5. Measure, Learn, and Pivot Quickly</h3>
+        <h3>5. Measure, learn, and pivot quickly</h3>
         <p>Use tools like Google Analytics to understand which channels bring you the highest quality traffic (the one that converts the most, not just the one that visits the most). Don't be afraid to experiment with different messages, channels, and offers. Agility is a startup's greatest advantage. Learn quickly what works, double down on it, and discard what doesn't generate results.</p>
         <div class="cta-block"><h3>${ctaContent.en.marketing.title}</h3><p>${ctaContent.en.marketing.text}</p><a href="${ctaButtonLinks.en.marketing}" class="cta-button">${ctaContent.en.contactButton}</a></div>
       `,
     },
     {
       slug: 'why-your-next-website-should-be-a-pwa',
-      title: 'Beyond the Web: 5 Reasons Why Your Next Project Should Be a PWA',
+      title: 'Beyond the web: 5 reasons why your next project should be a PWA',
       description: 'Progressive Web Apps (PWAs) combine the best of the web and native apps. Discover why this technology is the future for most online businesses.',
       date: new Date().toISOString(),
       author: 'Jaime Tarazona (JaimeTR)',
-      image: 'https://placehold.co/1200x600.png',
+      image: '/undraw_device-sync_d9ei.svg',
       imageHint: 'progressive web app',
       tags: ['Web Development', 'Custom Software'],
       content: `
         <p>For years, the conversation about a company's mobile presence has focused on a dichotomy: "do we need a responsive website or an expensive native application?". Today, a third option is emerging as the superior solution for most use cases: Progressive Web Apps or PWAs.</p>
         <p>A PWA is, in essence, a website that uses modern technologies to offer a user experience as rich and fluid as that of a native application. Here are 5 reasons why your next project should be one.</p>
-        <h3>1. The Best of Both Worlds: Installable and Accessible</h3>
+        <h3>1. The best of both worlds: installable and accessible</h3>
         <p>A PWA lives on the web, which means it is accessible through a URL and is fully indexable by search engines (hello, SEO!). But at the same time, it allows users to "install" it on their device's home screen with a single touch, without having to go through an app store. This eliminates the friction of downloading and gives you a prime spot on the user's device.</p>
-        <h3>2. Superior Performance and Offline Capability</h3>
+        <h3>2. Superior performance and offline capability</h3>
         <p>Thanks to the use of technologies like Service Workers, PWAs can preload and cache key resources. This translates into almost instantaneous loading times and, most impressively, the ability to work without an internet connection or on low-quality networks. Users can continue browsing content or even using basic functionalities without being connected, something unthinkable for a traditional website.</p>
-        <h3>3. Push Notifications to Increase Engagement</h3>
+        <h3>3. Push notifications to increase engagement</h3>
         <p>Like native applications, PWAs can request permission to send push notifications. This is an incredibly powerful marketing tool to re-engage users, inform them about new offers, content, or updates, and keep your brand in their mind, even when they are not actively browsing your site.</p>
-        <h3>4. Unified Development and Instant Updates</h3>
+        <h3>4. Unified development and instant updates</h3>
         <p>Unlike native applications, which require separate teams and codebases for iOS and Android, a PWA is developed once and works on all platforms. This drastically reduces development costs and time. In addition, updates are instantaneous: you simply update the code on your server and all users receive the new version the next time they open it. No more waiting for app store approvals.</p>
-        <h3>5. Security by Default</h3>
+        <h3>5. Security by default</h3>
         <p>To be a PWA, a website must be served over HTTPS. This means that the connection between the user and your server is encrypted, protecting sensitive data and building trust. It is a security guarantee for both you and your users.</p>
         <div class="cta-block"><h3>${ctaContent.en.web.title}</h3><p>${ctaContent.en.web.text}</p><a href="${ctaButtonLinks.en.web}" class="cta-button">${ctaContent.en.contactButton}</a></div>
       `,
     },
     {
       slug: 'building-for-tomorrow-the-importance-of-scalability',
-      title: 'Building for Tomorrow: The Importance of Scalability in Software Development',
+      title: 'Building for tomorrow: the importance of scalability in software development',
       description: 'Your software works well today, but will it support tomorrow\'s success? Scalability is not a luxury, it is a necessity for any business with growth ambitions. We explain why.',
       date: new Date().toISOString(),
       author: 'Jaime Tarazona (JaimeTR)',
-      image: 'https://placehold.co/1200x600.png',
+      image: '/undraw_dev-environment_n5by.svg',
       imageHint: 'cloud infrastructure',
       tags: ['Custom Software'],
       content: `
         <p>When a new software product or web application is launched, the main concern is usually that it works. However, there is an equally important question that is often overlooked in the initial stages: will it work when we have 10, 100, or 1000 times more users? This is the essence of scalability.</p>
-        <h3>What is Scalability?</h3>
+        <h3>What is scalability?</h3>
         <p>Scalability is the ability of a system to handle a growing amount of work or its potential to be expanded to accommodate that growth. In software development, it is not just about the server not crashing, but about maintaining optimal performance (speed, response time) as the user base, transactions, and data volume increase.</p>
-        <h3>Why is it Crucial to Think about Scalability from the Beginning?</h3>
+        <h3>Why is it crucial to think about scalability from the beginning?</h3>
         <ul>
             <li><strong>Avoid Costly Restructuring:</strong> Building on a non-scalable architecture is like building a house on weak foundations. When success comes, the only solution is often to tear everything down and start over, which involves huge costs, lost time, and a bad experience for your current users. Thinking about scalability from day one is an investment that pays off handsomely.</li>
             <li><strong>Maintain a Good User Experience:</strong> A slow and error-prone system drives users away. Scalability ensures that, regardless of whether you have 10 or 10,000 concurrent users, the experience is always fast and reliable. This is fundamental for retention and customer satisfaction.</li>
             <li><strong>Seize Growth Opportunities:</strong> Imagine a marketing campaign goes viral or your product is mentioned in a major media outlet. A sudden spike in traffic can be a blessing or a curse. A scalable system can handle this increase in demand without problems, allowing you to capitalize on the opportunity. A non-scalable system will simply collapse, generating frustration and losing potential customers.</li>
         </ul>
-        <h3>How is Scalability Achieved?</h3>
+        <h3>How is scalability achieved?</h3>
         <p>Scalability is the result of smart decisions at multiple levels:</p>
         <ul>
             <li><strong>Microservices Architecture:</strong> Instead of building a giant monolithic application, it is divided into smaller, independent services that communicate with each other. This allows you to scale only the parts of the system that need it most.</li>
@@ -1218,18 +1218,18 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'beyond-the-launch-the-value-of-web-support-and-maintenance',
-      title: 'Beyond the Launch: The Hidden Value of Web Support and Maintenance',
+      title: 'Beyond the launch: the hidden value of web support and maintenance',
       description: 'Launching your website is just the beginning. Discover why an ongoing support and maintenance plan is one of the smartest investments you can make to protect your digital asset.',
       date: new Date().toISOString(),
       author: 'Jaime Tarazona (JaimeTR)',
-      image: 'https://placehold.co/1200x600.png',
+      image: '/illustrations/coding.svg',
       imageHint: 'website maintenance',
       tags: ['Web Development'],
       content: `
         <p>You have invested time, money, and effort into creating an incredible website. Congratulations! The launch is an exciting milestone, but it is only the first step of a long journey. Many entrepreneurs make the mistake of thinking that the work ends here, but the reality is that a website is a living digital asset that needs constant care to thrive and continue to generate value.</p>
-        <h3>The Digital World Never Stops</h3>
+        <h3>The digital world never stops</h3>
         <p>Web technology evolves at a dizzying pace. CMSs like WordPress, plugins, themes, and the underlying technologies themselves (like PHP) are constantly releasing updates. These updates are not optional; they often contain critical security patches to protect your site from vulnerabilities and cyberattacks. An outdated site is an open door for hackers.</p>
-        <h3>Key Benefits of a Maintenance Plan</h3>
+        <h3>Key benefits of a maintenance plan</h3>
         <ul>
           <li><strong>Security and Peace of Mind:</strong> A proactive maintenance plan includes regular software updates, 24/7 security monitoring, and malware scans. This dramatically reduces the risk of your site being hacked, which could damage your reputation, cause you to lose customer data, and cost you dearly in repairs.</li>
           <li><strong>Optimal Performance:</strong> A slow site frustrates users and is penalized by Google. Maintenance includes database optimization, image optimization, and performance monitoring to ensure your website loads as quickly as possible, improving both the user experience and your SEO ranking.</li>
@@ -1241,30 +1241,30 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'how-to-choose-the-right-tech-stack',
-      title: 'React, WordPress, Shopify? How to Choose the Right Tech Stack for Your Project',
+      title: 'React, WordPress, Shopify? How to choose the right tech stack for your project',
       description: 'The choice of technology can determine the success or failure of your digital project. We guide you through the most popular options and help you understand which is best for you.',
       date: new Date().toISOString(),
       author: 'Jaime Tarazona (JaimeTR)',
-      image: 'https://placehold.co/1200x600.png',
+      image: '/undraw_web-devices_i15y.svg',
       imageHint: 'technology stack code',
       tags: ['Web Development', 'Custom Software'],
       content: `
         <p>One of the most common questions when starting a web project is: "What technology should we use?". The answer is not always simple and depends on a multitude of factors such as your business goals, budget, scalability needs, and the level of customization you require. Choosing the wrong technology "stack" can lead to poor performance, high maintenance costs, and the inability to grow in the future.</p>
-        <h3>Custom Development with Modern Frameworks (React, Next.js)</h3>
+        <h3>Custom development with modern frameworks (React, Next.js)</h3>
         <p>This approach involves building your site or application from scratch using JavaScript libraries and frameworks like React and Next.js. It is the ideal option when customization, performance, and user experience are the top priority.</p>
         <ul>
             <li><strong>Advantages:</strong> Ultra-fast performance, total flexibility to create unique functionalities, highly interactive user experiences, and a solid foundation for technical SEO. Ideal for complex web applications, SaaS platforms, and corporate sites looking to differentiate themselves.</li>
             <li><strong>Disadvantages:</strong> Generally, it has a higher initial development cost and time than template-based solutions.</li>
             <li><strong>When to choose it:</strong> When your project has unique requirements that cannot be met by a standard CMS, or when speed and a premium user experience are critical factors for the success of your business.</li>
         </ul>
-        <h3>Content Management Systems (CMS) like WordPress</h3>
+        <h3>Content management systems (CMS) like WordPress</h3>
         <p>WordPress is the most popular CMS in the world, powering a large portion of websites on the internet. Its strength lies in its ease of content management (blogs, pages) and its huge ecosystem of plugins and themes.</p>
         <ul>
             <li><strong>Advantages:</strong> Ideal for content-centric websites such as blogs, news sites, and simple corporate sites. It allows non-technical teams to update content easily. It is more economical to start.</li>
             <li><strong>Disadvantages:</strong> It can become slow and difficult to maintain if overloaded with too many plugins. Deep customization of functionalities can be complex and security requires constant vigilance.</li>
             <li><strong>When to choose it:</strong> If your main need is to publish content regularly (articles, news) and you do not require complex custom functionalities.</li>
         </ul>
-        <h3>E-commerce Platforms like Shopify</h3>
+        <h3>E-commerce platforms like Shopify</h3>
         <p>Shopify is an all-in-one platform designed specifically for creating and managing online stores. It takes care of the infrastructure, payments, and security, allowing you to focus on selling.</p>
         <ul>
             <li><strong>Advantages:</strong> Extremely fast and easy to get started. It includes all the essential e-commerce functionalities (product management, shopping carts, payment gateways). It is highly secure and scalable.</li>
@@ -1280,7 +1280,7 @@ const posts: Record<'es' | 'en', Post[]> = {
       description: 'Discover how to implement artificial intelligence in your business without programming knowledge. Practical tools, industry cases and a step-by-step guide for Peruvian companies.',
       date: '2026-06-21',
       author: 'Jaime Tarazona',
-      image: '/blog/ia-negocios.jpg',
+      image: '/undraw_coding_joxb.svg',
       imageHint: 'AI for business',
       tags: ['AI', 'Business', 'Automation', 'Peru'],
       content: `
@@ -1325,11 +1325,11 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'how-much-does-website-cost-peru',
-      title: 'How Much Does a Website Cost in Peru? (Updated Prices 2026)',
+      title: 'How much does a website cost in Peru? (updated prices 2026)',
       description: 'Discover the real cost of creating a website in Peru. Prices by type: landing pages, corporate websites, e-commerce, and web apps. Key factors that influence the final cost.',
       date: '2026-07-15',
       author: 'Jaime Tarazona',
-      image: '/blog/cuanto-cuesta-web.jpg',
+      image: '/illustrations/programming.svg',
       imageHint: 'website prices in Peru',
       tags: ['Websites', 'Pricing', 'Peru'],
       content: `
@@ -1359,11 +1359,11 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'how-to-create-business-website-peru',
-      title: 'How to Create a Website for My Business in Peru: Step-by-Step Guide 2026',
+      title: 'How to create a website for my business in Peru: step-by-step guide 2026',
       description: 'Learn how to create a professional website for your business in Peru. From defining goals to launch, with practical tips for Peruvian businesses including RUC, payment gateways, and more.',
       date: '2026-07-12',
       author: 'Jaime Tarazona',
-      image: '/blog/crear-web-negocio.jpg',
+      image: '/undraw_dev-environment_n5by.svg',
       imageHint: 'guide to creating a business website in Peru',
       tags: ['Websites', 'Business', 'Peru'],
       content: `
@@ -1375,7 +1375,7 @@ const posts: Record<'es' | 'en', Post[]> = {
         <h2>Step 3: Design your site structure and architecture</h2>
         <p>Plan the pages you will need. A typical corporate website includes: Home, About, Services/Products, Blog, Testimonials, and Contact. Create a visual sitemap (wireframe) showing how these pages connect. Think about user experience (UX): can a visitor find what they need in less than 3 clicks? Define what action you want visitors to take on each page and design clear calls-to-action (CTAs).</p>
         <h2>Step 4: Develop your website (or hire professionals)</h2>
-        <p>You have three paths here: (a) use builders like Wix or Squarespace if your budget is very limited, although you will sacrifice customization and performance; (b) implement WordPress with a professional theme and the necessary plugins; or (c) hire a web development agency in Peru like DevMark to create a custom site with modern technologies (React, Next.js) that guarantees speed, security, and scalability. The option you choose should align with your long-term business goals.</p>
+        <p>You have three paths here: (a) use builders like Wix or Squarespace if your budget is very limited, although you will sacrifice customization and performance; (b) implement WordPress with a professional theme and the necessary plugins; or (c) hire a web development agency in Peru like DEVMARK to create a custom site with modern technologies (React, Next.js) that guarantees speed, security, and scalability. The option you choose should align with your long-term business goals.</p>
         <h2>Step 5: Optimize for SEO and search engines</h2>
         <p>SEO is not done after launch; it is integrated during development. Make sure your site has: unique titles and meta descriptions per page, clean URLs (yourbusiness.pe/services instead of yourbusiness.pe/?p=123), optimized images with descriptive alt attributes, fast loading speed, responsive mobile design, structured data (Schema.org), Google Search Console and Google Analytics integration. If your market is Peruvian, create relevant content for your local audience.</p>
         <h2>Step 6: Launch, measure, and continuously improve</h2>
@@ -1392,11 +1392,11 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'custom-software-development-for-businesses',
-      title: 'What Is Custom Software Development and Why Your Business Needs It',
+      title: 'What is custom software development and why your business needs it',
       description: 'Discover what custom software development is, how it differs from generic software, and how it can transform your business efficiency with tailored solutions like CRM, ERP, and SaaS.',
       date: '2026-07-10',
       author: 'Jaime Tarazona',
-      image: '/blog/software-a-medida.jpg',
+      image: '/undraw_programming_j1zw.svg',
       imageHint: 'custom software development for businesses',
       tags: ['Software', 'CRM', 'ERP'],
       content: `
@@ -1436,11 +1436,11 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'online-store-peru-selling-online',
-      title: 'Online Store in Peru: Complete Guide to Selling Online in 2026',
+      title: 'Online store in Peru: complete guide to selling online in 2026',
       description: 'Learn how to create your online store in Peru. Discover the best platforms, local payment gateways, logistics, e-commerce SEO, and strategies to sell online successfully.',
       date: '2026-07-08',
       author: 'Jaime Tarazona',
-      image: '/blog/tienda-online-peru.jpg',
+      image: '/portfolio/ecommerce-global.jpg',
       imageHint: 'online store and e-commerce in Peru',
       tags: ['E-commerce', 'Online Store', 'Peru'],
       content: `
@@ -1472,11 +1472,11 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'seo-peru-rank-website-google',
-      title: 'SEO in Peru: How to Rank Your Website on Google (Complete Guide 2026)',
+      title: 'SEO in Peru: how to rank your website on Google (complete guide 2026)',
       description: 'Complete SEO guide for Peru: on-page, off-page, and technical SEO strategies to rank your website on Google. Local SEO for Lima and Peru, keyword research, and Google Business Profile.',
       date: '2026-07-05',
       author: 'Jaime Tarazona',
-      image: '/blog/seo-peru.jpg',
+      image: '/undraw_web-devices_i15y.svg',
       imageHint: 'SEO strategy to rank website on Google in Peru',
       tags: ['SEO', 'Google', 'Peru'],
       content: `
@@ -1484,9 +1484,9 @@ const posts: Record<'es' | 'en', Post[]> = {
         <h2>What is SEO and why is it vital for your business in Peru?</h2>
         <p>SEO is the set of strategies and techniques that allow your website to appear in the top positions of organic (unpaid) search results on Google. In Peru, over 75% of online experiences begin with a search. If your business does not appear on the first page, you simply do not exist for most of your potential customers. And consider this: the first organic result receives approximately 32% of clicks, while results on the second page receive less than 1%.</p>
         <h2>The three pillars of SEO</h2>
-        <h3>1. On-Page SEO: optimize what is on your site</h3>
+        <h3>1. On-page SEO: optimize what is on your site</h3>
         <p>On-page SEO covers everything you can control within your own website. It includes: optimizing titles and meta descriptions with relevant keywords (e.g., "dentist in Lima," "corporate lawyer Peru"), hierarchical heading structure (H1, H2, H3), quality content that answers the user's search intent, clean and descriptive URLs, optimized images with alt attributes, strategic internal linking between related pages, and the use of semantically related keywords (LSI keywords). Each page of your website should be optimized for one primary keyword and its variants.</p>
-        <h3>2. Off-Page SEO: build authority from the outside</h3>
+        <h3>2. Off-page SEO: build authority from the outside</h3>
         <p>Off-page SEO refers to the external signals Google uses to measure your site's authority. The main factor is <strong>backlinks</strong>: links from other websites to yours. But be careful, it is not about quantity but quality. A link from a Peruvian newspaper like El Comercio or Gestión is worth more than a hundred links from irrelevant sites. Effective strategies: guest blogging on industry sites, appearances in local media, quality Peruvian business directories, participation in forums and communities, and creating content so valuable that others want to link to it naturally (link baiting).</p>
         <h3>3. Technical SEO: the invisible foundation that supports everything</h3>
         <p>No matter how good your content is, if Google cannot crawl, understand, and load your site efficiently, you will not rank. Technical SEO includes: optimized loading speed (Core Web Vitals: LCP under 2.5s, FID under 100ms, CLS under 0.1), responsive design that works perfectly on mobile (in Peru, over 80% of searches are from smartphones), SSL certificate (HTTPS), properly configured XML sitemaps, robots.txt file to guide crawlers, canonicalization to avoid duplicate content, structured data (Schema.org) for rich snippets, and a clean, navigable web architecture.</p>
@@ -1501,11 +1501,11 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'what-is-crm-peru-business',
-      title: 'What Is a CRM and Why Your Business in Peru Should Have One',
+      title: 'What is a CRM and why your business in Peru should have one',
       description: 'Discover what a CRM is, its benefits for Peruvian businesses: centralizing customers, automating sales, and improving follow-up. CRM types, examples, and the advantages of a custom CRM.',
       date: '2026-07-03',
       author: 'Jaime Tarazona',
-      image: '/blog/que-es-crm.jpg',
+      image: '/portfolio/crm-inmobiliaria.jpg',
       imageHint: 'CRM system for businesses in Peru',
       tags: ['CRM', 'Software', 'Sales'],
       content: `
@@ -1521,7 +1521,7 @@ const posts: Record<'es' | 'en', Post[]> = {
         <p>At what stage of the funnel is each potential customer? How long does it take from first contact to closing? Which salesperson has the best conversion rate? A CRM gives you complete visibility to make data-driven decisions, not intuition-based ones.</p>
         <h3>4. Improved customer service</h3>
         <p>When a customer calls, you have their complete history in front of you in seconds. You know what they bought, what problems they had, what they were promised. This raises service quality and generates loyalty. In Peru, where word of mouth is still a powerful marketing channel, a well-served customer is an ambassador for your brand.</p>
-        <h2>CRM types: Cloud vs. On-Premise</h2>
+        <h2>CRM types: cloud vs. on-premise</h2>
         <table><thead><tr><th>Type</th><th>Advantages</th><th>Considerations</th></tr></thead><tbody>
         <tr><td>Cloud CRM (SaaS)</td><td>No installation, accessible from anywhere, automatic updates, monthly payment</td><td>Data on provider's servers, internet dependency, ongoing long-term costs</td></tr>
         <tr><td>On-Premise CRM (local)</td><td>Full control over data and security, unlimited customization, no recurring subscription costs</td><td>Higher initial investment, requires own infrastructure and technical maintenance</td></tr>
@@ -1535,11 +1535,11 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'why-you-need-professional-website',
-      title: 'Why Your Business Needs a Professional Website (With Data from Peru)',
+      title: 'Why your business needs a professional website (with data from Peru)',
       description: 'Discover why your business needs a professional website. Credibility, 24/7 sales, digital marketing, and updated data from the Peruvian market that justify the investment.',
       date: '2026-07-01',
       author: 'Jaime Tarazona',
-      image: '/blog/necesitas-pagina-web.jpg',
+      image: '/illustrations/programming.svg',
       imageHint: 'Peruvian business with a professional website',
       tags: ['Websites', 'Business', 'Marketing'],
       content: `
@@ -1567,16 +1567,16 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'wordpress-vs-custom-development',
-      title: 'WordPress vs Custom Development: Which One to Choose for Your Website?',
+      title: 'WordPress vs custom development: which one to choose for your website?',
       description: 'Complete comparison: WordPress vs custom web development. We analyze cost, time, customization, maintenance, security, SEO, and scalability to help you make the right decision.',
       date: '2026-06-28',
       author: 'Jaime Tarazona',
-      image: '/blog/wordpress-vs-medida.jpg',
+      image: '/undraw_web-devices_i15y.svg',
       imageHint: 'WordPress vs custom web development comparison',
       tags: ['WordPress', 'Web Development', 'CMS'],
       content: `
         <p>One of the most important decisions when creating your digital presence is choosing between two very different paths: <strong>WordPress</strong> (or any similar CMS) or <strong>custom web development</strong>. Both options are valid, but each responds to different needs. In this detailed comparison, we help you make the best decision for your project.</p>
-        <h2>Direct comparison: WordPress vs Custom Development</h2>
+        <h2>Direct comparison: WordPress vs custom development</h2>
         <table><thead><tr><th>Aspect</th><th>WordPress</th><th>Custom Development</th></tr></thead><tbody>
         <tr><td><strong>Initial cost</strong></td><td>$200 - $2,000 (theme + basic plugins)</td><td>$1,000 - $10,000+ (depending on complexity)</td></tr>
         <tr><td><strong>Development time</strong></td><td>1 - 4 weeks (using themes)</td><td>4 - 16 weeks (from scratch)</td></tr>
@@ -1593,17 +1593,17 @@ const posts: Record<'es' | 'en', Post[]> = {
         <h2>When to choose custom development?</h2>
         <p>Custom development is the best option when: your business has unique processes that no plugin covers, you need high performance and loading speed (critical for SEO and conversions), you handle sensitive data and security is a priority, you plan to significantly scale your platform, you require complex integrations with existing systems (ERP, CRM, POS), or your website is the core of your operation (SaaS, marketplace, service platform). The higher initial investment is offset by a more solid, secure product with lower long-term maintenance costs.</p>
         <h2>The hybrid approach: the best of both worlds</h2>
-        <p>There is a third path that many companies are adopting: using a headless CMS (like Strapi, Contentful, or Sanity) for content management, combined with a modern custom frontend (React, Next.js, Astro). This allows the marketing team to easily manage content while developers maintain full control over the frontend's performance, design, and features. It is the architecture we use at DevMark for clients who need the editorial flexibility of a CMS without sacrificing the speed and customization of custom development.</p>
+        <p>There is a third path that many companies are adopting: using a headless CMS (like Strapi, Contentful, or Sanity) for content management, combined with a modern custom frontend (React, Next.js, Astro). This allows the marketing team to easily manage content while developers maintain full control over the frontend's performance, design, and features. It is the architecture we use at DEVMARK for clients who need the editorial flexibility of a CMS without sacrificing the speed and customization of custom development.</p>
         <div class="cta-block"><h3>${ctaContent.en.web.title}</h3><p>${ctaContent.en.web.text}</p><a href="${ctaButtonLinks.en.web}" class="cta-button">${ctaContent.en.contactButton}</a></div>
       `,
     },
     {
       slug: 'process-automation-smes-peru',
-      title: 'Process Automation for SMEs in Peru: A Practical Guide 2026',
+      title: 'Process automation for SMEs in Peru: a practical guide 2026',
       description: 'Discover how to automate processes in your Peruvian SME. Identify which processes to automate, recommended tools, time-saving statistics, and the SME context in Peru.',
       date: '2026-06-25',
       author: 'Jaime Tarazona',
-      image: '/blog/automatizacion-pymes.jpg',
+      image: '/undraw_dev-environment_n5by.svg',
       imageHint: 'process automation for small and medium enterprises',
       tags: ['Automation', 'SMEs', 'Productivity'],
       content: `
@@ -1647,11 +1647,11 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'ai-chatbots-customer-service-peru',
-      title: 'AI Chatbots: Revolutionize Your Customer Service in Peru',
+      title: 'AI chatbots: Revolutionize your customer service in Peru',
       description: 'Discover how AI-powered chatbots are transforming customer service in Peru. 24/7 availability, cost savings, WhatsApp integration, and real use cases for clinics, restaurants, and e-commerce.',
       date: '2026-06-23',
       author: 'Jaime Tarazona',
-      image: '/blog/chatbots-ia-peru.jpg',
+      image: '/portfolio/chatbot-ia.jpg',
       imageHint: 'AI chatbot serving customers via WhatsApp',
       tags: ['Chatbots', 'AI', 'Customer Service'],
       content: `
@@ -1683,11 +1683,11 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'digital-marketing-companies-peru-2026',
-      title: 'Digital Marketing for Companies in Peru: Effective Strategies for 2026',
+      title: 'Digital marketing for companies in Peru: effective strategies for 2026',
       description: 'Digital marketing guide for Peruvian companies: digital landscape in Peru, SEO, SEM, social media, and email marketing strategies. Budget allocation, ROI measurement, and 2026 trends.',
       date: '2026-06-19',
       author: 'Jaime Tarazona',
-      image: '/blog/marketing-digital-peru.jpg',
+      image: '/undraw_team-up_qeem.svg',
       imageHint: 'digital marketing strategy for companies in Peru',
       tags: ['Digital Marketing', 'SEO', 'Google Ads'],
       content: `
@@ -1699,9 +1699,9 @@ const posts: Record<'es' | 'en', Post[]> = {
         <p>Organic traffic is the most valuable because it is free and sustainable. A solid SEO strategy includes keyword research focused on the Peruvian market, technical optimization of your website (speed, responsive design, structured data), creation of quality content that answers your audience's questions, and building authority through quality backlinks. SEO is a medium-term investment: results begin to show between 3 and 6 months, but the return is lasting.</p>
         <h3>2. SEM and Google Ads</h3>
         <p>If you need immediate results, pay-per-click (PPC) advertising is the perfect complement to SEO. With Google Ads, you can appear in the top search results for your target keywords from day one. For the Peruvian market, the average cost per click (CPC) ranges between S/ 0.50 and S/ 3.00 depending on the sector, significantly lower than in markets like the United States or Spain. The key lies in good campaign setup (negative keywords, geographic targeting, ad extensions) and optimization of destination landing pages.</p>
-        <h3>3. Social Media and Content</h3>
+        <h3>3. Social media and content</h3>
         <p>Social media in Peru is not just for posting photos. They are sales channels, customer service platforms, and community builders. Define a content strategy by platform: LinkedIn for B2B and professional positioning, Instagram and TikTok for B2C and emotional connection with the audience, Facebook for communities and broad demographic segments, and YouTube for long-form educational content. Consistency is more important than frequency: better to post quality content twice a week than generic content ten times.</p>
-        <h3>4. Email Marketing</h3>
+        <h3>4. Email marketing</h3>
         <p>Email marketing remains one of the highest ROI channels: every dollar invested returns an average of $36. Build your email list from day one by offering valuable content in exchange (guides, discounts, webinars). Segment your audience to send relevant messages. Automate welcome, nurturing, and reactivation sequences. And measure key metrics: open rate (average in Peru: 18-25%), click rate (3-5%), and conversion rate.</p>
         <h2>Budget allocation: how much to invest and in what?</h2>
         <p>A general rule for growing companies is to allocate between 5% and 12% of gross revenue to marketing. From that digital marketing budget, a recommended distribution is: SEO and content (30-40%), Google Ads and SEM (25-30%), social media and community management (20-25%), email marketing and automation (10-15%). Adjust these percentages according to your sector and company stage.</p>
@@ -1720,11 +1720,11 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'cms-development-wordpress-your-content-in-control',
-      title: 'CMS Development with WordPress: Keep Your Content in Control',
+      title: 'CMS development with WordPress: Keep your content in control',
       description: 'WordPress is the most used CMS in the world. Discover how professional CMS development gives you speed, security, and the autonomy to manage your content without depending on anyone.',
       date: '2026-08-01',
       author: 'Jaime Tarazona',
-      image: 'https://placehold.co/1200x600.png',
+      image: '/undraw_web-devices_i15y.svg',
       imageHint: 'wordpress cms development',
       tags: ['WordPress', 'CMS', 'Web Development'],
       content: `
@@ -1751,11 +1751,11 @@ const posts: Record<'es' | 'en', Post[]> = {
     },
     {
       slug: 'technology-consulting-strategy-before-code',
-      title: 'Technology Consulting for Your Business: Strategy Before Code',
-      description: 'Before investing in development, you need a roadmap. Discover how DevMark\'s technology consulting helps you choose the right technology, optimize processes, and plan growth.',
+      title: 'Technology consulting for your business: strategy before code',
+      description: 'Before investing in development, you need a roadmap. Discover how DEVMARK\'s technology consulting helps you choose the right technology, optimize processes, and plan growth.',
       date: '2026-08-04',
       author: 'Jaime Tarazona',
-      image: 'https://placehold.co/1200x600.png',
+      image: '/undraw_team-up_qeem.svg',
       imageHint: 'technology consulting strategy',
       tags: ['Consulting', 'Technology', 'Strategy'],
       content: `
@@ -1789,4 +1789,14 @@ export function getPosts(lang: 'es' | 'en'): Post[] {
 
 export function getPostBySlug(slug: string, lang: 'es' | 'en'): Post | undefined {
   return posts[lang].find((post) => post.slug === slug);
+}
+
+// Blog posts are authored as 1:1 translated pairs, in the same order, in the `posts`
+// object above. This resolves the equivalent post slug in the other language for
+// hreflang / canonical alternates, without depending on the (date-sorted) getPosts() order.
+export function getTranslatedSlug(slug: string, fromLang: 'es' | 'en'): string | undefined {
+  const toLang = fromLang === 'es' ? 'en' : 'es';
+  const index = posts[fromLang].findIndex((post) => post.slug === slug);
+  if (index === -1) return undefined;
+  return posts[toLang][index]?.slug;
 }

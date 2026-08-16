@@ -124,23 +124,23 @@ export function ServiceHero({ badge, title, description, lang, form }: ServiceHe
               </div>
               <Button
                 type="submit"
-                className="group w-full h-12 btn-gradient text-white rounded-full font-semibold shadow-lg shadow-brand-blue/20 focus-ring hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300"
+                className="group w-full h-12 border-2 border-transparent bg-brand-blue hover:bg-brand-navy-dark text-white rounded-2xl font-semibold shadow-xl shadow-brand-blue/30 hover:shadow-brand-blue/40 focus-ring hover:-translate-y-1 active:translate-y-0 transition-all duration-300"
                 disabled={isPending || state?.success}
               >
                 {isPending ? (
                   <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                     {isEs ? 'Enviando...' : 'Sending...'}
+                    <Loader2 className="ml-2 h-4 w-4 animate-spin" />
                   </>
                 ) : state?.success ? (
                   <>
-                    <CheckCircle className="mr-2 h-4 w-4" />
                     {isEs ? '¡Enviado!' : 'Sent!'}
+                    <CheckCircle className="ml-2 h-4 w-4" />
                   </>
                 ) : (
                   <>
-                    <Send className="mr-2 h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
                     {form.submitButton}
+                    <Send className="ml-2 h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
                   </>
                 )}
               </Button>

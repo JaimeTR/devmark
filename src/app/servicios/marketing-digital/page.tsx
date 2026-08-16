@@ -6,6 +6,28 @@ import { ServiceMethodology } from '@/components/home/service-methodology';
 import { Pricing } from '@/components/home/pricing';
 import { Contact } from '@/components/home/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Marketing Digital para Aumentar tus Ventas Online',
+  description: 'Estrategias de marketing digital integrales para aumentar tu visibilidad, atraer clientes potenciales y potenciar tus ventas online en Perú.',
+  alternates: {
+    canonical: 'https://devmarkpe.com/servicios/marketing-digital',
+    languages: {
+      es: 'https://devmarkpe.com/servicios/marketing-digital',
+      en: 'https://devmarkpe.com/en/services/digital-marketing',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'es_PE',
+    url: 'https://devmarkpe.com/servicios/marketing-digital',
+    title: 'Marketing Digital | Devmark Perú',
+    description: 'Estrategias de marketing digital integrales para aumentar tu visibilidad y ventas online.',
+    siteName: 'Devmark',
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Marketing digital - DEVMARK' }],
+  },
+};
 
 const headerContent = {
   lang: 'es' as const,
@@ -131,7 +153,7 @@ const contactContent = {
     phoneLabel: "Teléfono:",
     phone: "+51 975 646 074",
     timeZoneLabel: "Horario:",
-    formTitle: "Formulario de Contacto",
+    formTitle: "Formulario de contacto",
     formDescription: "Envíanos un mensaje y empecemos a construir algo increíble juntos.",
     firstNameLabel: "Nombres",
     firstNamePlaceholder: "Tus nombres",
@@ -145,17 +167,80 @@ const contactContent = {
     messagePlaceholder: "Cuéntanos sobre tu proyecto...",
     submitButton: "Enviar Mensaje",
     scheduleButton: "Agendar reunión por Meet",
-    quoteButton: "Cotiza tu Proyecto con nuestra IA"
+    quoteButton: "Cotiza tu proyecto con IA"
 };
 
 const footerContent = {
-    copyright: "DevMark. Todos los derechos reservados."
+    copyright: "DEVMARK. Todos los derechos reservados."
 };
 
 export default function DigitalMarketingPage() {
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Marketing digital",
+            "description": "Diseñamos e implementamos estrategias de marketing digital integrales para aumentar tu visibilidad, atraer clientes potenciales y potenciar tus ventas online.",
+            "provider": {
+              "@type": "Organization",
+              "name": "Devmark",
+              "url": "https://devmarkpe.com"
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Lima"
+              },
+              {
+                "@type": "Country",
+                "name": "Peru"
+              }
+            ],
+            "url": "https://devmarkpe.com/servicios/marketing-digital",
+            "inLanguage": "es-PE"
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "¿Cuánto debo invertir en publicidad online?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "La inversión depende de tus objetivos, tu sector y la competencia. Podemos empezar con un presupuesto modesto para validar canales y luego escalar las campañas que demuestren un mejor rendimiento."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿En cuánto tiempo veré resultados?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Las campañas de publicidad pueden generar resultados a corto plazo (días o semanas), mientras que otras estrategias como el SEO o el marketing de contenidos requieren una visión a medio-largo plazo para consolidarse."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Qué métricas utilizan para medir el éxito?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Nos enfocamos en las métricas que realmente importan para tu negocio, como el Costo de Adquisición de Cliente (CAC), el Retorno de la Inversión Publicitaria (ROAS), la tasa de conversión y el valor de vida del cliente (LTV)."
+                }
+              }
+            ]
+          }),
+        }}
+      />
       <Header {...headerContent} />
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">

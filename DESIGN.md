@@ -140,13 +140,15 @@ Each of the six main services owns one signal hue, cycling in this fixed order s
 ### Named Rules
 **The Size-Not-Weight Rule for Display.** The hero H1 stays at font-weight 500 even though it's the largest text on the page. Its scale (clamp up to 4.5rem) does the work; adding boldness on top would read as shouting, not confidence.
 
+**The Sentence-Case Rule (site-wide).** Every piece of content on the site — headlines, card titles, form labels, nav links, dropdown options, blog titles and subheadings, button labels — is sentence case: only the first word (plus proper nouns and acronyms like SEO, IA/AI, UI/UX, PWA, CRM, ERP, API, CMS, SSL, DNS, and brand names like WordPress, Shopify, React, DevMark) is capitalized. Never Title Case Every Word. The one exception is the Label role above (`uppercase` eyebrow badges/category tags) — that's a deliberate, distinct typographic treatment, not a Title Case violation.
+
 ## Layout
 
 Content is capped at `max-w-7xl` (site sections) or `max-w-3xl` (centered intros) and centered with `mx-auto px-6`. Section vertical rhythm is generous and consistent: `py-16` mobile, `py-24` desktop. Card grids use `gap-8` and collapse `lg:grid-cols-3 → md:grid-cols-2 → grid-cols-1`. The header is a fixed pill bar (`h-20`, condensing to a floating rounded capsule on scroll) — below `1024px` it collapses to a hamburger menu rather than trying to fit the full nav, since the space between 768–1023px isn't wide enough for the complete link row plus the language switcher and CTA.
 
 ## Elevation & Depth
 
-DevMark is **lifted, not flat**, and its shadows are never neutral gray — every shadow carries a tint of Confident Indigo (`shadow-brand-blue/20`–`/30`) so elevation reads as "glowing," not "sitting in dust." Cards rest at `shadow-sm` and rise to `shadow-xl` plus a `-translate-y-1` lift on hover. A second depth language runs alongside shadow: glass panels (`backdrop-blur-md` + `bg-white/15` borders) appear specifically on hover states, over a color-washed surface — the frosted look is reserved for the "activated" state, never the resting one. **Sanctioned exception:** the hero's two floating value-widget cards (`bg-white/60 backdrop-blur-md`) and the hero's own eyebrow badge (`bg-brand-blue/90 backdrop-blur-md`) run glass at rest, permanently — a deliberate choice for that hero moment. Don't extend resting glass beyond those hero elements without the same deliberate call.
+DevMark is **lifted, not flat**, and its shadows are never neutral gray — every shadow carries a tint of Confident Indigo (`shadow-brand-blue/20`–`/30`) so elevation reads as "glowing," not "sitting in dust." Cards rest at `shadow-sm` and rise to `shadow-xl` plus a `-translate-y-1` lift on hover. A second depth language runs alongside shadow: glass panels (`backdrop-blur-md` + `bg-white/15` borders) appear specifically on hover states, over a color-washed surface — the frosted look is reserved for the "activated" state, never the resting one. **Sanctioned exception:** the hero's two floating value-widget cards (`bg-white/60 backdrop-blur-md`) and the hero's own eyebrow badge (`bg-brand-blue/90 backdrop-blur-md`) run glass at rest, permanently — a deliberate choice for that hero moment. The AI chat surfaces are a second sanctioned exception, both the floating widget (`floating-assistant.tsx`/`ai-chatbot.tsx` compact mode) and the full `/ai-assistant` page card (`ai-chatbot.tsx` non-compact mode): panel, header, quote-link bar, message bubbles, service buttons, input and WhatsApp CTA all run glass at rest (`bg-white/40–70 backdrop-blur-md`, gradient panel background) — a deliberate choice for the chat's floating/conversational context. The chat's own assistant name renders in the Braze logo font (`font-logo`) wherever it appears as a standalone heading (widget header, `/ai-assistant` H2) since "DEVMARKAI" is presented as the bot's proper name, not body copy. Don't extend resting glass beyond these exceptions without the same deliberate call.
 
 ### Shadow Vocabulary
 - **Resting card** (`shadow-sm`): default elevation for all cards, unactivated.
@@ -171,7 +173,7 @@ Corner radius scales with a component's role, not a fixed global value: buttons,
 - **Named Rule — The Sentence-Case Rule:** button labels are sentence case, never uppercase+tracked. Uppercase+letter-spacing is reserved for Label-role eyebrow text only.
 
 ### Chips / Badges
-- **Eyebrow badge:** `rounded-full`, Brand Lavender background, Navy Ink text, Label typography.
+- **Eyebrow badge:** `rounded-full`, Brand Lavender background, Navy Ink text, Label typography. **Exception:** the hero's own eyebrow badge uses `rounded-2xl` instead of the pill, matching the button system's radius rather than the badge default.
 - **Category tag:** `rounded-full`, Soft Lavender Surface or `white/10` (on dark), Label typography, the section's signal color for text.
 
 ### Cards / Containers
@@ -195,7 +197,7 @@ The number badge and arrow-forward affordance at the base of every service card,
 - **Do** keep Confident Indigo as the only color that means "primary action" — every other color identifies or decorates.
 - **Do** give shadows a tint from their own element's color; never use a flat neutral gray shadow.
 - **Do** use sentence case on all button labels; reserve uppercase+tracking for Label-role eyebrow/tag text only.
-- **Do** keep the liquid-fusion treatment scoped to index+action pairings (service cards, coupon copy) — it's a signature, not a generic hover effect to apply everywhere.
+- **Do** keep the liquid-fusion treatment scoped to index+action pairings (coupon copy) — it's a signature, not a generic hover effect to apply everywhere. Service cards moved off it: they need two independent actions ("Ver detalles" + "Cotizar"), which a single fused index/arrow chip can't expose.
 - **Do** fix explicit heights (e.g. `h-[52px]`) when two buttons with different border widths sit side by side, so a 2px outline never reads taller than its solid sibling.
 
 ### Don't:

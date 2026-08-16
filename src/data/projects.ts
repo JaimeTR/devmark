@@ -1,5 +1,6 @@
+import { supabaseProjects, type ProjectRow } from '@/lib/supabase-projects';
 
-interface Project {
+export interface Project {
   title: string;
   description: string;
   image: string;
@@ -11,413 +12,92 @@ interface Project {
   category: string;
   rubro?: string;
   date: string;
+  isFeatured: boolean;
+  // Campos extra para el modal de detalle del portafolio (galería, marca,
+  // cliente) — no siempre presentes según lo cargado en Supabase.
+  logoUrl?: string;
+  secondaryImage?: string;
+  githubUrl?: string;
+  clientName?: string;
+  companyName?: string;
 }
 
-const projects: Record<'es' | 'en', Project[]> = {
-  es: [
-    {
-      title: 'Plataforma E-commerce Global',
-      description: 'Una solución de comercio electrónico completa para una marca internacional, con soporte multidioma y multimoneda, integrada con pasarelas de pago locales.',
-      image: '/portfolio/ecommerce-global.jpg',
-      hasCover: true,
-      hint: 'e-commerce website',
-      tags: ['E-commerce', 'Shopify', 'Diseño UI/UX', 'Integración de Pagos'],
-      link: '#',
-      category: 'ecommerce',
-      date: '2023-11-10T00:00:00.000Z',
-    },
-    {
-      title: 'Chatbot de Atención al Cliente con IA',
-      description: 'Un chatbot inteligente para una empresa de servicios financieros, entrenado para responder preguntas complejas y escalar a agentes humanos cuando es necesario.',
-      image: '/portfolio/chatbot-ia.jpg',
-      hasCover: true,
-      hint: 'AI chatbot interface',
-      tags: ['Chatbot con IA', 'Genkit', 'Servicio al Cliente', 'Automatización'],
-      link: '#',
-      category: 'ia',
-      date: '2024-01-15T00:00:00.000Z',
-    },
-    {
-      title: 'CRM a Medida para Inmobiliaria',
-      description: 'Un CRM desarrollado desde cero para gestionar clientes, propiedades y procesos de venta, mejorando la eficiencia del equipo en un 40%.',
-      image: '/portfolio/crm-inmobiliaria.jpg',
-      hasCover: true,
-      hint: 'CRM dashboard',
-      tags: ['Software a Medida', 'CRM', 'SaaS', 'Automatización de Procesos'],
-      link: '#',
-      category: 'software',
-      date: '2024-03-20T00:00:00.000Z',
-    },
-    {
-      title: 'Web Corporativa para Startup Tecnológica',
-      description: 'Un sitio web corporativo moderno y rápido, con un CMS para la gestión fácil de contenido, enfocado en el rendimiento y el SEO técnico.',
-      image: '/portfolio/web-corporativa.jpg',
-      hasCover: false,
-      hint: 'corporate website',
-      tags: ['Desarrollo Web', 'Next.js', 'SEO', 'Diseño Corporativo'],
-      link: '#',
-      category: 'webs',
-      date: '2024-05-05T00:00:00.000Z',
-    },
-    {
-      title: 'Optimización SEO para Clínica Dental',
-      description: 'Estrategia de SEO local y de contenidos que posicionó a una clínica dental en los primeros resultados de Google para búsquedas clave, aumentando las citas en un 60%.',
-      image: '/portfolio/seo-dental.jpg',
-      hasCover: true,
-      hint: 'dental clinic website',
-      tags: ['SEO', 'Marketing Digital', 'Desarrollo Web'],
-      link: '#',
-      category: 'webs',
-      date: '2024-06-10T00:00:00.000Z',
-    },
-    {
-      title: 'Campaña de Marketing para Lanzamiento de App',
-      description: 'Estrategia integral de marketing digital para el lanzamiento de una aplicación móvil, combinando redes sociales, influencers y publicidad para lograr 50,000 descargas en el primer mes.',
-      image: '/portfolio/marketing-app.jpg',
-      hasCover: true,
-      hint: 'mobile app marketing',
-      tags: ['Marketing Digital', 'SEO'],
-      link: '#',
-      category: 'landing',
-      date: '2024-04-22T00:00:00.000Z',
-    },
-    {
-      title: 'Rediseño de Experiencia de Usuario para SaaS',
-      description: 'Investigación y rediseño completo de la interfaz de una plataforma SaaS, mejorando la usabilidad y reduciendo la tasa de abandono de usuarios en un 25%.',
-      image: '/portfolio/diseno-ux-saas.jpg',
-      hasCover: false,
-      hint: 'UI/UX design process',
-      tags: ['Diseño UI/UX', 'Software a Medida', 'SaaS'],
-      link: '#',
-      category: 'software',
-      date: '2024-02-18T00:00:00.000Z',
-    },
-    {
-      title: 'Automatización de Reportes Financieros',
-      description: 'Creación de un sistema automatizado que conecta diversas fuentes de datos para generar reportes financieros consolidados, ahorrando más de 20 horas de trabajo manual al mes.',
-      image: '/portfolio/automatizacion-financiera.jpg',
-      hasCover: false,
-      hint: 'financial report automation',
-      tags: ['Automatización', 'Software a Medida', 'Integración de APIs'],
-      link: '#',
-      category: 'automatizacion',
-      date: '2023-12-01T00:00:00.000Z',
-    },
-    {
-      title: 'Inoia AI',
-      description: 'Asistente médico con IA para la gestión de consultas y seguimiento de pacientes, mejorando la atención médica con inteligencia artificial.',
-      image: '',
-      hasCover: false,
-      hint: 'medical AI assistant',
-      tags: ['IA', 'React', 'Next.js'],
-      url: 'https://asistente-inoia-tbuk.vercel.app/',
-      category: 'ia',
-      date: '2025-06-15T00:00:00.000Z',
-    },
-    {
-      title: 'Amysa Shop',
-      description: 'Tienda online completa con diseño moderno, pasarela de pagos integrada y panel de administración para gestionar productos y pedidos.',
-      image: '',
-      hasCover: false,
-      hint: 'ecommerce store',
-      tags: ['E-commerce', 'React', 'Next.js'],
-      url: 'https://amysashop.com/',
-      category: 'ecommerce',
-      date: '2025-03-20T00:00:00.000Z',
-    },
-    {
-      title: 'Memorandum',
-      description: 'Web corporativa interactiva con diseño moderno, optimizada para destacar los servicios jurídicos y la experiencia del bufete.',
-      image: '',
-      hasCover: false,
-      hint: 'corporate law website',
-      tags: ['Next.js', 'WordPress', 'PHP'],
-      url: 'https://memorandum.es/',
-      category: 'webs',
-      date: '2025-01-10T00:00:00.000Z',
-    },
-    {
-      title: 'CRM Memorandum',
-      description: 'Sistema CRM personalizado para la gestión comercial de clientes, seguimiento de casos y automatización de procesos legales.',
-      image: '',
-      hasCover: false,
-      hint: 'CRM dashboard',
-      tags: ['React', 'Node.js', 'PostgreSQL'],
-      url: 'https://kitdigital.memorandum.es/dashboard',
-      category: 'software',
-      date: '2025-08-01T00:00:00.000Z',
-    },
-    {
-      title: 'Vision360',
-      description: 'Agencia de marketing digital con presencia web profesional, mostrando servicios de marketing, diseño y publicidad digital.',
-      image: '',
-      hasCover: false,
-      hint: 'marketing agency website',
-      tags: ['WordPress', 'HTML5'],
-      url: 'https://vision360.es/',
-      category: 'webs',
-      date: '2024-11-05T00:00:00.000Z',
-    },
-    {
-      title: 'Segittur',
-      description: 'Web institucional de turismo con diseño accesible y moderno, ofreciendo información sobre innovación turística y servicios digitales.',
-      image: '',
-      hasCover: false,
-      hint: 'tourism institution website',
-      tags: ['WordPress', 'PHP'],
-      url: 'https://www.segittur.es/',
-      category: 'webs',
-      date: '2024-09-15T00:00:00.000Z',
-    },
-    {
-      title: 'FinanTrack',
-      description: 'Sistema de balance financiero con análisis inteligente impulsado por IA para el control de ingresos, gastos y proyecciones económicas.',
-      image: '',
-      hasCover: false,
-      hint: 'financial tracking dashboard',
-      tags: ['React', 'Next.js', 'OpenAI'],
-      url: 'https://finantrack-phi.vercel.app/',
-      category: 'software',
-      date: '2025-10-22T00:00:00.000Z',
-    },
-    {
-      title: 'Offroad Perú',
-      description: 'Web de mecánica automotriz especializada en vehículos 4x4, con catálogo de servicios, galería de proyectos y sistema de contacto.',
-      image: '',
-      hasCover: false,
-      hint: 'automotive mechanic website',
-      tags: ['Next.js', 'React', 'Tailwind'],
-      url: 'https://offroadperu.com.pe/',
-      category: 'webs',
-      date: '2025-04-18T00:00:00.000Z',
-    },
-    {
-      title: 'E-commerce PN',
-      description: 'Tienda online de alto rendimiento con diseño premium, optimizada para conversiones y con experiencia de compra fluida.',
-      image: '',
-      hasCover: false,
-      hint: 'premium ecommerce store',
-      tags: ['Next.js', 'WordPress'],
-      url: 'https://pilarprieto.es/',
-      category: 'ecommerce',
-      date: '2025-07-30T00:00:00.000Z',
-    },
-    {
-      title: 'Plugin WordPress',
-      description: 'Plugin de búsqueda inteligente para WordPress con integración de IA, mejorando la experiencia de búsqueda en sitios web corporativos.',
-      image: '',
-      hasCover: false,
-      hint: 'wordpress AI plugin',
-      tags: ['PHP', 'WordPress', 'OpenAI'],
-      url: 'https://pruebassegittur.premm.es/',
-      category: 'software',
-      date: '2025-05-12T00:00:00.000Z',
-    },
-  ],
-  en: [
-    {
-      title: 'Global E-commerce Platform',
-      description: 'A complete e-commerce solution for an international brand, with multi-language and multi-currency support, integrated with local payment gateways.',
-      image: '/portfolio/ecommerce-global.jpg',
-      hasCover: true,
-      hint: 'e-commerce website',
-      tags: ['E-commerce', 'Shopify', 'UI/UX Design', 'Payment Integration'],
-      link: '#',
-      category: 'ecommerce',
-      date: '2023-11-10T00:00:00.000Z',
-    },
-    {
-      title: 'AI-Powered Customer Service Chatbot',
-      description: 'An intelligent chatbot for a financial services company, trained to answer complex questions and escalate to human agents when necessary.',
-      image: '/portfolio/chatbot-ia.jpg',
-      hasCover: true,
-      hint: 'AI chatbot interface',
-      tags: ['AI Chatbot', 'Genkit', 'Customer Service', 'Automation'],
-      link: '#',
-      category: 'ia',
-      date: '2024-01-15T00:00:00.000Z',
-    },
-    {
-      title: 'Custom CRM for Real Estate',
-      description: 'A custom CRM developed from scratch to manage clients, properties, and sales processes, improving team efficiency by 40%.',
-      image: '/portfolio/crm-inmobiliaria.jpg',
-      hasCover: true,
-      hint: 'CRM dashboard',
-      tags: ['Custom Software', 'CRM', 'SaaS', 'Process Automation'],
-      link: '#',
-      category: 'software',
-      date: '2024-03-20T00:00:00.000Z',
-    },
-    {
-      title: 'Corporate Website for a Tech Startup',
-      description: 'A modern and fast corporate website with a CMS for easy content management, focused on performance and technical SEO.',
-      image: '/portfolio/web-corporativa.jpg',
-      hasCover: false,
-      hint: 'corporate website',
-      tags: ['Web Development', 'Next.js', 'SEO', 'Corporate Design'],
-      link: '#',
-      category: 'webs',
-      date: '2024-05-05T00:00:00.000Z',
-    },
-    {
-      title: 'SEO Optimization for Dental Clinic',
-      description: 'A local and content SEO strategy that ranked a dental clinic in the top Google results for key searches, increasing appointments by 60%.',
-      image: '/portfolio/seo-dental.jpg',
-      hasCover: true,
-      hint: 'dental clinic website',
-      tags: ['SEO', 'Digital Marketing', 'Web Development'],
-      link: '#',
-      category: 'webs',
-      date: '2024-06-10T00:00:00.000Z',
-    },
-    {
-      title: 'Marketing Campaign for App Launch',
-      description: 'A comprehensive digital marketing strategy for a mobile app launch, combining social media, influencers, and advertising to achieve 50,000 downloads in the first month.',
-      image: '/portfolio/marketing-app.jpg',
-      hasCover: true,
-      hint: 'mobile app marketing',
-      tags: ['Digital Marketing', 'SEO'],
-      link: '#',
-      category: 'landing',
-      date: '2024-04-22T00:00:00.000Z',
-    },
-    {
-      title: 'User Experience Redesign for SaaS',
-      description: 'Complete research and redesign of a SaaS platform\'s interface, improving usability and reducing user churn by 25%.',
-      image: '/portfolio/diseno-ux-saas.jpg',
-      hasCover: false,
-      hint: 'UI/UX design process',
-      tags: ['UI/UX Design', 'Custom Software', 'SaaS'],
-      link: '#',
-      category: 'software',
-      date: '2024-02-18T00:00:00.000Z',
-    },
-    {
-      title: 'Financial Report Automation',
-      description: 'Creation of an automated system that connects various data sources to generate consolidated financial reports, saving over 20 hours of manual work per month.',
-      image: '/portfolio/automatizacion-financiera.jpg',
-      hasCover: false,
-      hint: 'financial report automation',
-      tags: ['Automation', 'Custom Software', 'API Integration'],
-      link: '#',
-      category: 'automatizacion',
-      date: '2023-12-01T00:00:00.000Z',
-    },
-    {
-      title: 'Inoia AI',
-      description: 'AI-powered medical assistant for managing patient consultations and follow-ups, enhancing healthcare with artificial intelligence.',
-      image: '',
-      hasCover: false,
-      hint: 'medical AI assistant',
-      tags: ['AI', 'React', 'Next.js'],
-      url: 'https://asistente-inoia-tbuk.vercel.app/',
-      category: 'ia',
-      date: '2025-06-15T00:00:00.000Z',
-    },
-    {
-      title: 'Amysa Shop',
-      description: 'Complete online store with modern design, integrated payment gateway and admin panel to manage products and orders.',
-      image: '',
-      hasCover: false,
-      hint: 'ecommerce store',
-      tags: ['E-commerce', 'React', 'Next.js'],
-      url: 'https://amysashop.com/',
-      category: 'ecommerce',
-      date: '2025-03-20T00:00:00.000Z',
-    },
-    {
-      title: 'Memorandum',
-      description: 'Interactive corporate website with modern design, optimized to showcase legal services and the firm\'s expertise.',
-      image: '',
-      hasCover: false,
-      hint: 'corporate law website',
-      tags: ['Next.js', 'WordPress', 'PHP'],
-      url: 'https://memorandum.es/',
-      category: 'webs',
-      date: '2025-01-10T00:00:00.000Z',
-    },
-    {
-      title: 'CRM Memorandum',
-      description: 'Custom CRM system for client business management, case tracking and legal process automation.',
-      image: '',
-      hasCover: false,
-      hint: 'CRM dashboard',
-      tags: ['React', 'Node.js', 'PostgreSQL'],
-      url: 'https://kitdigital.memorandum.es/dashboard',
-      category: 'software',
-      date: '2025-08-01T00:00:00.000Z',
-    },
-    {
-      title: 'Vision360',
-      description: 'Digital marketing agency with professional web presence, showcasing marketing, design and digital advertising services.',
-      image: '',
-      hasCover: false,
-      hint: 'marketing agency website',
-      tags: ['WordPress', 'HTML5'],
-      url: 'https://vision360.es/',
-      category: 'webs',
-      date: '2024-11-05T00:00:00.000Z',
-    },
-    {
-      title: 'Segittur',
-      description: 'Institutional tourism website with accessible and modern design, providing information on tourism innovation and digital services.',
-      image: '',
-      hasCover: false,
-      hint: 'tourism institution website',
-      tags: ['WordPress', 'PHP'],
-      url: 'https://www.segittur.es/',
-      category: 'webs',
-      date: '2024-09-15T00:00:00.000Z',
-    },
-    {
-      title: 'FinanTrack',
-      description: 'Financial balance system with AI-powered intelligent analysis for income, expense control and economic projections.',
-      image: '',
-      hasCover: false,
-      hint: 'financial tracking dashboard',
-      tags: ['React', 'Next.js', 'OpenAI'],
-      url: 'https://finantrack-phi.vercel.app/',
-      category: 'software',
-      date: '2025-10-22T00:00:00.000Z',
-    },
-    {
-      title: 'Offroad Perú',
-      description: 'Automotive mechanic website specialized in 4x4 vehicles, with service catalog, project gallery and contact system.',
-      image: '',
-      hasCover: false,
-      hint: 'automotive mechanic website',
-      tags: ['Next.js', 'React', 'Tailwind'],
-      url: 'https://offroadperu.com.pe/',
-      category: 'webs',
-      date: '2025-04-18T00:00:00.000Z',
-    },
-    {
-      title: 'E-commerce PN',
-      description: 'High-performance online store with premium design, optimized for conversions and a smooth shopping experience.',
-      image: '',
-      hasCover: false,
-      hint: 'premium ecommerce store',
-      tags: ['Next.js', 'WordPress'],
-      url: 'https://pilarprieto.es/',
-      category: 'ecommerce',
-      date: '2025-07-30T00:00:00.000Z',
-    },
-    {
-      title: 'WordPress Plugin',
-      description: 'AI-powered intelligent search plugin for WordPress, enhancing the search experience on corporate websites.',
-      image: '',
-      hasCover: false,
-      hint: 'wordpress AI plugin',
-      tags: ['PHP', 'WordPress', 'OpenAI'],
-      url: 'https://pruebassegittur.premm.es/',
-      category: 'software',
-      date: '2025-05-12T00:00:00.000Z',
-    },
-  ],
+// La tabla compartida tiene categorías con variantes de escritura distintas
+// (mayúsculas, singular/plural, con o sin guion) — normalizamos todas a las
+// mismas 7 claves que usan los filtros del portafolio, así ningún proyecto
+// se queda huérfano de filtro.
+const CATEGORY_ALIASES: Record<string, string> = {
+  'webs': 'webs',
+  'sistemas web': 'webs',
+  'sistemas-web': 'webs',
+  'ecommerce': 'ecommerce',
+  'e-commerce': 'ecommerce',
+  'software a medida': 'software',
+  'software-a-medida': 'software',
+  'inteligencia artificial': 'ia',
+  'ia': 'ia',
+  'automatizaciones': 'automatizacion',
+  'automatizacion': 'automatizacion',
+  'landing pages': 'landing',
+  'landing-pages': 'landing',
+  'landing': 'landing',
 };
 
-export function getProjects(lang: 'es' | 'en'): Project[] {
-  return projects[lang]
+function normalizeCategory(raw: string | null): string {
+  const slug = (raw || '').toLowerCase().trim();
+  return CATEGORY_ALIASES[slug] || (slug ? slug.replace(/\s+/g, '-') : 'otros');
+}
+
+function mapRow(row: ProjectRow, lang: 'es' | 'en'): Project {
+  const title = (lang === 'en' ? row.title_en : row.title_es) || row.title;
+  const description = (lang === 'en' ? row.description_en : row.description_es) || row.description;
+  const image = row.cover_url || row.image_url || '';
+  const externalLink = row.link_url || row.website_url || row.demo_url || undefined;
+  // Segunda imagen para la galería del modal, solo si es distinta de la principal.
+  const secondaryImage = row.image_url && row.image_url !== image ? row.image_url : undefined;
+
+  return {
+    title,
+    description,
+    image,
+    hasCover: Boolean(image),
+    hint: row.rubro || row.category || title,
+    tags: row.technologies ?? [],
+    link: row.link_url || undefined,
+    url: externalLink,
+    category: normalizeCategory(row.category),
+    rubro: row.rubro || undefined,
+    date: row.created_at,
+    isFeatured: Boolean(row.is_featured),
+    logoUrl: row.logo_url || undefined,
+    secondaryImage,
+    githubUrl: row.github_url || undefined,
+    clientName: row.client_name || undefined,
+    companyName: row.company_name || row.brand_name || undefined,
+  };
+}
+
+// Shared with jaimetr.dev: both sites read the same "projects" table in
+// Supabase (different design/pages per site), so this fetches live instead
+// of shipping its own copy of the data.
+export async function getProjects(lang: 'es' | 'en'): Promise<Project[]> {
+  if (!supabaseProjects) {
+    return [];
+  }
+
+  const { data, error } = await supabaseProjects
+    .from('projects')
+    .select('*')
+    .eq('is_visible', true)
+    .order('sort_order', { ascending: true });
+
+  if (error) {
+    console.error('Error fetching projects from Supabase:', error.message);
+    return [];
+  }
+
+  return (data ?? [])
+    .map((row) => mapRow(row as ProjectRow, lang))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .sort((a, b) => Number(b.hasCover) - Number(a.hasCover));
 }

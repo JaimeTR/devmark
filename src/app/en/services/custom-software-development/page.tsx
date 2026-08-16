@@ -6,6 +6,28 @@ import { ServiceMethodology } from '@/components/home/service-methodology';
 import { Pricing } from '@/components/home/pricing';
 import { Contact } from '@/components/home/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Custom Software Development: ERP, CRM & SaaS',
+  description: 'We build robust, scalable, and secure applications: ERP and CRM systems, SaaS platforms, and custom APIs to automate your business operations.',
+  alternates: {
+    canonical: 'https://devmarkpe.com/en/services/custom-software-development',
+    languages: {
+      es: 'https://devmarkpe.com/servicios/desarrollo-software',
+      en: 'https://devmarkpe.com/en/services/custom-software-development',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://devmarkpe.com/en/services/custom-software-development',
+    title: 'Custom Software Development | Devmark Peru',
+    description: 'Robust, scalable, and secure applications: ERP, CRM, SaaS, and custom APIs.',
+    siteName: 'Devmark',
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Custom software development - DEVMARK' }],
+  },
+};
 
 const headerContent = {
   lang: 'en' as const,
@@ -16,13 +38,13 @@ const headerContent = {
 };
 
 const heroContent = {
-  badge: "Enterprise Solutions",
+  badge: "Enterprise solutions",
   title: "Custom software development",
   description: "We build robust, scalable, and secure applications, from internal management systems (ERP, CRM) to complex SaaS platforms and APIs.",
   lang: 'en' as const,
   form: {
     title: 'Tell us about your project',
-    firstNameLabel: 'First Name',
+    firstNameLabel: 'First name',
     firstNamePlaceholder: 'Your first name',
     emailLabel: 'Email',
     emailPlaceholder: 'your@email.com',
@@ -111,7 +133,7 @@ const pricingContent = {
         "Security and scalability",
         "24/7 support"
       ],
-      buttonText: "Contact Us",
+      buttonText: "Contact us",
       priceId: ""
     }
   ]
@@ -127,31 +149,94 @@ const contactContent = {
   phoneLabel: "Phone:",
   phone: "+51 975 646 074",
   timeZoneLabel: "Schedule:",
-  formTitle: "Contact Form",
+  formTitle: "Contact form",
   formDescription: "Send us a message and let's start building something amazing together.",
-  firstNameLabel: "First Name",
+  firstNameLabel: "First name",
   firstNamePlaceholder: "Your first name",
-  lastNameLabel: "Last Name",
+  lastNameLabel: "Last name",
   lastNamePlaceholder: "Your last name",
-  emailFormLabel: "Email Address",
+  emailFormLabel: "Email address",
   emailPlaceholder: "your@email.com",
   phoneFormLabel: "Phone",
   phonePlaceholder: "Your phone number",
   messageLabel: "Message",
   messagePlaceholder: "Tell us about your project...",
-  submitButton: "Send Message",
+  submitButton: "Send message",
   scheduleButton: "Schedule a meeting with Meet",
-  quoteButton: "Quote your Project with our AI"
+  quoteButton: "Quote your project with our AI"
 };
 
 const footerContent = {
-  copyright: "DevMark. All rights reserved."
+  copyright: "DEVMARK. All rights reserved."
 };
 
 export default function CustomSoftwarePage() {
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Custom software development",
+            "description": "We build robust, scalable, and secure applications, from internal management systems (ERP, CRM) to complex SaaS platforms and APIs.",
+            "provider": {
+              "@type": "Organization",
+              "name": "Devmark",
+              "url": "https://devmarkpe.com"
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Lima"
+              },
+              {
+                "@type": "Country",
+                "name": "Peru"
+              }
+            ],
+            "url": "https://devmarkpe.com/en/services/custom-software-development",
+            "inLanguage": "en-US"
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How do you ensure software quality?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We follow agile methodologies, perform exhaustive testing (unit, integration, and user), and maintain constant communication with you to ensure the final product meets the highest quality standards."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do we own the source code at the end of the project?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, upon project completion and full payment, we deliver the entire source code and documentation. You are the sole owner of your software."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What technologies do you use for development?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We use a modern and proven technology stack that includes, among others, Node.js, React, Next.js, Python, and databases like PostgreSQL and MongoDB, always choosing the best tool for each project."
+                }
+              }
+            ]
+          }),
+        }}
+      />
       <Header {...headerContent} />
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
@@ -176,7 +261,7 @@ export default function CustomSoftwarePage() {
           <Contact {...contactContent} />
         </div>
       </main>
-      <Footer copyright={footerContent.copyright} />
+      <Footer lang="en" copyright={footerContent.copyright} />
     </div>
   );
 }

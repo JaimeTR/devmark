@@ -188,7 +188,7 @@ export function Pricing({title, subtitle, plans, lang, baseCurrency = 'PEN', wha
                   disabled={loading === plan.priceId && !!plan.priceId}
                   variant={index === 1 ? 'default' : 'outline'}
                   className={cn(
-                    'w-full h-12 focus-ring hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300',
+                    'w-full h-12 rounded-2xl focus-ring hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300',
                     index === 1 && 'btn-gradient shadow-lg shadow-brand-blue/20'
                   )}
                 >

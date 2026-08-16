@@ -5,7 +5,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { CheckCircle, Home, MessageCircle, Calendar, Sparkles, ArrowRight } from 'lucide-react';
+import { CheckCircle, MessageCircle, Calendar, Sparkles, ArrowRight } from 'lucide-react';
 import { Header } from '@/components/home/header';
 import { Footer } from '@/components/home/footer';
 import { AnimatedBackground } from '@/components/home/animated-background';
@@ -26,12 +26,12 @@ const headerData = {
 
 const footerData = {
   lang: 'es' as const,
-  companyName: 'DevMark',
+  companyName: 'DEVMARK',
   companyDescription: 'Soluciones digitales innovadoras',
   quickLinksTitle: 'Enlaces Rápidos',
   servicesTitle: 'Servicios',
   contactTitle: 'Contacto',
-  copyright: '© 2025 DevMark. Todos los derechos reservados.',
+  copyright: '© 2025 DEVMARK. Todos los derechos reservados.',
 };
 
 type MessageType = 'contact' | 'meeting' | 'quote' | 'default';
@@ -74,7 +74,7 @@ const messages: Record<MessageType, MessageConfig> = {
     icon: <CheckCircle className="w-16 h-16" />,
     title: '¡Acción completada! ✅',
     description: 'Tu solicitud ha sido procesada exitosamente',
-    subtitle: 'Gracias por confiar en DevMark. Estamos aquí para ayudarte a alcanzar tus objetivos digitales.',
+    subtitle: 'Gracias por confiar en DEVMARK. Estamos aquí para ayudarte a alcanzar tus objetivos digitales.',
     ctaText: 'Volver al Inicio',
     ctaLink: '/',
   },
@@ -164,17 +164,17 @@ function GraciasContent() {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full pt-8">
                     <div className="bg-background/50 backdrop-blur-sm p-4 rounded-lg border border-primary/10">
                       <div className="text-3xl mb-2">⚡</div>
-                      <div className="text-sm font-medium text-foreground">Respuesta Rápida</div>
+                      <div className="text-sm font-medium text-foreground">Respuesta rápida</div>
                       <div className="text-xs text-muted-foreground">En 24 horas</div>
                     </div>
                     <div className="bg-background/50 backdrop-blur-sm p-4 rounded-lg border border-primary/10">
                       <div className="text-3xl mb-2">🎯</div>
-                      <div className="text-sm font-medium text-foreground">Atención Personalizada</div>
+                      <div className="text-sm font-medium text-foreground">Atención personalizada</div>
                       <div className="text-xs text-muted-foreground">Equipo dedicado</div>
                     </div>
                     <div className="bg-background/50 backdrop-blur-sm p-4 rounded-lg border border-primary/10">
                       <div className="text-3xl mb-2">💡</div>
-                      <div className="text-sm font-medium text-foreground">Soluciones Innovadoras</div>
+                      <div className="text-sm font-medium text-foreground">Soluciones innovadoras</div>
                       <div className="text-xs text-muted-foreground">Tecnología de punta</div>
                     </div>
                   </div>
@@ -184,18 +184,17 @@ function GraciasContent() {
               <CardContent className="p-8 md:p-12 space-y-6">
                 {/* Botones de acción */}
                 <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
-                  <Button asChild size="lg" className="w-full sm:w-auto btn-gradient group">
+                  <Button asChild size="lg" className="w-full sm:w-auto rounded-2xl btn-gradient group">
                     <Link href={config.ctaLink}>
-                      <Home className="mr-2 h-5 w-5" />
                       {config.ctaText}
                       <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </Button>
-                  
-                  <Button asChild size="lg" variant="outline" className="w-full sm:w-auto border-primary/50 hover:bg-primary/10">
+
+                  <Button asChild size="lg" variant="outline" className="w-full sm:w-auto rounded-2xl bg-white border-2 border-brand-blue text-brand-blue hover:bg-transparent">
                     <Link href="/ai-assistant">
-                      <Sparkles className="mr-2 h-5 w-5" />
-                      Hablar con asistenteIA
+                      Hablar con asistente IA
+                      <Sparkles className="ml-2 h-5 w-5" />
                     </Link>
                   </Button>
                 </div>

@@ -33,7 +33,7 @@ interface SeoOptimizerProps {
 function SubmitButton({ pendingLabel, label }: { pendingLabel: string, label: string }) {
   const { pending } = useFormStatus();
   return (
-    <Button type="submit" disabled={pending} className={cn("w-full sm:w-auto btn-gradient text-white")}>
+    <Button type="submit" disabled={pending} className={cn("w-full sm:w-auto border-2 border-transparent bg-brand-blue hover:bg-brand-navy-dark text-white rounded-2xl shadow-xl shadow-brand-blue/30 hover:shadow-brand-blue/40 hover:-translate-y-1 transition-all duration-300")}>
       {pending ? (
         <>
           <Bot className="mr-2 h-4 w-4 animate-spin" /> {pendingLabel}

@@ -6,6 +6,28 @@ import { ServiceMethodology } from '@/components/home/service-methodology';
 import { Pricing } from '@/components/home/pricing';
 import { Contact } from '@/components/home/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'UI/UX Design for Digital Products People Love',
+  description: "Intuitive, attractive user-centered interfaces. We research, prototype, and design digital products that turn visitors into loyal customers.",
+  alternates: {
+    canonical: 'https://devmarkpe.com/en/services/ui-ux-design',
+    languages: {
+      es: 'https://devmarkpe.com/servicios/diseno-ui-ux',
+      en: 'https://devmarkpe.com/en/services/ui-ux-design',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://devmarkpe.com/en/services/ui-ux-design',
+    title: 'UI/UX Design | Devmark Peru',
+    description: 'Intuitive, attractive user-centered interfaces for digital products people love.',
+    siteName: 'Devmark',
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'UI/UX design - DEVMARK' }],
+  },
+};
 
 const headerContent = {
   lang: 'en' as const,
@@ -16,13 +38,13 @@ const headerContent = {
 };
 
 const heroContent = {
-  badge: "User Experience",
+  badge: "User experience",
   title: "UI/UX design",
   description: "We create intuitive and attractive user-centered interfaces. From initial research to interactive prototypes and final visual design, we ensure your product is easy to use and visually impactful.",
   lang: 'en' as const,
   form: {
     title: 'Tell us about your project',
-    firstNameLabel: 'First Name',
+    firstNameLabel: 'First name',
     firstNamePlaceholder: 'Your first name',
     emailLabel: 'Email',
     emailPlaceholder: 'your@email.com',
@@ -111,7 +133,7 @@ const pricingContent = {
           "System documentation",
           "24/7 support"
         ],
-        buttonText: "Contact Us",
+        buttonText: "Contact us",
         priceId: ""
       }
     ]
@@ -127,31 +149,94 @@ const contactContent = {
     phoneLabel: "Phone:",
     phone: "+51 975 646 074",
     timeZoneLabel: "Schedule:",
-    formTitle: "Contact Form",
+    formTitle: "Contact form",
     formDescription: "Send us a message and let's start building something amazing together.",
-    firstNameLabel: "First Name",
+    firstNameLabel: "First name",
     firstNamePlaceholder: "Your first name",
-    lastNameLabel: "Last Name",
+    lastNameLabel: "Last name",
     lastNamePlaceholder: "Your last name",
-    emailFormLabel: "Email Address",
+    emailFormLabel: "Email address",
     emailPlaceholder: "your@email.com",
     phoneFormLabel: "Phone",
     phonePlaceholder: "Your phone number",
     messageLabel: "Message",
     messagePlaceholder: "Tell us about your project...",
-    submitButton: "Send Message",
+    submitButton: "Send message",
     scheduleButton: "Schedule a meeting with Meet",
-    quoteButton: "Quote your Project with our AI"
+    quoteButton: "Quote your project with our AI"
 };
 
 const footerContent = {
-    copyright: "DevMark. All rights reserved."
+    copyright: "DEVMARK. All rights reserved."
 };
 
 export default function UiUxDesignPage() {
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "UI/UX design",
+            "description": "We create intuitive and attractive user-centered interfaces. From initial research to interactive prototypes and final visual design, we ensure your product is easy to use and visually impactful.",
+            "provider": {
+              "@type": "Organization",
+              "name": "Devmark",
+              "url": "https://devmarkpe.com"
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Lima"
+              },
+              {
+                "@type": "Country",
+                "name": "Peru"
+              }
+            ],
+            "url": "https://devmarkpe.com/en/services/ui-ux-design",
+            "inLanguage": "en-US"
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is the difference between UI and UX?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "UX (User Experience) focuses on the overall user experience and how they feel when interacting with the product. UI (User Interface) focuses on the visual design and interactive elements of the interface. Both are crucial for a successful product."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do you work with existing design systems?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, we can work with your current design system to maintain brand consistency, or we can create a new one from scratch if needed."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What design tools do you use?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We use industry-standard tools like Figma, Sketch, and Adobe XD for interface design, prototyping, and collaboration with the development team."
+                }
+              }
+            ]
+          }),
+        }}
+      />
       <Header {...headerContent} />
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
@@ -176,7 +261,7 @@ export default function UiUxDesignPage() {
             <Contact {...contactContent} />
         </div>
       </main>
-      <Footer copyright={footerContent.copyright} />
+      <Footer lang="en" copyright={footerContent.copyright} />
     </div>
   );
 }

@@ -1,9 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { CodeXml, Palette, ServerCog, Zap, Bot, LineChart, ArrowRight } from "lucide-react";
+import { CodeXml, Palette, ServerCog, Zap, Bot, LineChart, ArrowRight, Calculator } from "lucide-react";
 import Link from "next/link";
-import { LiquidGroup, LiquidCard } from '@/components/liquid/LiquidGroup';
+import { getStartingPrice, getQuoteHrefForService } from '@/data/services';
 
 interface Service {
   icon: string;
@@ -17,7 +16,13 @@ interface ServicesProps {
   title: string;
   subtitle: string;
   items: readonly Service[];
-  moreInfoButton: string;
+  // Omitir para no mostrar el botón "Ver más" al fondo de la grilla — cada
+  // card ya tiene sus propias acciones (Ver detalles / Cotizar).
+  moreInfoButton?: string;
+  lang?: 'es' | 'en';
+  detailsButton?: string;
+  quoteButton?: string;
+  fromLabel?: string;
 }
 
 const icons: Record<string, React.ReactNode> = {
@@ -32,18 +37,30 @@ const icons: Record<string, React.ReactNode> = {
 // Rotating accent per card so the grid isn't a single flat color; CTAs stay brand-blue everywhere else.
 const accentVars = ['--primary', '--chart-4', '--chart-2', '--chart-5', '--chart-6', '--chart-3'];
 
-function ServiceCard({ service, index }: { service: Service; index: number }) {
-  const [hovered, setHovered] = useState(false);
+function ServiceCard({
+  service,
+  index,
+  lang = 'es',
+  detailsButton = 'Ver detalles',
+  quoteButton = 'Cotizar',
+  fromLabel = 'Desde',
+}: {
+  service: Service;
+  index: number;
+  lang?: 'es' | 'en';
+  detailsButton?: string;
+  quoteButton?: string;
+  fromLabel?: string;
+}) {
   const accentVar = accentVars[index % accentVars.length];
   const accentStyle = { '--accent': `var(${accentVar})` } as unknown as React.CSSProperties;
+  const price = getStartingPrice(service.href);
+  const quoteHref = getQuoteHrefForService(service.href, lang);
 
   return (
-    <Link
-      href={service.href}
+    <div
       style={accentStyle}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      className="group bg-brand-light p-8 rounded-3xl border border-slate-100 hover:border-transparent shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-[360px] relative overflow-hidden"
+      className="group bg-brand-light p-8 rounded-3xl border border-slate-100 hover:border-transparent shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-[400px] relative overflow-hidden"
     >
       {/* Gradient wash, revealed on hover only */}
       <div className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--accent))] to-[hsl(var(--accent))]/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -56,7 +73,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
       {/* Decorative corner circle */}
       <div className="absolute top-0 right-0 w-24 h-24 bg-[hsl(var(--accent))]/5 group-hover:bg-white/10 rounded-full translate-x-8 -translate-y-8 group-hover:scale-150 transition-all duration-500" />
 
-      <div className="space-y-5 relative z-10">
+      <Link href={service.href} className="space-y-5 relative z-10">
         <div className="w-12 h-12 rounded-2xl bg-white border border-slate-100 shadow-sm flex items-center justify-center text-[hsl(var(--accent))] group-hover:bg-white/15 group-hover:backdrop-blur-md group-hover:border-white/30 group-hover:text-white transition-all duration-300">
           {icons[service.icon]}
         </div>
@@ -67,40 +84,40 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
           <h3 className="font-semibold text-xl text-brand-navy group-hover:text-white transition-colors duration-200">
             {service.title}
           </h3>
-          <p className="text-slate-600 text-sm leading-relaxed line-clamp-3 group-hover:text-white/85 transition-colors duration-200">
+          <p className="text-slate-600 text-sm leading-relaxed line-clamp-2 group-hover:text-white/85 transition-colors duration-200">
             {service.description}
           </p>
         </div>
-      </div>
+      </Link>
 
-      <div className="relative z-10 flex items-center justify-end border-t border-slate-200/50 group-hover:border-white/20 pt-6 transition-colors duration-300">
-        <span className="sr-only">{String(index + 1).padStart(2, '0')} / Services</span>
-        {/* Number + arrow fused into one liquid chip, in the card's own accent */}
-        <LiquidGroup
-          k={hovered ? 22 : 4}
-          cardRadius={16}
-          cell={4}
-          smooth={2}
-          fill={hovered ? 'rgba(255,255,255,0.22)' : '#ffffff'}
-          className="h-9 w-[92px]"
-        >
-          <LiquidCard id="index" x={0} y={6} w={44} h={24} radius={12}>
-            <div className={`flex h-full w-full items-center justify-center text-xs font-bold transition-colors duration-300 ${hovered ? 'text-white' : 'text-[hsl(var(--accent))]'}`}>
-              {String(index + 1).padStart(2, '0')}
-            </div>
-          </LiquidCard>
-          <LiquidCard id="arrow" x={56} y={0} w={36} h={36} radius={18}>
-            <div className="flex h-full w-full items-center justify-center">
-              <ArrowRight className={`w-4 h-4 transition-all duration-300 ${hovered ? 'text-white translate-x-0.5' : 'text-brand-navy'}`} />
-            </div>
-          </LiquidCard>
-        </LiquidGroup>
+      <div className="relative z-10 border-t border-slate-200/50 group-hover:border-white/20 pt-5 space-y-4 transition-colors duration-300">
+        {price && (
+          <div className="flex items-center justify-between gap-2 bg-white/70 group-hover:bg-white/15 group-hover:backdrop-blur-sm rounded-xl px-3.5 py-2.5 transition-colors duration-300">
+            <span className="text-xs font-semibold text-slate-500 group-hover:text-white/80 transition-colors duration-300">{fromLabel}</span>
+            <span className="font-bold text-brand-navy group-hover:text-white transition-colors duration-300">{price}</span>
+          </div>
+        )}
+        <div className="flex gap-2">
+          <Link
+            href={service.href}
+            className="flex-1 inline-flex items-center justify-center h-11 px-3 rounded-2xl bg-white border-2 border-brand-blue text-brand-blue hover:bg-transparent font-semibold text-xs sm:text-sm transition-all duration-300"
+          >
+            {detailsButton}
+          </Link>
+          <Link
+            href={quoteHref}
+            className="flex-1 inline-flex items-center justify-center gap-1.5 h-11 px-3 rounded-2xl bg-brand-blue hover:bg-brand-navy-dark text-white font-semibold text-xs sm:text-sm shadow-sm hover:shadow-md transition-all duration-300"
+          >
+            {quoteButton}
+            <Calculator className="w-3.5 h-3.5 shrink-0" />
+          </Link>
+        </div>
       </div>
-    </Link>
+    </div>
   );
 }
 
-export function Services({ title, subtitle, items, moreInfoButton }: ServicesProps) {
+export function Services({ title, subtitle, items, moreInfoButton, lang = 'es', detailsButton, quoteButton, fromLabel }: ServicesProps) {
   return (
     <section id="services" className="py-16 md:py-24">
       <div className="text-center max-w-3xl mx-auto mb-12">
@@ -109,19 +126,29 @@ export function Services({ title, subtitle, items, moreInfoButton }: ServicesPro
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {items.map((service, index) => (
-          <ServiceCard key={index} service={service} index={index} />
+          <ServiceCard
+            key={index}
+            service={service}
+            index={index}
+            lang={lang}
+            {...(detailsButton ? { detailsButton } : {})}
+            {...(quoteButton ? { quoteButton } : {})}
+            {...(fromLabel ? { fromLabel } : {})}
+          />
         ))}
       </div>
 
+      {moreInfoButton && (
       <div className="flex justify-center pt-8">
         <Link
-          href="/servicios"
-          className="group px-8 py-4 rounded-full bg-brand-navy hover:bg-brand-navy-dark text-white font-bold flex items-center gap-2 shadow-lg transition-colors"
+          href={lang === 'en' ? '/en/services' : '/servicios'}
+          className="group h-[52px] px-8 rounded-2xl border-2 border-transparent bg-brand-blue hover:bg-brand-navy-dark text-white font-semibold flex items-center gap-2 shadow-xl shadow-brand-blue/30 hover:shadow-brand-blue/40 transition-all duration-300 hover:-translate-y-1"
         >
           {moreInfoButton}
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
         </Link>
       </div>
+      )}
     </section>
   );
 }

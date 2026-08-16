@@ -7,6 +7,28 @@ import { ServiceMethodology } from '@/components/home/service-methodology';
 import { Pricing } from '@/components/home/pricing';
 import { Contact } from '@/components/home/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Desarrollo Web a Medida en Perú para tu Empresa',
+  description: 'Creamos sitios web únicos y de alto rendimiento adaptados a tu negocio en Perú. Del concepto al lanzamiento, te acompañamos en cada paso del proyecto.',
+  alternates: {
+    canonical: 'https://devmarkpe.com/servicios/desarrollo-web-a-medida',
+    languages: {
+      es: 'https://devmarkpe.com/servicios/desarrollo-web-a-medida',
+      en: 'https://devmarkpe.com/en/services/custom-web-development',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'es_PE',
+    url: 'https://devmarkpe.com/servicios/desarrollo-web-a-medida',
+    title: 'Desarrollo Web a Medida en Perú | Devmark',
+    description: 'Creamos sitios web únicos y de alto rendimiento adaptados a tu negocio en Perú.',
+    siteName: 'Devmark',
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Desarrollo web a medida - DEVMARK' }],
+  },
+};
 
 const headerContent = {
   lang: 'es' as const,
@@ -146,17 +168,80 @@ const contactContent = {
     messagePlaceholder: "Cuentanos sobre tu proyecto...",
     submitButton: "Enviar mensaje",
     scheduleButton: "Agendar reunion por Meet",
-    quoteButton: "Cotiza tu proyecto con nuestra IA"
+    quoteButton: "Cotiza tu proyecto con IA"
 };
 
 const footerContent = {
-    copyright: "DevMark. Todos los derechos reservados."
+    copyright: "DEVMARK. Todos los derechos reservados."
 };
 
 export default function CustomWebDevelopmentPage() {
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Desarrollo web a medida",
+            "description": "Creamos sitios web unicos y de alto rendimiento que se adaptan perfectamente a las necesidades de tu negocio. Desde el concepto hasta el lanzamiento, te acompañamos en cada paso del camino.",
+            "provider": {
+              "@type": "Organization",
+              "name": "Devmark",
+              "url": "https://devmarkpe.com"
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Lima"
+              },
+              {
+                "@type": "Country",
+                "name": "Peru"
+              }
+            ],
+            "url": "https://devmarkpe.com/servicios/desarrollo-web-a-medida",
+            "inLanguage": "es-PE"
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Cuanto tiempo toma desarrollar un sitio web a medida?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "El tiempo de desarrollo varia segun la complejidad del proyecto, pero generalmente oscila entre 4 y 12 semanas. Te proporcionaremos un cronograma detallado al inicio del proyecto."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Que tipo de soporte ofrecen despues del lanzamiento?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Ofrecemos planes de mantenimiento y soporte continuo para asegurar que tu sitio web se mantenga actualizado, seguro y funcionando de manera optima."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Pueden integrar mi sitio con otras plataformas?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Por supuesto. Nos especializamos en la integracion con una amplia variedad de sistemas, incluyendo CRMs, ERPs, sistemas de pago y mas, para centralizar tus operaciones."
+                }
+              }
+            ]
+          }),
+        }}
+      />
       <Header {...headerContent} />
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">

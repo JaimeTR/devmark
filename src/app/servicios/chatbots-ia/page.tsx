@@ -7,6 +7,28 @@ import { ServiceMethodology } from '@/components/home/service-methodology';
 import { Pricing } from '@/components/home/pricing';
 import { Contact } from '@/components/home/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Chatbots con Inteligencia Artificial para tu Negocio',
+  description: 'Chatbots inteligentes para tu web, e-commerce o redes sociales, entrenados con tu información para dar soporte 24/7 y aumentar tus ventas en Perú.',
+  alternates: {
+    canonical: 'https://devmarkpe.com/servicios/chatbots-ia',
+    languages: {
+      es: 'https://devmarkpe.com/servicios/chatbots-ia',
+      en: 'https://devmarkpe.com/en/services/ai-chatbots',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'es_PE',
+    url: 'https://devmarkpe.com/servicios/chatbots-ia',
+    title: 'Chatbots con Inteligencia Artificial | Devmark Perú',
+    description: 'Chatbots inteligentes entrenados con tu información para soporte 24/7 y más ventas.',
+    siteName: 'Devmark',
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Chatbots con IA - DEVMARK' }],
+  },
+};
 
 const headerContent = {
   lang: 'es' as const,
@@ -128,7 +150,7 @@ const contactContent = {
     phoneLabel: "Teléfono:",
     phone: "+51 975 646 074",
     timeZoneLabel: "Horario:",
-    formTitle: "Formulario de Contacto",
+    formTitle: "Formulario de contacto",
     formDescription: "Envíanos un mensaje y empecemos a construir algo increíble juntos.",
     firstNameLabel: "Nombres",
     firstNamePlaceholder: "Tus nombres",
@@ -142,17 +164,80 @@ const contactContent = {
     messagePlaceholder: "Cuéntanos sobre tu proyecto...",
     submitButton: "Enviar Mensaje",
     scheduleButton: "Agendar reunión por Meet",
-    quoteButton: "Cotiza tu Proyecto con nuestra IA"
+    quoteButton: "Cotiza tu proyecto con IA"
 };
 
 const footerContent = {
-    copyright: "DevMark. Todos los derechos reservados."
+    copyright: "DEVMARK. Todos los derechos reservados."
 };
 
 export default function AIChatbotsPage() {
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Chatbots con inteligencia artificial",
+            "description": "Implementamos chatbots inteligentes en tu web, e-commerce o redes sociales, entrenados con tu propia información para ofrecer soporte 24/7 y potenciar tus ventas.",
+            "provider": {
+              "@type": "Organization",
+              "name": "Devmark",
+              "url": "https://devmarkpe.com"
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Lima"
+              },
+              {
+                "@type": "Country",
+                "name": "Peru"
+              }
+            ],
+            "url": "https://devmarkpe.com/servicios/chatbots-ia",
+            "inLanguage": "es-PE"
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "¿El chatbot puede entender preguntas complejas?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Sí, utilizamos modelos de lenguaje avanzados que permiten al chatbot comprender el contexto, la intención y las variaciones en las preguntas de los usuarios para dar respuestas coherentes y útiles."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Qué pasa si el chatbot no sabe la respuesta?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Configuramos un sistema de escalado para que, si el chatbot no puede resolver una consulta, pueda transferir la conversación a un agente humano de forma transparente."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Puedo ver las conversaciones que tiene el chatbot?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Sí, tendrás acceso a un panel donde podrás revisar las conversaciones, analizar las preguntas más frecuentes y obtener información valiosa sobre las necesidades de tus clientes."
+                }
+              }
+            ]
+          }),
+        }}
+      />
       <Header {...headerContent} />
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">

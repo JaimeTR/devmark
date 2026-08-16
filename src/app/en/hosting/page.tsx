@@ -4,16 +4,32 @@ import { Footer } from '@/components/home/footer';
 import Link from 'next/link';
 import { Server, Mail, Lock, Zap, Globe, HardDrive } from 'lucide-react';
 import { Metadata } from 'next';
-import Image from 'next/image';
 
 export const metadata: Metadata = {
-  title: 'Hosting & Domains | DevMark - Official Hostinger Partner',
-  description: 'Professional hosting, domains, corporate emails and SSL. As Hostinger partners, we offer an additional 20% discount.',
+  title: 'Hosting & Domains: Official Hostinger Partner in Peru',
+  description: 'Professional hosting, domains, corporate email, and SSL certificates. As official Hostinger partners, we offer an extra 20% discount on every plan.',
+  alternates: {
+    canonical: 'https://devmarkpe.com/en/hosting',
+    languages: {
+      es: 'https://devmarkpe.com/hosting',
+      en: 'https://devmarkpe.com/en/hosting',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://devmarkpe.com/en/hosting',
+    title: 'Hosting & Domains | Devmark - Official Hostinger Partner',
+    description: 'Professional hosting, domains, corporate emails and SSL with an additional 20% discount.',
+    siteName: 'Devmark',
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Hosting and domains - DEVMARK' }],
+  },
 };
 
 const content = {
   lang: 'en' as const,
   header: {
+    lang: 'en' as const,
     navLinks: [
       { href: '/en#hero', label: 'Home' },
       { href: '/en/services', label: 'Services' },
@@ -26,14 +42,14 @@ const content = {
     aiAssistantTooltip: 'Hello! I am your AI assistant.',
   },
   footer: {
-    copyright: 'DevMark. All rights reserved.'
+    copyright: 'DEVMARK. All rights reserved.'
   }
 } as const;
 
 const hostingFeatures = [
   {
     icon: Server,
-    title: 'Professional Web Hosting',
+    title: 'Professional web hosting',
     description: 'Optimized servers for WordPress, web apps and more. Guaranteed 99.9% uptime.',
     features: ['Ultra-fast NVMe SSD', 'Automatic daily backups', 'Free CDN included', 'Free SSL certificate']
   },
@@ -45,25 +61,25 @@ const hostingFeatures = [
   },
   {
     icon: Mail,
-    title: 'Corporate Emails',
+    title: 'Corporate emails',
     description: 'Professional emails with your domain. Setup included at no extra cost.',
     features: ['you@yourcompany.com', 'Modern webmail', 'Anti-spam protection', 'IMAP/SMTP support']
   },
   {
     icon: Lock,
-    title: 'SSL Security',
+    title: 'SSL security',
     description: 'Free SSL certificates to protect your website and customer data.',
     features: ["Let's Encrypt SSL", 'Automatic installation', 'Auto renewal', 'HTTPS guaranteed']
   },
   {
     icon: Zap,
-    title: 'High Performance',
+    title: 'High performance',
     description: 'Top technology to make your site load in under 1 second.',
     features: ['LiteSpeed Cache', 'HTTP/3 enabled', 'Image optimization', 'Gzip/Brotli compression']
   },
   {
     icon: HardDrive,
-    title: 'Storage & Databases',
+    title: 'Storage & databases',
     description: 'Unlimited space on premium plans and optimized MySQL/MariaDB databases.',
     features: ['SSD storage', 'MySQL databases', 'phpMyAdmin included', 'Simple management']
   }
@@ -140,7 +156,7 @@ export default function HostingPage() {
                 <span className="text-primary font-semibold">OFFICIAL HOSTINGER PARTNER</span>
               </div>
 
-              <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight mb-6">Professional Hosting for Your Business</h1>
+              <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight mb-6">Professional hosting for your business</h1>
               <p className="text-xl text-muted-foreground mb-8">
                 As official Hostinger partners, we offer top-tier web hosting technology with an <span className="text-primary font-semibold">additional 20% discount</span> on their promotions. We also set up your corporate emails and SSL certificate for free.
               </p>
@@ -188,7 +204,7 @@ export default function HostingPage() {
 
         <section className="py-12 md:py-20 bg-primary/5">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-8 text-center">Plans & Pricing</h2>
+            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-8 text-center">Plans & pricing</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {plans.map((plan, idx) => (
                 <div key={idx} className="rounded-lg border border-primary/10 bg-background p-6">
@@ -211,10 +227,10 @@ export default function HostingPage() {
 
         <section className="py-12 md:py-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-8 text-center">Domains & Corporate Email</h2>
+            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-8 text-center">Domains & corporate email</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="rounded-lg border border-primary/10 bg-background p-6">
-                <h3 className="font-headline text-2xl font-bold mb-2">Domain Registration</h3>
+                <h3 className="font-headline text-2xl font-bold mb-2">Domain registration</h3>
                 <p className="text-primary text-3xl font-bold mb-2">From S/120/year</p>
                 <p className="text-muted-foreground mb-4">Register your .com, .pe or .net domain with automatic management and renewal.</p>
                 <ul className="space-y-2 mb-6">
@@ -229,7 +245,7 @@ export default function HostingPage() {
                 </ul>
               </div>
               <div className="rounded-lg border border-primary/10 bg-background p-6">
-                <h3 className="font-headline text-2xl font-bold mb-2">Corporate Email</h3>
+                <h3 className="font-headline text-2xl font-bold mb-2">Corporate email</h3>
                 <p className="text-primary text-3xl font-bold mb-2">S/60/year · 1 GB</p>
                 <p className="text-muted-foreground mb-4">Each mailbox includes 1 GB of space. Scale to your needs, no minimums.</p>
                 <ul className="space-y-2 mb-6">
@@ -249,7 +265,7 @@ export default function HostingPage() {
         </section>
       </main>
 
-      <Footer copyright={content.footer.copyright} />
+      <Footer lang="en" copyright={content.footer.copyright} />
     </div>
   );
 }

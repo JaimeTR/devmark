@@ -6,6 +6,28 @@ import { ServiceMethodology } from '@/components/home/service-methodology';
 import { Pricing } from '@/components/home/pricing';
 import { Contact } from '@/components/home/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Soporte y Mantenimiento Web con Planes Flexibles',
+  description: 'Mantenimiento continuo para que tu sitio web o aplicación funcione de forma óptima, segura y actualizada, con planes flexibles según tu presupuesto.',
+  alternates: {
+    canonical: 'https://devmarkpe.com/servicios/soporte-mantenimiento',
+    languages: {
+      es: 'https://devmarkpe.com/servicios/soporte-mantenimiento',
+      en: 'https://devmarkpe.com/en/services/support-maintenance',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'es_PE',
+    url: 'https://devmarkpe.com/servicios/soporte-mantenimiento',
+    title: 'Soporte y Mantenimiento Web | Devmark Perú',
+    description: 'Mantenimiento continuo para que tu web o app funcione de forma óptima, segura y actualizada.',
+    siteName: 'Devmark',
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Soporte y mantenimiento - DEVMARK' }],
+  },
+};
 
 const headerContent = {
   lang: 'es' as const,
@@ -131,7 +153,7 @@ const contactContent = {
     phoneLabel: "Teléfono:",
     phone: "+51 975 646 074",
     timeZoneLabel: "Horario:",
-    formTitle: "Formulario de Contacto",
+    formTitle: "Formulario de contacto",
     formDescription: "Envíanos un mensaje y empecemos a construir algo increíble juntos.",
     firstNameLabel: "Nombres",
     firstNamePlaceholder: "Tus nombres",
@@ -145,17 +167,80 @@ const contactContent = {
     messagePlaceholder: "Cuéntanos sobre tu proyecto...",
     submitButton: "Enviar Mensaje",
     scheduleButton: "Agendar reunión por Meet",
-    quoteButton: "Cotiza tu Proyecto con nuestra IA"
+    quoteButton: "Cotiza tu proyecto con IA"
 };
 
 const footerContent = {
-    copyright: "DevMark. Todos los derechos reservados."
+    copyright: "DEVMARK. Todos los derechos reservados."
 };
 
 export default function MaintenancePage() {
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Soporte y mantenimiento",
+            "description": "Garantizamos que tu sitio web o aplicación funcione de manera óptima, segura y actualizada. Ofrecemos planes de mantenimiento flexibles para que no tengas que preocuparte por los aspectos técnicos.",
+            "provider": {
+              "@type": "Organization",
+              "name": "Devmark",
+              "url": "https://devmarkpe.com"
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Lima"
+              },
+              {
+                "@type": "Country",
+                "name": "Peru"
+              }
+            ],
+            "url": "https://devmarkpe.com/servicios/soporte-mantenimiento",
+            "inLanguage": "es-PE"
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "¿Por qué es importante el mantenimiento web?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Un mantenimiento regular es crucial para la seguridad, el rendimiento (velocidad de carga), la experiencia del usuario y el posicionamiento SEO. Un sitio desactualizado es vulnerable a ataques y puede funcionar lentamente, afectando negativamente a tu negocio."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Qué tipo de soporte ofrecen?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Ofrecemos soporte por email, teléfono y un sistema de tickets para resolver tus consultas. El nivel de prioridad y los tiempos de respuesta dependen del plan de mantenimiento que elijas."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Pueden mantener un sitio que no han desarrollado ustedes?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Sí. Antes de iniciar, realizamos una auditoría completa del sitio para evaluar su estado actual, la tecnología utilizada y las posibles vulnerabilidades, para poder ofrecerte el mejor servicio posible."
+                }
+              }
+            ]
+          }),
+        }}
+      />
       <Header {...headerContent} />
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">

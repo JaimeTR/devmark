@@ -28,7 +28,7 @@ const contactContent = {
   phoneLabel: 'Teléfono:',
   phone: '+51 930 414 494',
   timeZoneLabel: 'Hora Local:',
-  formTitle: 'Formulario de Contacto',
+  formTitle: 'Formulario de contacto',
   formDescription: 'Completa el formulario y nos pondremos en contacto contigo.',
   firstNameLabel: 'Nombre',
   firstNamePlaceholder: 'Juan',
@@ -46,7 +46,7 @@ const contactContent = {
 };
 
 const footerContent = {
-  copyright: 'DevMark. Todos los derechos reservados.',
+  copyright: 'DEVMARK. Todos los derechos reservados.',
 };
 
 export default function ContactoPage() {

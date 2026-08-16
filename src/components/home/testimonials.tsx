@@ -1,8 +1,7 @@
 
 'use client'
 
-import React, { useRef } from 'react';
-import useEmblaCarousel from 'embla-carousel-react';
+import React from 'react';
 import Autoplay from 'embla-carousel-autoplay';
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";

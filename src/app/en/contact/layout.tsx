@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Contact | DevMark - Web Development Agency',
-  description: 'Get in touch with DevMark. Schedule a meeting, request a quote or send us a message. Custom web development, software, AI chatbots and digital marketing.',
+  title: 'Contact | Web Development & Software Agency',
+  description: 'Get in touch with Devmark: schedule a meeting, request a quote, or send us a message about web development, software, or digital marketing today.',
   keywords: 'contact devmark, web development agency, project quote, custom software development',
   metadataBase: new URL('https://devmarkpe.com'),
   alternates: {
@@ -13,8 +13,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Contact | DevMark',
-    description: 'Schedule a meeting or request a quote with DevMark.',
+    title: 'Contact | Devmark',
+    description: 'Schedule a meeting or request a quote with Devmark.',
     url: 'https://devmarkpe.com/en/contact',
     type: 'website',
   },

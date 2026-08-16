@@ -1,48 +1,138 @@
 'use client';
 
-import { Sparkles, Github, Linkedin, Instagram, Facebook } from 'lucide-react';
+import { Github, Linkedin, Instagram, Facebook, Mail, Phone } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
 interface FooterProps {
+  lang?: 'es' | 'en';
   copyright: string;
 }
 
-export function Footer({ copyright }: FooterProps) {
+const socials = [
+  { href: 'https://www.instagram.com/devmark.pe/', label: 'Instagram', Icon: Instagram },
+  { href: 'https://www.facebook.com/devmark.pe/', label: 'Facebook', Icon: Facebook },
+  { href: 'https://github.com/JaimeTR', label: 'GitHub', Icon: Github },
+  { href: 'https://www.linkedin.com/company/devmarkpe/', label: 'LinkedIn', Icon: Linkedin },
+];
+
+const copy = {
+  es: {
+    tagline: 'Agencia de desarrollo web y software en Lima, Perú.',
+    linksTitle: 'Enlaces',
+    links: [
+      { href: '/nosotros', label: 'Nosotros' },
+      { href: '/servicios', label: 'Servicios' },
+      { href: '/portfolio', label: 'Portafolio' },
+      { href: '/hosting', label: 'Hosting' },
+    ],
+    salesLabel: 'Contacto',
+    supportLabel: 'Soporte',
+  },
+  en: {
+    tagline: 'Web and software development agency in Lima, Peru.',
+    linksTitle: 'Links',
+    links: [
+      { href: '/en/about', label: 'About' },
+      { href: '/en/services', label: 'Services' },
+      { href: '/en/portfolio', label: 'Portfolio' },
+      { href: '/en/hosting', label: 'Hosting' },
+    ],
+    salesLabel: 'Contact',
+    supportLabel: 'Support',
+  },
+};
+
+export function Footer({ lang = 'es', copyright }: FooterProps) {
   const [year, setYear] = useState(new Date().getFullYear());
+  const t = copy[lang];
 
   useEffect(() => {
     setYear(new Date().getFullYear());
   }, []);
 
   return (
-    <footer className="relative mt-24 sm:mt-32 md:mt-40">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-center">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-brand-navy flex items-center justify-center">
-              <Sparkles className="h-4 w-4 text-brand-lavender" />
+    <footer className="relative mt-16 sm:mt-20 md:mt-24 bg-brand-navy-dark text-white/70">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+        <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr] gap-8">
+          {/* Brand */}
+          <div className="space-y-4">
+            <Link href={lang === 'en' ? '/en' : '/'} className="inline-flex items-center gap-2">
+              <Image src="/logo-mark-white.svg" alt="" role="presentation" width={32} height={32} className="w-8 h-8" />
+              <span className="font-logo text-lg tracking-wider text-white">DEVMARK</span>
+            </Link>
+            <p className="text-sm text-white/60 max-w-xs leading-relaxed">{t.tagline}</p>
+            <div className="flex items-center gap-1 -ml-2">
+              {socials.map(({ href, label, Icon }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${label} - ${lang === 'en' ? 'opens in a new tab' : 'abre en una nueva ventana'}`}
+                  className="flex items-center justify-center h-10 w-10 rounded-full text-white/60 hover:text-white hover:bg-white/10 transition-colors"
+                >
+                  <Icon className="h-4.5 w-4.5" />
+                </Link>
+              ))}
             </div>
-            <span className="font-logo text-lg tracking-wider text-brand-navy">DEVMARK</span>
           </div>
-          <p className="text-sm text-muted-foreground">
-            &copy; {year} {copyright}
+
+          {/* Quick links */}
+          <div className="space-y-4">
+            <h3 className="text-xs font-extrabold uppercase tracking-widest text-white/40">{t.linksTitle}</h3>
+            <ul className="space-y-2.5">
+              {t.links.map(link => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm text-white/70 hover:text-white transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <h3 className="text-xs font-extrabold uppercase tracking-widest text-white/40">{t.salesLabel}</h3>
+              <a href="mailto:contacto@devmarkpe.com" className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
+                <Mail className="h-4 w-4 shrink-0 text-brand-lavender" />
+                contacto@devmarkpe.com
+              </a>
+              <a href="tel:+51965312386" className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
+                <Phone className="h-4 w-4 shrink-0 text-brand-lavender" />
+                +51 965 312 386
+              </a>
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-xs font-extrabold uppercase tracking-widest text-white/40">{t.supportLabel}</h3>
+              <a href="mailto:soporte@devmarkpe.com" className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
+                <Mail className="h-4 w-4 shrink-0 text-brand-lavender" />
+                soporte@devmarkpe.com
+              </a>
+              <a href="tel:+51975646074" className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
+                <Phone className="h-4 w-4 shrink-0 text-brand-lavender" />
+                +51 975 646 074
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-2 text-center">
+          <p className="text-xs text-white/40">&copy; {year} {copyright}</p>
+          <p className="text-xs text-white/40">
+            {lang === 'en' ? 'Built by' : 'Desarrollado por'}{' '}
+            <a
+              href="https://www.jaimetr.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/60 hover:text-white transition-colors"
+            >
+              Jaime Tarazona
+            </a>
           </p>
-          <div className="flex items-center justify-center gap-1">
-            <Link href="https://www.instagram.com/devmark.pe/" target="_blank" rel="noopener noreferrer" aria-label="Instagram - Abre en una nueva ventana" className="flex items-center justify-center h-11 w-11 rounded-full text-muted-foreground hover:text-primary hover:bg-accent transition-colors">
-              <Instagram className="h-5 w-5" />
-            </Link>
-            <Link href="https://www.facebook.com/devmark.pe/" target="_blank" rel="noopener noreferrer" aria-label="Facebook - Abre en una nueva ventana" className="flex items-center justify-center h-11 w-11 rounded-full text-muted-foreground hover:text-primary hover:bg-accent transition-colors">
-              <Facebook className="h-5 w-5" />
-            </Link>
-            <Link href="https://github.com/JaimeTR" target="_blank" rel="noopener noreferrer" aria-label="GitHub - Abre en una nueva ventana" className="flex items-center justify-center h-11 w-11 rounded-full text-muted-foreground hover:text-primary hover:bg-accent transition-colors">
-              <Github className="h-5 w-5" />
-            </Link>
-            <Link href="https://www.linkedin.com/company/devmarkpe/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn - Abre en una nueva ventana" className="flex items-center justify-center h-11 w-11 rounded-full text-muted-foreground hover:text-primary hover:bg-accent transition-colors">
-              <Linkedin className="h-5 w-5" />
-            </Link>
-          </div>
         </div>
       </div>
     </footer>

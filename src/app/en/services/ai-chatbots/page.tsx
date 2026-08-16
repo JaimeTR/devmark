@@ -6,6 +6,28 @@ import { ServiceMethodology } from '@/components/home/service-methodology';
 import { Pricing } from '@/components/home/pricing';
 import { Contact } from '@/components/home/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'AI Chatbots for Websites and Online Stores in Peru',
+  description: 'Intelligent chatbots for your website, online store, or social media, trained with your own information to provide 24/7 support and boost sales.',
+  alternates: {
+    canonical: 'https://devmarkpe.com/en/services/ai-chatbots',
+    languages: {
+      es: 'https://devmarkpe.com/servicios/chatbots-ia',
+      en: 'https://devmarkpe.com/en/services/ai-chatbots',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://devmarkpe.com/en/services/ai-chatbots',
+    title: 'AI Chatbots | Devmark Peru',
+    description: 'Intelligent chatbots trained with your own information for 24/7 support and more sales.',
+    siteName: 'Devmark',
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'AI chatbots - DEVMARK' }],
+  },
+};
 
 const headerContent = {
   lang: 'en' as const,
@@ -16,13 +38,13 @@ const headerContent = {
 };
 
 const heroContent = {
-  badge: "Virtual Assistants",
+  badge: "Virtual assistants",
   title: "Chatbots with artificial intelligence",
   description: "We implement intelligent chatbots on your website, e-commerce, or social media, trained with your own information to provide 24/7 support and boost your sales.",
   lang: 'en' as const,
   form: {
     title: 'Tell us about your project',
-    firstNameLabel: 'First Name',
+    firstNameLabel: 'First name',
     firstNamePlaceholder: 'Your first name',
     emailLabel: 'Email',
     emailPlaceholder: 'your@email.com',
@@ -111,7 +133,7 @@ const pricingContent = {
         "Order automation",
         "24/7 support"
       ],
-      buttonText: "Contact Us",
+      buttonText: "Contact us",
       priceId: ""
     }
   ]
@@ -127,31 +149,94 @@ const contactContent = {
   phoneLabel: "Phone:",
   phone: "+51 975 646 074",
   timeZoneLabel: "Schedule:",
-  formTitle: "Contact Form",
+  formTitle: "Contact form",
   formDescription: "Send us a message and let's start building something amazing together.",
-  firstNameLabel: "First Name",
+  firstNameLabel: "First name",
   firstNamePlaceholder: "Your first name",
-  lastNameLabel: "Last Name",
+  lastNameLabel: "Last name",
   lastNamePlaceholder: "Your last name",
-  emailFormLabel: "Email Address",
+  emailFormLabel: "Email address",
   emailPlaceholder: "your@email.com",
   phoneFormLabel: "Phone",
   phonePlaceholder: "Your phone number",
   messageLabel: "Message",
   messagePlaceholder: "Tell us about your project...",
-  submitButton: "Send Message",
+  submitButton: "Send message",
   scheduleButton: "Schedule a meeting with Meet",
-  quoteButton: "Quote your Project with our AI"
+  quoteButton: "Quote your project with our AI"
 };
 
 const footerContent = {
-  copyright: "DevMark. All rights reserved."
+  copyright: "DEVMARK. All rights reserved."
 };
 
 export default function AIChatbotsPage() {
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Chatbots with artificial intelligence",
+            "description": "We implement intelligent chatbots on your website, e-commerce, or social media, trained with your own information to provide 24/7 support and boost your sales.",
+            "provider": {
+              "@type": "Organization",
+              "name": "Devmark",
+              "url": "https://devmarkpe.com"
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Lima"
+              },
+              {
+                "@type": "Country",
+                "name": "Peru"
+              }
+            ],
+            "url": "https://devmarkpe.com/en/services/ai-chatbots",
+            "inLanguage": "en-US"
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Can the chatbot understand complex questions?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, we use advanced language models that allow the chatbot to understand the context, intent, and variations in user questions to provide coherent and useful answers."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What happens if the chatbot doesn't know the answer?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We set up an escalation system so that if the chatbot cannot resolve a query, it can seamlessly transfer the conversation to a human agent."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I see the conversations the chatbot has?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, you will have access to a dashboard where you can review conversations, analyze the most frequent questions, and gain valuable insights into your customers' needs."
+                }
+              }
+            ]
+          }),
+        }}
+      />
       <Header {...headerContent} />
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
@@ -176,7 +261,7 @@ export default function AIChatbotsPage() {
           <Contact {...contactContent} />
         </div>
       </main>
-      <Footer copyright={footerContent.copyright} />
+      <Footer lang="en" copyright={footerContent.copyright} />
     </div>
   );
 }

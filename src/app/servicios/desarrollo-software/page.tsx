@@ -6,6 +6,28 @@ import { ServiceMethodology } from '@/components/home/service-methodology';
 import { Pricing } from '@/components/home/pricing';
 import { Contact } from '@/components/home/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Desarrollo de Software a Medida: ERP, CRM y SaaS',
+  description: 'Construimos aplicaciones robustas, escalables y seguras: sistemas ERP, CRM, plataformas SaaS y APIs a medida para automatizar la operación de tu empresa.',
+  alternates: {
+    canonical: 'https://devmarkpe.com/servicios/desarrollo-software',
+    languages: {
+      es: 'https://devmarkpe.com/servicios/desarrollo-software',
+      en: 'https://devmarkpe.com/en/services/custom-software-development',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'es_PE',
+    url: 'https://devmarkpe.com/servicios/desarrollo-software',
+    title: 'Desarrollo de Software a Medida | Devmark Perú',
+    description: 'Aplicaciones robustas, escalables y seguras: ERP, CRM, SaaS y APIs a medida.',
+    siteName: 'Devmark',
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Desarrollo de software a medida - DEVMARK' }],
+  },
+};
 
 const headerContent = {
   lang: 'es' as const,
@@ -127,7 +149,7 @@ const contactContent = {
     phoneLabel: "Teléfono:",
     phone: "+51 975 646 074",
     timeZoneLabel: "Horario:",
-    formTitle: "Formulario de Contacto",
+    formTitle: "Formulario de contacto",
     formDescription: "Envíanos un mensaje y empecemos a construir algo increíble juntos.",
     firstNameLabel: "Nombres",
     firstNamePlaceholder: "Tus nombres",
@@ -141,17 +163,80 @@ const contactContent = {
     messagePlaceholder: "Cuéntanos sobre tu proyecto...",
     submitButton: "Enviar Mensaje",
     scheduleButton: "Agendar reunión por Meet",
-    quoteButton: "Cotiza tu Proyecto con nuestra IA"
+    quoteButton: "Cotiza tu proyecto con IA"
 };
 
 const footerContent = {
-    copyright: "DevMark. Todos los derechos reservados."
+    copyright: "DEVMARK. Todos los derechos reservados."
 };
 
 export default function CustomSoftwarePage() {
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Desarrollo de software a medida",
+            "description": "Construimos aplicaciones robustas, escalables y seguras, desde sistemas de gestión interna (ERP, CRM) hasta plataformas SaaS y APIs complejas.",
+            "provider": {
+              "@type": "Organization",
+              "name": "Devmark",
+              "url": "https://devmarkpe.com"
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Lima"
+              },
+              {
+                "@type": "Country",
+                "name": "Peru"
+              }
+            ],
+            "url": "https://devmarkpe.com/servicios/desarrollo-software",
+            "inLanguage": "es-PE"
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "¿Cómo garantizan la calidad del software?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Seguimos metodologías ágiles, realizamos pruebas exhaustivas (unitarias, de integración y de usuario) y mantenemos una comunicación constante contigo para asegurar que el producto final cumpla con los más altos estándares de calidad."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Son dueños del código fuente al final del proyecto?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Sí, al finalizar el proyecto y completar el pago, te entregamos la totalidad del código fuente y la documentación. Eres el único propietario de tu software."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Qué tecnologías utilizan para el desarrollo?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Utilizamos un stack tecnológico moderno y probado que incluye, entre otros, Node.js, React, Next.js, Python, y bases de datos como PostgreSQL y MongoDB, eligiendo siempre la mejor herramienta para cada proyecto."
+                }
+              }
+            ]
+          }),
+        }}
+      />
       <Header {...headerContent} />
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">

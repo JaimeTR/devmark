@@ -7,6 +7,28 @@ import { ServiceMethodology } from '@/components/home/service-methodology';
 import { Pricing } from '@/components/home/pricing';
 import { Contact } from '@/components/home/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Automatización de Procesos con Zapier y Make en Perú',
+  description: 'Optimizamos tus flujos de trabajo y eliminamos tareas repetitivas con automatizaciones a medida usando Zapier, Make o APIs. Ahorra tiempo y reduce errores.',
+  alternates: {
+    canonical: 'https://devmarkpe.com/servicios/automatizacion-procesos',
+    languages: {
+      es: 'https://devmarkpe.com/servicios/automatizacion-procesos',
+      en: 'https://devmarkpe.com/en/services/process-automation',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'es_PE',
+    url: 'https://devmarkpe.com/servicios/automatizacion-procesos',
+    title: 'Automatización de Procesos | Devmark Perú',
+    description: 'Optimizamos tus flujos de trabajo y eliminamos tareas repetitivas mediante automatización a medida.',
+    siteName: 'Devmark',
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Automatización de procesos - DEVMARK' }],
+  },
+};
 
 const headerContent = {
   lang: 'es' as const,
@@ -128,7 +150,7 @@ const contactContent = {
     phoneLabel: "Teléfono:",
     phone: "+51 975 646 074",
     timeZoneLabel: "Horario:",
-    formTitle: "Formulario de Contacto",
+    formTitle: "Formulario de contacto",
     formDescription: "Envíanos un mensaje y empecemos a construir algo increíble juntos.",
     firstNameLabel: "Nombres",
     firstNamePlaceholder: "Tus nombres",
@@ -142,17 +164,80 @@ const contactContent = {
     messagePlaceholder: "Cuéntanos sobre tu proyecto...",
     submitButton: "Enviar Mensaje",
     scheduleButton: "Agendar reunión por Meet",
-    quoteButton: "Cotiza tu Proyecto con nuestra IA"
+    quoteButton: "Cotiza tu proyecto con IA"
 };
 
 const footerContent = {
-    copyright: "DevMark. Todos los derechos reservados."
+    copyright: "DEVMARK. Todos los derechos reservados."
 };
 
 export default function ProcessAutomationPage() {
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Automatización de procesos",
+            "description": "Optimizamos tus flujos de trabajo y eliminamos tareas repetitivas mediante la automatización con herramientas como Zapier, Make o APIs a medida.",
+            "provider": {
+              "@type": "Organization",
+              "name": "Devmark",
+              "url": "https://devmarkpe.com"
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Lima"
+              },
+              {
+                "@type": "Country",
+                "name": "Peru"
+              }
+            ],
+            "url": "https://devmarkpe.com/servicios/automatizacion-procesos",
+            "inLanguage": "es-PE"
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "¿Qué procesos de mi empresa se pueden automatizar?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Prácticamente cualquier tarea digital repetitiva y basada en reglas puede ser automatizada. Desde marketing y ventas hasta finanzas y recursos humanos. Analizamos tus procesos y te proponemos las mejores soluciones."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Necesito conocimientos técnicos para gestionar las automatizaciones?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. Utilizamos plataformas intuitivas como Zapier o Make que te permiten visualizar y entender los flujos. Además, te ofrecemos formación y soporte para que puedas gestionarlos tú mismo."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Cuál es el retorno de la inversión de la automatización?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "El ROI se manifiesta en ahorro de tiempo, reducción de errores humanos, aumento de la productividad y la capacidad de tu equipo para centrarse en tareas de mayor valor estratégico."
+                }
+              }
+            ]
+          }),
+        }}
+      />
       <Header {...headerContent} />
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">

@@ -1,4 +1,4 @@
-
+import { Suspense } from 'react';
 import { AnimatedBackground } from '@/components/home/animated-background';
 import { Header } from '@/components/home/header';
 import { Hero } from '@/components/home/hero';
@@ -13,6 +13,8 @@ import { Footer } from '@/components/home/footer';
 import { AdditionalServices } from '@/components/home/additional-services';
 import { Hosting } from '@/components/home/hosting';
 import { FeaturedProjectsCarousel } from '@/components/home/featured-projects-carousel';
+import { ScrollReveal } from '@/components/home/scroll-reveal';
+import { ProjectsSkeleton } from '@/components/home/projects-skeleton';
 import { getProjects } from '@/data/projects';
 
 
@@ -21,6 +23,7 @@ const content = {
   header: {
     navLinks: [
       { href: '#hero', label: 'Inicio' },
+      { href: '/nosotros', label: 'Nosotros' },
       { href: '/servicios', label: 'Servicios' },
       { href: '/portfolio', label: 'Portafolio' },
       { href: '/hosting', label: 'Hosting' },
@@ -31,10 +34,11 @@ const content = {
     aiAssistantTooltip: '¡Hola! Soy tu asistente de IA.',
   },
   hero: {
-    badgeMessages: ['DEVMARK, TU SOCIO DIGITAL EN PERU', 'Hablemos de tu proyecto hoy'],
+    badgeMessages: ['DEVMARK, tu socio digital', 'Hablemos de tu proyecto'],
     title: 'Agencia de desarrollo web y software',
     description: 'Creamos paginas web, tiendas online, software personalizado, automatizaciones, chatbots con IA y estrategias de SEO en Lima, Peru. Impulsamos empresas peruanas al mundo digital.',
     servicesButton: 'Servicios',
+    servicesHref: '/servicios',
     contactButton: 'Agendar reunion',
     stats: [
       { value: '100+', label: 'Clientes Satisfechos' },
@@ -52,16 +56,17 @@ const content = {
   },
   strategy: {
     headerText: 'Creemos que cada marca tiene una historia única. Por eso combinamos estrategia, diseño y tecnología para ayudar a los negocios a crecer con claridad.',
-    headerTitle: 'Devmark fusiona estrategia y diseño para crear marcas de impacto',
+    headerTitle: 'DEVMARK fusiona estrategia y diseño para crear marcas de impacto',
     overlayText: 'Impulsamos tu negocio con propósito y dirección clara.',
     cardTitle: 'Pensamiento estratégico que impulsa resultados',
     cardDescription: 'Desarrollamos soluciones personalizadas que se alinean con tus objetivos, asegurando que cada decisión esté respaldada por datos y propósito. Nuestro enfoque se centra en resultados medibles.',
     ctaPrimary: 'Comenzar crecimiento',
   },
   services: {
+    lang: 'es' as const,
     title: 'Servicios principales',
     subtitle: 'Soluciones integrales para llevar tu empresa al siguiente nivel.',
-    moreInfoButton: 'Más información',
+
     items: [
       {
         icon: 'CodeXml',
@@ -108,9 +113,10 @@ const content = {
     ]
   },
   additionalServices: {
+    lang: 'es' as const,
     title: 'Servicios complementarios',
     subtitle: 'Servicios que refuerzan el desarrollo tecnológico principal',
-    moreInfoButton: 'Más información',
+
     items: [
       {
         icon: 'DraftingCompass',
@@ -152,7 +158,7 @@ const content = {
     ctaButton: "Obtener descuento",
     couponCode: "DEVMARK",
     copyButton: "Copiar código",
-    copiedButton: "¡Copiado!",
+    copiedButton: "¡Código copiado!",
     discountText: "20% de descuento",
     referralLink: "https://hostinger.com?REFERRALCODE=JAIMETRDEV"
   },
@@ -196,7 +202,7 @@ const content = {
         avatar: "CR",
         image: "/testimonials/uifaces-human-avatar.jpg",
         hint: "man portrait",
-        quote: "DevMark transformó nuestra presencia en línea. Su conocimiento del mercado internacional es inigualable. ¡Muy recomendados!"
+        quote: "DEVMARK transformó nuestra presencia en línea. Su conocimiento del mercado internacional es inigualable. ¡Muy recomendados!"
       },
       {
         name: "John Smith",
@@ -296,45 +302,76 @@ const content = {
     messagePlaceholder: "Cuéntanos sobre tu proyecto...",
     submitButton: "Enviar mensaje",
     scheduleButton: "Agendar reunión por Meet",
-    quoteButton: "Cotiza tu proyecto con nuestra IA"
+    quoteButton: "Cotiza con nuestra IA"
   },
   footer: {
-    copyright: "DevMark. Todos los derechos reservados."
+    copyright: "DEVMARK. Todos los derechos reservados."
   }
 } as const;
 
- 
+async function FeaturedProjectsSection() {
+  const projects = await getProjects('es');
+  // Prioriza los marcados como favoritos en Supabase; si hay muy pocos,
+  // completa con el resto para no dejar el carrusel vacío.
+  const featured = projects.filter(p => p.isFeatured);
+  const displayProjects = featured.length >= 3 ? featured : projects;
+  return (
+    <FeaturedProjectsCarousel
+      projects={displayProjects}
+      lang="es"
+      title="Proyectos destacados"
+      subtitle="Conoce algunos de nuestros mejores trabajos"
+      viewMoreText="Ver mas proyectos"
+      statsLabel="PROYECTOS"
+      statsNumber="+140"
+      statsDescription="Experiencia continua en proyectos personales, agencias y como desarrollador autonomo."
+    />
+  );
+}
+
 export default function Home() {
-  const projects = getProjects('es');
-   
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
       <Header {...content.header} />
       <main>
         <Hero {...content.hero} />
-        <ClientLogos stats={content.hero.stats} clients={content.hero.clients} />
-        <Strategy {...content.strategy} />
+        <ScrollReveal>
+          <ClientLogos stats={content.hero.stats} clients={content.hero.clients} />
+        </ScrollReveal>
+        <ScrollReveal>
+          <Strategy {...content.strategy} />
+        </ScrollReveal>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-0 pt-0">
-            <Services {...content.services} />
+            <ScrollReveal>
+              <Services {...content.services} />
+            </ScrollReveal>
             <div>
-              <Advantages {...content.advantages} />
-              <FeaturedProjectsCarousel 
-                projects={projects}
-                lang="es"
-                title="Proyectos destacados"
-                subtitle="Conoce algunos de nuestros mejores trabajos"
-                viewMoreText="Ver mas proyectos"
-                statsLabel="PROYECTOS"
-                statsDescription="Experiencia continua en proyectos personales, agencias y como desarrollador autonomo."
-              />
+              <ScrollReveal>
+                <Advantages {...content.advantages} />
+              </ScrollReveal>
+              <ScrollReveal>
+                <Suspense fallback={<ProjectsSkeleton />}>
+                  <FeaturedProjectsSection />
+                </Suspense>
+              </ScrollReveal>
             </div>
-            <AdditionalServices {...content.additionalServices} />
-            <Hosting {...content.hosting} />
-            <Testimonials {...content.testimonials} />
-            <Process {...content.process} />
-            <Contact {...content.contact} />
+            <ScrollReveal>
+              <AdditionalServices {...content.additionalServices} />
+            </ScrollReveal>
+            <ScrollReveal>
+              <Hosting {...content.hosting} />
+            </ScrollReveal>
+            <ScrollReveal>
+              <Testimonials {...content.testimonials} />
+            </ScrollReveal>
+            <ScrollReveal>
+              <Process {...content.process} />
+            </ScrollReveal>
+            <ScrollReveal>
+              <Contact {...content.contact} />
+            </ScrollReveal>
           </div>
         </div>
       </main>

@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { AnimatedBackground } from '@/components/home/animated-background';
 import { Footer } from '@/components/home/footer';
 import { Header } from '@/components/home/header';
-import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { getPosts } from '@/data/blog-posts';
 import { format } from 'date-fns';
@@ -14,7 +13,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { Calendar, ArrowRight, Bot, ShoppingCart, Code, Globe, Search, Paintbrush, Zap } from 'lucide-react';
+import { Calendar, ArrowRight, Bot, Code, Globe, Search, Paintbrush, Zap } from 'lucide-react';
 
 const POSTS_PER_PAGE = 9;
 
@@ -35,7 +34,7 @@ const headerContent = {
 };
 
 const footerContent = {
-  copyright: 'DevMark. All rights reserved.',
+  copyright: 'DEVMARK. All rights reserved.',
 };
 
 const curatedTags = ['Web Development', 'Custom Software', 'SEO', 'UI/UX Design', 'Digital Marketing', 'Automation'];
@@ -67,13 +66,19 @@ export default function BlogPage() {
       <AnimatedBackground />
       <Header {...headerContent} />
       <main>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
-          <header className="text-center mb-16">
-            <Badge variant="outline" className="text-primary border-primary/50 mb-4">Our Latest Blogs</Badge>
-            <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight text-gradient">
-              DevMark Blog
+        <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
+          <div className="absolute top-16 right-0 w-72 h-72 bg-brand-blue/15 rounded-full blur-[110px] pointer-events-none" />
+          <div className="absolute top-64 left-0 w-64 h-64 bg-brand-lavender/40 rounded-full blur-[100px] pointer-events-none" />
+
+          <header className="relative text-center mb-16">
+            <div className="inline-flex items-center gap-2.5 px-4 py-2.5 mb-5 rounded-2xl bg-brand-lavender/80 backdrop-blur-md text-brand-navy border border-brand-lavender/50 shadow-lg shadow-brand-blue/15 animate-fade-in-up">
+              <Globe className="w-4 h-4 text-brand-blue shrink-0" />
+              <span className="font-medium text-[11px] sm:text-sm tracking-wider uppercase">Our latest blogs</span>
+            </div>
+            <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight text-gradient animate-fade-in-up stagger-1">
+              <span className="font-logo">DEVMARK</span> Blog
             </h1>
-            <p className="max-w-2xl mx-auto mt-4 text-lg text-muted-foreground">
+            <p className="max-w-2xl mx-auto mt-4 text-lg text-muted-foreground animate-fade-in-up stagger-2">
               Explore our articles on web development, software, SEO, and the latest tech trends.
             </p>
           </header>
@@ -116,13 +121,13 @@ export default function BlogPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {postsToShow.map((post) => (
               <Link key={post.slug} href={`/en/blog/${post.slug}`} className="group">
-                <Card className="overflow-hidden h-full flex flex-col bg-primary/5 backdrop-blur-sm border-primary/10 transition-all duration-300 hover:shadow-2xl hover:border-primary/30">
-                  <div className="relative h-52 w-full">
+                <Card className="overflow-hidden h-full flex flex-col bg-white/70 backdrop-blur-md border border-white/60 rounded-3xl shadow-sm transition-all duration-300 hover:border-brand-blue/30 hover:shadow-xl hover:shadow-brand-blue/15 hover:-translate-y-1">
+                  <div className="relative h-52 w-full bg-gradient-to-br from-brand-light via-brand-lavender/40 to-white p-6">
                     <Image
                       src={post.image}
                       alt={post.title}
                       fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
                       data-ai-hint={post.imageHint}
                     />
                   </div>
@@ -148,14 +153,14 @@ export default function BlogPage() {
           </div>
            {visiblePosts < filteredPosts.length && (
             <div className="mt-12 text-center">
-              <Button onClick={() => setVisiblePosts(prev => prev + POSTS_PER_PAGE)}>
+              <Button onClick={() => setVisiblePosts(prev => prev + POSTS_PER_PAGE)} className="h-[52px] px-8 rounded-2xl bg-brand-blue hover:bg-brand-navy-dark text-white">
                 Load More
               </Button>
             </div>
           )}
         </div>
       </main>
-      <Footer copyright={footerContent.copyright} />
+      <Footer lang="en" copyright={footerContent.copyright} />
     </div>
   );
 }

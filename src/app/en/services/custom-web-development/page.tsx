@@ -6,6 +6,28 @@ import { ServiceMethodology } from '@/components/home/service-methodology';
 import { Pricing } from '@/components/home/pricing';
 import { Contact } from '@/components/home/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Custom Web Development Services for Your Business',
+  description: 'We create unique, high-performance websites tailored to your business in Peru. From concept to launch, we guide you through every step of the project.',
+  alternates: {
+    canonical: 'https://devmarkpe.com/en/services/custom-web-development',
+    languages: {
+      es: 'https://devmarkpe.com/servicios/desarrollo-web-a-medida',
+      en: 'https://devmarkpe.com/en/services/custom-web-development',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://devmarkpe.com/en/services/custom-web-development',
+    title: 'Custom Web Development | Devmark Peru',
+    description: 'We create unique, high-performance websites tailored to your business.',
+    siteName: 'Devmark',
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Custom web development - DEVMARK' }],
+  },
+};
 
 const headerContent = {
   lang: 'en' as const,
@@ -16,13 +38,13 @@ const headerContent = {
 };
 
 const heroContent = {
-  badge: "Our Process",
+  badge: "Our process",
   title: "Custom web development",
   description: "We create unique, high-performance websites that are perfectly tailored to your business needs. From concept to launch, we accompany you every step of the way.",
   lang: 'en' as const,
   form: {
     title: 'Tell us about your project',
-    firstNameLabel: 'First Name',
+    firstNameLabel: 'First name',
     firstNamePlaceholder: 'Your first name',
     emailLabel: 'Email',
     emailPlaceholder: 'your@email.com',
@@ -111,7 +133,7 @@ const pricingContent = {
         "Payment integrations",
         "24/7 support"
       ],
-      buttonText: "Contact Us",
+      buttonText: "Contact us",
       priceId: ""
     }
   ]
@@ -127,31 +149,94 @@ const contactContent = {
   phoneLabel: "Phone:",
   phone: "+51 975 646 074",
   timeZoneLabel: "Schedule:",
-  formTitle: "Contact Form",
+  formTitle: "Contact form",
   formDescription: "Send us a message and let's start building something amazing together.",
-  firstNameLabel: "First Name",
+  firstNameLabel: "First name",
   firstNamePlaceholder: "Your first name",
-  lastNameLabel: "Last Name",
+  lastNameLabel: "Last name",
   lastNamePlaceholder: "Your last name",
-  emailFormLabel: "Email Address",
+  emailFormLabel: "Email address",
   emailPlaceholder: "your@email.com",
   phoneFormLabel: "Phone",
   phonePlaceholder: "Your phone number",
   messageLabel: "Message",
   messagePlaceholder: "Tell us about your project...",
-  submitButton: "Send Message",
+  submitButton: "Send message",
   scheduleButton: "Schedule a meeting with Meet",
-  quoteButton: "Quote your Project with our AI"
+  quoteButton: "Quote your project with our AI"
 };
 
 const footerContent = {
-  copyright: "DevMark. All rights reserved."
+  copyright: "DEVMARK. All rights reserved."
 };
 
 export default function CustomWebDevelopmentPage() {
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Custom web development",
+            "description": "We create unique, high-performance websites that are perfectly tailored to your business needs. From concept to launch, we accompany you every step of the way.",
+            "provider": {
+              "@type": "Organization",
+              "name": "Devmark",
+              "url": "https://devmarkpe.com"
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Lima"
+              },
+              {
+                "@type": "Country",
+                "name": "Peru"
+              }
+            ],
+            "url": "https://devmarkpe.com/en/services/custom-web-development",
+            "inLanguage": "en-US"
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How long does it take to develop a custom website?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Development time varies depending on the complexity of the project, but generally ranges from 4 to 12 weeks. We will provide you with a detailed timeline at the beginning of the project."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What kind of support do you offer after launch?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We offer ongoing maintenance and support plans to ensure your website stays up-to-date, secure, and performing optimally."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can you integrate my site with other platforms?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Of course! We specialize in integrating with a wide variety of systems, including CRMs, ERPs, payment systems, and more, to centralize your operations."
+                }
+              }
+            ]
+          }),
+        }}
+      />
       <Header {...headerContent} />
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
@@ -176,7 +261,7 @@ export default function CustomWebDevelopmentPage() {
           <Contact {...contactContent} />
         </div>
       </main>
-      <Footer copyright={footerContent.copyright} />
+      <Footer lang="en" copyright={footerContent.copyright} />
     </div>
   );
 }

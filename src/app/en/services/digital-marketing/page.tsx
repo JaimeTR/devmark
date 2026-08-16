@@ -6,6 +6,28 @@ import { ServiceMethodology } from '@/components/home/service-methodology';
 import { Pricing } from '@/components/home/pricing';
 import { Contact } from '@/components/home/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Digital Marketing Strategies to Grow Your Sales',
+  description: 'Comprehensive digital marketing strategies to increase your online visibility, attract potential customers, and boost your sales across Peru.',
+  alternates: {
+    canonical: 'https://devmarkpe.com/en/services/digital-marketing',
+    languages: {
+      es: 'https://devmarkpe.com/servicios/marketing-digital',
+      en: 'https://devmarkpe.com/en/services/digital-marketing',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://devmarkpe.com/en/services/digital-marketing',
+    title: 'Digital Marketing | Devmark Peru',
+    description: 'Comprehensive digital marketing strategies to boost your visibility and online sales.',
+    siteName: 'Devmark',
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Digital marketing - DEVMARK' }],
+  },
+};
 
 const headerContent = {
   lang: 'en' as const,
@@ -16,13 +38,13 @@ const headerContent = {
 };
 
 const heroContent = {
-  badge: "Growth and Acquisition",
+  badge: "Growth and acquisition",
   title: "Digital marketing",
   description: "We design and implement comprehensive digital marketing strategies to increase your visibility, attract potential customers, and boost your online sales.",
   lang: 'en' as const,
   form: {
     title: 'Tell us about your project',
-    firstNameLabel: 'First Name',
+    firstNameLabel: 'First name',
     firstNamePlaceholder: 'Your first name',
     emailLabel: 'Email',
     emailPlaceholder: 'your@email.com',
@@ -115,7 +137,7 @@ const pricingContent = {
           "Advanced analytics",
           "24/7 support"
         ],
-        buttonText: "Contact Us",
+        buttonText: "Contact us",
         priceId: ""
       }
     ]
@@ -131,31 +153,94 @@ const contactContent = {
     phoneLabel: "Phone:",
     phone: "+51 975 646 074",
     timeZoneLabel: "Schedule:",
-    formTitle: "Contact Form",
+    formTitle: "Contact form",
     formDescription: "Send us a message and let's start building something amazing together.",
-    firstNameLabel: "First Name",
+    firstNameLabel: "First name",
     firstNamePlaceholder: "Your first name",
-    lastNameLabel: "Last Name",
+    lastNameLabel: "Last name",
     lastNamePlaceholder: "Your last name",
-    emailFormLabel: "Email Address",
+    emailFormLabel: "Email address",
     emailPlaceholder: "your@email.com",
     phoneFormLabel: "Phone",
     phonePlaceholder: "Your phone number",
     messageLabel: "Message",
     messagePlaceholder: "Tell us about your project...",
-    submitButton: "Send Message",
+    submitButton: "Send message",
     scheduleButton: "Schedule a meeting with Meet",
-    quoteButton: "Quote your Project with our AI"
+    quoteButton: "Quote your project with our AI"
 };
 
 const footerContent = {
-    copyright: "DevMark. All rights reserved."
+    copyright: "DEVMARK. All rights reserved."
 };
 
 export default function DigitalMarketingPage() {
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Digital marketing",
+            "description": "We design and implement comprehensive digital marketing strategies to increase your visibility, attract potential customers, and boost your online sales.",
+            "provider": {
+              "@type": "Organization",
+              "name": "Devmark",
+              "url": "https://devmarkpe.com"
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Lima"
+              },
+              {
+                "@type": "Country",
+                "name": "Peru"
+              }
+            ],
+            "url": "https://devmarkpe.com/en/services/digital-marketing",
+            "inLanguage": "en-US"
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How much should I invest in online advertising?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The investment depends on your goals, your industry, and the competition. We can start with a modest budget to validate channels and then scale the campaigns that show the best performance."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How soon will I see results?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Advertising campaigns can generate short-term results (days or weeks), while other strategies like SEO or content marketing require a medium- to long-term vision to consolidate."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What metrics do you use to measure success?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We focus on the metrics that really matter to your business, such as Customer Acquisition Cost (CAC), Return on Advertising Spend (ROAS), conversion rate, and customer lifetime value (LTV)."
+                }
+              }
+            ]
+          }),
+        }}
+      />
       <Header {...headerContent} />
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
@@ -180,7 +265,7 @@ export default function DigitalMarketingPage() {
             <Contact {...contactContent} />
         </div>
       </main>
-      <Footer copyright={footerContent.copyright} />
+      <Footer lang="en" copyright={footerContent.copyright} />
     </div>
   );
 }

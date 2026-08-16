@@ -62,7 +62,7 @@ export function Strategy({
         <div className="flex justify-center mt-10">
           <Link
             href="#contact"
-            className="inline-flex items-center gap-2.5 h-[52px] px-8 rounded-full bg-brand-lavender hover:bg-brand-blue/10 text-brand-navy font-semibold shadow-xl shadow-brand-blue/10 hover:shadow-brand-blue/20 transition-all duration-300 hover:-translate-y-1 group"
+            className="inline-flex items-center gap-2.5 h-[52px] px-8 rounded-2xl border-2 border-transparent bg-brand-blue hover:bg-brand-navy-dark text-white font-semibold shadow-xl shadow-brand-blue/30 hover:shadow-brand-blue/40 transition-all duration-300 hover:-translate-y-1 group"
           >
             {ctaPrimary}
             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

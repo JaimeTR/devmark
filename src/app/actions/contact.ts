@@ -1,7 +1,7 @@
 'use server';
 
 import { z } from 'zod';
-import nodemailer from 'nodemailer';
+import { buildTransporter, escapeHtml, ADMIN_NOTIFICATION_EMAILS } from '@/app/actions/quoter-shared';
 
 const contactSchema = z.object({
   firstName: z.string().min(2, 'El nombre debe tener al menos 2 caracteres').trim(),
@@ -10,15 +10,6 @@ const contactSchema = z.object({
   phone: z.string().min(8, 'El teléfono debe tener al menos 8 caracteres').trim(),
   message: z.string().min(10, 'El mensaje debe tener al menos 10 caracteres').trim(),
 });
-
-function escapeHtml(value: string): string {
-  return value
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
 
 // Evita inyección de cabeceras al construir asuntos de correo (CR/LF).
 function sanitizeHeader(value: string): string {
@@ -76,31 +67,12 @@ export async function sendContactEmail(
       };
     }
 
-    const port = parseInt(process.env.SMTP_PORT || '587');
-    const secure = port === 465; // Titan usa 465 con SSL
-
     // Configurar transporte SMTP (Titan/Hostinger)
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || 'smtp.hostinger.com',
-      port,
-      secure,
-      auth: {
-        user: process.env.SMTP_EMAIL,
-        pass: process.env.SMTP_PASSWORD,
-      },
-      tls: {
-        rejectUnauthorized: false,
-        minVersion: 'TLSv1.2',
-      },
-      connectionTimeout: 10000,
-      greetingTimeout: 10000,
-      socketTimeout: 20000,
-    });
+    const transporter = buildTransporter();
 
     // Verificar la conexión con mejor manejo de errores
     try {
       await transporter.verify();
-      console.log('Conexión SMTP verificada correctamente');
     } catch (verifyError: any) {
       console.error('Error al verificar conexión SMTP:', verifyError.message);
       throw new Error(`Error de conexión SMTP: ${verifyError.message}`);
@@ -111,7 +83,7 @@ export async function sendContactEmail(
     // Email al administrador
     await transporter.sendMail({
       from: process.env.SMTP_EMAIL,
-      to: 'correo@devmarkpe.com',
+      to: ADMIN_NOTIFICATION_EMAILS,
       subject: `🔔 Nuevo mensaje de contacto - ${sanitizeHeader(firstName)} ${sanitizeHeader(lastName)}`,
       html: `
         <!DOCTYPE html>
@@ -124,7 +96,7 @@ export async function sendContactEmail(
           <div style="max-width: 600px; margin: 0 auto; background-color: #0a0a1a;">
             <!-- Header con gradiente -->
             <div style="background: linear-gradient(135deg, #0066FF 0%, #3b82f6 50%, #0066FF 100%); padding: 40px 30px; text-align: center; border-radius: 0;">
-              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 700; letter-spacing: -0.5px;">DevMark</h1>
+              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 700; letter-spacing: -0.5px;">DEVMARK</h1>
               <p style="margin: 10px 0 0 0; color: rgba(255, 255, 255, 0.9); font-size: 16px;">Nuevo Mensaje de Contacto</p>
             </div>
             
@@ -170,7 +142,7 @@ export async function sendContactEmail(
             
             <!-- Footer -->
             <div style="background-color: #0a0a1a; padding: 30px; text-align: center; border-top: 1px solid #2a2a3e;">
-              <p style="margin: 0 0 5px 0; color: #6b7280; font-size: 13px;">DevMark - Desarrollo Web & Soluciones Digitales</p>
+              <p style="margin: 0 0 5px 0; color: #6b7280; font-size: 13px;">DEVMARK - Desarrollo Web & Soluciones Digitales</p>
               <p style="margin: 0; color: #4b5563; font-size: 12px;">Este correo fue generado automáticamente desde devmarkpe.com</p>
             </div>
           </div>
@@ -183,7 +155,7 @@ export async function sendContactEmail(
     await transporter.sendMail({
       from: process.env.SMTP_EMAIL,
       to: email,
-      subject: '✅ ¡Hemos recibido tu mensaje! - DevMark',
+      subject: '✅ ¡Hemos recibido tu mensaje! - DEVMARK',
       html: `
         <!DOCTYPE html>
         <html lang="es">
@@ -213,7 +185,7 @@ export async function sendContactEmail(
               </p>
               
               <p style="margin: 0 0 30px 0; color: #4b5563; font-size: 16px; line-height: 1.6;">
-                Gracias por ponerte en contacto con <strong style="color: #0066FF;">DevMark</strong>. Tu mensaje es muy importante para nosotros y ya hemos comenzado a revisarlo.
+                Gracias por ponerte en contacto con <strong style="color: #0066FF;">DEVMARK</strong>. Tu mensaje es muy importante para nosotros y ya hemos comenzado a revisarlo.
               </p>
               
               <!-- Tarjeta destacada -->
@@ -258,15 +230,15 @@ export async function sendContactEmail(
                   <tr>
                     <td style="padding: 12px; text-align: center; width: 33.33%;">
                       <div style="font-size: 32px; margin-bottom: 8px;">⚡</div>
-                      <p style="margin: 0; color: #4b5563; font-size: 13px; font-weight: 500;">Respuesta Rápida</p>
+                      <p style="margin: 0; color: #4b5563; font-size: 13px; font-weight: 500;">Respuesta rápida</p>
                     </td>
                     <td style="padding: 12px; text-align: center; width: 33.33%;">
                       <div style="font-size: 32px; margin-bottom: 8px;">🎯</div>
-                      <p style="margin: 0; color: #4b5563; font-size: 13px; font-weight: 500;">Soluciones Personalizadas</p>
+                      <p style="margin: 0; color: #4b5563; font-size: 13px; font-weight: 500;">Soluciones personalizadas</p>
                     </td>
                     <td style="padding: 12px; text-align: center; width: 33.33%;">
                       <div style="font-size: 32px; margin-bottom: 8px;">💼</div>
-                      <p style="margin: 0; color: #4b5563; font-size: 13px; font-weight: 500;">Expertos Certificados</p>
+                      <p style="margin: 0; color: #4b5563; font-size: 13px; font-weight: 500;">Expertos certificados</p>
                     </td>
                   </tr>
                 </table>
@@ -280,7 +252,7 @@ export async function sendContactEmail(
             
             <!-- Footer -->
             <div style="background-color: #f9fafb; padding: 30px; text-align: center; border-top: 1px solid #e5e7eb;">
-              <h2 style="margin: 0 0 15px 0; color: #0066FF; font-size: 24px; font-weight: 700; letter-spacing: -0.5px;">DevMark</h2>
+              <h2 style="margin: 0 0 15px 0; color: #0066FF; font-size: 24px; font-weight: 700; letter-spacing: -0.5px;">DEVMARK</h2>
               <p style="margin: 0 0 10px 0; color: #6b7280; font-size: 14px; line-height: 1.5;">
                 Desarrollo Web & Soluciones Digitales<br>
                 Transformamos ideas en experiencias digitales excepcionales
@@ -291,7 +263,7 @@ export async function sendContactEmail(
                 <a href="https://devmarkpe.com/portfolio" style="color: #0066FF; text-decoration: none; margin: 0 10px; font-size: 13px; font-weight: 500;">Portfolio</a>
               </div>
               <p style="margin: 15px 0 0 0; color: #9ca3af; font-size: 12px;">
-                © 2026 DevMark. Todos los derechos reservados.
+                © 2026 DEVMARK. Todos los derechos reservados.
               </p>
             </div>
           </div>

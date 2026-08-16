@@ -6,6 +6,28 @@ import { ServiceMethodology } from '@/components/home/service-methodology';
 import { Pricing } from '@/components/home/pricing';
 import { Contact } from '@/components/home/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Diseño UI/UX Centrado en el Usuario para tu Producto',
+  description: 'Interfaces intuitivas y atractivas centradas en el usuario. Investigamos, prototipamos y diseñamos productos digitales que convierten visitas en clientes.',
+  alternates: {
+    canonical: 'https://devmarkpe.com/servicios/diseno-ui-ux',
+    languages: {
+      es: 'https://devmarkpe.com/servicios/diseno-ui-ux',
+      en: 'https://devmarkpe.com/en/services/ui-ux-design',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'es_PE',
+    url: 'https://devmarkpe.com/servicios/diseno-ui-ux',
+    title: 'Diseño UI/UX | Devmark Perú',
+    description: 'Interfaces intuitivas y atractivas centradas en el usuario para productos digitales que enamoran.',
+    siteName: 'Devmark',
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Diseño UI/UX - DEVMARK' }],
+  },
+};
 
 const headerContent = {
   lang: 'es' as const,
@@ -127,7 +149,7 @@ const contactContent = {
     phoneLabel: "Teléfono:",
     phone: "+51 975 646 074",
     timeZoneLabel: "Horario:",
-    formTitle: "Formulario de Contacto",
+    formTitle: "Formulario de contacto",
     formDescription: "Envíanos un mensaje y empecemos a construir algo increíble juntos.",
     firstNameLabel: "Nombres",
     firstNamePlaceholder: "Tus nombres",
@@ -141,17 +163,80 @@ const contactContent = {
     messagePlaceholder: "Cuéntanos sobre tu proyecto...",
     submitButton: "Enviar Mensaje",
     scheduleButton: "Agendar reunión por Meet",
-    quoteButton: "Cotiza tu Proyecto con nuestra IA"
+    quoteButton: "Cotiza tu proyecto con IA"
 };
 
 const footerContent = {
-    copyright: "DevMark. Todos los derechos reservados."
+    copyright: "DEVMARK. Todos los derechos reservados."
 };
 
 export default function UiUxDesignPage() {
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Diseño UI/UX",
+            "description": "Creamos interfaces intuitivas y atractivas centradas en el usuario. Desde la investigación inicial hasta los prototipos interactivos y el diseño visual final, nos aseguramos de que tu producto sea fácil de usar y visualmente impactante.",
+            "provider": {
+              "@type": "Organization",
+              "name": "Devmark",
+              "url": "https://devmarkpe.com"
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Lima"
+              },
+              {
+                "@type": "Country",
+                "name": "Peru"
+              }
+            ],
+            "url": "https://devmarkpe.com/servicios/diseno-ui-ux",
+            "inLanguage": "es-PE"
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "¿Cuál es la diferencia entre UI y UX?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "UX (User Experience) se centra en la experiencia general del usuario y cómo se siente al interactuar con el producto. UI (User Interface) se enfoca en el diseño visual y los elementos interactivos de la interfaz. Ambos son cruciales para un producto exitoso."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Trabajan con sistemas de diseño existentes?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Sí, podemos trabajar con tu sistema de diseño actual para mantener la consistencia de tu marca o podemos crear uno nuevo desde cero si es necesario."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Qué herramientas de diseño utilizan?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Utilizamos herramientas estándar de la industria como Figma, Sketch y Adobe XD para el diseño de interfaces, prototipado y colaboración con el equipo de desarrollo."
+                }
+              }
+            ]
+          }),
+        }}
+      />
       <Header {...headerContent} />
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">

@@ -18,15 +18,21 @@ export const supabase = supabaseUrl && supabaseAnonKey
 export interface QuoteRecord {
   id?: string;
   created_at?: string;
+  responsible_name: string;
+  company_name?: string;
   project_name: string;
   project_type: string;
+  project_type_other?: string;
   features: string[];
   design: string;
+  timeline: string;
+  currency: string;
+  currency_other?: string;
   additional_info?: string;
   contact_email: string;
   lang: string;
   summary: string;
-  scope: string[];
+  items: { title: string; description: string; price: string }[];
   price: string;
   recommendations: string;
   payment_methods: string;

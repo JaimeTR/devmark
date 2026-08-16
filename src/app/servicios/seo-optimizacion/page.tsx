@@ -146,7 +146,7 @@ const contactContent = {
     phoneLabel: "Teléfono:",
     phone: "+51 975 646 074",
     timeZoneLabel: "Horario:",
-    formTitle: "Formulario de Contacto",
+    formTitle: "Formulario de contacto",
     formDescription: "Envíanos un mensaje y empecemos a construir algo increíble juntos.",
     firstNameLabel: "Nombres",
     firstNamePlaceholder: "Tus nombres",
@@ -160,17 +160,80 @@ const contactContent = {
     messagePlaceholder: "Cuéntanos sobre tu proyecto...",
     submitButton: "Enviar Mensaje",
     scheduleButton: "Agendar reunión por Meet",
-    quoteButton: "Cotiza tu Proyecto con nuestra IA"
+    quoteButton: "Cotiza tu proyecto con IA"
 };
 
 const footerContent = {
-    copyright: "DevMark. Todos los derechos reservados."
+    copyright: "DEVMARK. Todos los derechos reservados."
 };
 
 export default function SeoOptimizationPage() {
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "SEO y optimización web",
+            "description": "Aumentamos tu visibilidad en los motores de búsqueda, atraemos tráfico orgánico de calidad y mejoramos la tasa de conversión de tu sitio web.",
+            "provider": {
+              "@type": "Organization",
+              "name": "Devmark",
+              "url": "https://devmarkpe.com"
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Lima"
+              },
+              {
+                "@type": "Country",
+                "name": "Peru"
+              }
+            ],
+            "url": "https://devmarkpe.com/servicios/seo-optimizacion",
+            "inLanguage": "es-PE"
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "¿Cuándo empezaré a ver resultados del SEO?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "El SEO es una estrategia a medio-largo plazo. Generalmente, se pueden empezar a ver resultados significativos entre los 3 y 6 meses, aunque esto puede variar según la competitividad de tu sector."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Es el SEO una inversión única?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No, el SEO es un proceso continuo. Los algoritmos de los motores de búsqueda cambian constantemente y la competencia siempre está activa. Recomendamos un trabajo mensual para mantener y mejorar los resultados."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Garantizan la primera posición en Google?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Ninguna agencia de SEO seria puede garantizar la primera posición, ya que el algoritmo de Google es complejo y está fuera de nuestro control. Lo que sí garantizamos es un trabajo profesional, transparente y enfocado en mejorar tu visibilidad y tráfico de forma sostenible."
+                }
+              }
+            ]
+          }),
+        }}
+      />
       <Header {...headerContent} />
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">

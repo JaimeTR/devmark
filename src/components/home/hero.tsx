@@ -12,6 +12,7 @@ interface HeroProps {
   title: string;
   description: string;
   servicesButton: string;
+  servicesHref: string;
   contactButton: string;
   overlayItems: readonly string[];
 }
@@ -19,7 +20,7 @@ interface HeroProps {
 // One icon per value widget, in the order overlayItems ships them.
 const overlayIcons = [Award, Rocket];
 
-export function Hero({ badgeMessages, title, description, servicesButton, contactButton, overlayItems }: HeroProps) {
+export function Hero({ badgeMessages, title, description, servicesButton, servicesHref, contactButton, overlayItems }: HeroProps) {
   const [badgeIndex, setBadgeIndex] = useState(0);
 
   useEffect(() => {
@@ -47,28 +48,28 @@ export function Hero({ badgeMessages, title, description, servicesButton, contac
 
         {/* Left - Text content */}
         <div className="lg:col-span-6 space-y-8 text-center lg:text-left">
-          <div className="group inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-brand-lavender/80 backdrop-blur-md text-brand-navy border border-brand-lavender/50 shadow-lg shadow-brand-blue/15 hover:bg-brand-lavender hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brand-blue/25 transition-all duration-300 cursor-default">
+          <div className="group inline-flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-brand-lavender/80 backdrop-blur-md text-brand-navy border border-brand-lavender/50 shadow-lg shadow-brand-blue/15 hover:bg-brand-lavender hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brand-blue/25 transition-all duration-300 cursor-default animate-fade-in-up">
             <CodeXml className="w-5 h-5 text-brand-blue group-hover:rotate-12 transition-transform duration-300 shrink-0" />
             <span key={badgeIndex} className="font-medium text-[11px] sm:text-sm tracking-wider uppercase animate-fade-in-up">{badgeMessages[badgeIndex]}</span>
           </div>
 
-          <h1 className="font-medium text-4xl sm:text-6xl lg:text-7xl text-slate-950 leading-tight">
+          <h1 className="font-medium text-4xl sm:text-6xl lg:text-7xl text-slate-950 leading-tight animate-fade-in-up stagger-1">
             {title}
             <span className="inline-block w-4 h-4 rounded-full bg-brand-blue ml-2 animate-dot-jump" />
           </h1>
 
-          <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0">
+          <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 animate-fade-in-up stagger-2">
             {description}
           </p>
 
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
-            <Link href="#services" className="h-[52px] px-8 rounded-2xl border-2 border-transparent bg-brand-blue hover:bg-brand-navy-dark text-white font-semibold flex items-center gap-2.5 shadow-xl shadow-brand-blue/30 hover:shadow-brand-blue/40 transition-all duration-300 hover:-translate-y-1 group">
+          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2 animate-fade-in-up stagger-3">
+            <Link href={servicesHref} className="h-[52px] px-8 rounded-2xl border-2 border-transparent bg-brand-blue hover:bg-brand-navy-dark text-white font-semibold flex items-center gap-2.5 shadow-xl shadow-brand-blue/30 hover:shadow-brand-blue/40 transition-all duration-300 hover:-translate-y-1 group">
               {servicesButton}
               <Sparkles className="w-4 h-4 text-brand-lavender group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 ease-out" />
             </Link>
             <button
               type="button"
-              className="h-[52px] px-8 rounded-2xl border-2 border-brand-blue hover:border-brand-blue-darker hover:bg-brand-blue/5 bg-white text-brand-blue hover:text-brand-blue-darker font-semibold flex items-center justify-center gap-2 shadow-xl shadow-brand-blue/10 hover:shadow-xl hover:shadow-brand-blue/20 transition-all duration-300 hover:-translate-y-1 group"
+              className="h-[52px] px-8 rounded-2xl border-2 border-brand-blue hover:border-brand-blue-darker hover:bg-transparent bg-white text-brand-blue hover:text-brand-blue-darker font-semibold flex items-center justify-center gap-2 shadow-xl shadow-brand-blue/10 hover:shadow-xl hover:shadow-brand-blue/20 transition-all duration-300 hover:-translate-y-1 group"
               data-cal-namespace="30min"
               data-cal-link="devmark.pe/30min"
               data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"light"}'

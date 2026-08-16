@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { getPosts, getTranslatedSlug } from '@/data/blog-posts';
 
 const esServices = [
   'desarrollo-web-a-medida',
@@ -128,6 +129,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
+    {
+      url: `${baseUrl}/nosotros`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+      alternates: {
+        languages: {
+          es: `${baseUrl}/nosotros`,
+          en: `${baseUrl}/en/about`,
+        },
+      },
+    },
   ];
 
   const esServiceRoutes: MetadataRoute.Sitemap = esServices.map((slug) => ({
@@ -253,12 +266,65 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
+    {
+      url: `${baseUrl}/en/about`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+      alternates: {
+        languages: {
+          es: `${baseUrl}/nosotros`,
+          en: `${baseUrl}/en/about`,
+        },
+      },
+    },
   ];
+
+  const esPosts = getPosts('es');
+  const enPosts = getPosts('en');
+
+  const esBlogRoutes: MetadataRoute.Sitemap = esPosts.map((post) => {
+    const enSlug = getTranslatedSlug(post.slug, 'es');
+    return {
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: new Date(post.date),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+      alternates: enSlug
+        ? {
+            languages: {
+              es: `${baseUrl}/blog/${post.slug}`,
+              en: `${baseUrl}/en/blog/${enSlug}`,
+            },
+          }
+        : undefined,
+    };
+  });
+
+  const enBlogRoutes: MetadataRoute.Sitemap = enPosts.map((post) => {
+    const esSlug = getTranslatedSlug(post.slug, 'en');
+    return {
+      url: `${baseUrl}/en/blog/${post.slug}`,
+      lastModified: new Date(post.date),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+      alternates: esSlug
+        ? {
+            languages: {
+              es: `${baseUrl}/blog/${esSlug}`,
+              en: `${baseUrl}/en/blog/${post.slug}`,
+            },
+          }
+        : undefined,
+    };
+  });
 
   return [
     ...mainPages,
     ...esServiceRoutes,
+    ...esBlogRoutes,
     ...enMainPages,
     ...enServiceRoutes,
+    ...enBlogRoutes,
   ];
 }

@@ -1,7 +1,7 @@
 'use server';
 
-import nodemailer from 'nodemailer';
 import { z } from 'zod';
+import { buildTransporter, escapeHtml, ADMIN_NOTIFICATION_EMAILS } from '@/app/actions/quoter-shared';
 
 const leadSchema = z.object({
   service: z.string().min(2, 'Selecciona un servicio').trim(),
@@ -20,41 +20,6 @@ export type LeadResult = {
   success: boolean;
   message: string;
 };
-
-function escapeHtml(value: string): string {
-  return value
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-
-function buildTransporter() {
-  if (!process.env.SMTP_EMAIL || !process.env.SMTP_PASSWORD) {
-    throw new Error('Faltan credenciales SMTP');
-  }
-
-  const port = parseInt(process.env.SMTP_PORT || '587', 10);
-  const isSecure = port === 465; // Titan usa 465 con SSL
-
-  return nodemailer.createTransport({
-    host: process.env.SMTP_HOST || 'smtp.hostinger.com',
-    port,
-    secure: isSecure,
-    auth: {
-      user: process.env.SMTP_EMAIL,
-      pass: process.env.SMTP_PASSWORD,
-    },
-    tls: {
-      rejectUnauthorized: false,
-      minVersion: 'TLSv1.2',
-    },
-    connectionTimeout: 10000,
-    greetingTimeout: 10000,
-    socketTimeout: 20000,
-  });
-}
 
 function leadHtml(payload: LeadPayload) {
   const { service, details, email, phone, name, transcript } = payload;
@@ -89,7 +54,7 @@ function leadHtml(payload: LeadPayload) {
       </div>` : ''}
     </div>
     <div style="background:#0a0a1a;padding:22px;text-align:center;border-top:1px solid #2a2a3e;">
-      <p style="margin:0;color:#6b7280;font-size:12px;">DevMark · Lead generado automáticamente desde devmarkpe.com</p>
+      <p style="margin:0;color:#6b7280;font-size:12px;">DEVMARK · Lead generado automáticamente desde devmarkpe.com</p>
     </div>
   </div>
 </body>
@@ -132,7 +97,7 @@ export async function sendLeadFromChat(payload: LeadPayload): Promise<LeadResult
 
     await transporter.sendMail({
       from: process.env.SMTP_EMAIL,
-      to: 'correo@devmarkpe.com',
+      to: ADMIN_NOTIFICATION_EMAILS,
       subject: '🤖 Nuevo lead (chat sin IA)',
       html: leadHtml(result.data),
     });
@@ -140,7 +105,7 @@ export async function sendLeadFromChat(payload: LeadPayload): Promise<LeadResult
     await transporter.sendMail({
       from: process.env.SMTP_EMAIL,
       to: result.data.email,
-      subject: '✅ Recibimos tu consulta - DevMark',
+      subject: '✅ Recibimos tu consulta - DEVMARK',
       html: confirmationHtml(result.data.name),
     });
 
