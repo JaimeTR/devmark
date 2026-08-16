@@ -658,20 +658,20 @@ export function ProjectQuoter({ content }: ProjectQuoterProps) {
                     />
                   )}
 
-                  <div className={cn('flex items-center gap-3 pt-2', currentStep === 0 ? 'justify-center' : 'justify-between')}>
+                  <div className={cn('flex gap-3 pt-2', currentStep === 0 ? 'items-center justify-center' : isLastStep ? 'flex-col-reverse sm:flex-row sm:items-center sm:justify-between' : 'items-center justify-between')}>
                     {currentStep > 0 && (
                       <Button
                         type="button"
                         variant="outline"
                         onClick={goBack}
-                        className="h-[52px] px-6 rounded-2xl font-semibold text-sm"
+                        className={cn('h-[52px] px-6 rounded-2xl font-semibold text-sm', isLastStep && 'w-full sm:w-auto')}
                       >
                         {content.form.backButton} <ArrowLeft className="ml-2 h-4 w-4" />
                       </Button>
                     )}
 
                     {isLastStep ? (
-                      <Button type="submit" disabled={isPendingTransition} className={cn('h-[52px] px-8 rounded-2xl font-semibold text-sm border-2 border-transparent bg-brand-blue hover:bg-brand-navy-dark text-white shadow-xl shadow-brand-blue/30 hover:shadow-brand-blue/40 hover:-translate-y-1 transition-all duration-300', currentStep === 0 ? 'w-full sm:w-auto sm:px-16' : 'flex-1')}>
+                      <Button type="submit" disabled={isPendingTransition} className={cn('h-[52px] px-8 rounded-2xl font-semibold text-sm border-2 border-transparent bg-brand-blue hover:bg-brand-navy-dark text-white shadow-xl shadow-brand-blue/30 hover:shadow-brand-blue/40 hover:-translate-y-1 transition-all duration-300', currentStep === 0 ? 'w-full sm:w-auto sm:px-16' : 'w-full sm:flex-1')}>
                         {isPendingTransition ? (
                           <>
                             {content.form.submitButtonPending}
