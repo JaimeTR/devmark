@@ -48,52 +48,52 @@ function adminQuoteHtml(q: {
   return `<!DOCTYPE html>
 <html lang="es">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
-<body style="margin:0;padding:0;background:#0a0a1a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
-  <div style="max-width:640px;margin:0 auto;background:#0a0a1a;">
-    <div style="background:linear-gradient(135deg,#0066FF 0%,#3b82f6 60%,#0066FF 100%);padding:36px 28px;text-align:center;">
+<body style="margin:0;padding:0;background:#110C29;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <div style="max-width:640px;margin:0 auto;background:#110C29;">
+    <div style="background:linear-gradient(135deg,#3D34BC 0%,#5B53D0 60%,#3D34BC 100%);padding:36px 28px;text-align:center;">
       <h1 style="margin:0;color:#fff;font-size:26px;font-weight:700;letter-spacing:-0.4px;">Nueva cotización solicitada</h1>
       <p style="margin:10px 0 0;color:rgba(255,255,255,0.9);font-size:15px;">Propuesta generada por el cotizador con IA de DEVMARK</p>
     </div>
     <div style="background:#14141f;padding:32px 28px;">
-      <div style="background:linear-gradient(135deg,#0066FF15 0%,#3b82f615 100%);border-left:4px solid #0066FF;padding:18px;border-radius:10px;margin-bottom:22px;">
+      <div style="background:linear-gradient(135deg,#3D34BC15 0%,#5B53D015 100%);border-left:4px solid #3D34BC;padding:18px;border-radius:10px;margin-bottom:22px;">
         <p style="margin:0;color:#fff;font-size:17px;font-weight:600;">Nuevo lead capturado</p>
         <p style="margin:6px 0 0;color:#9ca3af;font-size:13px;">Contacta al cliente lo antes posible para maximizar conversión</p>
       </div>
       <div style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:22px;margin-bottom:18px;">
-        <h2 style="margin:0 0 14px;color:#0066FF;font-size:15px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;">Datos del lead</h2>
+        <h2 style="margin:0 0 14px;color:#3D34BC;font-size:15px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;">Datos del lead</h2>
         <p style="margin:0 0 8px;color:#d1d5db;font-size:15px;"><strong style="color:#9ca3af;text-transform:uppercase;font-size:13px;">Nombre:</strong> ${escapeHtml(q.responsibleName)}${q.companyName ? ` (${escapeHtml(q.companyName)})` : ''}</p>
         <p style="margin:0 0 8px;color:#d1d5db;font-size:15px;"><strong style="color:#9ca3af;text-transform:uppercase;font-size:13px;">Proyecto:</strong> ${escapeHtml(q.projectName)}</p>
         <p style="margin:0 0 8px;color:#d1d5db;font-size:15px;"><strong style="color:#9ca3af;text-transform:uppercase;font-size:13px;">Tipo:</strong> ${escapeHtml(q.projectType === 'other' && q.projectTypeOther ? `Otro: ${q.projectTypeOther}` : q.projectType)}</p>
         <p style="margin:0 0 8px;color:#d1d5db;font-size:15px;"><strong style="color:#9ca3af;text-transform:uppercase;font-size:13px;">Funcionalidades:</strong> ${q.features.length ? escapeHtml(q.features.join(', ')) : 'Sin especificar'}</p>
-        <p style="margin:0 0 8px;color:#d1d5db;font-size:15px;"><strong style="color:#9ca3af;text-transform:uppercase;font-size:13px;">Email de contacto:</strong> <a href="mailto:${escapeHtml(q.contactEmail)}" style="color:#0066FF;text-decoration:none;">${escapeHtml(q.contactEmail)}</a></p>
+        <p style="margin:0 0 8px;color:#d1d5db;font-size:15px;"><strong style="color:#9ca3af;text-transform:uppercase;font-size:13px;">Email de contacto:</strong> <a href="mailto:${escapeHtml(q.contactEmail)}" style="color:#3D34BC;text-decoration:none;">${escapeHtml(q.contactEmail)}</a></p>
         <p style="margin:0 0 8px;color:#d1d5db;font-size:15px;"><strong style="color:#9ca3af;text-transform:uppercase;font-size:13px;">Plazo deseado:</strong> ${escapeHtml(q.timeline)}</p>
         <p style="margin:0;color:#d1d5db;font-size:15px;"><strong style="color:#9ca3af;text-transform:uppercase;font-size:13px;">Moneda:</strong> ${escapeHtml(q.currency === 'other' && q.currencyOther ? `Otra: ${q.currencyOther}` : q.currency)}</p>
       </div>
       <div style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:22px;margin-bottom:18px;">
-        <h2 style="margin:0 0 14px;color:#0066FF;font-size:15px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;">Precio estimado</h2>
+        <h2 style="margin:0 0 14px;color:#3D34BC;font-size:15px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;">Precio estimado</h2>
         <p style="margin:0;color:#fff;font-size:22px;font-weight:700;">${escapeHtml(q.output.price)}</p>
       </div>
       <div style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:22px;margin-bottom:18px;">
-        <h2 style="margin:0 0 14px;color:#0066FF;font-size:15px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;">Resumen</h2>
+        <h2 style="margin:0 0 14px;color:#3D34BC;font-size:15px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;">Resumen</h2>
         <p style="margin:0;color:#d1d5db;font-size:15px;line-height:1.6;">${escapeHtml(q.output.summary)}</p>
       </div>
       <div style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:22px;margin-bottom:18px;">
-        <h2 style="margin:0 0 14px;color:#0066FF;font-size:15px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;">Alcance del proyecto</h2>
-        ${q.output.items.map((it) => `<div style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #2a2a3e;"><p style="margin:0 0 4px;color:#fff;font-size:14px;font-weight:700;">${escapeHtml(it.title)} <span style="color:#0066FF;font-weight:700;">— ${escapeHtml(it.price)}</span></p><p style="margin:0;color:#9ca3af;font-size:13px;line-height:1.5;">${escapeHtml(it.description)}</p></div>`).join('')}
+        <h2 style="margin:0 0 14px;color:#3D34BC;font-size:15px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;">Alcance del proyecto</h2>
+        ${q.output.items.map((it) => `<div style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #2a2a3e;"><p style="margin:0 0 4px;color:#fff;font-size:14px;font-weight:700;">${escapeHtml(it.title)} <span style="color:#3D34BC;font-weight:700;">— ${escapeHtml(it.price)}</span></p><p style="margin:0;color:#9ca3af;font-size:13px;line-height:1.5;">${escapeHtml(it.description)}</p></div>`).join('')}
       </div>
       <div style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:22px;margin-bottom:18px;">
-        <h2 style="margin:0 0 14px;color:#0066FF;font-size:15px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;">Recomendaciones</h2>
+        <h2 style="margin:0 0 14px;color:#3D34BC;font-size:15px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;">Recomendaciones</h2>
         <p style="margin:0;color:#d1d5db;font-size:15px;line-height:1.6;">${escapeHtml(q.output.recommendations)}</p>
       </div>
       <div style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:22px;">
-        <h2 style="margin:0 0 14px;color:#0066FF;font-size:15px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;">Métodos de pago</h2>
+        <h2 style="margin:0 0 14px;color:#3D34BC;font-size:15px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;">Métodos de pago</h2>
         <p style="margin:0;color:#d1d5db;font-size:15px;line-height:1.6;">${escapeHtml(q.output.paymentMethods)}</p>
       </div>
       <div style="margin-top:30px;text-align:center;">
-        <a href="mailto:${escapeHtml(q.contactEmail)}" style="display:inline-block;background:linear-gradient(135deg,#0066FF 0%,#3b82f6 100%);color:#fff;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;box-shadow:0 4px 15px rgba(0,102,255,.3);">Contactar al cliente →</a>
+        <a href="mailto:${escapeHtml(q.contactEmail)}" style="display:inline-block;background:linear-gradient(135deg,#3D34BC 0%,#5B53D0 100%);color:#fff;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;box-shadow:0 4px 15px rgba(61, 52, 188,.3);">Contactar al cliente →</a>
       </div>
     </div>
-    <div style="background:#0a0a1a;padding:22px;text-align:center;border-top:1px solid #2a2a3e;">
+    <div style="background:#110C29;padding:22px;text-align:center;border-top:1px solid #2a2a3e;">
       <p style="margin:0;color:#6b7280;font-size:12px;">DEVMARK · Cotización generada automáticamente desde devmarkpe.com</p>
     </div>
   </div>
@@ -122,30 +122,30 @@ function userQuoteHtml(q: { responsibleName: string; projectName: string; contac
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
 <body style="margin:0;padding:0;background:#f3f4f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
   <div style="max-width:640px;margin:0 auto;background:#fff;">
-    <div style="background:linear-gradient(135deg,#0066FF 0%,#3b82f6 60%,#0066FF 100%);padding:42px 28px;text-align:center;">
+    <div style="background:linear-gradient(135deg,#3D34BC 0%,#5B53D0 60%,#3D34BC 100%);padding:42px 28px;text-align:center;">
       <h1 style="margin:0;color:#fff;font-size:28px;font-weight:700;letter-spacing:-.3px;">${heading}</h1>
       <p style="margin:10px 0 0;color:rgba(255,255,255,0.9);font-size:16px;">${escapeHtml(q.projectName)}</p>
     </div>
     <div style="padding:30px 26px;">
       <p style="margin:0 0 20px;color:#1f2937;font-size:15px;line-height:1.6;">${escapeHtml(msg)}</p>
-      <div style="background:linear-gradient(135deg,#0066FF 0%,#3b82f6 100%);border-radius:16px;padding:26px;margin:24px 0;text-align:center;box-shadow:0 10px 30px rgba(0,102,255,.2);">
+      <div style="background:linear-gradient(135deg,#3D34BC 0%,#5B53D0 100%);border-radius:16px;padding:26px;margin:24px 0;text-align:center;box-shadow:0 10px 30px rgba(61, 52, 188,.2);">
         <p style="margin:0 0 6px;color:rgba(255,255,255,0.85);font-size:13px;text-transform:uppercase;letter-spacing:.5px;">${est}</p>
         <p style="margin:0;color:#fff;font-size:30px;font-weight:800;">${escapeHtml(q.output.price)}</p>
       </div>
       <div style="background:#f9fafb;border:2px solid #e5e7eb;border-radius:12px;padding:24px;margin:22px 0;">
-        <h3 style="margin:0 0 12px;color:#0066FF;font-size:15px;font-weight:700;text-transform:uppercase;">${summary}</h3>
+        <h3 style="margin:0 0 12px;color:#3D34BC;font-size:15px;font-weight:700;text-transform:uppercase;">${summary}</h3>
         <p style="margin:0;color:#1f2937;font-size:15px;line-height:1.6;">${escapeHtml(q.output.summary)}</p>
       </div>
       <div style="background:#f9fafb;border:2px solid #e5e7eb;border-radius:12px;padding:24px;margin:22px 0;">
-        <h3 style="margin:0 0 12px;color:#0066FF;font-size:15px;font-weight:700;text-transform:uppercase;">${scope}</h3>
-        ${q.output.items.map((it) => `<div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e5e7eb;"><p style="margin:0 0 4px;color:#1f2937;font-size:15px;font-weight:700;">${escapeHtml(it.title)} <span style="color:#0066FF;">— ${escapeHtml(it.price)}</span></p><p style="margin:0;color:#6b7280;font-size:14px;line-height:1.5;">${escapeHtml(it.description)}</p></div>`).join('')}
+        <h3 style="margin:0 0 12px;color:#3D34BC;font-size:15px;font-weight:700;text-transform:uppercase;">${scope}</h3>
+        ${q.output.items.map((it) => `<div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e5e7eb;"><p style="margin:0 0 4px;color:#1f2937;font-size:15px;font-weight:700;">${escapeHtml(it.title)} <span style="color:#3D34BC;">— ${escapeHtml(it.price)}</span></p><p style="margin:0;color:#6b7280;font-size:14px;line-height:1.5;">${escapeHtml(it.description)}</p></div>`).join('')}
       </div>
       <div style="background:#f9fafb;border:2px solid #e5e7eb;border-radius:12px;padding:24px;margin:22px 0;">
-        <h3 style="margin:0 0 12px;color:#0066FF;font-size:15px;font-weight:700;text-transform:uppercase;">${rec}</h3>
+        <h3 style="margin:0 0 12px;color:#3D34BC;font-size:15px;font-weight:700;text-transform:uppercase;">${rec}</h3>
         <p style="margin:0;color:#1f2937;font-size:15px;line-height:1.6;">${escapeHtml(q.output.recommendations)}</p>
       </div>
       <div style="background:#f9fafb;border:2px solid #e5e7eb;border-radius:12px;padding:24px;margin:22px 0;">
-        <h3 style="margin:0 0 12px;color:#0066FF;font-size:15px;font-weight:700;text-transform:uppercase;">${pay}</h3>
+        <h3 style="margin:0 0 12px;color:#3D34BC;font-size:15px;font-weight:700;text-transform:uppercase;">${pay}</h3>
         <p style="margin:0;color:#1f2937;font-size:15px;line-height:1.6;">${escapeHtml(q.output.paymentMethods)}</p>
       </div>
       <div style="text-align:center;margin:28px 0;">
