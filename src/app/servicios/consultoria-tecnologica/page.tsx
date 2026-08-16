@@ -1,16 +1,12 @@
 
-'use client';
-
-import { AnimatedBackground } from '@/components/landing/animated-background';
-import { Header } from '@/components/landing/header';
-import { Footer } from '@/components/landing/footer';
-import { Pricing } from '@/components/landing/sections/pricing';
-import { Contact } from '@/components/landing/sections/contact';
+import { AnimatedBackground } from '@/components/home/animated-background';
+import { Header } from '@/components/home/header';
+import { Footer } from '@/components/home/footer';
+import { ServiceHero } from '@/components/home/service-hero';
+import { ServiceMethodology } from '@/components/home/service-methodology';
+import { Pricing } from '@/components/home/pricing';
+import { Contact } from '@/components/home/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Badge } from '@/components/ui/badge';
-import { Lightbulb, Rocket, BarChart, ShieldCheck } from 'lucide-react';
-import { useState } from 'react';
-import { cn } from '@/lib/utils';
 
 const headerContent = {
   lang: 'es' as const,
@@ -20,36 +16,41 @@ const headerContent = {
   aiAssistantTooltip: '¡Hola! Soy tu asistente de IA.',
 };
 
-const serviceDetails = {
-    title: "Consultoría Tecnológica",
-    description: "Te guiamos en la transformación digital de tu negocio, ayudándote a elegir las herramientas adecuadas, optimizar procesos y construir una estrategia tecnológica sólida y escalable.",
-    badge: "Estrategia y Crecimiento",
-    features: [
-        {
-            icon: Rocket,
-            title: "Digitalización de Procesos",
-            description: "Analizamos tus operaciones y te proponemos un plan para digitalizar y automatizar tareas, aumentando la eficiencia y reduciendo costos."
-        },
-        {
-            icon: BarChart,
-            title: "Selección de Plataformas",
-            description: "Te ayudamos a elegir las plataformas (CRM, ERP, CMS) que mejor se adapten a tus necesidades y presupuesto, asegurando una implementación exitosa."
-        },
-        {
-            icon: ShieldCheck,
-            title: "Estrategias de Escalabilidad",
-            description: "Planificamos la arquitectura de tu software y sistemas para que puedan crecer junto con tu negocio de manera sostenible y segura."
-        },
-        {
-            icon: Lightbulb,
-            title: "Innovación y Nuevas Tecnologías",
-            description: "Te mantenemos a la vanguardia, explorando cómo las nuevas tecnologías como la IA pueden aportar valor y una ventaja competitiva a tu empresa."
-        }
-    ]
+const heroContent = {
+  badge: "Estrategia y Crecimiento",
+  title: "Consultoría tecnológica",
+  description: "Te guiamos en la transformación digital de tu negocio, ayudándote a elegir las herramientas adecuadas, optimizar procesos y construir una estrategia tecnológica sólida y escalable.",
+  lang: 'es' as const,
+  form: {
+    title: 'Cuéntanos sobre tu proyecto',
+    firstNameLabel: 'Nombres',
+    firstNamePlaceholder: 'Tus nombres',
+    emailLabel: 'Correo',
+    emailPlaceholder: 'tu@email.com',
+    phoneLabel: 'Teléfono',
+    phonePlaceholder: 'Tu número de teléfono',
+    messageLabel: 'Mensaje',
+    messagePlaceholder: 'Cuéntanos qué necesitas para tu proyecto...',
+    submitButton: 'Solicitar información',
+    successMessage: '¡Mensaje enviado! Un asesor te contactará pronto.',
+    errorMessage: 'Hubo un error al enviar. Por favor inténtalo de nuevo.',
+  },
+};
+
+const methodologyContent = {
+  badge: 'Nuestra metodología',
+  title: 'Nuestro enfoque de consultoría',
+  subtitle: 'Un acompañamiento estratégico para transformar tu negocio de forma sostenible.',
+  steps: [
+    { title: 'Digitalización de procesos', description: 'Analizamos tus operaciones y te proponemos un plan para digitalizar y automatizar tareas, aumentando la eficiencia y reduciendo costos.' },
+    { title: 'Selección de plataformas', description: 'Te ayudamos a elegir las plataformas (CRM, ERP, CMS) que mejor se adapten a tus necesidades y presupuesto, asegurando una implementación exitosa.' },
+    { title: 'Estrategias de escalabilidad', description: 'Planificamos la arquitectura de tu software y sistemas para que puedan crecer junto con tu negocio de manera sostenible y segura.' },
+    { title: 'Innovación y nuevas tecnologías', description: 'Te mantenemos a la vanguardia, explorando cómo las nuevas tecnologías como la IA pueden aportar valor y una ventaja competitiva a tu empresa.' },
+  ],
 };
 
 const faqContent = {
-  title: "Preguntas Frecuentes",
+  title: "Preguntas frecuentes",
   items: [
     {
       question: "¿Mi empresa es demasiado pequeña para una consultoría?",
@@ -67,43 +68,46 @@ const faqContent = {
 };
 
 const pricingContent = {
-    title: "Planes y Precios",
+    title: "Planes y precios",
     subtitle: "Soluciones a la medida de tu negocio. Elige el plan que mejor se adapte a tus necesidades y presupuesto.",
     plans: [
       {
-        name: "Básico",
-        price: "S/ 600",
-        description: "Ideal para startups y proyectos personales.",
+        name: "Emprendedor",
+        price: "S/ 30",
+        description: "Consultoría puntual, paga solo las horas que uses.",
+        period: "/hora",
         features: [
-          "Diseño web responsivo",
-          "3 páginas personalizadas",
-          "Optimización SEO básica",
-          "Soporte por email"
+          "Asesoría tecnológica on-demand",
+          "Análisis de tu necesidad",
+          "Recomendaciones accionables",
+          "Sin permanencia"
         ],
         buttonText: "Cotizar servicio",
         priceId: "price_1..." // Reemplazar con tu Price ID de Stripe
       },
       {
-        name: "Profesional",
-        price: "S/ 1200",
-        description: "Perfecto para empresas en crecimiento.",
+        name: "Negocio",
+        price: "S/ 450",
+        description: "Pack de 15 horas de consultoría para tu proyecto.",
         features: [
-          "Todo lo del plan Básico",
-          "Hasta 10 páginas",
-          "Integración con CMS",
-          "Soporte prioritario"
+          "Todo lo del plan Emprendedor",
+          "15 horas de consultoría",
+          "Plan de mejora tecnológica",
+          "Prioridad de atención"
         ],
         buttonText: "Cotizar servicio",
-        priceId: "price_2..." // Reemplazar con tu Price ID de Stripe
+        priceId: "price_2...", // Reemplazar con tu Price ID de Stripe
+        recommended: true
       },
       {
         name: "Empresa",
-        price: "A medida",
-        description: "Soluciones completas para grandes corporaciones.",
+        price: "S/ 900",
+        description: "Pack de 30 horas de consultoría estratégica.",
         features: [
-          "Todo lo del plan Profesional",
-          "Páginas ilimitadas",
-          "Funcionalidades E-commerce",
+          "Todo lo del plan Negocio",
+          "30 horas de consultoría",
+          "Estrategia tecnológica integral",
+          "Acompañamiento del proyecto",
           "Soporte 24/7"
         ],
         buttonText: "Contactar",
@@ -114,7 +118,7 @@ const pricingContent = {
 
 const contactContent = {
     lang: 'es' as const,
-    title: "Hablemos de tu Proyecto",
+    title: "Hablemos de tu proyecto",
     description: "¿Listo para llevar tu negocio al siguiente nivel? Completa el formulario o agenda una reunión y nuestro equipo global se pondrá en contacto contigo.",
     contactSubtitle: "Contáctanos ahora",
     emailLabel: "Correo:",
@@ -144,42 +148,20 @@ const footerContent = {
 };
 
 export default function TechConsultingPage() {
-  const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);
-
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
       <Header {...headerContent} />
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
-            <section id="service-hero" className="py-12 md:py-20 text-center">
-                <Badge variant="outline" className="mb-4 text-primary border-primary/50">{serviceDetails.badge}</Badge>
-                <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-gradient">{serviceDetails.title}</h1>
-                <p className="max-w-2xl mx-auto mt-6 text-lg text-muted-foreground">{serviceDetails.description}</p>
-            </section>
-            
-            <section id="features" className="py-12 md:py-20">
-                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {serviceDetails.features.map((feature, index) => (
-                        <div
-                          key={index}
-                          className={cn(
-                            'flex flex-col items-center text-center p-6 rounded-lg bg-primary/3 transition-all duration-300 cursor-pointer',
-                            hoveredFeature === index && 'gradient-border-hover'
-                          )}
-                          onMouseEnter={() => setHoveredFeature(index)}
-                          onMouseLeave={() => setHoveredFeature(null)}
-                        >
-                            <feature.icon className="h-10 w-10 text-primary mb-4" />
-                            <h3 className="font-headline text-xl font-bold mb-2">{feature.title}</h3>
-                            <p className="text-muted-foreground">{feature.description}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-            
+            <ServiceHero {...heroContent} />
+
+            <Pricing {...pricingContent} />
+
+            <ServiceMethodology {...methodologyContent} />
+
             <section id="faq" className="py-12 md:py-20 max-w-3xl mx-auto">
-                <h2 className="font-headline text-3xl sm:text-4xl text-center font-bold tracking-tighter mb-8">{faqContent.title}</h2>
+                <h2 className="font-headline text-3xl sm:text-4xl text-center font-semibold tracking-tight mb-8">{faqContent.title}</h2>
                 <Accordion type="single" collapsible className="w-full">
                     {faqContent.items.map((item, index) => (
                         <AccordionItem key={index} value={`item-${index}`}>
@@ -189,8 +171,7 @@ export default function TechConsultingPage() {
                     ))}
                 </Accordion>
             </section>
-            
-            <Pricing {...pricingContent} />
+
             <Contact {...contactContent} />
         </div>
       </main>

@@ -2,9 +2,9 @@
 'use client';
 
 import { useState } from 'react';
-import { AnimatedBackground } from '@/components/landing/animated-background';
-import { Footer } from '@/components/landing/footer';
-import { Header } from '@/components/landing/header';
+import { AnimatedBackground } from '@/components/home/animated-background';
+import { Footer } from '@/components/home/footer';
+import { Header } from '@/components/home/header';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { getPosts } from '@/data/blog-posts';
@@ -70,7 +70,7 @@ export default function BlogPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
           <header className="text-center mb-16">
             <Badge variant="outline" className="text-primary border-primary/50 mb-4">Our Latest Blogs</Badge>
-            <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-gradient">
+            <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight text-gradient">
               DevMark Blog
             </h1>
             <p className="max-w-2xl mx-auto mt-4 text-lg text-muted-foreground">

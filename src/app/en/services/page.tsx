@@ -1,8 +1,8 @@
-import { AnimatedBackground } from '@/components/landing/animated-background';
-import { Header } from '@/components/landing/header';
-import { Footer } from '@/components/landing/footer';
-import { Services } from '@/components/landing/sections/services';
-import { AdditionalServices } from '@/components/landing/sections/additional-services';
+import { AnimatedBackground } from '@/components/home/animated-background';
+import { Header } from '@/components/home/header';
+import { Footer } from '@/components/home/footer';
+import { Services } from '@/components/home/services';
+import { AdditionalServices } from '@/components/home/additional-services';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
@@ -28,48 +28,48 @@ const content = {
     aiAssistantTooltip: 'Hello! I am your AI assistant.',
   },
   services: {
-    title: 'Main Services',
+    title: 'Main services',
     subtitle: 'Comprehensive solutions to take your business to the next level.',
     moreInfoButton: 'More Info',
     items: [
       {
         icon: 'CodeXml',
-        title: "Custom Web Development",
+        title: "Custom web development",
         description: "Custom websites programmed from scratch for corporate sites, landing pages, and PWAs with 100% responsive design.",
         tags: ["Corporate Websites", "Landing Pages", "PWAs"],
         href: '/en/services/custom-web-development'
       },
       {
         icon: 'Palette',
-        title: "CMS and Platform Development",
+        title: "CMS and platform development",
         description: "Building websites and online stores with WordPress, Shopify, and other platforms. E-commerce with payment integrations.",
         tags: ["WordPress", "Shopify", "E-commerce"],
         href: '/en/services/cms-development'
       },
       {
         icon: 'ServerCog',
-        title: "Custom Software Development",
+        title: "Custom software development",
         description: "Internal systems (ERP, CRM), SaaS, and APIs. Integrations between tools to unify data and processes.",
         tags: ["ERP/CRM", "SaaS", "APIs"],
         href: '/en/services/custom-software-development'
       },
       {
         icon: 'Zap',
-        title: "Process Automation",
+        title: "Process automation",
         description: "Automatic flows with Zapier/Make/APIs for leads, sales, reports, notifications, and back-office tasks.",
         tags: ["Zapier", "Make", "Lead Automation"],
         href: '/en/services/process-automation'
       },
       {
         icon: 'Bot',
-        title: "AI Chatbots",
+        title: "AI chatbots",
         description: "Chatbots for web, e-commerce, and social media, trained with your knowledge base for 24/7 support and sales.",
         tags: ["Web Chatbots", "Social Media", "24/7 Support"],
         href: '/en/services/ai-chatbots'
       },
       {
         icon: 'LineChart',
-        title: "SEO and Web Optimization",
+        title: "SEO and web optimization",
         description: "Strategy, technical and content SEO, Core Web Vitals, and e-commerce. Increase organic traffic and conversions.",
         tags: ["SEO Strategy", "Core Web Vitals", "Traffic"],
         href: '/en/services/seo-optimization'
@@ -77,31 +77,31 @@ const content = {
     ]
   },
   additionalServices: {
-    title: 'Additional Services',
+    title: 'Additional services',
     subtitle: '(Services that reinforce the main technological development)',
     moreInfoButton: 'More Info',
     items: [
       {
         icon: 'DraftingCompass',
-        title: 'UI/UX Design',
+        title: 'UI/UX design',
         description: 'User-centered design. Interactive prototyping and wireframes. Modern, clean, and responsive interfaces.',
         href: '/en/services/ui-ux-design'
       },
       {
         icon: 'Megaphone',
-        title: 'Digital Marketing',
+        title: 'Digital marketing',
         description: 'Growth and customer acquisition strategies. Advertising campaigns (Google Ads, Meta Ads). Email marketing and sales automation.',
         href: '/en/services/digital-marketing'
       },
       {
         icon: 'Wrench',
-        title: 'Support and Maintenance',
+        title: 'Support and maintenance',
         description: 'Regular security and plugin updates. Performance monitoring and backups. Incident resolution and continuous technical support.',
         href: '/en/services/support-maintenance'
       },
       {
         icon: 'Lightbulb',
-        title: 'Technology Consulting',
+        title: 'Technology consulting',
         description: 'Advice for process digitization. Choosing the right platforms for each business. Scalability and security strategies.',
         href: '/en/services/tech-consulting'
       },
@@ -124,7 +124,7 @@ export default function ServicesPage() {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <header className="text-center mb-16">
               <Badge variant="outline" className="text-primary border-primary/50 mb-4">Our Services</Badge>
-              <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-gradient">
+              <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight text-gradient">
                 Technological Solutions
               </h1>
               <p className="max-w-2xl mx-auto mt-4 text-lg text-muted-foreground">

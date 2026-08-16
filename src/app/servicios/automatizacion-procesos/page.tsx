@@ -1,16 +1,12 @@
 
-'use client';
-
-import { AnimatedBackground } from '@/components/landing/animated-background';
-import { Header } from '@/components/landing/header';
-import { Footer } from '@/components/landing/footer';
-import { Pricing } from '@/components/landing/sections/pricing';
-import { Contact } from '@/components/landing/sections/contact';
+import { AnimatedBackground } from '@/components/home/animated-background';
+import { Header } from '@/components/home/header';
+import { Footer } from '@/components/home/footer';
+import { ServiceHero } from '@/components/home/service-hero';
+import { ServiceMethodology } from '@/components/home/service-methodology';
+import { Pricing } from '@/components/home/pricing';
+import { Contact } from '@/components/home/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Badge } from '@/components/ui/badge';
-import { Zap, Bot, BarChart, Settings2 } from 'lucide-react';
-import { useState } from 'react';
-import { cn } from '@/lib/utils';
 
 const headerContent = {
   lang: 'es' as const,
@@ -20,36 +16,41 @@ const headerContent = {
   aiAssistantTooltip: '¡Hola! Soy tu asistente de IA.',
 };
 
-const serviceDetails = {
-    title: "Automatización de Procesos",
-    description: "Optimizamos tus flujos de trabajo y eliminamos tareas repetitivas mediante la automatización con herramientas como Zapier, Make o APIs a medida.",
-    badge: "Eficiencia y Productividad",
-    features: [
-        {
-            icon: Zap,
-            title: "Automatización de Marketing y Ventas",
-            description: "Creamos flujos para la captación de leads, nutrición de contactos, y seguimiento de ventas, integrando tu CRM con otras herramientas."
-        },
-        {
-            icon: BarChart,
-            title: "Generación de Reportes",
-            description: "Automatizamos la recolección de datos y la generación de reportes periódicos para que tengas siempre a mano la información clave de tu negocio."
-        },
-        {
-            icon: Bot,
-            title: "Tareas de Back-Office",
-            description: "Liberamos a tu equipo de tareas administrativas como la entrada de datos, notificaciones y sincronización de archivos entre plataformas."
-        },
-        {
-            icon: Settings2,
-            title: "Integraciones a Medida",
-            description: "Si las herramientas estándar no son suficientes, desarrollamos integraciones a medida utilizando APIs para conectar cualquier servicio."
-        }
-    ]
+const heroContent = {
+  badge: "Eficiencia y Productividad",
+  title: "Automatización de procesos",
+  description: "Optimizamos tus flujos de trabajo y eliminamos tareas repetitivas mediante la automatización con herramientas como Zapier, Make o APIs a medida.",
+  lang: 'es' as const,
+  form: {
+    title: 'Cuéntanos sobre tu proyecto',
+    firstNameLabel: 'Nombres',
+    firstNamePlaceholder: 'Tus nombres',
+    emailLabel: 'Correo',
+    emailPlaceholder: 'tu@email.com',
+    phoneLabel: 'Teléfono',
+    phonePlaceholder: 'Tu número de teléfono',
+    messageLabel: 'Mensaje',
+    messagePlaceholder: 'Cuéntanos qué necesitas para tu proyecto...',
+    submitButton: 'Solicitar información',
+    successMessage: '¡Mensaje enviado! Un asesor te contactará pronto.',
+    errorMessage: 'Hubo un error al enviar. Por favor inténtalo de nuevo.',
+  },
+};
+
+const methodologyContent = {
+  badge: 'Nuestra metodología',
+  title: 'Cómo automatizamos tus procesos',
+  subtitle: 'Un camino claro para optimizar tus operaciones y liberar a tu equipo.',
+  steps: [
+    { title: 'Automatización de marketing y ventas', description: 'Creamos flujos para la captación de leads, nutrición de contactos, y seguimiento de ventas, integrando tu CRM con otras herramientas.' },
+    { title: 'Generación de reportes', description: 'Automatizamos la recolección de datos y la generación de reportes periódicos para que tengas siempre a mano la información clave de tu negocio.' },
+    { title: 'Tareas de back-office', description: 'Liberamos a tu equipo de tareas administrativas como la entrada de datos, notificaciones y sincronización de archivos entre plataformas.' },
+    { title: 'Integraciones a medida', description: 'Si las herramientas estándar no son suficientes, desarrollamos integraciones a medida utilizando APIs para conectar cualquier servicio.' },
+  ],
 };
 
 const faqContent = {
-  title: "Preguntas Frecuentes",
+  title: "Preguntas frecuentes",
   items: [
     {
       question: "¿Qué procesos de mi empresa se pueden automatizar?",
@@ -67,43 +68,48 @@ const faqContent = {
 };
 
 const pricingContent = {
-    title: "Planes y Precios",
+    title: "Planes y precios",
     subtitle: "Soluciones a la medida de tu negocio. Elige el plan que mejor se adapte a tus necesidades y presupuesto.",
     plans: [
       {
-        name: "Básico",
-        price: "S/ 2000",
-        description: "Ideal para startups y proyectos personales.",
+        name: "Emprendedor",
+        price: "S/ 1500",
+        description: "Automatización de un proceso simple.",
         features: [
-          "Diseño web responsivo",
-          "3 páginas personalizadas",
-          "Optimización SEO básica",
+          "Análisis de tu proceso",
+          "1 flujo automatizado",
+          "Integración con herramientas",
+          "Documentación",
           "Soporte por email"
         ],
         buttonText: "Cotizar servicio",
         priceId: "price_1..." // Reemplazar con tu Price ID de Stripe
       },
       {
-        name: "Profesional",
-        price: "S/ 3800",
-        description: "Perfecto para empresas en crecimiento.",
+        name: "Negocio",
+        price: "S/ 3500",
+        description: "Automatización de varios procesos.",
         features: [
-          "Todo lo del plan Básico",
-          "Hasta 10 páginas",
-          "Integración con CMS",
+          "Todo lo del plan Emprendedor",
+          "Hasta 3 flujos automatizados",
+          "Integración con CRM/ERP",
+          "Panel de control",
+          "Capacitación incluida",
           "Soporte prioritario"
         ],
         buttonText: "Cotizar servicio",
-        priceId: "price_2..." // Reemplazar con tu Price ID de Stripe
+        priceId: "price_2...", // Reemplazar con tu Price ID de Stripe
+        recommended: true
       },
       {
         name: "Empresa",
         price: "A medida",
-        description: "Soluciones completas para grandes corporaciones.",
+        description: "Automatización integral de la operación.",
         features: [
-          "Todo lo del plan Profesional",
-          "Páginas ilimitadas",
-          "Funcionalidades E-commerce",
+          "Todo lo del plan Negocio",
+          "Flujos ilimitados",
+          "Integraciones avanzadas",
+          "Robótica (RPA)",
           "Soporte 24/7"
         ],
         buttonText: "Contactar",
@@ -114,7 +120,7 @@ const pricingContent = {
 
 const contactContent = {
     lang: 'es' as const,
-    title: "Hablemos de tu Proyecto",
+    title: "Hablemos de tu proyecto",
     description: "¿Listo para llevar tu negocio al siguiente nivel? Completa el formulario o agenda una reunión y nuestro equipo global se pondrá en contacto contigo.",
     contactSubtitle: "Contáctanos ahora",
     emailLabel: "Correo:",
@@ -144,42 +150,20 @@ const footerContent = {
 };
 
 export default function ProcessAutomationPage() {
-  const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);
-
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
       <Header {...headerContent} />
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
-            <section id="service-hero" className="py-12 md:py-20 text-center">
-                <Badge variant="outline" className="mb-4 text-primary border-primary/50">{serviceDetails.badge}</Badge>
-                <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-gradient">{serviceDetails.title}</h1>
-                <p className="max-w-2xl mx-auto mt-6 text-lg text-muted-foreground">{serviceDetails.description}</p>
-            </section>
-            
-            <section id="features" className="py-12 md:py-20">
-                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {serviceDetails.features.map((feature, index) => (
-                        <div
-                          key={index}
-                          className={cn(
-                            'flex flex-col items-center text-center p-6 rounded-lg bg-primary/3 transition-all duration-300 cursor-pointer',
-                            hoveredFeature === index && 'gradient-border-hover'
-                          )}
-                          onMouseEnter={() => setHoveredFeature(index)}
-                          onMouseLeave={() => setHoveredFeature(null)}
-                        >
-                            <feature.icon className="h-10 w-10 text-primary mb-4" />
-                            <h3 className="font-headline text-xl font-bold mb-2">{feature.title}</h3>
-                            <p className="text-muted-foreground">{feature.description}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-            
+            <ServiceHero {...heroContent} />
+
+            <Pricing {...pricingContent} />
+
+            <ServiceMethodology {...methodologyContent} />
+
             <section id="faq" className="py-12 md:py-20 max-w-3xl mx-auto">
-                <h2 className="font-headline text-3xl sm:text-4xl text-center font-bold tracking-tighter mb-8">{faqContent.title}</h2>
+                <h2 className="font-headline text-3xl sm:text-4xl text-center font-semibold tracking-tight mb-8">{faqContent.title}</h2>
                 <Accordion type="single" collapsible className="w-full">
                     {faqContent.items.map((item, index) => (
                         <AccordionItem key={index} value={`item-${index}`}>
@@ -189,8 +173,7 @@ export default function ProcessAutomationPage() {
                     ))}
                 </Accordion>
             </section>
-            
-            <Pricing {...pricingContent} />
+
             <Contact {...contactContent} />
         </div>
       </main>

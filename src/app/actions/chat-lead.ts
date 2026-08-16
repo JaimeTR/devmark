@@ -4,12 +4,14 @@ import nodemailer from 'nodemailer';
 import { z } from 'zod';
 
 const leadSchema = z.object({
-  service: z.string().min(2, 'Selecciona un servicio'),
-  details: z.string().min(6, 'Describe brevemente tu necesidad'),
-  email: z.string().email('Ingresa un email válido'),
-  phone: z.string().min(6, 'Ingresa un teléfono válido'),
-  name: z.string().min(2, 'Ingresa tu nombre'),
+  service: z.string().min(2, 'Selecciona un servicio').trim(),
+  details: z.string().min(6, 'Describe brevemente tu necesidad').trim(),
+  email: z.string().email('Ingresa un email válido').trim(),
+  phone: z.string().min(6, 'Ingresa un teléfono válido').trim(),
+  name: z.string().min(2, 'Ingresa tu nombre').trim(),
   transcript: z.string().optional(),
+  // Honeypot anti-spam: si viene relleno, descartar el envío.
+  company: z.string().optional(),
 });
 
 export type LeadPayload = z.infer<typeof leadSchema>;
@@ -18,6 +20,15 @@ export type LeadResult = {
   success: boolean;
   message: string;
 };
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
 
 function buildTransporter() {
   if (!process.env.SMTP_EMAIL || !process.env.SMTP_PASSWORD) {
@@ -63,18 +74,18 @@ function leadHtml(payload: LeadPayload) {
       </div>
       <div style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:22px;margin-bottom:18px;">
         <h2 style="margin:0 0 14px;color:#0066FF;font-size:15px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;">Datos del lead</h2>
-        <p style="margin:0 0 8px;color:#d1d5db;font-size:15px;"><strong style="color:#9ca3af;font-size:13px;text-transform:uppercase;letter-spacing:0.3px;">Nombre:</strong> ${name}</p>
-        <p style="margin:0 0 8px;color:#d1d5db;font-size:15px;"><strong style="color:#9ca3af;font-size:13px;text-transform:uppercase;letter-spacing:0.3px;">Email:</strong> ${email}</p>
-        <p style="margin:0 0 8px;color:#d1d5db;font-size:15px;"><strong style="color:#9ca3af;font-size:13px;text-transform:uppercase;letter-spacing:0.3px;">Teléfono:</strong> ${phone}</p>
-        <p style="margin:0;color:#d1d5db;font-size:15px;"><strong style="color:#9ca3af;font-size:13px;text-transform:uppercase;letter-spacing:0.3px;">Servicio:</strong> ${service}</p>
+        <p style="margin:0 0 8px;color:#d1d5db;font-size:15px;"><strong style="color:#9ca3af;font-size:13px;text-transform:uppercase;letter-spacing:0.3px;">Nombre:</strong> ${escapeHtml(name)}</p>
+        <p style="margin:0 0 8px;color:#d1d5db;font-size:15px;"><strong style="color:#9ca3af;font-size:13px;text-transform:uppercase;letter-spacing:0.3px;">Email:</strong> ${escapeHtml(email)}</p>
+        <p style="margin:0 0 8px;color:#d1d5db;font-size:15px;"><strong style="color:#9ca3af;font-size:13px;text-transform:uppercase;letter-spacing:0.3px;">Teléfono:</strong> ${escapeHtml(phone)}</p>
+        <p style="margin:0;color:#d1d5db;font-size:15px;"><strong style="color:#9ca3af;font-size:13px;text-transform:uppercase;letter-spacing:0.3px;">Servicio:</strong> ${escapeHtml(service)}</p>
       </div>
       <div style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:22px;margin-bottom:18px;">
         <h2 style="margin:0 0 12px;color:#0066FF;font-size:15px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;">Necesidad</h2>
-        <p style="margin:0;color:#d1d5db;font-size:15px;line-height:1.6;white-space:pre-wrap;">${details}</p>
+        <p style="margin:0;color:#d1d5db;font-size:15px;line-height:1.6;white-space:pre-wrap;">${escapeHtml(details)}</p>
       </div>
       ${transcript ? `<div style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:22px;">
         <h2 style="margin:0 0 12px;color:#0066FF;font-size:15px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;">Transcripción completa</h2>
-        <p style="margin:0;color:#9ca3af;font-size:14px;line-height:1.5;white-space:pre-wrap;">${transcript}</p>
+        <p style="margin:0;color:#9ca3af;font-size:14px;line-height:1.5;white-space:pre-wrap;">${escapeHtml(transcript)}</p>
       </div>` : ''}
     </div>
     <div style="background:#0a0a1a;padding:22px;text-align:center;border-top:1px solid #2a2a3e;">
@@ -92,7 +103,7 @@ function confirmationHtml(name: string) {
 <body style="margin:0;padding:0;background:#f3f4f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
   <div style="max-width:640px;margin:0 auto;background:#fff;">
     <div style="background:linear-gradient(135deg,#0066FF 0%,#3b82f6 60%,#0066FF 100%);padding:42px 28px;text-align:center;">
-      <h1 style="margin:0;color:#fff;font-size:28px;font-weight:700;letter-spacing:-0.3px;">¡Gracias, ${name}!</h1>
+      <h1 style="margin:0;color:#fff;font-size:28px;font-weight:700;letter-spacing:-0.3px;">¡Gracias, ${escapeHtml(name)}!</h1>
       <p style="margin:10px 0 0;color:rgba(255,255,255,0.9);font-size:16px;">Tu consulta quedó registrada</p>
     </div>
     <div style="padding:30px 26px;">
@@ -108,6 +119,11 @@ export async function sendLeadFromChat(payload: LeadPayload): Promise<LeadResult
   const result = leadSchema.safeParse(payload);
   if (!result.success) {
     return { success: false, message: 'Datos incompletos. Verifica email y teléfono.' };
+  }
+
+  // Honeypot anti-spam: si el campo oculto viene relleno, descartar.
+  if (result.data.company && result.data.company.trim().length > 0) {
+    return { success: true, message: 'Lead enviado correctamente' };
   }
 
   try {

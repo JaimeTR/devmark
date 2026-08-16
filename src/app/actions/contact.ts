@@ -4,12 +4,26 @@ import { z } from 'zod';
 import nodemailer from 'nodemailer';
 
 const contactSchema = z.object({
-  firstName: z.string().min(2, 'El nombre debe tener al menos 2 caracteres'),
-  lastName: z.string().min(2, 'El apellido debe tener al menos 2 caracteres'),
-  email: z.string().email('Por favor ingresa un email válido'),
-  phone: z.string().min(8, 'El teléfono debe tener al menos 8 caracteres'),
-  message: z.string().min(10, 'El mensaje debe tener al menos 10 caracteres'),
+  firstName: z.string().min(2, 'El nombre debe tener al menos 2 caracteres').trim(),
+  lastName: z.string().min(2, 'El apellido debe tener al menos 2 caracteres').trim(),
+  email: z.string().email('Por favor ingresa un email válido').trim(),
+  phone: z.string().min(8, 'El teléfono debe tener al menos 8 caracteres').trim(),
+  message: z.string().min(10, 'El mensaje debe tener al menos 10 caracteres').trim(),
 });
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+// Evita inyección de cabeceras al construir asuntos de correo (CR/LF).
+function sanitizeHeader(value: string): string {
+  return value.replace(/[\r\n]+/g, ' ').trim();
+}
 
 export type ContactFormState = {
   success: boolean;
@@ -98,7 +112,7 @@ export async function sendContactEmail(
     await transporter.sendMail({
       from: process.env.SMTP_EMAIL,
       to: 'correo@devmarkpe.com',
-      subject: `🔔 Nuevo mensaje de contacto - ${firstName} ${lastName}`,
+      subject: `🔔 Nuevo mensaje de contacto - ${sanitizeHeader(firstName)} ${sanitizeHeader(lastName)}`,
       html: `
         <!DOCTYPE html>
         <html lang="es">
@@ -128,29 +142,29 @@ export async function sendContactEmail(
                 
                 <div style="margin-bottom: 15px;">
                   <p style="margin: 0 0 5px 0; color: #9ca3af; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Nombre Completo</p>
-                  <p style="margin: 0; color: #ffffff; font-size: 16px; font-weight: 500;">${firstName} ${lastName}</p>
+                  <p style="margin: 0; color: #ffffff; font-size: 16px; font-weight: 500;">${escapeHtml(firstName)} ${escapeHtml(lastName)}</p>
                 </div>
                 
                 <div style="margin-bottom: 15px;">
                   <p style="margin: 0 0 5px 0; color: #9ca3af; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Email</p>
-                  <p style="margin: 0;"><a href="mailto:${email}" style="color: #0066FF; font-size: 16px; font-weight: 500; text-decoration: none;">${email}</a></p>
+                  <p style="margin: 0;"><a href="mailto:${escapeHtml(email)}" style="color: #0066FF; font-size: 16px; font-weight: 500; text-decoration: none;">${escapeHtml(email)}</a></p>
                 </div>
                 
                 <div style="margin-bottom: 0;">
                   <p style="margin: 0 0 5px 0; color: #9ca3af; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Teléfono</p>
-                  <p style="margin: 0;"><a href="tel:${phone}" style="color: #0066FF; font-size: 16px; font-weight: 500; text-decoration: none;">${phone}</a></p>
+                  <p style="margin: 0;"><a href="tel:${escapeHtml(phone)}" style="color: #0066FF; font-size: 16px; font-weight: 500; text-decoration: none;">${escapeHtml(phone)}</a></p>
                 </div>
               </div>
               
               <!-- Mensaje -->
               <div style="background-color: #1a1a2e; border: 1px solid #2a2a3e; border-radius: 12px; padding: 25px;">
                 <h2 style="margin: 0 0 15px 0; color: #0066FF; font-size: 16px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">💬 Mensaje</h2>
-                <p style="margin: 0; color: #d1d5db; font-size: 15px; line-height: 1.6; white-space: pre-wrap;">${message}</p>
+                <p style="margin: 0; color: #d1d5db; font-size: 15px; line-height: 1.6; white-space: pre-wrap;">${escapeHtml(message)}</p>
               </div>
               
               <!-- Botón de acción -->
               <div style="margin-top: 30px; text-align: center;">
-                <a href="mailto:${email}" style="display: inline-block; background: linear-gradient(135deg, #0066FF 0%, #3b82f6 100%); color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px; box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);">Responder ahora →</a>
+                <a href="mailto:${escapeHtml(email)}" style="display: inline-block; background: linear-gradient(135deg, #0066FF 0%, #3b82f6 100%); color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px; box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);">Responder ahora →</a>
               </div>
             </div>
             
@@ -188,14 +202,14 @@ export async function sendContactEmail(
                   </svg>
                 </div>
               </div>
-              <h1 style="margin: 0 0 10px 0; color: #ffffff; font-size: 32px; font-weight: 700; letter-spacing: -0.5px;">¡Gracias, ${firstName}! 🎉</h1>
+              <h1 style="margin: 0 0 10px 0; color: #ffffff; font-size: 32px; font-weight: 700; letter-spacing: -0.5px;">¡Gracias, ${escapeHtml(firstName)}! 🎉</h1>
               <p style="margin: 0; color: rgba(255, 255, 255, 0.95); font-size: 18px; font-weight: 500;">Hemos recibido tu mensaje</p>
             </div>
             
             <!-- Contenido principal -->
             <div style="padding: 40px 30px;">
               <p style="margin: 0 0 20px 0; color: #1f2937; font-size: 16px; line-height: 1.6;">
-                Hola <strong style="color: #0066FF;">${firstName}</strong>,
+                Hola <strong style="color: #0066FF;">${escapeHtml(firstName)}</strong>,
               </p>
               
               <p style="margin: 0 0 30px 0; color: #4b5563; font-size: 16px; line-height: 1.6;">
@@ -219,12 +233,12 @@ export async function sendContactEmail(
                 
                 <div style="margin-bottom: 12px;">
                   <p style="margin: 0 0 4px 0; color: #6b7280; font-size: 13px; font-weight: 500;">Email de contacto</p>
-                  <p style="margin: 0; color: #1f2937; font-size: 15px; font-weight: 500;">${email}</p>
+                  <p style="margin: 0; color: #1f2937; font-size: 15px; font-weight: 500;">${escapeHtml(email)}</p>
                 </div>
                 
                 <div>
                   <p style="margin: 0 0 4px 0; color: #6b7280; font-size: 13px; font-weight: 500;">Teléfono</p>
-                  <p style="margin: 0; color: #1f2937; font-size: 15px; font-weight: 500;">${phone}</p>
+                  <p style="margin: 0; color: #1f2937; font-size: 15px; font-weight: 500;">${escapeHtml(phone)}</p>
                 </div>
               </div>
               

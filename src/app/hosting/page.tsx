@@ -1,6 +1,6 @@
-import { AnimatedBackground } from '@/components/landing/animated-background';
-import { Header } from '@/components/landing/header';
-import { Footer } from '@/components/landing/footer';
+import { AnimatedBackground } from '@/components/home/animated-background';
+import { Header } from '@/components/home/header';
+import { Footer } from '@/components/home/footer';
 import Link from 'next/link';
 import { ArrowLeft, Check, Server, Mail, Lock, Zap, Globe, HardDrive } from 'lucide-react';
 import { Metadata } from 'next';
@@ -72,44 +72,44 @@ const hostingFeatures = [
 const plans = [
   {
     name: 'Single',
-    price: 'Desde $2.99/mes',
+    price: 'Desde S/20/mes',
     description: 'Perfecto para sitios web personales y blogs',
     features: [
       '1 sitio web',
       '50 GB almacenamiento SSD',
       '~10,000 visitas mensuales',
-      'Correos corporativos incluidos',
+      '1 correo corporativo incluido',
       'SSL gratuito',
-      'Dominio gratis el primer año'
+      'Dominio .com gratis el primer año'
     ],
     recommended: false
   },
   {
     name: 'Premium',
-    price: 'Desde $4.99/mes',
+    price: 'Desde S/39/mes',
     description: 'Ideal para negocios y e-commerce',
     features: [
       '100 sitios web',
       '100 GB almacenamiento SSD',
       '~25,000 visitas mensuales',
-      'Correos corporativos ilimitados',
+      '10 correos corporativos incluidos',
       'SSL gratuito',
-      'Dominio gratis',
+      'Dominio .com gratis',
       'Backups automáticos semanales'
     ],
     recommended: true
   },
   {
     name: 'Business',
-    price: 'Desde $8.99/mes',
+    price: 'Desde S/79/mes',
     description: 'Para proyectos de alto tráfico',
     features: [
       '100 sitios web',
       '200 GB almacenamiento SSD',
       '~100,000 visitas mensuales',
-      'Correos corporativos ilimitados',
+      '25 correos corporativos incluidos',
       'SSL gratuito',
-      'Dominio gratis',
+      'Dominio .com gratis',
       'Backups automáticos diarios',
       'CDN gratuito',
       'Soporte prioritario'
@@ -133,7 +133,7 @@ export default function HostingPage() {
                 <span className="text-primary font-semibold">PARTNER OFICIAL DE HOSTINGER</span>
               </div>
               
-              <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter mb-6 animate-fade-in-up stagger-1">
+              <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight mb-6 animate-fade-in-up stagger-1">
                 Hosting Profesional para tu Negocio
               </h1>
               <p className="text-xl text-muted-foreground mb-8 animate-fade-in-up stagger-2">
@@ -298,6 +298,68 @@ export default function HostingPage() {
                   <p className="text-muted-foreground">
                     Configuramos caché, compresión y otras optimizaciones para que tu sitio cargue lo más rápido posible.
                   </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Domains & Email Plans */}
+        <section className="py-16">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="font-headline text-3xl md:text-4xl font-bold text-center mb-12">
+                Dominios y correos corporativos
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className={`relative rounded-lg p-8 border border-border/40 bg-background hover:shadow-xl transition-all duration-300`}>
+                  <h3 className="text-2xl font-bold mb-2 flex items-center gap-2">
+                    <Globe className="h-5 w-5 text-primary" />
+                    Registro de Dominio
+                  </h3>
+                  <div className="text-3xl font-bold text-primary mb-2">Desde S/120/año</div>
+                  <p className="text-sm text-muted-foreground mb-6">
+                    Registra tu dominio .com, .pe o .net con gestión y renovación automática.
+                  </p>
+                  <ul className="space-y-3">
+                    {[
+                      '.com, .pe, .net, .org',
+                      'Protección de privacidad incluida',
+                      'DNS administrado',
+                      'Al comprar un dominio recibes 10 correos corporativos de 1 GB gratis'
+                    ].map((feature, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-sm">
+                        <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className={`relative rounded-lg p-8 border border-border/40 bg-background hover:shadow-xl transition-all duration-300`}>
+                  <h3 className="text-2xl font-bold mb-2 flex items-center gap-2">
+                    <Mail className="h-5 w-5 text-primary" />
+                    Correos Corporativos
+                  </h3>
+                  <div className="text-3xl font-bold text-primary mb-2">S/60/año · 1 GB</div>
+                  <p className="text-sm text-muted-foreground mb-6">
+                    Cada correo incluye 1 GB de espacio. Contrata a tu medida, sin mínimos.
+                  </p>
+                  <ul className="space-y-3">
+                    {[
+                      '1 GB de espacio por cuenta',
+                      'tu@tuempresa.com profesional',
+                      'Webmail y soporte IMAP/SMTP',
+                      'Protección anti-spam',
+                      '10 correos gratis de 1 GB al comprar un dominio'
+                    ].map((feature, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-sm">
+                        <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>

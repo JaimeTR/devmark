@@ -2,9 +2,9 @@
 'use client';
 
 import { useState } from 'react';
-import { AnimatedBackground } from '@/components/landing/animated-background';
-import { Footer } from '@/components/landing/footer';
-import { Header } from '@/components/landing/header';
+import { AnimatedBackground } from '@/components/home/animated-background';
+import { Footer } from '@/components/home/footer';
+import { Header } from '@/components/home/header';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { getPosts } from '@/data/blog-posts';
@@ -68,11 +68,11 @@ export default function BlogPage() {
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
           <header className="text-center mb-16">
-            <Badge variant="outline" className="text-primary border-primary/50 mb-4">Nuestros Últimos Blogs</Badge>
-            <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-gradient">
+            <Badge variant="outline" className="border-brand-navy/30 text-brand-navy mb-4">Nuestros Últimos Blogs</Badge>
+            <h1 className="font-medium text-4xl sm:text-5xl md:text-6xl text-brand-navy tracking-tight">
               Blog de DevMark
             </h1>
-            <p className="max-w-2xl mx-auto mt-4 text-lg text-muted-foreground">
+            <p className="max-w-2xl mx-auto mt-4 text-lg text-slate-600">
               Explora nuestros artículos sobre desarrollo web, software, SEO y las últimas tendencias en tecnología.
             </p>
           </header>
@@ -85,8 +85,8 @@ export default function BlogPage() {
                 setVisiblePosts(POSTS_PER_PAGE);
               }}
               className={cn(
-                "border-primary/50 text-primary hover:bg-primary/10",
-                !selectedTag ? "bg-primary/20" : ""
+                "border-brand-navy/30 text-brand-navy hover:bg-brand-light transition-colors",
+                !selectedTag ? "bg-brand-light border-brand-navy/50" : ""
               )}
             >
               Todos
@@ -100,8 +100,8 @@ export default function BlogPage() {
                   setVisiblePosts(POSTS_PER_PAGE);
                 }}
                 className={cn(
-                  "border-primary/50 text-primary hover:bg-primary/10",
-                  selectedTag === tag ? "bg-primary/20" : ""
+                  "border-brand-navy/30 text-brand-navy hover:bg-brand-light transition-colors",
+                  selectedTag === tag ? "bg-brand-light border-brand-navy/50" : ""
                 )}
               >
                 <span className="inline-flex items-center">
@@ -115,7 +115,7 @@ export default function BlogPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {postsToShow.map((post) => (
               <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
-                <Card className="overflow-hidden h-full flex flex-col bg-primary/5 backdrop-blur-sm border-primary/10 transition-all duration-300 hover:shadow-2xl hover:border-primary/30">
+                <Card className="overflow-hidden h-full flex flex-col bg-white border-slate-200 transition-all duration-300 hover:border-brand-navy/30 hover:shadow-lg hover:-translate-y-1">
                   <div className="relative h-52 w-full">
                     <Image
                       src={post.image}
@@ -127,18 +127,27 @@ export default function BlogPage() {
                   </div>
                   <CardContent className="p-6 flex flex-col flex-grow">
                     <div className="flex-grow">
-                      <p className="text-sm text-muted-foreground mb-2 flex items-center gap-2">
+                      <p className="text-sm text-slate-500 mb-2 flex items-center gap-2">
                         <Calendar className="h-4 w-4" aria-hidden="true" />
                         {format(new Date(post.date), "d 'de' MMMM, yyyy", { locale: es })}
                       </p>
-                      <h2 className="font-headline text-xl font-bold mb-2 text-gradient-blue">{post.title}</h2>
-                      <p className="text-muted-foreground line-clamp-3">
+                      <h2 className="font-headline text-xl font-bold mb-2 text-brand-navy group-hover:text-brand-blue transition-colors">
+                        {post.title}
+                      </h2>
+                      <p className="text-slate-600 line-clamp-3">
                         {post.description}
                       </p>
                     </div>
-                      <div className="mt-4 flex items-center gap-2 text-primary">
-                        <span className="text-sm font-medium">Leer más</span>
-                        <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    <div className="mt-4 flex flex-wrap gap-1 mb-3">
+                      {post.tags.map(tag => (
+                        <Badge key={tag} variant="outline" className="text-xs border-slate-200 text-slate-500">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                    <div className="flex items-center gap-2 text-brand-blue font-medium text-sm">
+                      <span>Leer más</span>
+                      <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                     </div>
                   </CardContent>
                 </Card>
@@ -148,7 +157,7 @@ export default function BlogPage() {
 
           {visiblePosts < filteredPosts.length && (
             <div className="mt-12 text-center">
-              <Button onClick={() => setVisiblePosts(prev => prev + POSTS_PER_PAGE)}>
+              <Button onClick={() => setVisiblePosts(prev => prev + POSTS_PER_PAGE)} className="bg-brand-navy hover:bg-brand-navy/90 text-white">
                 Ver más
               </Button>
             </div>

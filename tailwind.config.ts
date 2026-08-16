@@ -17,10 +17,24 @@ export default {
     },
     extend: {
       fontFamily: {
-        body: ['var(--font-inter)', 'sans-serif'],
-        headline: ['var(--font-space-grotesk)', 'sans-serif'],
+        body: ['var(--font-poppins)', 'sans-serif'],
+        headline: ['var(--font-poppins)', 'sans-serif'],
+        // Logo-only wordmark face — the DEVMARK brand mark, and (per client request) client wordmarks in the logos marquee.
+        logo: ['var(--font-braze)', 'sans-serif'],
       },
       colors: {
+        brand: {
+          navy: '#35347B',
+          'navy-dark': '#110C29',
+          // Converged onto the primary token (DESIGN.md's "Legacy Blue Rule") so the two can't drift apart again.
+          blue: 'hsl(var(--primary))',
+          // Lighter secondary indigo (was the primary value before the primary/secondary swap) — used for hover-lighten states.
+          'blue-dark': 'hsl(244 57% 57%)',
+          // Same hue/saturation as primary, just darker — for hover states on outline/text-only elements where a filled bg isn't available to darken.
+          'blue-darker': 'hsl(244 57% 33%)',
+          light: '#EFF3FE',
+          lavender: '#CBD5FA',
+        },
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
@@ -60,6 +74,7 @@ export default {
           '3': 'hsl(var(--chart-3))',
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))',
+          '6': 'hsl(var(--chart-6))',
         },
       },
       borderRadius: {

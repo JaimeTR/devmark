@@ -1,0 +1,53 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-font-size",
+        "value": "10px",
+        "createdAt": "2026-08-15T20:55:28.336Z",
+        "reason": "hero stat-strip labels: raised from 7px per critique fix, capped at 10-11px because the decorative stat box (w-68% h-28% of a 4:3 illustration) can't fit the 12px label token without breaking layout; narrowest legible size for this specific micro-context"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "11px",
+        "createdAt": "2026-08-15T20:55:28.403Z",
+        "reason": "hero stat-strip labels: same constraint as the 10px step, next breakpoint up"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "9px",
+        "createdAt": "2026-08-15T21:17:21.781Z",
+        "reason": "hero floating stats widget: compact glass-card label, same tight-space justification as the 10-11px exception already recorded for this component"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#ffffff",
+        "createdAt": "2026-08-15T21:33:14.896Z",
+        "reason": "page background gradient top stop (white), structural neutral not worth a separate token"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#f8fafc",
+        "createdAt": "2026-08-15T21:33:14.964Z",
+        "reason": "page background gradient bottom stop (near-white), structural neutral not worth a separate token"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#6366f1",
+        "createdAt": "2026-08-15T21:33:15.047Z",
+        "reason": "mid-stop of the pre-existing animated brand gradient (btn-gradient/cta-button sliding effect), a signature CTA motion predating DESIGN.md"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#fff",
+        "files": [
+          "src/app/globals.css"
+        ],
+        "createdAt": "2026-08-15T21:33:15.115Z",
+        "reason": "CSS mask compositing trick for gradient-border-hover (mask-image marker color, never visually rendered)"
+      }
+    ]
+  }
+}

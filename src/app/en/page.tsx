@@ -1,15 +1,18 @@
 
-import { AnimatedBackground } from '@/components/landing/animated-background';
-import { Header } from '@/components/landing/header';
-import { Hero } from '@/components/landing/sections/hero';
-import { Services } from '@/components/landing/sections/services';
-import { World } from '@/components/landing/sections/world';
-import { Testimonials } from '@/components/landing/sections/testimonials';
-import { Contact } from '@/components/landing/sections/contact';
-import { Footer } from '@/components/landing/footer';
-import { AdditionalServices } from '@/components/landing/sections/additional-services';
-import { Hosting } from '@/components/landing/sections/hosting';
-import { FeaturedProjectsCarousel } from '@/components/landing/sections/featured-projects-carousel';
+import { AnimatedBackground } from '@/components/home/animated-background';
+import { Header } from '@/components/home/header';
+import { Hero } from '@/components/home/hero';
+import { ClientLogos } from '@/components/home/client-logos';
+import { Strategy } from '@/components/home/strategy';
+import { Services } from '@/components/home/services';
+import { Advantages } from '@/components/home/advantages';
+import { Process } from '@/components/home/process';
+import { Testimonials } from '@/components/home/testimonials';
+import { Contact } from '@/components/home/contact';
+import { Footer } from '@/components/home/footer';
+import { AdditionalServices } from '@/components/home/additional-services';
+import { Hosting } from '@/components/home/hosting';
+import { FeaturedProjectsCarousel } from '@/components/home/featured-projects-carousel';
 import { getProjects } from '@/data/projects';
 
 
@@ -28,16 +31,32 @@ const content = {
     aiAssistantTooltip: 'Hello! I am your AI assistant.',
   },
   hero: {
-    badge: 'Your Global Digital Partner',
-    title: 'Boost Your Business with',
-    animatedPhrases: [
-      'Cutting-Edge Technology',
-      'Customized Solutions',
-      'Guaranteed Digital Success',
+    badgeMessages: ['DEVMARK, YOUR DIGITAL PARTNER', "Let's talk about your project today"],
+    title: 'Web and software development agency',
+    description: 'We create websites, online stores, custom software, automations, AI chatbots, and SEO strategies in Lima, Peru. We empower Peruvian businesses into the digital world.',
+    servicesButton: 'Services',
+    contactButton: 'Book a meeting',
+    stats: [
+      { value: '100+', label: 'Happy Clients' },
+      { value: '6', label: 'Partner Brands' },
+      { value: '91%', label: 'Faster Execution' },
     ],
-    description: 'At DevMark, we create custom web and software solutions, and optimize your online presence for a global audience.',
-    servicesButton: 'Our Services',
-    contactButton: 'Contact Us',
+    clients: [
+      'ADLIM', 'JOPCO', 'TAKLAB', 'LUCE INMOBILIARIA', 'MEMORANDUM', 'MM TECH',
+      'DETALZONE', 'SUPERPROFE', 'NEWDENIM', 'OFFROADPERU', 'BREEZLINGO', 'AS ABOGADOS',
+    ],
+    overlayItems: [
+      '+100 projects delivered for businesses in Peru.',
+      '91% faster execution times.',
+    ],
+  },
+  strategy: {
+    headerText: 'We believe every brand has a unique story. That\'s why we combine strategy, design and technology to help businesses grow with clarity.',
+    headerTitle: 'Devmark merges strategy and design to create impactful brands',
+    overlayText: 'We drive your business with purpose and clear direction.',
+    cardTitle: 'Strategic thinking that drives results',
+    cardDescription: 'We develop customized solutions aligned with your goals, ensuring every decision is backed by data and purpose. Our approach focuses on measurable results.',
+    ctaPrimary: 'Start growing',
   },
   services: {
     title: 'Main Services',
@@ -137,35 +156,34 @@ const content = {
     discountText: "20% discount",
     referralLink: "https://hostinger.com?REFERRALCODE=JAIMETRDEV"
   },
-  world: {
-    title: 'We develop projects for the whole world',
-    subtitle: 'Global Solutions, Local Impact',
-    description: 'We are a company with a global reach, providing services to clients in America and Europe. We understand the nuances of different markets and adapt our solutions to meet the specific needs of each region.',
-    ctaButton: 'Start your project',
-    ctaButton2: 'View Projects',
-    ctaButton2Link: 'https://asistente-inoia-tbuk.vercel.app/',
+  advantages: {
+    badge: 'Our projects',
+    title: 'The solutions that make us different',
+    description: 'We combine creativity with rigorous technological testing to verify every component before deployment, ensuring high-performing results in every project.',
     stats: [
-      {
-        value: "95%",
-        label: "Client Satisfaction",
-        description: "Satisfied clients from countries like Peru, USA, Spain, and more."
-      },
-      {
-        value: "+50%",
-        label: "Traffic Increase",
-        description: "Average growth in organic traffic with our SEO strategies."
-      },
-      {
-        value: "24/7",
-        label: "Global Support",
-        description: "Continuous support adapted to your time zone."
-      },
-      {
-        value: "100+",
-        label: "Successful Projects",
-        description: "Launched for companies across America and Europe."
-      }
-    ]
+      { value: 'Regional', label: 'Total reach' },
+      { value: 'Thousands+', label: 'Conversions' },
+    ],
+    clients: [
+      { name: 'WordPress', icon: 'Globe' },
+      { name: 'Next.js', icon: 'Layers' },
+      { name: 'React', icon: 'Sparkles' },
+      { name: 'Tailwind', icon: 'Compass' },
+    ],
+  },
+  process: {
+    badge: 'How we work',
+    title: 'When you work with us',
+    subtitle: 'A structured 7-step process to take your project from idea to launch.',
+    steps: [
+      { number: '01', title: 'Book a meeting', description: 'We coordinate a meeting to understand your business, your goals, and the type of website you need.' },
+      { number: '02', title: 'Define your goals', description: 'We analyze your company, your services, and the audience you want to reach to build a website aligned with your goals.' },
+      { number: '03', title: 'Design the structure', description: 'We organize content into clear sections and intuitive navigation to improve the user experience.' },
+      { number: '04', title: 'Create the visual design', description: 'We develop an attractive, modern, and professional interface that represents your brand identity.' },
+      { number: '05', title: 'Build your website', description: 'We build each page with a strategic focus, using calls to action designed to capture attention.' },
+      { number: '06', title: 'Review and optimize', description: 'We validate each section, optimize loading speed, and verify correct display on all devices.' },
+      { number: '07', title: 'Launch your site', description: 'We publish your website and get it ready for you to start receiving visitors and potential clients.' },
+    ],
   },
   testimonials: {
     badge: 'TESTIMONIALS',
@@ -295,20 +313,27 @@ export default function Home() {
       <Header {...content.header} />
       <main>
         <Hero {...content.hero} />
+        <ClientLogos stats={content.hero.stats} clients={content.hero.clients} />
+        <Strategy {...content.strategy} />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col gap-16 sm:gap-24 md:gap-32 lg:gap-40 pt-0">
+          <div className="flex flex-col gap-0 pt-0">
               <Services {...content.services} />
-              <FeaturedProjectsCarousel 
-                projects={projects}
-                lang="en"
-                title="Featured Projects"
-                subtitle="Discover some of our best work"
-                viewMoreText="View Full Portfolio"
-              />
-              <World {...content.world} />
+              <div>
+                <Advantages {...content.advantages} />
+                <FeaturedProjectsCarousel 
+                  projects={projects}
+                  lang="en"
+                  title="Featured projects"
+                  subtitle="Discover some of our best work"
+                  viewMoreText="View more projects"
+                  statsLabel="PROJECTS"
+                  statsDescription="Continuous experience in personal projects, agencies and as a freelance developer."
+                />
+              </div>
               <AdditionalServices {...content.additionalServices} />
               <Hosting {...content.hosting} />
               <Testimonials {...content.testimonials} />
+              <Process {...content.process} />
               <Contact {...content.contact} />
             </div>
         </div>

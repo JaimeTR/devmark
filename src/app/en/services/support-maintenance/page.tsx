@@ -1,12 +1,11 @@
-
-import { AnimatedBackground } from '@/components/landing/animated-background';
-import { Header } from '@/components/landing/header';
-import { Footer } from '@/components/landing/footer';
-import { Pricing } from '@/components/landing/sections/pricing';
-import { Contact } from '@/components/landing/sections/contact';
+import { AnimatedBackground } from '@/components/home/animated-background';
+import { Header } from '@/components/home/header';
+import { Footer } from '@/components/home/footer';
+import { ServiceHero } from '@/components/home/service-hero';
+import { ServiceMethodology } from '@/components/home/service-methodology';
+import { Pricing } from '@/components/home/pricing';
+import { Contact } from '@/components/home/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Badge } from '@/components/ui/badge';
-import { Wrench, ShieldCheck, DatabaseBackup, Activity } from 'lucide-react';
 
 const headerContent = {
   lang: 'en' as const,
@@ -16,36 +15,41 @@ const headerContent = {
   aiAssistantTooltip: 'Hello! I am your AI assistant.',
 };
 
-const serviceDetails = {
-    title: "Support and Maintenance",
-    description: "We ensure your website or application runs optimally, securely, and up-to-date. We offer flexible maintenance plans so you don't have to worry about the technical aspects.",
-    badge: "Peace of Mind and Confidence",
-    features: [
-        {
-            icon: ShieldCheck,
-            title: "Updates and Security",
-            description: "We keep your platform (WordPress, plugins, etc.) updated and apply security patches to protect you from vulnerabilities."
-        },
-        {
-            icon: Activity,
-            title: "Performance Monitoring",
-            description: "We monitor your site's performance 24/7 to detect and resolve speed or availability issues before they affect your users."
-        },
-        {
-            icon: DatabaseBackup,
-            title: "Backups",
-            description: "We perform regular backups of your site and database so your information is always safe from any unforeseen events."
-        },
-        {
-            icon: Wrench,
-            title: "Technical Support",
-            description: "We resolve incidents and offer you continuous technical support for any questions or problems you may have with your digital platform."
-        }
-    ]
+const heroContent = {
+  badge: "Peace of Mind and Confidence",
+  title: "Support and maintenance",
+  description: "We ensure your website or application runs optimally, securely, and up-to-date. We offer flexible maintenance plans so you don't have to worry about the technical aspects.",
+  lang: 'en' as const,
+  form: {
+    title: 'Tell us about your project',
+    firstNameLabel: 'First Name',
+    firstNamePlaceholder: 'Your first name',
+    emailLabel: 'Email',
+    emailPlaceholder: 'your@email.com',
+    phoneLabel: 'Phone',
+    phonePlaceholder: 'Your phone number',
+    messageLabel: 'Message',
+    messagePlaceholder: 'Tell us what you need for your project...',
+    submitButton: 'Request information',
+    successMessage: 'Message sent! An advisor will contact you soon.',
+    errorMessage: 'Something went wrong. Please try again.',
+  },
+};
+
+const methodologyContent = {
+  badge: 'Our methodology',
+  title: 'Our support and maintenance methodology',
+  subtitle: 'Continuous care to keep your platform running smoothly.',
+  steps: [
+    { title: 'Updates and security', description: "We keep your platform (WordPress, plugins, etc.) updated and apply security patches to protect you from vulnerabilities." },
+    { title: 'Performance monitoring', description: "We monitor your site's performance 24/7 to detect and resolve speed or availability issues before they affect your users." },
+    { title: 'Backups', description: "We perform regular backups of your site and database so your information is always safe from any unforeseen events." },
+    { title: 'Technical support', description: "We resolve incidents and offer you continuous technical support for any questions or problems you may have with your digital platform." },
+  ],
 };
 
 const faqContent = {
-  title: "Frequently Asked Questions",
+  title: "Frequently asked questions",
   items: [
     {
       question: "Why is web maintenance important?",
@@ -63,17 +67,19 @@ const faqContent = {
 };
 
 const pricingContent = {
-    title: "Plans & Pricing",
+    title: "Plans & pricing",
     subtitle: "Solutions tailored to your business. Choose the plan that best suits your needs and budget.",
     plans: [
       {
         name: "Basic",
-        price: "S/ 450",
-        description: "Ideal for startups and personal projects.",
+        price: "S/ 60",
+        description: "Essential monthly maintenance for your website.",
+        period: "/month",
         features: [
-          "Responsive web design",
-          "3 custom pages",
-          "Basic SEO optimization",
+          "Security updates",
+          "Backups",
+          "Uptime monitoring",
+          "1 hour of tech support",
           "Email support"
         ],
         buttonText: "Get a quote",
@@ -81,25 +87,32 @@ const pricingContent = {
       },
       {
         name: "Professional",
-        price: "S/ 900",
-        description: "Perfect for growing businesses.",
+        price: "S/ 150",
+        description: "Complete maintenance with proactive support.",
+        period: "/month",
         features: [
           "Everything in Basic",
-          "Up to 10 pages",
-          "CMS integration",
+          "4 support hours per month",
+          "Minor content changes",
+          "Speed optimization",
+          "Monthly status report",
           "Priority support"
         ],
         buttonText: "Get a quote",
-        priceId: "price_2..." // Replace with your Stripe Price ID
+        priceId: "price_2...", // Replace with your Stripe Price ID
+        recommended: true
       },
       {
         name: "Enterprise",
-        price: "Custom",
-        description: "Complete solutions for large corporations.",
+        price: "S/ 300",
+        description: "Full maintenance for critical websites.",
+        period: "/month",
         features: [
           "Everything in Professional",
-          "Unlimited pages",
-          "E-commerce functionality",
+          "8 support hours per month",
+          "24/7 monitoring",
+          "Immediate response",
+          "Phone support",
           "24/7 support"
         ],
         buttonText: "Contact Us",
@@ -110,7 +123,7 @@ const pricingContent = {
 
 const contactContent = {
     lang: 'en' as const,
-    title: "Let's Talk About Your Project",
+    title: "Let's talk about your project",
     description: "Ready to take your business to the next level? Complete the form or schedule a meeting and our global team will contact you shortly.",
     contactSubtitle: "Contact us now",
     emailLabel: "Email:",
@@ -146,26 +159,14 @@ export default function MaintenancePage() {
       <Header {...headerContent} />
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
-            <section id="service-hero" className="py-12 md:py-20 text-center">
-                <Badge variant="outline" className="mb-4 text-primary border-primary/50">{serviceDetails.badge}</Badge>
-                <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-gradient">{serviceDetails.title}</h1>
-                <p className="max-w-2xl mx-auto mt-6 text-lg text-muted-foreground">{serviceDetails.description}</p>
-            </section>
-            
-            <section id="features" className="py-12 md:py-20">
-                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {serviceDetails.features.map((feature, index) => (
-                        <div key={index} className="flex flex-col items-center text-center p-6 rounded-lg bg-primary/5">
-                            <feature.icon className="h-10 w-10 text-primary mb-4" />
-                            <h3 className="font-headline text-xl font-bold mb-2">{feature.title}</h3>
-                            <p className="text-muted-foreground">{feature.description}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-            
+            <ServiceHero {...heroContent} />
+
+            <Pricing {...pricingContent} />
+
+            <ServiceMethodology {...methodologyContent} />
+
             <section id="faq" className="py-12 md:py-20 max-w-3xl mx-auto">
-                <h2 className="font-headline text-3xl sm:text-4xl text-center font-bold tracking-tighter mb-8">{faqContent.title}</h2>
+                <h2 className="font-headline text-3xl sm:text-4xl text-center font-semibold tracking-tight mb-8">{faqContent.title}</h2>
                 <Accordion type="single" collapsible className="w-full">
                     {faqContent.items.map((item, index) => (
                         <AccordionItem key={index} value={`item-${index}`}>
@@ -175,8 +176,7 @@ export default function MaintenancePage() {
                     ))}
                 </Accordion>
             </section>
-            
-            <Pricing {...pricingContent} />
+
             <Contact {...contactContent} />
         </div>
       </main>

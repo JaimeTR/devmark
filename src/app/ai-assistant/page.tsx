@@ -1,6 +1,6 @@
-import { AnimatedBackground } from '@/components/landing/animated-background';
-import { Footer } from '@/components/landing/footer';
-import { Header } from '@/components/landing/header';
+import { AnimatedBackground } from '@/components/home/animated-background';
+import { Footer } from '@/components/home/footer';
+import { Header } from '@/components/home/header';
 import { AiChatbot } from '@/components/ai/ai-chatbot';
 import { SeoOptimizer } from '@/components/ai/seo-optimizer';
 

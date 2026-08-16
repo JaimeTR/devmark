@@ -1,21 +1,27 @@
-
 'use client';
 
 import { useState } from 'react';
-import { AnimatedBackground } from '@/components/landing/animated-background';
-import { Footer } from '@/components/landing/footer';
-import { Header } from '@/components/landing/header';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent } from '@/components/ui/card';
 import { getProjects } from '@/data/projects';
+import { Header } from '@/components/home/header';
+import { Footer } from '@/components/home/footer';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { Eye, ShoppingCart, Bot, Code, Globe, Search, Paintbrush } from 'lucide-react';
-import { TechStack } from '@/components/landing/sections/tech-stack';
+import { ArrowRight } from 'lucide-react';
 
-const PROJECTS_PER_PAGE = 4;
+const categories = [
+  { key: 'all', label: 'Todos' },
+  { key: 'webs', label: 'Webs' },
+  { key: 'ecommerce', label: 'E-commerce' },
+  { key: 'software', label: 'Software a medida' },
+  { key: 'ia', label: 'IA' },
+  { key: 'automatizacion', label: 'Automatización' },
+  { key: 'landing', label: 'Landing Pages' },
+];
+
+function getCategoryLabel(category: string) {
+  const cat = categories.find(c => c.key === category);
+  return cat ? cat.label : category;
+}
 
 const headerContent = {
   lang: 'es' as const,
@@ -31,141 +37,122 @@ const headerContent = {
   aiAssistantTooltip: '¡Hola! Soy tu asistente de IA.',
 };
 
-const techStackContent = {
-    title: "Nuestro Stack Tecnológico",
-    subtitle: "Utilizamos tecnologías de vanguardia para construir soluciones modernas, rápidas y escalables.",
-}
-
 const footerContent = {
   copyright: 'DevMark. Todos los derechos reservados.',
 };
 
-const curatedTags = ['E-commerce', 'Chatbot con IA', 'Software a Medida', 'Desarrollo Web', 'SEO', 'Diseño UI/UX'];
-
-const TAG_ICONS: Record<string, JSX.Element> = {
-  'E-commerce': <ShoppingCart className="mr-2 h-4 w-4" aria-hidden="true" />,
-  'Chatbot con IA': <Bot className="mr-2 h-4 w-4" aria-hidden="true" />,
-  'Software a Medida': <Code className="mr-2 h-4 w-4" aria-hidden="true" />,
-  'Desarrollo Web': <Globe className="mr-2 h-4 w-4" aria-hidden="true" />,
-  'SEO': <Search className="mr-2 h-4 w-4" aria-hidden="true" />,
-  'Diseño UI/UX': <Paintbrush className="mr-2 h-4 w-4" aria-hidden="true" />,
-};
-
-
 export default function PortfolioPage() {
   const projects = getProjects('es');
-  
-  const [selectedTag, setSelectedTag] = useState<string | null>(null);
-  const [visibleProjects, setVisibleProjects] = useState(PROJECTS_PER_PAGE);
+  const [activeCategory, setActiveCategory] = useState('all');
 
-  const filteredProjects = selectedTag
-    ? projects.filter(project => project.tags.includes(selectedTag))
-    : projects;
-  
-  const projectsToShow = filteredProjects.slice(0, visibleProjects);
-
+  const filteredProjects = activeCategory === 'all'
+    ? projects
+    : projects.filter(p => p.category === activeCategory);
 
   return (
-    <div className="relative overflow-x-hidden bg-background">
-      <AnimatedBackground />
+    <div className="min-h-screen bg-white">
       <Header {...headerContent} />
       <main>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
-          <header className="text-center mb-16 animate-fade-in-up">
-            <Badge variant="outline" className="text-primary border-primary/50 mb-4 animate-fade-in-up">Nuestro Trabajo</Badge>
-            <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-gradient animate-fade-in-up stagger-1">
-              Proyectos Destacados
+        <section className="pt-32 pb-16 bg-gradient-to-b from-brand-light/80 to-white">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 className="font-medium text-4xl sm:text-5xl md:text-6xl text-brand-navy tracking-tight">
+              Nuestro portafolio
             </h1>
-            <p className="max-w-2xl mx-auto mt-4 text-lg text-muted-foreground animate-fade-in-up stagger-2">
-              Una selección de nuestros trabajos que demuestra nuestro compromiso con la excelencia y la innovación.
+            <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600">
+              Proyectos que reflejan nuestra experiencia y compromiso con la calidad
             </p>
-          </header>
-
-          <div className="flex flex-wrap justify-center gap-2 mb-12 animate-fade-in-up stagger-3">
-            <Button
-              variant="outline"
-              onClick={() => {
-                setSelectedTag(null)
-                setVisibleProjects(PROJECTS_PER_PAGE);
-              }}
-              className={cn(
-                "border-primary/50 text-primary hover:bg-primary/10",
-                !selectedTag ? "bg-primary/20" : ""
-              )}
-            >
-              Todos
-            </Button>
-            {curatedTags.map(tag => (
-              <Button
-                key={tag}
-                variant="outline"
-                onClick={() => {
-                    setSelectedTag(tag);
-                    setVisibleProjects(PROJECTS_PER_PAGE);
-                }}
-                className={cn(
-                  "border-primary/50 text-primary hover:bg-primary/10",
-                  selectedTag === tag ? "bg-primary/20" : ""
-                )}
-              >
-                <span className="inline-flex items-center">
-                  {TAG_ICONS[tag]}
-                  {tag}
-                </span>
-              </Button>
-            ))}
           </div>
+        </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projectsToShow.map((project, index) => (
-              <Card key={index} className="overflow-hidden bg-primary/5 backdrop-blur-sm border-primary/10 group transition-all duration-300 hover:shadow-2xl hover:border-primary/30 animate-fade-in-up" style={{animationDelay: `${(index % 2) * 0.1}s`}}>
-                <CardContent className="p-0">
-                  <div className="relative h-60 w-full">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      data-ai-hint={project.hint}
-                    />
+        <section className="py-8">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex gap-2 overflow-x-auto pb-4 scrollbar-hide">
+              {categories.map(cat => (
+                <button
+                  key={cat.key}
+                  onClick={() => setActiveCategory(cat.key)}
+                  className={`whitespace-nowrap px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
+                    activeCategory === cat.key
+                      ? 'bg-brand-navy text-white shadow-md'
+                      : 'bg-brand-light text-slate-600 hover:bg-slate-200'
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-8">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredProjects.map((project, index) => (
+                <article
+                  key={index}
+                  className="group bg-brand-light rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col"
+                >
+                  <div className="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-brand-navy/10 via-brand-blue/10 to-brand-lavender/20">
+                    {project.hasCover && project.image ? (
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        data-ai-hint={project.hint}
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="text-4xl font-extrabold text-brand-navy/20">
+                          {project.title.charAt(0)}
+                        </span>
+                      </div>
+                    )}
+                    <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-brand-navy-dark/50 to-transparent" />
+                    <span className="absolute top-3 left-3 inline-block text-xs font-semibold text-white bg-white/15 backdrop-blur-md border border-white/20 rounded-full px-3 py-1">
+                      {getCategoryLabel(project.category)}
+                    </span>
                   </div>
-                  <div className="p-6">
-                    <h3 className="font-headline text-xl font-bold mb-2">{project.title}</h3>
-                    <p className="text-muted-foreground mb-4">{project.description}</p>
-                    <div className="flex gap-2 flex-wrap mb-4">
+                  <div className="p-6 flex flex-col flex-1">
+                    <h3 className="font-semibold text-xl text-brand-navy mb-2">
+                      {project.title}
+                    </h3>
+                    <p className="text-slate-600 text-sm leading-relaxed mb-4 flex-1">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-4">
                       {project.tags.map(tag => (
-                        <Badge key={tag} variant="secondary" className="inline-flex items-center gap-1">
-                          {TAG_ICONS[tag] ? <span aria-hidden>{TAG_ICONS[tag]}</span> : null}
+                        <span
+                          key={tag}
+                          className="text-xs font-medium text-slate-500 bg-white rounded-full px-3 py-1 border border-slate-200"
+                        >
                           {tag}
-                        </Badge>
+                        </span>
                       ))}
                     </div>
-                    {project.link && (
-                      <Button asChild variant="outline" className="border-primary/50 text-primary hover:bg-primary/10">
-                        <Link href={project.link} target="_blank" rel="noopener noreferrer" aria-label={`Ver proyecto: ${project.title} en nueva ventana`}>
-                          <Eye className="mr-2 h-4 w-4"/> Ver Proyecto
-                        </Link>
-                      </Button>
+                    {project.url && (
+                      <Link
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-blue transition-colors group mt-auto"
+                      >
+                        Ver proyecto
+                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </Link>
                     )}
                   </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {visibleProjects < filteredProjects.length && (
-            <div className="mt-12 text-center">
-              <Button onClick={() => setVisibleProjects(prev => prev + PROJECTS_PER_PAGE)}>
-                Ver más
-              </Button>
+                </article>
+              ))}
             </div>
-          )}
 
-          <div className="pt-16 sm:pt-24">
-            <TechStack {...techStackContent} />
+            {filteredProjects.length === 0 && (
+              <div className="text-center py-20">
+                <p className="text-slate-500 text-lg">No hay proyectos en esta categoría aún.</p>
+              </div>
+            )}
           </div>
-
-        </div>
+        </section>
       </main>
       <Footer copyright={footerContent.copyright} />
     </div>

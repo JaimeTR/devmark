@@ -1,12 +1,11 @@
-
-import { AnimatedBackground } from '@/components/landing/animated-background';
-import { Header } from '@/components/landing/header';
-import { Footer } from '@/components/landing/footer';
-import { Pricing } from '@/components/landing/sections/pricing';
-import { Contact } from '@/components/landing/sections/contact';
+import { AnimatedBackground } from '@/components/home/animated-background';
+import { Header } from '@/components/home/header';
+import { Footer } from '@/components/home/footer';
+import { ServiceHero } from '@/components/home/service-hero';
+import { ServiceMethodology } from '@/components/home/service-methodology';
+import { Pricing } from '@/components/home/pricing';
+import { Contact } from '@/components/home/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Badge } from '@/components/ui/badge';
-import { LineChart, Search, FileText, ArrowUpCircle } from 'lucide-react';
 
 const headerContent = {
   lang: 'en' as const,
@@ -16,36 +15,41 @@ const headerContent = {
   aiAssistantTooltip: 'Hello! I am your AI assistant.',
 };
 
-const serviceDetails = {
-    title: "SEO and Web Optimization",
-    description: "We increase your visibility in search engines, attract quality organic traffic, and improve your website's conversion rate.",
-    badge: "Positioning and Performance",
-    features: [
-        {
-            icon: Search,
-            title: "SEO Audit and Strategy",
-            description: "We conduct a complete analysis of your website and competition to define a keyword strategy and actions to achieve your goals."
-        },
-        {
-            icon: FileText,
-            title: "On-Page and Content SEO",
-            description: "We optimize your site's structure, tags, content, and internal links to improve your ranking on Google."
-        },
-        {
-            icon: LineChart,
-            title: "Technical SEO",
-            description: "We improve loading speed (Core Web Vitals), indexing, URL structure, and other critical technical factors for SEO."
-        },
-        {
-            icon: ArrowUpCircle,
-            title: "Link Building and Off-Page SEO",
-            description: "We develop quality link-building strategies to increase your domain's authority and improve your online reputation."
-        }
-    ]
+const heroContent = {
+  badge: "Positioning and Performance",
+  title: "SEO and web optimization",
+  description: "We increase your visibility in search engines, attract quality organic traffic, and improve your website's conversion rate.",
+  lang: 'en' as const,
+  form: {
+    title: 'Tell us about your project',
+    firstNameLabel: 'First Name',
+    firstNamePlaceholder: 'Your first name',
+    emailLabel: 'Email',
+    emailPlaceholder: 'your@email.com',
+    phoneLabel: 'Phone',
+    phonePlaceholder: 'Your phone number',
+    messageLabel: 'Message',
+    messagePlaceholder: 'Tell us what you need for your project...',
+    submitButton: 'Request information',
+    successMessage: 'Message sent! An advisor will contact you soon.',
+    errorMessage: 'Something went wrong. Please try again.',
+  },
+};
+
+const methodologyContent = {
+  badge: 'Our methodology',
+  title: 'Our SEO and optimization methodology',
+  subtitle: 'A structured process to improve your search rankings.',
+  steps: [
+    { title: 'SEO audit and strategy', description: "We conduct a complete analysis of your website and competition to define a keyword strategy and actions to achieve your goals." },
+    { title: 'On-page and content SEO', description: "We optimize your site's structure, tags, content, and internal links to improve your ranking on Google." },
+    { title: 'Technical SEO', description: "We improve loading speed (Core Web Vitals), indexing, URL structure, and other critical technical factors for SEO." },
+    { title: 'Link building and off-page SEO', description: "We develop quality link-building strategies to increase your domain's authority and improve your online reputation." },
+  ],
 };
 
 const faqContent = {
-  title: "Frequently Asked Questions",
+  title: "Frequently asked questions",
   items: [
     {
       question: "When will I start to see SEO results?",
@@ -63,43 +67,52 @@ const faqContent = {
 };
 
 const pricingContent = {
-    title: "Plans & Pricing",
+    title: "Plans & pricing",
     subtitle: "Solutions tailored to your business. Choose the plan that best suits your needs and budget.",
     plans: [
       {
-        name: "Basic",
-        price: "S/ 1200",
-        description: "Ideal for startups and personal projects.",
+        name: "Starter",
+        price: "S/ 300",
+        description: "Basic local SEO for starting businesses.",
+        period: "/month",
         features: [
-          "Responsive web design",
-          "3 custom pages",
-          "Basic SEO optimization",
+          "On-page optimization",
+          "Google Business Profile",
+          "Search Console setup",
+          "Basic monthly report",
           "Email support"
         ],
         buttonText: "Get a quote",
         priceId: "price_1..." // Replace with your Stripe Price ID
       },
       {
-        name: "Professional",
-        price: "S/ 2200",
-        description: "Perfect for growing businesses.",
+        name: "Business",
+        price: "S/ 600",
+        description: "Complete SEO for growing businesses.",
+        period: "/month",
         features: [
-          "Everything in Basic",
-          "Up to 10 pages",
-          "CMS integration",
+          "Everything in Starter",
+          "Keyword research",
+          "2 optimized articles per month",
+          "Basic technical SEO",
+          "Basic link building",
           "Priority support"
         ],
         buttonText: "Get a quote",
-        priceId: "price_2..." // Replace with your Stripe Price ID
+        priceId: "price_2...", // Replace with your Stripe Price ID
+        recommended: true
       },
       {
         name: "Enterprise",
-        price: "Custom",
-        description: "Complete solutions for large corporations.",
+        price: "S/ 1200",
+        description: "Advanced SEO for competitive markets.",
+        period: "/month",
         features: [
-          "Everything in Professional",
-          "Unlimited pages",
-          "E-commerce functionality",
+          "Everything in Business",
+          "4 optimized articles per month",
+          "Advanced technical SEO",
+          "Quality link building",
+          "GEO optimization (AI)",
           "24/7 support"
         ],
         buttonText: "Contact Us",
@@ -110,7 +123,7 @@ const pricingContent = {
 
 const contactContent = {
     lang: 'en' as const,
-    title: "Let's Talk About Your Project",
+    title: "Let's talk about your project",
     description: "Ready to take your business to the next level? Complete the form or schedule a meeting and our global team will contact you shortly.",
     contactSubtitle: "Contact us now",
     emailLabel: "Email:",
@@ -146,26 +159,14 @@ export default function SeoOptimizationPage() {
       <Header {...headerContent} />
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
-            <section id="service-hero" className="py-12 md:py-20 text-center">
-                <Badge variant="outline" className="mb-4 text-primary border-primary/50">{serviceDetails.badge}</Badge>
-                <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-gradient">{serviceDetails.title}</h1>
-                <p className="max-w-2xl mx-auto mt-6 text-lg text-muted-foreground">{serviceDetails.description}</p>
-            </section>
-            
-            <section id="features" className="py-12 md:py-20">
-                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {serviceDetails.features.map((feature, index) => (
-                        <div key={index} className="flex flex-col items-center text-center p-6 rounded-lg bg-primary/5">
-                            <feature.icon className="h-10 w-10 text-primary mb-4" />
-                            <h3 className="font-headline text-xl font-bold mb-2">{feature.title}</h3>
-                            <p className="text-muted-foreground">{feature.description}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-            
+            <ServiceHero {...heroContent} />
+
+            <Pricing {...pricingContent} />
+
+            <ServiceMethodology {...methodologyContent} />
+
             <section id="faq" className="py-12 md:py-20 max-w-3xl mx-auto">
-                <h2 className="font-headline text-3xl sm:text-4xl text-center font-bold tracking-tighter mb-8">{faqContent.title}</h2>
+                <h2 className="font-headline text-3xl sm:text-4xl text-center font-semibold tracking-tight mb-8">{faqContent.title}</h2>
                 <Accordion type="single" collapsible className="w-full">
                     {faqContent.items.map((item, index) => (
                         <AccordionItem key={index} value={`item-${index}`}>
@@ -175,8 +176,7 @@ export default function SeoOptimizationPage() {
                     ))}
                 </Accordion>
             </section>
-            
-            <Pricing {...pricingContent} />
+
             <Contact {...contactContent} />
         </div>
       </main>

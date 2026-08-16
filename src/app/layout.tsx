@@ -1,30 +1,38 @@
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
-import { PageLoader } from "@/components/page-loader"
-import { Inter, Space_Grotesk } from 'next/font/google';
+import { WhatsAppButton } from "@/components/whatsapp-button"
+import { Poppins } from 'next/font/google';
+import localFont from 'next/font/local';
 
-const inter = Inter({
+const poppins = Poppins({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-inter',
+  variable: '--font-poppins',
+  weight: ['400', '500', '600', '700', '800'],
 });
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
+// Logo-only wordmark typeface — used exclusively where "DEVMARK" is set as the brand mark
+// (header, footer), never as a body/heading font.
+const braze = localFont({
+  src: '../fonts/Braze.otf',
   display: 'swap',
-  variable: '--font-space-grotesk',
+  variable: '--font-braze',
 });
 
 
 export const metadata: Metadata = {
-  title: 'Devmark - Agencia de Desarrollo Web y Software',
-  description: 'Potencia tu negocio con DevMark, agencia líder en desarrollo web y software a medida. Ofrecemos soluciones innovadoras en SEO, marketing digital, chatbots con IA y automatización de procesos para garantizar tu éxito digital a nivel global.',
-  keywords: 'desarrollo web, software a medida, agencia de desarrollo, SEO, marketing digital, chatbots con IA, automatización de procesos, desarrollo de software, landing pages, e-commerce',
+  title: {
+    default: 'DevMark - Desarrollo Web y Software en Perú',
+    template: '%s | DevMark',
+  },
+  description: 'Agencia de desarrollo web en Peru. Creamos paginas web, tiendas online, software a medida, chatbots con IA y SEO en Lima. Soluciones digitales para empresas peruanas.',
+  keywords: 'desarrollo web peru, agencia desarrollo web lima, software a medida peru, paginas web peru, tiendas online lima, chatbots IA peru, SEO lima, marketing digital peru, automatizacion procesos, desarrollo apps peru',
   metadataBase: new URL('https://devmarkpe.com'),
   alternates: {
     canonical: 'https://devmarkpe.com',
     languages: {
+      'es-PE': 'https://devmarkpe.com',
       'es': 'https://devmarkpe.com',
       'en': 'https://devmarkpe.com/en',
     },
@@ -33,14 +41,24 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'es_PE',
     url: 'https://devmarkpe.com',
-    title: 'Devmark - Agencia de Desarrollo Web y Software',
-    description: 'Potencia tu negocio con DevMark, agencia líder en desarrollo web y software a medida.',
-    siteName: 'DevMark',
+    title: 'DevMark - Desarrollo Web y Software en Perú',
+    description: 'Agencia de desarrollo web en Lima, Peru. Paginas web, software a medida, chatbots IA y SEO para empresas peruanas.',
+    siteName: 'DevMark Perú',
+    countryName: 'Peru',
+    images: [
+      {
+        url: '/og-image.svg',
+        width: 1200,
+        height: 630,
+        alt: 'DevMark - Desarrollo Web y Software en Perú',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Devmark - Agencia de Desarrollo Web y Software',
-    description: 'Potencia tu negocio con DevMark, agencia líder en desarrollo web y software a medida.',
+    title: 'DevMark - Agencia de Desarrollo Web en Peru',
+    description: 'Desarrollo web, software a medida y chatbots IA en Lima, Peru.',
+    images: ['/og-image.svg'],
   },
   robots: {
     index: true,
@@ -48,7 +66,17 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
     },
+  },
+  other: {
+    'geo.region': 'PE-LIM',
+    'geo.placename': 'Lima, Peru',
+    'geo.position': '-12.0464;-77.0428',
+    'ICBM': '-12.0464, -77.0428',
+    'language': 'es-PE',
+    'target-country': 'PE',
   },
 };
 
@@ -58,10 +86,49 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
+    <html lang="es-PE" className={`${poppins.variable} ${braze.variable}`} suppressHydrationWarning>
       <body className="font-body antialiased">
-        <PageLoader />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'LocalBusiness',
+              name: 'DevMark',
+              description: 'Agencia de desarrollo web y software a medida en Lima, Peru',
+              url: 'https://devmarkpe.com',
+              email: 'contacto@devmarkpe.com',
+              telephone: '+51975646074',
+              priceRange: '$$',
+              areaServed: ['PE', 'ES', 'AR', 'CO'],
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Lima',
+                addressRegion: 'Lima',
+                addressCountry: 'PE',
+              },
+              geo: {
+                '@type': 'GeoCoordinates',
+                latitude: '-12.0464',
+                longitude: '-77.0428',
+              },
+              sameAs: [
+                'https://www.instagram.com/devmark.pe/',
+                'https://www.facebook.com/devmark.pe/',
+                'https://www.linkedin.com/company/devmarkpe/',
+                'https://github.com/JaimeTR',
+              ],
+              openingHoursSpecification: {
+                '@type': 'OpeningHoursSpecification',
+                dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                opens: '09:00',
+                closes: '18:00',
+              },
+            }),
+          }}
+        />
         {children}
+        <WhatsAppButton />
         <Toaster />
       </body>
     </html>

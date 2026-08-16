@@ -365,7 +365,7 @@ export function ProjectQuoter({ content }: ProjectQuoterProps) {
                     </div>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                    <Button onClick={handleDownloadPdf} variant="outline" className="w-full sm:w-auto border-primary/50 text-primary hover:bg-primary/10 hover:text-white">
+                    <Button onClick={handleDownloadPdf} variant="outline" className="w-full sm:w-auto border-primary/50 text-primary hover:bg-primary/10 hover:text-primary">
                         <Download className="mr-2 h-4 w-4" /> {content.results.downloadButton}
                     </Button>
                     <Button asChild className="w-full sm:w-auto btn-gradient text-white">

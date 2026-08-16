@@ -1,8 +1,8 @@
-import { AnimatedBackground } from '@/components/landing/animated-background';
-import { Header } from '@/components/landing/header';
-import { Footer } from '@/components/landing/footer';
-import { Services } from '@/components/landing/sections/services';
-import { AdditionalServices } from '@/components/landing/sections/additional-services';
+import { AnimatedBackground } from '@/components/home/animated-background';
+import { Header } from '@/components/home/header';
+import { Footer } from '@/components/home/footer';
+import { Services } from '@/components/home/services';
+import { AdditionalServices } from '@/components/home/additional-services';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
@@ -28,34 +28,34 @@ const content = {
     aiAssistantTooltip: '¡Hola! Soy tu asistente de IA.',
   },
   services: {
-    title: 'Servicios Principales',
+    title: 'Servicios principales',
     subtitle: 'Soluciones integrales para llevar tu empresa al siguiente nivel.',
     moreInfoButton: 'Más Información',
     items: [
       {
         icon: 'CodeXml',
-        title: "Desarrollo Web a Medida",
+        title: "Desarrollo web a medida",
         description: "Creación de sitios web personalizados programados desde cero para webs corporativas, landing pages y PWAs.",
         tags: ["Webs Corporativas", "Landing Pages", "PWAs"],
         href: '/servicios/desarrollo-web-a-medida'
       },
       {
         icon: 'Palette',
-        title: "Desarrollo con CMS y Plataformas",
+        title: "Desarrollo con CMS y plataformas",
         description: "Construcción de sitios y tiendas online con WordPress, Shopify y otras plataformas. E-commerce con integraciones de pago.",
         tags: ["WordPress", "Shopify", "E-commerce"],
         href: '/servicios/desarrollo-cms'
       },
       {
         icon: 'ServerCog',
-        title: "Desarrollo de Software a Medida",
+        title: "Desarrollo de software a medida",
         description: "Sistemas internos (ERP, CRM), SaaS y APIs. Integraciones entre herramientas para unificar datos y procesos.",
         tags: ["ERP/CRM", "SaaS", "APIs"],
         href: '/servicios/desarrollo-software'
       },
       {
         icon: 'Zap',
-        title: "Automatización de Procesos",
+        title: "Automatización de procesos",
         description: "Flujos automáticos con Zapier/Make/APIs para leads, ventas, reportes, notificaciones y tareas de back-office.",
         tags: ["Zapier", "Make", "Automatización de Leads"],
         href: '/servicios/automatizacion-procesos'
@@ -69,7 +69,7 @@ const content = {
       },
       {
         icon: 'LineChart',
-        title: "SEO y Optimización Web",
+        title: "SEO y optimización web",
         description: "Estrategia, SEO técnico y de contenidos, Core Web Vitals y para e-commerce. Aumenta tráfico orgánico y conversiones.",
         tags: ["Estrategia SEO", "Core Web Vitals", "Trafico"],
         href: '/servicios/seo-optimizacion'
@@ -77,7 +77,7 @@ const content = {
     ]
   },
   additionalServices: {
-    title: 'Servicios Complementarios',
+    title: 'Servicios complementarios',
     subtitle: '(Servicios que refuerzan el desarrollo tecnológico principal)',
     moreInfoButton: 'Más Información',
     items: [
@@ -89,19 +89,19 @@ const content = {
       },
       {
         icon: 'Megaphone',
-        title: 'Marketing Digital',
+        title: 'Marketing digital',
         description: 'Estrategias de crecimiento y captación de clientes. Campañas publicitarias (Google Ads, Meta Ads). Email marketing y automatización de ventas.',
         href: '/servicios/marketing-digital'
       },
       {
         icon: 'Wrench',
-        title: 'Soporte y Mantenimiento',
+        title: 'Soporte y mantenimiento',
         description: 'Actualizaciones periódicas de seguridad y plugins. Monitoreo de rendimiento y copias de seguridad. Resolución de incidencias y soporte técnico continuo.',
         href: '/servicios/soporte-mantenimiento'
       },
       {
         icon: 'Lightbulb',
-        title: 'Consultoría Tecnológica',
+        title: 'Consultoría tecnológica',
         description: 'Asesoría para digitalización de procesos. Elección de plataformas adecuadas para cada negocio. Estrategias de escalabilidad y seguridad.',
         href: '/servicios/consultoria-tecnologica'
       },
@@ -124,7 +124,7 @@ export default function ServiciosPage() {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <header className="text-center mb-16">
               <Badge variant="outline" className="text-primary border-primary/50 mb-4">Nuestros Servicios</Badge>
-              <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-gradient">
+              <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight text-gradient">
                 Soluciones Tecnológicas
               </h1>
               <p className="max-w-2xl mx-auto mt-4 text-lg text-muted-foreground">

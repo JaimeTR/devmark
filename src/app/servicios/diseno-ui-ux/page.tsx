@@ -1,16 +1,11 @@
-
-'use client';
-
-import { AnimatedBackground } from '@/components/landing/animated-background';
-import { Header } from '@/components/landing/header';
-import { Footer } from '@/components/landing/footer';
-import { Pricing } from '@/components/landing/sections/pricing';
-import { Contact } from '@/components/landing/sections/contact';
+import { AnimatedBackground } from '@/components/home/animated-background';
+import { Header } from '@/components/home/header';
+import { Footer } from '@/components/home/footer';
+import { ServiceHero } from '@/components/home/service-hero';
+import { ServiceMethodology } from '@/components/home/service-methodology';
+import { Pricing } from '@/components/home/pricing';
+import { Contact } from '@/components/home/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Badge } from '@/components/ui/badge';
-import { DraftingCompass, PenTool, Smartphone, Users } from 'lucide-react';
-import { useState } from 'react';
-import { cn } from '@/lib/utils';
 
 const headerContent = {
   lang: 'es' as const,
@@ -20,36 +15,41 @@ const headerContent = {
   aiAssistantTooltip: '¡Hola! Soy tu asistente de IA.',
 };
 
-const serviceDetails = {
-    title: "Diseño UI/UX",
-    description: "Creamos interfaces intuitivas y atractivas centradas en el usuario. Desde la investigación inicial hasta los prototipos interactivos y el diseño visual final, nos aseguramos de que tu producto sea fácil de usar y visualmente impactante.",
-    badge: "Experiencia de Usuario",
-    features: [
-        {
-            icon: Users,
-            title: "Investigación de Usuario",
-            description: "Comprendemos a tu público objetivo a través de entrevistas, encuestas y análisis para crear soluciones que realmente satisfagan sus necesidades."
-        },
-        {
-            icon: DraftingCompass,
-            title: "Wireframes y Prototipado",
-            description: "Creamos esquemas y prototipos interactivos que permiten visualizar y probar la estructura y el flujo de la aplicación antes del desarrollo."
-        },
-        {
-            icon: PenTool,
-            title: "Diseño de Interfaz (UI)",
-            description: "Diseñamos interfaces modernas, limpias y estéticamente agradables que reflejan la identidad de tu marca y guían al usuario de forma natural."
-        },
-        {
-            icon: Smartphone,
-            title: "Diseño Responsivo",
-            description: "Aseguramos que la experiencia de usuario sea óptima en cualquier dispositivo, ya sea móvil, tableta o escritorio."
-        }
-    ]
+const heroContent = {
+  badge: "Experiencia de Usuario",
+  title: "Diseño UI/UX",
+  description: "Creamos interfaces intuitivas y atractivas centradas en el usuario. Desde la investigación inicial hasta los prototipos interactivos y el diseño visual final, nos aseguramos de que tu producto sea fácil de usar y visualmente impactante.",
+  lang: 'es' as const,
+  form: {
+    title: 'Cuéntanos sobre tu proyecto',
+    firstNameLabel: 'Nombres',
+    firstNamePlaceholder: 'Tus nombres',
+    emailLabel: 'Correo',
+    emailPlaceholder: 'tu@email.com',
+    phoneLabel: 'Teléfono',
+    phonePlaceholder: 'Tu número de teléfono',
+    messageLabel: 'Mensaje',
+    messagePlaceholder: 'Cuéntanos qué necesitas para tu proyecto...',
+    submitButton: 'Solicitar información',
+    successMessage: '¡Mensaje enviado! Un asesor te contactará pronto.',
+    errorMessage: 'Hubo un error al enviar. Por favor inténtalo de nuevo.',
+  },
+};
+
+const methodologyContent = {
+  badge: 'Nuestra metodología',
+  title: 'Cómo diseñamos tu producto',
+  subtitle: 'Un proceso centrado en el usuario para crear interfaces intuitivas y visualmente impactantes.',
+  steps: [
+    { title: 'Investigar al usuario', description: "Comprendemos a tu público objetivo a través de entrevistas, encuestas y análisis para crear soluciones que realmente satisfagan sus necesidades." },
+    { title: 'Prototipar ideas', description: "Creamos esquemas y prototipos interactivos que permiten visualizar y probar la estructura y el flujo de la aplicación antes del desarrollo." },
+    { title: 'Diseñar la interfaz', description: "Diseñamos interfaces modernas, limpias y estéticamente agradables que reflejan la identidad de tu marca y guían al usuario de forma natural." },
+    { title: 'Adaptar a cada pantalla', description: "Aseguramos que la experiencia de usuario sea óptima en cualquier dispositivo, ya sea móvil, tableta o escritorio." },
+  ],
 };
 
 const faqContent = {
-  title: "Preguntas Frecuentes",
+  title: "Preguntas frecuentes",
   items: [
     {
       question: "¿Cuál es la diferencia entre UI y UX?",
@@ -67,43 +67,48 @@ const faqContent = {
 };
 
 const pricingContent = {
-    title: "Planes y Precios",
+    title: "Planes y precios",
     subtitle: "Soluciones a la medida de tu negocio. Elige el plan que mejor se adapte a tus necesidades y presupuesto.",
     plans: [
       {
-        name: "Básico",
+        name: "Emprendedor",
         price: "S/ 1800",
-        description: "Ideal para startups y proyectos personales.",
+        description: "Diseño UI/UX de una landing o web básica.",
         features: [
-          "Diseño web responsivo",
-          "3 páginas personalizadas",
-          "Optimización SEO básica",
+          "Wireframes y prototipo",
+          "Diseño UI a medida",
+          "Diseño responsive",
+          "Guía de estilos básica",
           "Soporte por email"
         ],
         buttonText: "Cotizar servicio",
         priceId: "price_1..." // Reemplazar con tu Price ID de Stripe
       },
       {
-        name: "Profesional",
+        name: "Negocio",
         price: "S/ 3200",
-        description: "Perfecto para empresas en crecimiento.",
+        description: "Diseño UI/UX completo de web corporativa.",
         features: [
-          "Todo lo del plan Básico",
-          "Hasta 10 páginas",
-          "Integración con CMS",
+          "Todo lo del plan Emprendedor",
+          "Arquitectura de la información",
+          "Hasta 10 pantallas",
+          "Design system / componentes",
+          "Prototipo interactivo",
           "Soporte prioritario"
         ],
         buttonText: "Cotizar servicio",
-        priceId: "price_2..." // Reemplazar con tu Price ID de Stripe
+        priceId: "price_2...", // Reemplazar con tu Price ID de Stripe
+        recommended: true
       },
       {
         name: "Empresa",
         price: "A medida",
-        description: "Soluciones completas para grandes corporaciones.",
+        description: "Diseño UX/UI de plataforma o aplicación.",
         features: [
-          "Todo lo del plan Profesional",
-          "Páginas ilimitadas",
-          "Funcionalidades E-commerce",
+          "Todo lo del plan Negocio",
+          "Pantallas ilimitadas",
+          "Pruebas de usabilidad",
+          "Documentación del sistema",
           "Soporte 24/7"
         ],
         buttonText: "Contactar",
@@ -114,7 +119,7 @@ const pricingContent = {
 
 const contactContent = {
     lang: 'es' as const,
-    title: "Hablemos de tu Proyecto",
+    title: "Hablemos de tu proyecto",
     description: "¿Listo para llevar tu negocio al siguiente nivel? Completa el formulario o agenda una reunión y nuestro equipo global se pondrá en contacto contigo.",
     contactSubtitle: "Contáctanos ahora",
     emailLabel: "Correo:",
@@ -144,54 +149,31 @@ const footerContent = {
 };
 
 export default function UiUxDesignPage() {
-  const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);
-
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
       <Header {...headerContent} />
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
-            <section id="service-hero" className="py-12 md:py-20 text-center">
-                <Badge variant="outline" className="mb-4 text-primary border-primary/50">{serviceDetails.badge}</Badge>
-                <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-gradient">{serviceDetails.title}</h1>
-                <p className="max-w-2xl mx-auto mt-6 text-lg text-muted-foreground">{serviceDetails.description}</p>
-            </section>
-            
-            <section id="features" className="py-12 md:py-20">
-                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {serviceDetails.features.map((feature, index) => (
-                        <div
-                          key={index}
-                          className={cn(
-                            'flex flex-col items-center text-center p-6 rounded-lg bg-primary/3 transition-all duration-300 cursor-pointer',
-                            hoveredFeature === index && 'gradient-border-hover'
-                          )}
-                          onMouseEnter={() => setHoveredFeature(index)}
-                          onMouseLeave={() => setHoveredFeature(null)}
-                        >
-                            <feature.icon className="h-10 w-10 text-primary mb-4" />
-                            <h3 className="font-headline text-xl font-bold mb-2">{feature.title}</h3>
-                            <p className="text-muted-foreground">{feature.description}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-            
-            <section id="faq" className="py-12 md:py-20 max-w-3xl mx-auto">
-                <h2 className="font-headline text-3xl sm:text-4xl text-center font-bold tracking-tighter mb-8">{faqContent.title}</h2>
-                <Accordion type="single" collapsible className="w-full">
-                    {faqContent.items.map((item, index) => (
-                        <AccordionItem key={index} value={`item-${index}`}>
-                            <AccordionTrigger>{item.question}</AccordionTrigger>
-                            <AccordionContent>{item.answer}</AccordionContent>
-                        </AccordionItem>
-                    ))}
-                </Accordion>
-            </section>
-            
-            <Pricing {...pricingContent} />
-            <Contact {...contactContent} />
+          <ServiceHero {...heroContent} />
+
+          <Pricing {...pricingContent} />
+
+          <ServiceMethodology {...methodologyContent} />
+
+          <section id="faq" className="py-12 md:py-20 max-w-3xl mx-auto">
+            <h2 className="font-headline text-3xl sm:text-4xl text-center font-semibold tracking-tight mb-8">{faqContent.title}</h2>
+            <Accordion type="single" collapsible className="w-full">
+              {faqContent.items.map((item, index) => (
+                <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionTrigger>{item.question}</AccordionTrigger>
+                  <AccordionContent>{item.answer}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </section>
+
+          <Contact {...contactContent} />
         </div>
       </main>
       <Footer copyright={footerContent.copyright} />

@@ -1,16 +1,11 @@
-
-'use client';
-
-import { AnimatedBackground } from '@/components/landing/animated-background';
-import { Header } from '@/components/landing/header';
-import { Footer } from '@/components/landing/footer';
-import { Pricing } from '@/components/landing/sections/pricing';
-import { Contact } from '@/components/landing/sections/contact';
+import { AnimatedBackground } from '@/components/home/animated-background';
+import { Header } from '@/components/home/header';
+import { Footer } from '@/components/home/footer';
+import { ServiceHero } from '@/components/home/service-hero';
+import { ServiceMethodology } from '@/components/home/service-methodology';
+import { Pricing } from '@/components/home/pricing';
+import { Contact } from '@/components/home/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Badge } from '@/components/ui/badge';
-import { ServerCog, Cloud, ShieldCheck, Layers } from 'lucide-react';
-import { useState } from 'react';
-import { cn } from '@/lib/utils';
 
 const headerContent = {
   lang: 'es' as const,
@@ -20,36 +15,41 @@ const headerContent = {
   aiAssistantTooltip: '¡Hola! Soy tu asistente de IA.',
 };
 
-const serviceDetails = {
-    title: "Desarrollo de Software a Medida",
-    description: "Construimos aplicaciones robustas, escalables y seguras, desde sistemas de gestión interna (ERP, CRM) hasta plataformas SaaS y APIs complejas.",
-    badge: "Soluciones Empresariales",
-    features: [
-        {
-            icon: ServerCog,
-            title: "Sistemas a Medida (ERP/CRM)",
-            description: "Desarrollamos sistemas de gestión que se adaptan a tus procesos, centralizando la información y mejorando la toma de decisiones."
-        },
-        {
-            icon: Cloud,
-            title: "Plataformas SaaS",
-            description: "Creamos productos de Software como Servicio (SaaS) desde la conceptualización hasta el despliegue en la nube, listos para escalar."
-        },
-        {
-            icon: Layers,
-            title: "Desarrollo de APIs",
-            description: "Diseñamos y construimos APIs RESTful y GraphQL para conectar tus aplicaciones, servicios y datos de forma segura y eficiente."
-        },
-        {
-            icon: ShieldCheck,
-            title: "Seguridad y Escalabilidad",
-            description: "Aplicamos las mejores prácticas de seguridad y arquitecturas escalables para garantizar que tu software sea fiable y esté preparado para el crecimiento."
-        }
-    ]
+const heroContent = {
+  badge: "Soluciones Empresariales",
+  title: "Desarrollo de software a medida",
+  description: "Construimos aplicaciones robustas, escalables y seguras, desde sistemas de gestión interna (ERP, CRM) hasta plataformas SaaS y APIs complejas.",
+  lang: 'es' as const,
+  form: {
+    title: 'Cuéntanos sobre tu proyecto',
+    firstNameLabel: 'Nombres',
+    firstNamePlaceholder: 'Tus nombres',
+    emailLabel: 'Correo',
+    emailPlaceholder: 'tu@email.com',
+    phoneLabel: 'Teléfono',
+    phonePlaceholder: 'Tu número de teléfono',
+    messageLabel: 'Mensaje',
+    messagePlaceholder: 'Cuéntanos qué necesitas para tu proyecto...',
+    submitButton: 'Solicitar información',
+    successMessage: '¡Mensaje enviado! Un asesor te contactará pronto.',
+    errorMessage: 'Hubo un error al enviar. Por favor inténtalo de nuevo.',
+  },
+};
+
+const methodologyContent = {
+  badge: 'Nuestra metodología',
+  title: 'Cómo desarrollamos tu software',
+  subtitle: 'Un proceso end-to-end, desde la idea hasta el despliegue, garantizando calidad, seguridad y escalabilidad.',
+  steps: [
+    { title: 'Construir sistemas a medida', description: "Desarrollamos sistemas de gestión que se adaptan a tus procesos, centralizando la información y mejorando la toma de decisiones." },
+    { title: 'Crear plataformas SaaS', description: "Creamos productos de Software como Servicio (SaaS) desde la conceptualización hasta el despliegue en la nube, listos para escalar." },
+    { title: 'Desarrollar APIs', description: "Diseñamos y construimos APIs RESTful y GraphQL para conectar tus aplicaciones, servicios y datos de forma segura y eficiente." },
+    { title: 'Asegurar y escalar', description: "Aplicamos las mejores prácticas de seguridad y arquitecturas escalables para garantizar que tu software sea fiable y esté preparado para el crecimiento." },
+  ],
 };
 
 const faqContent = {
-  title: "Preguntas Frecuentes",
+  title: "Preguntas frecuentes",
   items: [
     {
       question: "¿Cómo garantizan la calidad del software?",
@@ -67,43 +67,48 @@ const faqContent = {
 };
 
 const pricingContent = {
-    title: "Planes y Precios",
+    title: "Planes y precios",
     subtitle: "Soluciones a la medida de tu negocio. Elige el plan que mejor se adapte a tus necesidades y presupuesto.",
     plans: [
       {
-        name: "Básico",
-        price: "S/ 3500",
-        description: "Ideal para startups y proyectos personales.",
+        name: "Emprendedor",
+        price: "S/ 3000",
+        description: "MVP o sistema básico para validar tu idea.",
         features: [
-          "Diseño web responsivo",
-          "3 páginas personalizadas",
-          "Optimización SEO básica",
+          "MVP o módulo principal",
+          "Panel de administración",
+          "Base de datos incluida",
+          "Desarrollo responsivo",
           "Soporte por email"
         ],
         buttonText: "Cotizar servicio",
         priceId: "price_1..." // Reemplazar con tu Price ID de Stripe
       },
       {
-        name: "Profesional",
-        price: "S/ 6000",
-        description: "Perfecto para empresas en crecimiento.",
+        name: "Negocio",
+        price: "S/ 6500",
+        description: "Sistema a medida con 2 a 4 módulos.",
         features: [
-          "Todo lo del plan Básico",
-          "Hasta 10 páginas",
-          "Integración con CMS",
+          "Todo lo del plan Emprendedor",
+          "2 a 4 módulos funcionales",
+          "Gestión de usuarios y roles",
+          "Reportes y analítica básica",
+          "Integración con APIs",
           "Soporte prioritario"
         ],
         buttonText: "Cotizar servicio",
-        priceId: "price_2..." // Reemplazar con tu Price ID de Stripe
+        priceId: "price_2...", // Reemplazar con tu Price ID de Stripe
+        recommended: true
       },
       {
         name: "Empresa",
         price: "A medida",
-        description: "Soluciones completas para grandes corporaciones.",
+        description: "ERP, CRM o plataforma compleja.",
         features: [
-          "Todo lo del plan Profesional",
-          "Páginas ilimitadas",
-          "Funcionalidades E-commerce",
+          "Todo lo del plan Negocio",
+          "Módulos ilimitados",
+          "Integraciones avanzadas",
+          "Seguridad y escalabilidad",
           "Soporte 24/7"
         ],
         buttonText: "Contactar",
@@ -114,7 +119,7 @@ const pricingContent = {
 
 const contactContent = {
     lang: 'es' as const,
-    title: "Hablemos de tu Proyecto",
+    title: "Hablemos de tu proyecto",
     description: "¿Listo para llevar tu negocio al siguiente nivel? Completa el formulario o agenda una reunión y nuestro equipo global se pondrá en contacto contigo.",
     contactSubtitle: "Contáctanos ahora",
     emailLabel: "Correo:",
@@ -144,54 +149,31 @@ const footerContent = {
 };
 
 export default function CustomSoftwarePage() {
-  const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);
-
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
       <Header {...headerContent} />
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
-            <section id="service-hero" className="py-12 md:py-20 text-center">
-                <Badge variant="outline" className="mb-4 text-primary border-primary/50">{serviceDetails.badge}</Badge>
-                <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-gradient">{serviceDetails.title}</h1>
-                <p className="max-w-2xl mx-auto mt-6 text-lg text-muted-foreground">{serviceDetails.description}</p>
-            </section>
-            
-            <section id="features" className="py-12 md:py-20">
-                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {serviceDetails.features.map((feature, index) => (
-                        <div
-                          key={index}
-                          className={cn(
-                            'flex flex-col items-center text-center p-6 rounded-lg bg-primary/3 transition-all duration-300 cursor-pointer',
-                            hoveredFeature === index && 'gradient-border-hover'
-                          )}
-                          onMouseEnter={() => setHoveredFeature(index)}
-                          onMouseLeave={() => setHoveredFeature(null)}
-                        >
-                            <feature.icon className="h-10 w-10 text-primary mb-4" />
-                            <h3 className="font-headline text-xl font-bold mb-2">{feature.title}</h3>
-                            <p className="text-muted-foreground">{feature.description}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-            
-            <section id="faq" className="py-12 md:py-20 max-w-3xl mx-auto">
-                <h2 className="font-headline text-3xl sm:text-4xl text-center font-bold tracking-tighter mb-8">{faqContent.title}</h2>
-                <Accordion type="single" collapsible className="w-full">
-                    {faqContent.items.map((item, index) => (
-                        <AccordionItem key={index} value={`item-${index}`}>
-                            <AccordionTrigger>{item.question}</AccordionTrigger>
-                            <AccordionContent>{item.answer}</AccordionContent>
-                        </AccordionItem>
-                    ))}
-                </Accordion>
-            </section>
-            
-            <Pricing {...pricingContent} />
-            <Contact {...contactContent} />
+          <ServiceHero {...heroContent} />
+
+          <Pricing {...pricingContent} />
+
+          <ServiceMethodology {...methodologyContent} />
+
+          <section id="faq" className="py-12 md:py-20 max-w-3xl mx-auto">
+            <h2 className="font-headline text-3xl sm:text-4xl text-center font-semibold tracking-tight mb-8">{faqContent.title}</h2>
+            <Accordion type="single" collapsible className="w-full">
+              {faqContent.items.map((item, index) => (
+                <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionTrigger>{item.question}</AccordionTrigger>
+                  <AccordionContent>{item.answer}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </section>
+
+          <Contact {...contactContent} />
         </div>
       </main>
       <Footer copyright={footerContent.copyright} />

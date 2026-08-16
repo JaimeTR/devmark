@@ -1,15 +1,18 @@
 
-import { AnimatedBackground } from '@/components/landing/animated-background';
-import { Header } from '@/components/landing/header';
-import { Hero } from '@/components/landing/sections/hero';
-import { Services } from '@/components/landing/sections/services';
-import { World } from '@/components/landing/sections/world';
-import { Testimonials } from '@/components/landing/sections/testimonials';
-import { Contact } from '@/components/landing/sections/contact';
-import { Footer } from '@/components/landing/footer';
-import { AdditionalServices } from '@/components/landing/sections/additional-services';
-import { Hosting } from '@/components/landing/sections/hosting';
-import { FeaturedProjectsCarousel } from '@/components/landing/sections/featured-projects-carousel';
+import { AnimatedBackground } from '@/components/home/animated-background';
+import { Header } from '@/components/home/header';
+import { Hero } from '@/components/home/hero';
+import { ClientLogos } from '@/components/home/client-logos';
+import { Strategy } from '@/components/home/strategy';
+import { Services } from '@/components/home/services';
+import { Advantages } from '@/components/home/advantages';
+import { Process } from '@/components/home/process';
+import { Testimonials } from '@/components/home/testimonials';
+import { Contact } from '@/components/home/contact';
+import { Footer } from '@/components/home/footer';
+import { AdditionalServices } from '@/components/home/additional-services';
+import { Hosting } from '@/components/home/hosting';
+import { FeaturedProjectsCarousel } from '@/components/home/featured-projects-carousel';
 import { getProjects } from '@/data/projects';
 
 
@@ -28,70 +31,86 @@ const content = {
     aiAssistantTooltip: '¡Hola! Soy tu asistente de IA.',
   },
   hero: {
-    badge: 'Devmark Tu Socio Digital',
-    title: 'Impulsa Tu Negocio con',
-    animatedPhrases: [
-      'Tecnología de Punta',
-      'Soluciones a Medida',
-      'Éxito Digital Garantizado',
+    badgeMessages: ['DEVMARK, TU SOCIO DIGITAL EN PERU', 'Hablemos de tu proyecto hoy'],
+    title: 'Agencia de desarrollo web y software',
+    description: 'Creamos paginas web, tiendas online, software personalizado, automatizaciones, chatbots con IA y estrategias de SEO en Lima, Peru. Impulsamos empresas peruanas al mundo digital.',
+    servicesButton: 'Servicios',
+    contactButton: 'Agendar reunion',
+    stats: [
+      { value: '100+', label: 'Clientes Satisfechos' },
+      { value: '6', label: 'Marcas Colaboradoras' },
+      { value: '91%', label: 'Mayor Rapidez de Ejecución' },
     ],
-    description: 'En DevMark, creamos soluciones web y de software a medida, y optimizamos tu presencia online para una audiencia global.',
-    servicesButton: 'Nuestros Servicios',
-    contactButton: 'Contáctanos',
+    clients: [
+      'ADLIM', 'JOPCO', 'TAKLAB', 'LUCE INMOBILIARIA', 'MEMORANDUM', 'MM TECH',
+      'DETALZONE', 'SUPERPROFE', 'NEWDENIM', 'OFFROADPERU', 'BREEZLINGO', 'AS ABOGADOS',
+    ],
+    overlayItems: [
+      '+100 proyectos entregados para negocios en Perú.',
+      '91% más rápido en tiempos de ejecución.',
+    ],
+  },
+  strategy: {
+    headerText: 'Creemos que cada marca tiene una historia única. Por eso combinamos estrategia, diseño y tecnología para ayudar a los negocios a crecer con claridad.',
+    headerTitle: 'Devmark fusiona estrategia y diseño para crear marcas de impacto',
+    overlayText: 'Impulsamos tu negocio con propósito y dirección clara.',
+    cardTitle: 'Pensamiento estratégico que impulsa resultados',
+    cardDescription: 'Desarrollamos soluciones personalizadas que se alinean con tus objetivos, asegurando que cada decisión esté respaldada por datos y propósito. Nuestro enfoque se centra en resultados medibles.',
+    ctaPrimary: 'Comenzar crecimiento',
   },
   services: {
-    title: 'Servicios Principales',
+    title: 'Servicios principales',
     subtitle: 'Soluciones integrales para llevar tu empresa al siguiente nivel.',
-    moreInfoButton: 'Más Información',
+    moreInfoButton: 'Más información',
     items: [
       {
         icon: 'CodeXml',
-        title: "Desarrollo Web a Medida",
+        title: "Desarrollo web a medida",
         description: "Creación de sitios web personalizados programados desde cero para webs corporativas, landing pages y PWAs.",
-        tags: ["Webs Corporativas", "Landing Pages", "PWAs"],
+        tags: ["Webs corporativas", "Landing pages", "PWAs"],
         href: '/servicios/desarrollo-web-a-medida'
       },
       {
         icon: 'Palette',
-        title: "Desarrollo con CMS y Plataformas",
+        title: "Desarrollo con CMS y plataformas",
         description: "Construcción de sitios y tiendas online con WordPress, Shopify y otras plataformas. E-commerce con integraciones de pago.",
         tags: ["WordPress", "Shopify", "E-commerce"],
         href: '/servicios/desarrollo-cms'
       },
       {
         icon: 'ServerCog',
-        title: "Desarrollo de Software a Medida",
+        title: "Desarrollo de software a medida",
         description: "Sistemas internos (ERP, CRM), SaaS y APIs. Integraciones entre herramientas para unificar datos y procesos.",
         tags: ["ERP/CRM", "SaaS", "APIs"],
         href: '/servicios/desarrollo-software'
       },
       {
         icon: 'Zap',
-        title: "Automatización de Procesos",
+        title: "Automatización de procesos",
         description: "Flujos automáticos con Zapier/Make/APIs para leads, ventas, reportes, notificaciones y tareas de back-office.",
-        tags: ["Zapier", "Make", "Automatización de Leads"],
+        tags: ["Zapier", "Make", "Automatización de leads"],
         href: '/servicios/automatizacion-procesos'
       },
       {
         icon: 'Bot',
         title: "Chatbots con IA",
         description: "Chatbots para web, e-commerce y redes sociales, entrenados con tu base de conocimiento para soporte y ventas 24/7.",
-        tags: ["Chatbots Web", "Redes Sociales", "Soporte 24/7"],
+        tags: ["Chatbots web", "Redes sociales", "Soporte 24/7"],
         href: '/servicios/chatbots-ia'
       },
       {
         icon: 'LineChart',
-        title: "SEO y Optimización Web",
+        title: "SEO y optimización web",
         description: "Estrategia, SEO técnico y de contenidos, Core Web Vitals y para e-commerce. Aumenta tráfico orgánico y conversiones.",
-        tags: ["Estrategia SEO", "Core Web Vitals", "Trafico"],
+        tags: ["Estrategia SEO", "Core Web Vitals", "Tráfico"],
         href: '/servicios/seo-optimizacion'
       }
     ]
   },
   additionalServices: {
-    title: 'Servicios Complementarios',
-    subtitle: '(Servicios que refuerzan el desarrollo tecnológico principal)',
-    moreInfoButton: 'Más Información',
+    title: 'Servicios complementarios',
+    subtitle: 'Servicios que refuerzan el desarrollo tecnológico principal',
+    moreInfoButton: 'Más información',
     items: [
       {
         icon: 'DraftingCompass',
@@ -101,19 +120,19 @@ const content = {
       },
       {
         icon: 'Megaphone',
-        title: 'Marketing Digital',
+        title: 'Marketing digital',
         description: 'Estrategias de crecimiento y captación de clientes. Campañas publicitarias (Google Ads, Meta Ads). Email marketing y automatización de ventas.',
         href: '/servicios/marketing-digital'
       },
       {
         icon: 'Wrench',
-        title: 'Soporte y Mantenimiento',
+        title: 'Soporte y mantenimiento',
         description: 'Actualizaciones periódicas de seguridad y plugins. Monitoreo de rendimiento y copias de seguridad. Resolución de incidencias y soporte técnico continuo.',
         href: '/servicios/soporte-mantenimiento'
       },
       {
         icon: 'Lightbulb',
-        title: 'Consultoría Tecnológica',
+        title: 'Consultoría tecnológica',
         description: 'Asesoría para digitalización de procesos. Elección de plataformas adecuadas para cada negocio. Estrategias de escalabilidad y seguridad.',
         href: '/servicios/consultoria-tecnologica'
       },
@@ -130,42 +149,41 @@ const content = {
       "Soporte en directo y en español 24/7",
     ],
     guaranteeText: "Garantía de reembolso de 30 días",
-    ctaButton: "Obtener Descuento",
+    ctaButton: "Obtener descuento",
     couponCode: "DEVMARK",
-    copyButton: "Copiar Código",
+    copyButton: "Copiar código",
     copiedButton: "¡Copiado!",
     discountText: "20% de descuento",
     referralLink: "https://hostinger.com?REFERRALCODE=JAIMETRDEV"
   },
-  world: {
-    title: 'Desarrollamos proyectos para todo el mundo',
-    subtitle: 'Soluciones Globales, Impacto Local',
-    description: 'Somos una empresa con alcance mundial, brindando servicios a clientes en América y Europa. Entendemos los matices de los diferentes mercados y adaptamos nuestras soluciones para satisfacer las necesidades específicas de cada región.',
-    ctaButton: 'Inicia tu proyecto',
-    ctaButton2: 'Ver Proyectos',
-    ctaButton2Link: 'https://asistente-inoia-tbuk.vercel.app/',
+  advantages: {
+    badge: 'Nuestros proyectos',
+    title: 'Las soluciones que nos hacen diferentes',
+    description: 'Combinamos creatividad con rigurosas pruebas tecnologicas para verificar cada componente antes del despliegue, asegurando resultados de alto rendimiento en cada proyecto.',
     stats: [
-      {
-        value: "95%",
-        label: "Satisfacción del Cliente",
-        description: "Clientes satisfechos de países como Perú, EE. UU., España y más."
-      },
-      {
-        value: "+50%",
-        label: "Aumento de Tráfico",
-        description: "Crecimiento promedio en tráfico orgánico con nuestras estrategias de SEO."
-      },
-      {
-        value: "24/7",
-        label: "Soporte Global",
-        description: "Soporte continuo adaptado a tu zona horaria."
-      },
-      {
-        value: "100+",
-        label: "Proyectos Exitosos",
-        description: "Lanzados para empresas en América y Europa."
-      }
-    ]
+      { value: 'Regional', label: 'Alcance total' },
+      { value: 'Miles+', label: 'Conversiones' },
+    ],
+    clients: [
+      { name: 'WordPress', icon: 'Globe' },
+      { name: 'Next.js', icon: 'Layers' },
+      { name: 'React', icon: 'Sparkles' },
+      { name: 'Tailwind', icon: 'Compass' },
+    ],
+  },
+  process: {
+    badge: 'Como trabajamos',
+    title: 'Cuando trabajas con nosotros',
+    subtitle: 'Un proceso estructurado en 7 pasos para llevar tu proyecto desde la idea hasta el lanzamiento.',
+    steps: [
+      { number: '01', title: 'Agendar cita', description: 'Coordinamos una reunion para conocer tu negocio, tus objetivos y el tipo de web que necesitas.' },
+      { number: '02', title: 'Definimos tus objetivos', description: 'Analizamos tu empresa, tus servicios y el publico al que deseas llegar para construir una web alineada a tus metas.' },
+      { number: '03', title: 'Diseñamos la estructura', description: 'Organizamos el contenido en secciones claras y una navegacion intuitiva para mejorar la experiencia del usuario.' },
+      { number: '04', title: 'Creamos el diseño visual', description: 'Desarrollamos una interfaz atractiva, moderna y profesional que represente la identidad de tu marca.' },
+      { number: '05', title: 'Construimos tu sitio web', description: 'Maquetamos cada pagina con enfoque estrategico, utilizando llamadas a la accion pensadas para captar la atencion.' },
+      { number: '06', title: 'Revisamos y optimizamos', description: 'Validamos cada seccion, optimizamos la velocidad de carga y verificamos la correcta visualizacion en todos los dispositivos.' },
+      { number: '07', title: 'Lanzamos tu sitio', description: 'Publicamos tu web y la dejamos lista para que empieces a recibir visitas y potenciales clientes.' },
+    ],
   },
   testimonials: {
     badge: 'TESTIMONIOS',
@@ -256,7 +274,7 @@ const content = {
   },
   contact: {
     lang: 'es',
-    title: "Hablemos de tu Proyecto",
+    title: "Hablemos de tu proyecto",
     description: "¿Listo para llevar tu negocio al siguiente nivel? Completa el formulario o agenda una reunión y nuestro equipo global se pondrá en contacto contigo.",
     contactSubtitle: "Contáctanos ahora",
     emailLabel: "Correo:",
@@ -264,51 +282,58 @@ const content = {
     phoneLabel: "Teléfono:",
     phone: "+51 975 646 074",
     timeZoneLabel: "Horario:",
-    formTitle: "Formulario de Contacto",
+    formTitle: "Formulario de contacto",
     formDescription: "Envíanos un mensaje y empecemos a construir algo increíble juntos.",
     firstNameLabel: "Nombres",
     firstNamePlaceholder: "Tus nombres",
     lastNameLabel: "Apellidos",
     lastNamePlaceholder: "Tus apellidos",
-    emailFormLabel: "Dirección de Correo",
+    emailFormLabel: "Dirección de correo",
     emailPlaceholder: "tu@email.com",
     phoneFormLabel: "Teléfono",
     phonePlaceholder: "Tu número de teléfono",
     messageLabel: "Mensaje",
     messagePlaceholder: "Cuéntanos sobre tu proyecto...",
-    submitButton: "Enviar Mensaje",
+    submitButton: "Enviar mensaje",
     scheduleButton: "Agendar reunión por Meet",
-    quoteButton: "Cotiza tu Proyecto con nuestra IA"
+    quoteButton: "Cotiza tu proyecto con nuestra IA"
   },
   footer: {
     copyright: "DevMark. Todos los derechos reservados."
   }
 } as const;
 
-
+ 
 export default function Home() {
   const projects = getProjects('es');
-  
+   
   return (
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
       <Header {...content.header} />
       <main>
         <Hero {...content.hero} />
+        <ClientLogos stats={content.hero.stats} clients={content.hero.clients} />
+        <Strategy {...content.strategy} />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col gap-16 sm:gap-24 md:gap-32 lg:gap-40 pt-0">
+          <div className="flex flex-col gap-0 pt-0">
             <Services {...content.services} />
-            <FeaturedProjectsCarousel 
-              projects={projects}
-              lang="es"
-              title="Proyectos Destacados"
-              subtitle="Conoce algunos de nuestros mejores trabajos"
-              viewMoreText="Ver Portafolio Completo"
-            />
-            <World {...content.world} />
+            <div>
+              <Advantages {...content.advantages} />
+              <FeaturedProjectsCarousel 
+                projects={projects}
+                lang="es"
+                title="Proyectos destacados"
+                subtitle="Conoce algunos de nuestros mejores trabajos"
+                viewMoreText="Ver mas proyectos"
+                statsLabel="PROYECTOS"
+                statsDescription="Experiencia continua en proyectos personales, agencias y como desarrollador autonomo."
+              />
+            </div>
             <AdditionalServices {...content.additionalServices} />
             <Hosting {...content.hosting} />
             <Testimonials {...content.testimonials} />
+            <Process {...content.process} />
             <Contact {...content.contact} />
           </div>
         </div>

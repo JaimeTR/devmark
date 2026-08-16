@@ -1,9 +1,9 @@
 
 import { getPostBySlug, getPosts } from '@/data/blog-posts';
 import { notFound } from 'next/navigation';
-import { AnimatedBackground } from '@/components/landing/animated-background';
-import { Footer } from '@/components/landing/footer';
-import { Header } from '@/components/landing/header';
+import { AnimatedBackground } from '@/components/home/animated-background';
+import { Footer } from '@/components/home/footer';
+import { Header } from '@/components/home/header';
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
 import { format } from 'date-fns';
@@ -57,7 +57,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 <Badge key={tag} variant="outline" className="text-primary border-primary/50 mx-1">{tag}</Badge>
               ))}
             </div>
-            <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-gradient mb-4">
+            <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight text-gradient mb-4">
               {post.title}
             </h1>
             <div className="flex items-center justify-center gap-6 text-muted-foreground text-sm">

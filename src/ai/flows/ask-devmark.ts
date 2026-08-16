@@ -4,21 +4,21 @@
 
 /**
  * @fileOverview An AI agent that can answer questions about DevMark.
- * Sistema de fallback: Gemini (gratis) -> OpenAI
+ * Sistema de fallback: Groq (llama-3.3-70b-versatile) -> OpenAI -> Respuestas predefinidas
  *
  * - askDevMark - A function that handles the chat interaction.
  * - Message - The type for a single message in the chat history.
  */
 
 import { openai } from '@/ai/openai';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { groq, GROQ_MODEL } from '@/ai/groq';
 import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 
 export type Message = {
   role: 'user' | 'model';
   content: string;
   metadata?: {
-    source?: 'gemini' | 'openai' | 'fallback';
+    source?: 'groq' | 'openai' | 'fallback';
     leadCapture?: boolean;
   };
 };
@@ -207,8 +207,54 @@ async function fetchKnowledgeContext(question: string, lang: 'es' | 'en'): Promi
     .join('\n');
 }
 
+function buildMessages(history: Message[], lang: 'es' | 'en', knowledge: string) {
+  const messages: { role: 'system' | 'user' | 'assistant'; content: string }[] = [
+    { role: 'system', content: SYSTEM_PROMPT },
+    knowledge
+      ? { role: 'system', content: `Contexto de conocimiento (lang=${lang}):\n${knowledge}` }
+      : { role: 'system', content: 'Sin contexto dinámico, responde solo con la información base.' },
+    ...history.map(m => {
+      if (m.role === 'user') return { role: 'user' as const, content: m.content };
+      return { role: 'assistant' as const, content: m.content };
+    })
+  ];
+  return messages;
+}
+
 /**
- * Fallback a OpenAI cuando Gemini falla
+ * Intento 1: Groq (llama-3.3-70b-versatile) - principal
+ */
+async function askWithGroq(history: Message[]): Promise<Message> {
+  const apiKey = process.env.GROQ_API_KEY;
+  if (!apiKey || apiKey.trim() === '' || apiKey.includes('gsk_') === false || apiKey.includes('xxxxx')) {
+    throw new Error('GROQ_API_KEY no configurada. Por favor configura tu API key de Groq en .env.local');
+  }
+
+  const lastUserMessage = history.filter(m => m.role === 'user').pop()?.content || '';
+  const lang = detectLang(lastUserMessage);
+  const knowledge = await fetchKnowledgeContext(lastUserMessage, lang);
+
+  const completion = await groq.chat.completions.create({
+    model: GROQ_MODEL,
+    messages: buildMessages(history, lang, knowledge),
+    temperature: 0.7,
+    max_tokens: 512,
+  });
+
+  const content = completion.choices?.[0]?.message?.content?.trim();
+  if (!content || content.length === 0) {
+    throw new Error('Groq devolvió una respuesta vacía');
+  }
+
+  return {
+    role: 'model',
+    content,
+    metadata: { source: 'groq' },
+  };
+}
+
+/**
+ * Fallback a OpenAI cuando Groq falla
  */
 async function askWithOpenAI(history: Message[]): Promise<Message> {
   try {
@@ -225,21 +271,9 @@ async function askWithOpenAI(history: Message[]): Promise<Message> {
     const lang = detectLang(lastUserMessage);
     const knowledge = await fetchKnowledgeContext(lastUserMessage, lang);
 
-    const messages: { role: 'system' | 'user' | 'assistant'; content: string }[] = [
-      { role: 'system', content: SYSTEM_PROMPT },
-      knowledge
-        ? { role: 'system', content: `Contexto de conocimiento (lang=${lang}):\n${knowledge}` }
-        : { role: 'system', content: 'Sin contexto dinámico, responde solo con la información base.' },
-      ...history.map(m => {
-        if (m.role === 'user') return { role: 'user' as const, content: m.content };
-        return { role: 'assistant' as const, content: m.content };
-      })
-    ];
-
-    console.log('🔄 [DEBUG] Enviando mensaje a OpenAI...');
     const completion = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
-      messages,
+      messages: buildMessages(history, lang, knowledge),
       max_tokens: 512,
       temperature: 0.7,
     });
@@ -267,62 +301,18 @@ async function askWithOpenAI(history: Message[]): Promise<Message> {
 }
 
 export async function askDevMark(history: Message[]): Promise<Message> {
-  // Intento 1: Gemini (GRATIS - usando API directa)
+  // Intento 1: Groq (principal)
   try {
-    console.log('🔄 [DEBUG] Intentando con Gemini 1.5 Flash (cuota gratuita)...');
-    
-    const apiKey = process.env.GOOGLE_GENAI_API_KEY;
-    if (!apiKey || apiKey.trim() === '' || apiKey.includes('tu') || apiKey.includes('xxxxx')) {
-      console.error('❌ [DEBUG] GOOGLE_GENAI_API_KEY no configurada o es un placeholder');
-      throw new Error('GOOGLE_GENAI_API_KEY no configurada. Por favor configura tu API key de Google AI Studio en .env.local');
-    }
-
-    console.log('✅ [DEBUG] API Key de Gemini encontrada (longitud:', apiKey.length, 'caracteres)');
-
-    const genAI = new GoogleGenerativeAI(apiKey);
-    // Usar gemini-2.0-flash que es el modelo más reciente y disponible
-    const model = genAI.getGenerativeModel({ 
-      model: 'gemini-2.0-flash'
-    });
-
-    const lastUserMessage = history.filter(m => m.role === 'user').pop()?.content || '';
-    const lang = detectLang(lastUserMessage);
-    const knowledge = await fetchKnowledgeContext(lastUserMessage, lang);
-    
-    const chat = model.startChat({
-      generationConfig: {
-        temperature: 0.7,
-        maxOutputTokens: 512,
-      },
-    });
-
-    const enrichedPrompt = `${SYSTEM_PROMPT}\n\nContexto (lang=${lang}):\n${knowledge || 'Sin contexto dinámico, usa la información base.'}\n\nUsuario: ${lastUserMessage}`;
-
-    console.log('🔄 [DEBUG] Enviando mensaje a Gemini...');
-    const result = await chat.sendMessage(enrichedPrompt);
-    const response = await result.response;
-    const text = response.text();
-
-    if (!text || text.trim() === '') {
-      throw new Error('Gemini devolvió una respuesta vacía');
-    }
-
-    console.log('✅ [DEBUG] Respuesta de Gemini generada exitosamente (longitud:', text.length, 'caracteres)');
-    
-    return {
-      role: 'model',
-      content: text,
-      metadata: { source: 'gemini' },
-    };
-  } catch (geminiError: any) {
+    console.log('🔄 [DEBUG] Intentando con Groq (llama-3.3-70b-versatile)...');
+    return await askWithGroq(history);
+  } catch (groqError: any) {
     const errorDetails = {
-      message: geminiError?.message || 'Error desconocido',
-      status: geminiError?.status || geminiError?.response?.status,
-      code: geminiError?.code,
-      error: geminiError?.error || geminiError?.errorDetails,
+      message: groqError?.message || 'Error desconocido',
+      status: groqError?.status || groqError?.response?.status,
+      code: groqError?.code,
     };
     
-    console.error('❌ [DEBUG] Error detallado con Gemini:', JSON.stringify(errorDetails, null, 2));
+    console.error('❌ [DEBUG] Error detallado con Groq:', JSON.stringify(errorDetails, null, 2));
     
     // Detectar tipos específicos de errores
     const isQuotaExceeded = errorDetails.status === 429 || 
@@ -336,10 +326,10 @@ export async function askDevMark(history: Message[]): Promise<Message> {
                            errorDetails.message?.toLowerCase().includes('invalid') ||
                            errorDetails.message?.toLowerCase().includes('unauthorized');
     
-    const isApiKeyMissing = errorDetails.message?.includes('GOOGLE_GENAI_API_KEY no configurada');
+    const isApiKeyMissing = errorDetails.message?.includes('GROQ_API_KEY no configurada');
     
     if (isApiKeyMissing || isInvalidApiKey) {
-      console.error('⚠️ [DEBUG] Problema con la API key de Gemini. Verificando OpenAI...');
+      console.error('⚠️ [DEBUG] Problema con la API key de Groq. Verificando OpenAI...');
     }
     
     // Intento 2: Fallback a OpenAI (si está configurado)
@@ -350,7 +340,7 @@ export async function askDevMark(history: Message[]): Promise<Message> {
     
     if (hasOpenAIKey) {
       try {
-        console.log('⚠️ [DEBUG] Gemini falló, intentando con OpenAI como fallback...');
+        console.log('⚠️ [DEBUG] Groq falló, intentando con OpenAI como fallback...');
         return await askWithOpenAI(history);
       } catch (openaiError: any) {
         const openaiErrorDetails = {
@@ -361,18 +351,11 @@ export async function askDevMark(history: Message[]): Promise<Message> {
         
         console.error('❌ [DEBUG] Error detallado con OpenAI:', JSON.stringify(openaiErrorDetails, null, 2));
         
-        const isOpenAIQuota = openaiErrorDetails.status === 429 || 
-                             openaiErrorDetails.message?.includes('429') ||
-                             openaiErrorDetails.message?.toLowerCase().includes('quota');
-        
         // Si ambos fallan, usar respuestas predefinidas inteligentes
         console.warn('⚠️ [DEBUG] Todas las APIs fallaron, usando respuestas predefinidas inteligentes...');
         const lastUserMessage2 = history.filter(m => m.role === 'user').pop()?.content || '';
         const lang2 = detectLang(lastUserMessage2);
         const fallbackResponse2 = getFallbackResponse(lastUserMessage2, lang2);
-        
-        // No mostrar notas técnicas al usuario final, solo loguear en consola
-        console.warn('⚠️ [ADMIN] Para activar IA real, configura GOOGLE_GENAI_API_KEY en .env.local (gratis: https://aistudio.google.com/app/apikey)');
         
         return {
           role: 'model',
@@ -381,21 +364,19 @@ export async function askDevMark(history: Message[]): Promise<Message> {
         };
       }
     } else {
-      // Si OpenAI no está configurado, dar mensaje más específico
-      console.warn('⚠️ [DEBUG] OpenAI no está configurado, solo se intentó Gemini');
+      // Si OpenAI no está configurado, usar respuestas predefinidas
+      console.warn('⚠️ [DEBUG] OpenAI no está configurado, solo se intentó Groq');
       
-      // Usar respuestas predefinidas inteligentes siempre
       const lastUserMessage3 = history.filter(m => m.role === 'user').pop()?.content || '';
       const lang3 = detectLang(lastUserMessage3);
       const fallbackResponse3 = getFallbackResponse(lastUserMessage3, lang3);
       
-      // No mostrar notas técnicas al usuario final, solo loguear en consola
       if (isApiKeyMissing || isInvalidApiKey) {
-        console.warn('⚠️ [ADMIN] Para activar IA real, configura GOOGLE_GENAI_API_KEY en .env.local (gratis: https://aistudio.google.com/app/apikey)');
+        console.warn('⚠️ [ADMIN] Para activar IA real, configura GROQ_API_KEY en .env.local (gratis: https://console.groq.com/keys)');
       } else if (isQuotaExceeded) {
         console.warn('⚠️ [ADMIN] La cuota de IA se agotó temporalmente. Intenta más tarde o configura otra API key.');
       } else {
-        console.warn('⚠️ [ADMIN] Para activar IA real, configura GOOGLE_GENAI_API_KEY en .env.local (gratis)');
+        console.warn('⚠️ [ADMIN] Para activar IA real, configura GROQ_API_KEY en .env.local (gratis: https://console.groq.com/keys)');
       }
       
       return {

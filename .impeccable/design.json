@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-15T00:00:00.000Z",
+  "title": "Design System: DevMark",
+  "extensions": {
+    "colorMeta": {
+      "confident-indigo": { "role": "primary", "displayName": "Confident Indigo", "canonical": "hsl(244 57% 57%)", "tonalRamp": ["hsl(244 57% 15%)", "hsl(244 57% 25%)", "hsl(244 57% 35%)", "hsl(244 57% 45%)", "hsl(244 57% 57%)", "hsl(244 57% 65%)", "hsl(244 57% 80%)", "hsl(244 57% 95%)"] },
+      "navy-ink": { "role": "neutral", "displayName": "Navy Ink", "canonical": "hsl(244 41% 35%)", "tonalRamp": ["hsl(244 41% 15%)", "hsl(244 41% 25%)", "hsl(244 41% 35%)", "hsl(244 41% 45%)", "hsl(244 41% 55%)", "hsl(244 41% 65%)", "hsl(244 41% 80%)", "hsl(244 41% 95%)"] },
+      "deep-navy": { "role": "neutral", "displayName": "Deep Navy", "canonical": "hsl(240 100% 9%)", "tonalRamp": ["hsl(240 100% 5%)", "hsl(240 100% 9%)", "hsl(240 80% 18%)", "hsl(240 70% 28%)", "hsl(240 60% 40%)", "hsl(240 55% 55%)", "hsl(240 50% 75%)", "hsl(240 50% 92%)"] },
+      "soft-lavender-surface": { "role": "secondary", "displayName": "Soft Lavender Surface", "canonical": "hsl(224 88% 97%)", "tonalRamp": ["hsl(224 88% 20%)", "hsl(224 88% 32%)", "hsl(224 88% 45%)", "hsl(224 88% 60%)", "hsl(224 88% 75%)", "hsl(224 88% 88%)", "hsl(224 88% 93%)", "hsl(224 88% 97%)"] },
+      "lavender-border": { "role": "neutral", "displayName": "Lavender Border", "canonical": "hsl(224 82% 89%)", "tonalRamp": ["hsl(224 82% 20%)", "hsl(224 82% 32%)", "hsl(224 82% 45%)", "hsl(224 82% 60%)", "hsl(224 82% 74%)", "hsl(224 82% 84%)", "hsl(224 82% 89%)", "hsl(224 82% 96%)"] },
+      "brand-lavender": { "role": "secondary", "displayName": "Brand Lavender", "canonical": "#CBD5FA", "tonalRamp": ["hsl(228 84% 20%)", "hsl(228 84% 32%)", "hsl(228 84% 45%)", "hsl(228 84% 60%)", "hsl(228 84% 74%)", "hsl(228 84% 84%)", "hsl(228 84% 89%)", "hsl(228 84% 96%)"] },
+      "signal-teal": { "role": "tertiary", "displayName": "Signal Teal", "canonical": "hsl(173 58% 39%)", "tonalRamp": ["hsl(173 58% 15%)", "hsl(173 58% 25%)", "hsl(173 58% 35%)", "hsl(173 58% 39%)", "hsl(173 58% 50%)", "hsl(173 58% 65%)", "hsl(173 58% 80%)", "hsl(173 58% 95%)"] },
+      "signal-steel": { "role": "tertiary", "displayName": "Signal Steel", "canonical": "hsl(197 37% 24%)", "tonalRamp": ["hsl(197 37% 10%)", "hsl(197 37% 18%)", "hsl(197 37% 24%)", "hsl(197 37% 35%)", "hsl(197 37% 45%)", "hsl(197 37% 60%)", "hsl(197 37% 78%)", "hsl(197 37% 93%)"] },
+      "signal-gold": { "role": "tertiary", "displayName": "Signal Gold", "canonical": "hsl(43 74% 66%)", "tonalRamp": ["hsl(43 74% 15%)", "hsl(43 74% 28%)", "hsl(43 74% 42%)", "hsl(43 74% 55%)", "hsl(43 74% 66%)", "hsl(43 74% 75%)", "hsl(43 74% 85%)", "hsl(43 74% 95%)"] },
+      "signal-orange": { "role": "tertiary", "displayName": "Signal Orange", "canonical": "hsl(27 87% 67%)", "tonalRamp": ["hsl(27 87% 15%)", "hsl(27 87% 28%)", "hsl(27 87% 42%)", "hsl(27 87% 55%)", "hsl(27 87% 67%)", "hsl(27 87% 76%)", "hsl(27 87% 86%)", "hsl(27 87% 95%)"] },
+      "signal-violet": { "role": "tertiary", "displayName": "Signal Violet", "canonical": "hsl(280 60% 55%)", "tonalRamp": ["hsl(280 60% 15%)", "hsl(280 60% 25%)", "hsl(280 60% 35%)", "hsl(280 60% 45%)", "hsl(280 60% 55%)", "hsl(280 60% 65%)", "hsl(280 60% 80%)", "hsl(280 60% 95%)"] },
+      "alert-red": { "role": "semantic-error", "displayName": "Alert Red", "canonical": "hsl(0 84.2% 60.2%)", "tonalRamp": ["hsl(0 84% 15%)", "hsl(0 84% 25%)", "hsl(0 84% 35%)", "hsl(0 84% 47%)", "hsl(0 84% 60%)", "hsl(0 84% 70%)", "hsl(0 84% 83%)", "hsl(0 84% 95%)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero H1 only. Size (up to 4.5rem) carries the weight; stays at 500, never bolder." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles (Servicios principales, Planes y precios, FAQ)." },
+      "title": { "displayName": "Title", "purpose": "Card and component-level headings." },
+      "body": { "displayName": "Body", "purpose": "Paragraph copy." },
+      "label": { "displayName": "Label", "purpose": "Uppercase eyebrow badges and category tags only." }
+    },
+    "shadows": [
+      { "name": "resting-card", "value": "0 1px 2px rgba(0,0,0,0.04)", "purpose": "Default card elevation, unactivated." },
+      { "name": "activated-glow-indigo", "value": "0 20px 40px -8px hsl(244 57% 57% / 0.3)", "purpose": "Hover/active state on primary buttons and indigo elements." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "Default transition easing (color, shadow, background)." },
+      { "name": "hover-lift", "value": "transform 0.3s cubic-bezier(0.4,0,0.2,1)", "purpose": "The -translate-y-1 lift on buttons and cards on hover." },
+      { "name": "liquid-fuse", "value": "k: 4→22 over ~300ms via React state, no CSS transition (path is recomputed per frame)", "purpose": "The SDF smooth-union blend amount driving the liquid-fusion chip." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The only button style that means a primary action. Sentence case, full pill, tinted glow shadow.",
+      "html": "<button class=\"ds-btn-primary\">Agendar reunión</button>",
+      "css": ".ds-btn-primary { height: 52px; padding: 0 2rem; border-radius: 9999px; background: hsl(244 57% 57%); color: #fff; font-weight: 600; font-size: 0.9375rem; border: none; box-shadow: 0 20px 40px -8px hsl(244 57% 57% / 0.3); transition: all 0.3s cubic-bezier(0.4,0,0.2,1); cursor: pointer; } .ds-btn-primary:hover { background: hsl(244 57% 50%); box-shadow: 0 24px 48px -8px hsl(244 57% 57% / 0.4); transform: translateY(-4px); } .ds-btn-primary:focus-visible { outline: 2px solid hsl(244 57% 57%); outline-offset: 2px; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary action pairing with Primary Button — always the same 52px height so the 2px border never reads taller.",
+      "html": "<button class=\"ds-btn-outline\">Servicios</button>",
+      "css": ".ds-btn-outline { height: 52px; padding: 0 2rem; border-radius: 9999px; background: transparent; color: hsl(244 57% 57%); font-weight: 600; font-size: 0.9375rem; border: 2px solid hsl(244 57% 57%); transition: all 0.3s cubic-bezier(0.4,0,0.2,1); cursor: pointer; } .ds-btn-outline:hover { background: hsl(244 57% 57% / 0.05); transform: translateY(-4px); } .ds-btn-outline:focus-visible { outline: 2px solid hsl(244 57% 57%); outline-offset: 2px; }"
+    },
+    {
+      "name": "Service Card",
+      "kind": "card",
+      "refersTo": "card-service",
+      "description": "Rests on Soft Lavender Surface; on hover washes to a diagonal gradient of its own signal color and every child element (icon, tag, title, body) inverts to white/glass.",
+      "html": "<a class=\"ds-card-service\" href=\"#\"><div class=\"ds-card-icon\">🔧</div><span class=\"ds-card-tag\">WEBS CORPORATIVAS</span><h3 class=\"ds-card-title\">Desarrollo web a medida</h3><p class=\"ds-card-body\">Creación de sitios web personalizados programados desde cero.</p></a>",
+      "css": ".ds-card-service { display: block; background: hsl(224 88% 97%); border: 1px solid #f1f5f9; border-radius: 24px; padding: 2rem; text-decoration: none; box-shadow: 0 1px 2px rgba(0,0,0,0.04); transition: all 0.3s cubic-bezier(0.4,0,0.2,1); } .ds-card-service:hover { background: linear-gradient(135deg, hsl(244 57% 57%), hsl(244 57% 57% / 0.8)); border-color: transparent; box-shadow: 0 20px 40px -8px rgba(0,0,0,0.15); transform: translateY(-2px); } .ds-card-icon { width: 48px; height: 48px; border-radius: 16px; background: #fff; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; font-size: 1.25rem; } .ds-card-service:hover .ds-card-icon { background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); } .ds-card-tag { display: block; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: hsl(244 57% 57% / 0.8); margin-bottom: 0.5rem; } .ds-card-service:hover .ds-card-tag { color: #fff; } .ds-card-title { font-size: 1.25rem; font-weight: 600; color: hsl(244 41% 35%); margin: 0 0 0.5rem; } .ds-card-service:hover .ds-card-title { color: #fff; } .ds-card-body { font-size: 0.875rem; line-height: 1.6; color: #64748b; margin: 0; } .ds-card-service:hover .ds-card-body { color: rgba(255,255,255,0.85); }"
+    },
+    {
+      "name": "Liquid Fusion Chip",
+      "kind": "custom",
+      "refersTo": "liquid-fusion-chip",
+      "description": "Signature component. In the real app this is a live SDF smooth-union traced with marching squares (see src/components/liquid/). This snippet is a static approximation of the RESTING (crisp, low-blend) and ACTIVE (gooey, high-blend) states for preview purposes only — the real shape is generated per-frame, not authored as fixed paths.",
+      "html": "<div class=\"ds-liquid-chip\"><svg viewBox=\"0 0 104 36\" width=\"104\" height=\"36\"><path class=\"ds-liquid-skin\" d=\"M12 6 h32 a6 6 0 0 1 6 6 v0 a6 6 0 0 1 -6 6 h-32 a6 6 0 0 1 -6 -6 v0 a6 6 0 0 1 6 -6 Z M68 0 h20 a18 18 0 0 1 0 36 h-20 a18 18 0 0 1 0 -36 Z\"/></svg><span class=\"ds-liquid-number\">01</span><span class=\"ds-liquid-arrow\">→</span></div>",
+      "css": ".ds-liquid-chip { position: relative; width: 104px; height: 36px; } .ds-liquid-skin { fill: #ffffff; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.08)); transition: fill 0.3s; } .ds-liquid-chip:hover .ds-liquid-skin { fill: rgba(255,255,255,0.22); } .ds-liquid-number { position: absolute; left: 12px; top: 8px; font-size: 12px; font-weight: 700; color: hsl(244 57% 57%); } .ds-liquid-chip:hover .ds-liquid-number { color: #fff; } .ds-liquid-arrow { position: absolute; right: 16px; top: 6px; font-size: 16px; color: hsl(244 41% 35%); transition: all 0.3s; } .ds-liquid-chip:hover .ds-liquid-arrow { color: #fff; transform: translateX(2px); }"
+    },
+    {
+      "name": "Eyebrow Badge",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "The pill badge used above hero headlines and as category tags.",
+      "html": "<span class=\"ds-badge\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M12 2l2.4 7.2H22l-6 4.4 2.3 7.2-6.3-4.6-6.3 4.6 2.3-7.2-6-4.4h7.6z\"/></svg>DEVMARK, TU SOCIO DIGITAL EN PERU</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem; border-radius: 9999px; background: #CBD5FA; border: 1px solid rgba(203,213,250,0.3); color: hsl(244 41% 35%); font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; }"
+    },
+    {
+      "name": "Nav Pill Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Header navigation link — active state is a soft indigo pill, inactive is muted text.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link is-active\" href=\"#\">Inicio</a><a class=\"ds-nav-link\" href=\"#\">Servicios</a><a class=\"ds-nav-link\" href=\"#\">Portafolio</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 0.25rem; } .ds-nav-link { padding: 0.375rem 0.75rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 500; color: #64748b; text-decoration: none; transition: color 0.2s, background 0.2s; } .ds-nav-link:hover { color: hsl(244 57% 57%); } .ds-nav-link.is-active { background: hsl(244 57% 57% / 0.1); color: hsl(244 57% 57%); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Digital Atelier",
+    "overview": "DevMark reads as a studio where strategy, design, and engineering happen at the same table, not a template with a logo swapped in. The system stays professional and warm: confident enough to sell software to a business owner, human enough that no screen feels like a cold SaaS dashboard. One disciplined indigo carries every call-to-action across the entire site; color otherwise shows up in small, deliberate doses, never as decoration for its own sake.\n\nThe system is built to feel alive under the cursor. Cards don't just change a background color on hover, their number badge and arrow chip pour into one liquid shape (an SDF smooth-union rendered as a live SVG path); an ASCII particle wordmark drifts and reacts to the pointer inside the hero illustration. These are not stock micro-interactions; they're custom-built and specific to this brand. Static, flat hover states are the anti-reference.",
+    "keyCharacteristics": [
+      "One primary action color (Confident Indigo) used everywhere a user is asked to act; nothing else competes for that role.",
+      "A six-color \"signal\" family rotates across service cards so the grid reads as distinct offerings, not one repeated block.",
+      "Motion and shape-shifting (liquid fusion, glass/blur, soft blurred illustration blobs) do real communicative work — they mark interactivity and hierarchy, not just add movement.",
+      "Warm, human copy voice paired with precise, structured layouts (rounded-3xl cards, consistent spacing rhythm)."
+    ],
+    "rules": [
+      { "name": "The One Action Rule", "body": "Confident Indigo is the only color that means \"click here.\" Signal colors identify; they never act.", "section": "colors" },
+      { "name": "The Legacy Blue Rule", "body": "brand.blue (#4F4AD8) is a near-duplicate of Confident Indigo left over from early scaffolding. Don't introduce new usages of it.", "section": "colors" },
+      { "name": "The Size-Not-Weight Rule for Display", "body": "The hero H1 stays at font-weight 500 even though it's the largest text on the page. Its scale does the work.", "section": "typography" },
+      { "name": "The Tinted Shadow Rule", "body": "No shadow in this system is neutral black/gray. Every shadow inherits a hue from the element it belongs to.", "section": "elevation" },
+      { "name": "The Generous Radius Rule", "body": "Nothing uses a sharp or barely-rounded corner. The floor is 16px; most surfaces are fully round or 24px.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do keep Confident Indigo as the only color that means \"primary action\" — every other color identifies or decorates.",
+      "Do give shadows a tint from their own element's color; never use a flat neutral gray shadow.",
+      "Do use sentence case on all button labels; reserve uppercase+tracking for Label-role eyebrow/tag text only.",
+      "Do keep the liquid-fusion treatment scoped to index+action pairings — it's a signature, not a generic hover effect.",
+      "Do fix explicit heights when two buttons with different border widths sit side by side."
+    ],
+    "donts": [
+      "Don't introduce new usages of brand.blue (#4F4AD8); it's a legacy duplicate of Confident Indigo.",
+      "Don't add a sharp or barely-rounded corner anywhere; the floor is 16px.",
+      "Don't run the ASCII wordmark or other generative-background effects full-bleed behind real UI copy.",
+      "Don't use side-tab accent borders or bounce/elastic easing anywhere in the product UI."
+    ]
+  }
+}

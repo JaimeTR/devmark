@@ -6,9 +6,9 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { CheckCircle, Home, MessageCircle, Calendar, Sparkles, ArrowRight } from 'lucide-react';
-import { Header } from '@/components/landing/header';
-import { Footer } from '@/components/landing/footer';
-import { AnimatedBackground } from '@/components/landing/animated-background';
+import { Header } from '@/components/home/header';
+import { Footer } from '@/components/home/footer';
+import { AnimatedBackground } from '@/components/home/animated-background';
 
 const headerData = {
   lang: 'es' as const,
@@ -135,7 +135,7 @@ function GraciasContent() {
                   {/* Icono animado */}
                   <div className="relative">
                     <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl animate-pulse"></div>
-                    <div className="relative bg-primary/10 p-6 rounded-full border-2 border-primary/30 animate-bounce">
+                    <div className="relative bg-primary/10 p-6 rounded-full border-2 border-primary/30 animate-in zoom-in duration-500">
                       <div className="text-primary">
                         {config.icon}
                       </div>

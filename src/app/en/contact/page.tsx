@@ -1,7 +1,7 @@
-import { AnimatedBackground } from '@/components/landing/animated-background';
-import { Footer } from '@/components/landing/footer';
-import { Header } from '@/components/landing/header';
-import { Contact } from '@/components/landing/sections/contact';
+import { AnimatedBackground } from '@/components/home/animated-background';
+import { Footer } from '@/components/home/footer';
+import { Header } from '@/components/home/header';
+import { Contact } from '@/components/home/contact';
 
 const headerContent = {
   lang: 'en' as const,
