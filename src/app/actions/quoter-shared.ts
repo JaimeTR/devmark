@@ -5,6 +5,12 @@ import nodemailer from 'nodemailer';
 // de Jaime para no perder ningún aviso mientras el negocio es chico.
 export const ADMIN_NOTIFICATION_EMAILS = 'soporte@devmarkpe.com,jaimetr1309@gmail.com';
 
+// Nombre de remitente que ve el destinatario — sin esto, nodemailer usa el
+// correo pelado (ej. "correo@devmarkpe.com" se mostraba como "correo").
+export function getEmailFrom(): string {
+  return `"Devmark" <${process.env.SMTP_EMAIL}>`;
+}
+
 export function buildTransporter() {
   if (!process.env.SMTP_EMAIL || !process.env.SMTP_PASSWORD) {
     throw new Error('Faltan credenciales SMTP');

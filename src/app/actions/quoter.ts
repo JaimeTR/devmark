@@ -5,7 +5,7 @@
 import { z } from 'zod';
 import { quoteProject, type QuoteProjectOutput } from '@/ai/flows/quote-project-flow';
 import { supabase, type QuoteRecord, isSupabaseConfigured } from '@/lib/supabase';
-import { buildTransporter, escapeHtml, sanitizeHeader, ADMIN_NOTIFICATION_EMAILS } from '@/app/actions/quoter-shared';
+import { buildTransporter, escapeHtml, sanitizeHeader, getEmailFrom, ADMIN_NOTIFICATION_EMAILS } from '@/app/actions/quoter-shared';
 
 const formSchema = z.object({
     responsibleName: z.string().min(2, 'Name must be at least 2 characters.'),
@@ -240,7 +240,7 @@ export async function quoteProjectAction(
 
       // Reporte al soporte / panel de leads
       await transporter.sendMail({
-        from: process.env.SMTP_EMAIL,
+        from: getEmailFrom(),
         to: ADMIN_NOTIFICATION_EMAILS,
         subject: `💰 Nueva cotización - ${sanitizeHeader(validatedFields.data.projectName)}`,
         html: adminQuoteHtml({
@@ -260,7 +260,7 @@ export async function quoteProjectAction(
 
       // Confirmación con la cotización al usuario
       await transporter.sendMail({
-        from: process.env.SMTP_EMAIL,
+        from: getEmailFrom(),
         to: quoteEmail,
         subject: validatedFields.data.lang === 'es' ? '📋 Tu cotización de DEVMARK' : '📋 Your DEVMARK quote',
         html: userQuoteHtml({
@@ -307,7 +307,7 @@ export async function notifyProposalDownloaded(
 
     const isEs = lang === 'es';
     await transporter.sendMail({
-      from: process.env.SMTP_EMAIL,
+      from: getEmailFrom(),
       to: ADMIN_NOTIFICATION_EMAILS,
       subject: `📄 Propuesta descargada - ${sanitizeHeader(projectName)}`,
       html: `<!DOCTYPE html>

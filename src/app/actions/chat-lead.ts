@@ -1,7 +1,7 @@
 'use server';
 
 import { z } from 'zod';
-import { buildTransporter, escapeHtml, ADMIN_NOTIFICATION_EMAILS } from '@/app/actions/quoter-shared';
+import { buildTransporter, escapeHtml, getEmailFrom, ADMIN_NOTIFICATION_EMAILS } from '@/app/actions/quoter-shared';
 
 const leadSchema = z.object({
   service: z.string().min(2, 'Selecciona un servicio').trim(),
@@ -96,14 +96,14 @@ export async function sendLeadFromChat(payload: LeadPayload): Promise<LeadResult
     await transporter.verify();
 
     await transporter.sendMail({
-      from: process.env.SMTP_EMAIL,
+      from: getEmailFrom(),
       to: ADMIN_NOTIFICATION_EMAILS,
       subject: '🤖 Nuevo lead (chat sin IA)',
       html: leadHtml(result.data),
     });
 
     await transporter.sendMail({
-      from: process.env.SMTP_EMAIL,
+      from: getEmailFrom(),
       to: result.data.email,
       subject: '✅ Recibimos tu consulta - DEVMARK',
       html: confirmationHtml(result.data.name),

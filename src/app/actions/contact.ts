@@ -1,7 +1,7 @@
 'use server';
 
 import { z } from 'zod';
-import { buildTransporter, escapeHtml, sanitizeHeader, ADMIN_NOTIFICATION_EMAILS } from '@/app/actions/quoter-shared';
+import { buildTransporter, escapeHtml, sanitizeHeader, getEmailFrom, ADMIN_NOTIFICATION_EMAILS } from '@/app/actions/quoter-shared';
 
 const contactSchema = z.object({
   firstName: z.string().min(2, 'El nombre debe tener al menos 2 caracteres').trim(),
@@ -77,7 +77,7 @@ export async function sendContactEmail(
 
     // Email al administrador
     await transporter.sendMail({
-      from: process.env.SMTP_EMAIL,
+      from: getEmailFrom(),
       to: ADMIN_NOTIFICATION_EMAILS,
       subject: `🔔 Nuevo mensaje de contacto - ${sanitizeHeader(firstName)} ${sanitizeHeader(lastName)}`,
       html: `
@@ -148,7 +148,7 @@ export async function sendContactEmail(
 
     // Email de confirmación al usuario
     await transporter.sendMail({
-      from: process.env.SMTP_EMAIL,
+      from: getEmailFrom(),
       to: email,
       subject: '✅ ¡Hemos recibido tu mensaje! - DEVMARK',
       html: `
