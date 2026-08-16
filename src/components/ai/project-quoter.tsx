@@ -702,7 +702,7 @@ export function ProjectQuoter({ content }: ProjectQuoterProps) {
                 <p className="text-xs text-muted-foreground">{content.results.projectLabel}</p>
                 <p className="font-semibold truncate">{state.projectName}</p>
               </div>
-              <Button type="button" variant="outline" size="sm" onClick={() => setShowForm(true)} className="shrink-0 rounded-xl">
+              <Button type="button" variant="outline" size="sm" onClick={() => setShowForm(true)} className="shrink-0 rounded-2xl">
                 {content.form.editButton}
               </Button>
             </CardContent>
@@ -779,7 +779,7 @@ export function ProjectQuoter({ content }: ProjectQuoterProps) {
                     </div>
                 </div>
                 <div className="flex flex-wrap gap-3 pt-6 animate-fade-in-up stagger-4">
-                    <Button onClick={handleDownloadPdf} variant="outline" className={cn('h-[52px] px-6 rounded-2xl font-semibold text-sm', 'border-primary/50 text-primary hover:bg-primary/10 hover:text-primary')}>
+                    <Button onClick={handleDownloadPdf} variant="outline" className={cn('h-[52px] px-6 rounded-2xl font-semibold text-sm', 'bg-white border-2 border-brand-blue text-brand-blue hover:bg-transparent')}>
                         {content.results.downloadButton} <Download className="ml-2 h-4 w-4" />
                     </Button>
                     <Button asChild className={cn('h-[52px] px-6 rounded-2xl font-semibold text-sm', 'border-2 border-transparent bg-brand-blue hover:bg-brand-navy-dark text-white shadow-xl shadow-brand-blue/30 hover:shadow-brand-blue/40 hover:-translate-y-1 transition-all duration-300')}>

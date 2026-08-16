@@ -41,8 +41,8 @@ const contactContent = {
   messageLabel: 'Message',
   messagePlaceholder: 'Tell us about your project...',
   submitButton: 'Send message',
-  scheduleButton: 'Schedule Meeting',
-  quoteButton: 'Get a Quote',
+  scheduleButton: 'Schedule meeting',
+  quoteButton: 'Get a quote',
 };
 
 const footerContent = {

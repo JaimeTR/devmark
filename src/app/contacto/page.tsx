@@ -40,9 +40,9 @@ const contactContent = {
   phonePlaceholder: '+51 999 999 999',
   messageLabel: 'Mensaje',
   messagePlaceholder: 'Cuéntanos sobre tu proyecto...',
-  submitButton: 'Enviar Mensaje',
-  scheduleButton: 'Agendar Reunión',
-  quoteButton: 'Cotizar Proyecto',
+  submitButton: 'Enviar mensaje',
+  scheduleButton: 'Agendar reunión',
+  quoteButton: 'Cotizar proyecto',
 };
 
 const footerContent = {
