@@ -5,7 +5,7 @@
 import { z } from 'zod';
 import { quoteProject, type QuoteProjectOutput } from '@/ai/flows/quote-project-flow';
 import { supabase, type QuoteRecord, isSupabaseConfigured } from '@/lib/supabase';
-import { buildTransporter, escapeHtml, ADMIN_NOTIFICATION_EMAILS } from '@/app/actions/quoter-shared';
+import { buildTransporter, escapeHtml, sanitizeHeader, ADMIN_NOTIFICATION_EMAILS } from '@/app/actions/quoter-shared';
 
 const formSchema = z.object({
     responsibleName: z.string().min(2, 'Name must be at least 2 characters.'),
@@ -242,7 +242,7 @@ export async function quoteProjectAction(
       await transporter.sendMail({
         from: process.env.SMTP_EMAIL,
         to: ADMIN_NOTIFICATION_EMAILS,
-        subject: `💰 Nueva cotización - ${validatedFields.data.projectName}`,
+        subject: `💰 Nueva cotización - ${sanitizeHeader(validatedFields.data.projectName)}`,
         html: adminQuoteHtml({
           responsibleName: validatedFields.data.responsibleName,
           companyName: validatedFields.data.companyName,
@@ -309,7 +309,7 @@ export async function notifyProposalDownloaded(
     await transporter.sendMail({
       from: process.env.SMTP_EMAIL,
       to: ADMIN_NOTIFICATION_EMAILS,
-      subject: `📄 Propuesta descargada - ${projectName}`,
+      subject: `📄 Propuesta descargada - ${sanitizeHeader(projectName)}`,
       html: `<!DOCTYPE html>
 <html lang="${lang}">
 <head><meta charset="UTF-8"></head>

@@ -39,3 +39,11 @@ export function escapeHtml(value: string): string {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 }
+
+// Evita inyección de cabeceras al construir asuntos de correo con datos de
+// usuario (CR/LF). nodemailer ya normaliza \r\n en los valores de header
+// antes de enviar, pero esto se mantiene como defensa en profundidad y para
+// evitar asuntos de correo con saltos de línea "raros".
+export function sanitizeHeader(value: string): string {
+  return value.replace(/[\r\n]+/g, ' ').trim();
+}

@@ -1,7 +1,7 @@
 'use server';
 
 import { z } from 'zod';
-import { buildTransporter, escapeHtml, ADMIN_NOTIFICATION_EMAILS } from '@/app/actions/quoter-shared';
+import { buildTransporter, escapeHtml, sanitizeHeader, ADMIN_NOTIFICATION_EMAILS } from '@/app/actions/quoter-shared';
 
 const contactSchema = z.object({
   firstName: z.string().min(2, 'El nombre debe tener al menos 2 caracteres').trim(),
@@ -10,11 +10,6 @@ const contactSchema = z.object({
   phone: z.string().min(8, 'El teléfono debe tener al menos 8 caracteres').trim(),
   message: z.string().min(10, 'El mensaje debe tener al menos 10 caracteres').trim(),
 });
-
-// Evita inyección de cabeceras al construir asuntos de correo (CR/LF).
-function sanitizeHeader(value: string): string {
-  return value.replace(/[\r\n]+/g, ' ').trim();
-}
 
 export type ContactFormState = {
   success: boolean;
