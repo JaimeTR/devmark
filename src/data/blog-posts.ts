@@ -1784,7 +1784,12 @@ const posts: Record<'es' | 'en', Post[]> = {
 };
 
 export function getPosts(lang: 'es' | 'en'): Post[] {
-  return posts[lang].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  // Copiar antes de ordenar: .sort() muta in-place, y si mutamos posts[lang]
+  // directamente, el índice compartido entre posts.es y posts.en (del que
+  // depende getTranslatedSlug para emparejar hreflang) se rompe apenas se
+  // llama getPosts() una vez por idioma (cada array queda ordenado por SU
+  // propia fecha, que no coincide 1:1 entre ES y EN).
+  return [...posts[lang]].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 export function getPostBySlug(slug: string, lang: 'es' | 'en'): Post | undefined {
