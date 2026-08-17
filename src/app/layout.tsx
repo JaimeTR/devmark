@@ -90,7 +90,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es-PE" className={`${poppins.variable} ${braze.variable}`} suppressHydrationWarning>
+    <html lang="es-PE" data-scroll-behavior="smooth" className={`${poppins.variable} ${braze.variable}`} suppressHydrationWarning>
       <body className="font-body antialiased">
         <script
           type="application/ld+json"

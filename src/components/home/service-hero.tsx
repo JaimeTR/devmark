@@ -11,7 +11,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { sendContactEmail } from '@/app/actions/contact';
 import { Loader2, CheckCircle, AlertCircle, Send } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 interface ServiceHeroProps {
   badge: string;
@@ -54,11 +53,7 @@ export function ServiceHero({ badge, title, description, lang, form }: ServiceHe
         <div className="text-center lg:text-left">
           <Badge
             variant="outline"
-            className={
-              isEs
-                ? 'mb-4 text-brand-navy border-brand-lavender bg-brand-lavender/50 text-xs font-extrabold tracking-widest uppercase'
-                : 'mb-4 text-primary border-primary/50'
-            }
+            className="mb-4 text-brand-navy border-brand-lavender bg-brand-lavender/50 text-xs font-extrabold tracking-widest uppercase"
           >
             {badge}
           </Badge>
@@ -76,10 +71,7 @@ export function ServiceHero({ badge, title, description, lang, form }: ServiceHe
           </div>
         </div>
 
-        <Card className={cn(
-          isEs ? 'bg-brand-light rounded-3xl border border-slate-100 shadow-sm' : 'bg-primary/5 backdrop-blur-sm border-primary/10',
-          'shadow-xl shadow-brand-blue/5'
-        )}>
+        <Card className="bg-brand-light rounded-3xl border border-slate-100 shadow-xl shadow-brand-blue/5">
           <CardContent className="p-5 sm:p-6 md:p-8">
             <h2 className="font-headline text-xl font-bold text-brand-navy dark:text-white mb-1">{form.title}</h2>
             <p className="text-sm text-slate-500 dark:text-slate-400 mb-5">{isEs ? 'Cuéntanos tu proyecto y te respondemos a la brevedad.' : 'Tell us about your project and we will get back to you shortly.'}</p>

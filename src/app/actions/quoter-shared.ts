@@ -5,6 +5,12 @@ import nodemailer from 'nodemailer';
 // de Jaime para no perder ningún aviso mientras el negocio es chico.
 export const ADMIN_NOTIFICATION_EMAILS = 'soporte@devmarkpe.com,jaimetr1309@gmail.com';
 
+// Nombre de remitente que ve el destinatario — sin esto, nodemailer usa el
+// correo pelado (ej. "correo@devmarkpe.com" se mostraba como "correo").
+export function getEmailFrom(): string {
+  return `"Devmark" <${process.env.SMTP_EMAIL}>`;
+}
+
 export function buildTransporter() {
   if (!process.env.SMTP_EMAIL || !process.env.SMTP_PASSWORD) {
     throw new Error('Faltan credenciales SMTP');
@@ -38,4 +44,12 @@ export function escapeHtml(value: string): string {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
+}
+
+// Evita inyección de cabeceras al construir asuntos de correo con datos de
+// usuario (CR/LF). nodemailer ya normaliza \r\n en los valores de header
+// antes de enviar, pero esto se mantiene como defensa en profundidad y para
+// evitar asuntos de correo con saltos de línea "raros".
+export function sanitizeHeader(value: string): string {
+  return value.replace(/[\r\n]+/g, ' ').trim();
 }
