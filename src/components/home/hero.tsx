@@ -6,6 +6,8 @@ import Image from 'next/image';
 import { Sparkles, Award, Rocket, Calendar, ChevronDown, CodeXml } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
+import { BookingModal } from '@/components/booking-modal';
+
 interface HeroProps {
   badgeMessages: readonly string[];
   title: string;
@@ -21,6 +23,7 @@ const overlayIcons = [Award, Rocket];
 
 export function Hero({ badgeMessages, title, description, servicesButton, servicesHref, contactButton, overlayItems }: HeroProps) {
   const [badgeIndex, setBadgeIndex] = useState(0);
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -30,9 +33,7 @@ export function Hero({ badgeMessages, title, description, servicesButton, servic
   }, [badgeMessages.length]);
 
   const handleBookNow = () => {
-    const calLink = process.env.NEXT_PUBLIC_CAL_LINK || 'https://app.cal.com';
-    const popup = window.open(calLink, '_blank', 'noopener,noreferrer');
-    if (popup) popup.opener = null;
+    setIsBookingOpen(true);
   };
 
   return (
@@ -122,6 +123,8 @@ export function Hero({ badgeMessages, title, description, servicesButton, servic
         </div>
         <ChevronDown className="w-4 h-4 text-slate-300" />
       </div>
+
+      <BookingModal open={isBookingOpen} onOpenChange={setIsBookingOpen} />
     </section>
   );
 }
