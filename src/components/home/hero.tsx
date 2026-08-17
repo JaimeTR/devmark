@@ -30,28 +30,20 @@ export function Hero({ badgeMessages, title, description, servicesButton, servic
     return () => clearInterval(id);
   }, [badgeMessages.length]);
 
-  const handleBookNow = () => {
+  const handleBookNow = async () => {
     const calLink = process.env.NEXT_PUBLIC_CAL_LINK || 'https://app.cal.com';
-    const popup = window.open(calLink, '_blank', 'noopener,noreferrer');
-    if (popup) {
-      popup.opener = null;
+
+    try {
+      const cal = await getCalApi({ namespace: '30min' });
+      if (typeof cal === 'function') {
+        cal('modal', { calLink });
+        return;
+      }
+    } catch (error) {
+      console.warn('Cal.com could not initialize:', error);
     }
 
-    void (async () => {
-      try {
-        const cal = await getCalApi({ namespace: '30min' });
-        if (typeof cal === 'function') {
-          cal('ui', {
-            theme: 'light',
-            styles: { branding: { brandColor: '#3D34BC' } },
-            hideEventTypeDetails: false,
-            layout: 'month_view',
-          });
-        }
-      } catch (error) {
-        console.warn('Cal.com could not initialize:', error);
-      }
-    })();
+    window.open(calLink, '_blank', 'noopener,noreferrer');
   };
 
   return (
