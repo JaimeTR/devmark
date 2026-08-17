@@ -31,17 +31,24 @@ export function Hero({ badgeMessages, title, description, servicesButton, servic
   }, [badgeMessages.length]);
 
   const handleBookNow = async () => {
+    const calLink = process.env.NEXT_PUBLIC_CAL_LINK || 'https://app.cal.com';
+
     try {
       const cal = await getCalApi({ namespace: '30min' });
-      cal('ui', {
-        theme: 'light',
-        styles: { branding: { brandColor: '#3D34BC' } },
-        hideEventTypeDetails: false,
-        layout: 'month_view',
-      });
+      if (typeof cal === 'function') {
+        cal('ui', {
+          theme: 'light',
+          styles: { branding: { brandColor: '#3D34BC' } },
+          hideEventTypeDetails: false,
+          layout: 'month_view',
+        });
+        return;
+      }
     } catch (error) {
       console.warn('Cal.com could not initialize:', error);
     }
+
+    window.open(calLink, '_blank', 'noopener,noreferrer');
   };
 
   return (
