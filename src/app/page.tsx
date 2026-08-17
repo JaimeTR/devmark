@@ -334,7 +334,7 @@ export default function Home() {
     <div className="relative overflow-x-hidden bg-background">
       <AnimatedBackground />
       <Header {...content.header} />
-      <main>
+      <main id="main-content">
         <Hero {...content.hero} />
         <ScrollReveal>
           <ClientLogos stats={content.hero.stats} clients={content.hero.clients} />

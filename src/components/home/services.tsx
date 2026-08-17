@@ -56,6 +56,7 @@ function ServiceCard({
   const accentStyle = { '--accent': `var(${accentVar})` } as unknown as React.CSSProperties;
   const price = getStartingPrice(service.href);
   const quoteHref = getQuoteHrefForService(service.href, lang);
+  const detailsLabel = lang === 'en' ? `View details for ${service.title}` : `Ver detalles de ${service.title}`;
 
   return (
     <div
@@ -100,9 +101,10 @@ function ServiceCard({
         <div className="flex gap-2">
           <Link
             href={service.href}
+            aria-label={detailsLabel}
             className="flex-1 inline-flex items-center justify-center h-11 px-3 rounded-2xl bg-white border-2 border-brand-blue text-brand-blue hover:bg-transparent font-semibold text-xs sm:text-sm transition-all duration-300"
           >
-            {detailsButton}
+            {detailsButton === 'Ver detalles' ? (lang === 'en' ? 'View details' : 'Ver detalles') : detailsButton}
           </Link>
           <Link
             href={quoteHref}
