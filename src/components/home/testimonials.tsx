@@ -61,8 +61,16 @@ export function Testimonials({ badge, title, subtitle, items }: TestimonialsProp
                     </blockquote>
                     <div className="flex items-center gap-4">
                       <div className="relative p-0.5 rounded-full bg-gradient-to-br from-brand-blue/30 to-brand-blue/80">
-                         <Avatar>
-                          <AvatarImage src={testimonial.image} alt={testimonial.name} data-ai-hint={testimonial.hint} />
+                         <Avatar className="h-10 w-10 border border-white/60 shadow-sm">
+                          <AvatarImage
+                            src={testimonial.image}
+                            alt={testimonial.name}
+                            data-ai-hint={testimonial.hint}
+                            width={40}
+                            height={40}
+                            sizes="40px"
+                            className="h-full w-full object-cover"
+                          />
                           <AvatarFallback>{testimonial.avatar}</AvatarFallback>
                         </Avatar>
                       </div>
