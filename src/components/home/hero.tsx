@@ -5,7 +5,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Sparkles, Award, Rocket, Calendar, ChevronDown, CodeXml } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { getCalApi } from "@calcom/embed-react";
 
 interface HeroProps {
   badgeMessages: readonly string[];
@@ -30,30 +29,10 @@ export function Hero({ badgeMessages, title, description, servicesButton, servic
     return () => clearInterval(id);
   }, [badgeMessages.length]);
 
-  const handleBookNow = async () => {
+  const handleBookNow = () => {
     const calLink = process.env.NEXT_PUBLIC_CAL_LINK || 'https://app.cal.com';
-
-    try {
-      const cal = await getCalApi({ namespace: '30min' });
-      if (typeof cal === 'function') {
-        cal('ui', {
-          theme: 'light',
-          layout: 'month_view',
-          hideEventTypeDetails: false,
-          styles: {
-            branding: {
-              brandColor: '#3D34BC',
-            },
-          },
-        } as any);
-        cal('modal', { calLink });
-        return;
-      }
-    } catch (error) {
-      console.warn('Cal.com could not initialize:', error);
-    }
-
-    window.open(calLink, '_blank', 'noopener,noreferrer');
+    const popup = window.open(calLink, '_blank', 'noopener,noreferrer');
+    if (popup) popup.opener = null;
   };
 
   return (
