@@ -1,5 +1,5 @@
-import { groq, GROQ_MODEL } from '@/ai/groq';
-import { openai } from '@/ai/openai';
+import { getGroqClient, GROQ_MODEL } from '@/ai/groq';
+import { getOpenAIClient } from '@/ai/openai';
 import {
   type Message,
   detectLang,
@@ -83,9 +83,10 @@ export async function POST(req: Request) {
       });
 
       try {
-        if (!groqKeyConfigured()) throw new Error('GROQ_API_KEY no configurada');
+        const groqClient = getGroqClient();
+        if (!groqKeyConfigured() || !groqClient) throw new Error('GROQ_API_KEY no configurada');
 
-        const completion = await groq.chat.completions.create({
+        const completion = await groqClient.chat.completions.create({
           model: GROQ_MODEL,
           messages,
           temperature: 0.7,
@@ -105,7 +106,8 @@ export async function POST(req: Request) {
         console.error('❌ [chat] Groq streaming falló:', groqError instanceof Error ? groqError.message : groqError);
 
         try {
-          if (!openaiKeyConfigured()) throw new Error('OPENAI_API_KEY no configurada');
+          const openaiClient = getOpenAIClient();
+          if (!openaiKeyConfigured() || !openaiClient) throw new Error('OPENAI_API_KEY no configurada');
 
           sawContent = false;
           const openaiFilter = createMarkerFilter(LEAD_CAPTURE_MARKER, (text) => {
@@ -115,7 +117,7 @@ export async function POST(req: Request) {
             }
           });
 
-          const completion = await openai.chat.completions.create({
+          const completion = await openaiClient.chat.completions.create({
             model: 'gpt-3.5-turbo',
             messages,
             max_tokens: 512,

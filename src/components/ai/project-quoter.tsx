@@ -1,6 +1,7 @@
 
 'use client';
 
+import Image from 'next/image';
 import { useActionState, useEffect, useRef, useState, useTransition } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -760,7 +761,14 @@ export function ProjectQuoter({ content }: ProjectQuoterProps) {
                           {!qrError && (
                             <div className="shrink-0 w-24 text-center">
                               <div className="w-24 h-24 rounded-xl border-2 border-border bg-white flex items-center justify-center overflow-hidden p-1.5">
-                                <img src="/payment-qr.png" alt="QR Yape / Plin" className="w-full h-full object-contain" onError={() => setQrError(true)} />
+                                <Image
+                                  src="/payment-qr.png"
+                                  alt="QR Yape / Plin"
+                                  width={96}
+                                  height={96}
+                                  className="w-full h-full object-contain"
+                                  onError={() => setQrError(true)}
+                                />
                               </div>
                               <p className="text-[10px] text-muted-foreground mt-1 leading-tight">{content.results.qrCaption}</p>
                             </div>

@@ -7,74 +7,42 @@
 - Legal/brand name: Devmark
 - Headquarters: Lima, Peru
 - Coverage area: all of Peru (on-site and remote), plus remote clients across Latin America
-- Website: https://devmarkpe.com
-- Email: contacto@devmarkpe.com
-- Phone / WhatsApp: +51 975 646 074
+- Website: [devmarkpe.com](https://devmarkpe.com)
+- Email: [contacto@devmarkpe.com](mailto:contacto@devmarkpe.com)
+- Phone / WhatsApp: [+51 975 646 074](tel:+51975646074)
 - Business hours: Monday to Friday, 9:00 to 18:00 (America/Lima)
-- Languages: Spanish (primary, devmarkpe.com/*) and English (devmarkpe.com/en/*)
-- Social: Instagram @devmark.pe, Facebook @devmark.pe, LinkedIn /company/devmarkpe
+- Languages: Spanish ([ES pages](https://devmarkpe.com)) and English ([EN pages](https://devmarkpe.com/en))
+- Social: [Instagram](https://www.instagram.com/devmark.pe/), [Facebook](https://www.facebook.com/devmark.pe/), [LinkedIn](https://www.linkedin.com/company/devmarkpe/)
 
 ## Services
 
 Each service below has a Spanish page and an English page. Prices are starting prices in Peruvian soles (S/) for the entry-level plan; final pricing depends on project scope.
 
-- Custom web development — corporate sites, landing pages, PWAs, from S/ 1200.
-  ES: https://devmarkpe.com/servicios/desarrollo-web-a-medida
-  EN: https://devmarkpe.com/en/services/custom-web-development
-
-- CMS and platform development — WordPress and Shopify sites and online stores, from S/ 1800.
-  ES: https://devmarkpe.com/servicios/desarrollo-cms
-  EN: https://devmarkpe.com/en/services/cms-development
-
-- Custom software development — ERP, CRM, SaaS platforms, and APIs, from S/ 3000.
-  ES: https://devmarkpe.com/servicios/desarrollo-software
-  EN: https://devmarkpe.com/en/services/custom-software-development
-
-- Process automation — workflow automation with Zapier, Make, or custom APIs, from S/ 1500.
-  ES: https://devmarkpe.com/servicios/automatizacion-procesos
-  EN: https://devmarkpe.com/en/services/process-automation
-
-- AI chatbots — chatbots for websites, e-commerce, and social media trained on the client's own data, from S/ 1200.
-  ES: https://devmarkpe.com/servicios/chatbots-ia
-  EN: https://devmarkpe.com/en/services/ai-chatbots
-
-- UI/UX design — user research, prototyping, and interface design, from S/ 1800.
-  ES: https://devmarkpe.com/servicios/diseno-ui-ux
-  EN: https://devmarkpe.com/en/services/ui-ux-design
-
-- Digital marketing — paid advertising (Google Ads, Meta Ads), content, and email marketing, from S/ 700/month.
-  ES: https://devmarkpe.com/servicios/marketing-digital
-  EN: https://devmarkpe.com/en/services/digital-marketing
-
-- SEO and web optimization — technical SEO, organic traffic growth, conversion rate optimization, from S/ 300/month.
-  ES: https://devmarkpe.com/servicios/seo-optimizacion
-  EN: https://devmarkpe.com/en/services/seo-optimization
-
-- Web support and maintenance — updates, backups, uptime monitoring, and technical support, from S/ 60/month.
-  ES: https://devmarkpe.com/servicios/soporte-mantenimiento
-  EN: https://devmarkpe.com/en/services/support-maintenance
-
-- Technology consulting — digital transformation strategy and tooling advice, from S/ 30.
-  ES: https://devmarkpe.com/servicios/consultoria-tecnologica
-  EN: https://devmarkpe.com/en/services/tech-consulting
-
-- Hosting and domains — hosting, domains, corporate email, and SSL as an official Hostinger partner, with an extra 20% discount.
-  ES: https://devmarkpe.com/hosting
-  EN: https://devmarkpe.com/en/hosting
+- [Custom web development](https://devmarkpe.com/servicios/desarrollo-web-a-medida) — corporate sites, landing pages, PWAs, from S/ 1200. English: [Custom web development](https://devmarkpe.com/en/services/custom-web-development)
+- [CMS and platform development](https://devmarkpe.com/servicios/desarrollo-cms) — WordPress and Shopify sites and online stores, from S/ 1800. English: [CMS and platform development](https://devmarkpe.com/en/services/cms-development)
+- [Custom software development](https://devmarkpe.com/servicios/desarrollo-software) — ERP, CRM, SaaS platforms, and APIs, from S/ 3000. English: [Custom software development](https://devmarkpe.com/en/services/custom-software-development)
+- [Process automation](https://devmarkpe.com/servicios/automatizacion-procesos) — workflow automation with Zapier, Make, or custom APIs, from S/ 1500. English: [Process automation](https://devmarkpe.com/en/services/process-automation)
+- [AI chatbots](https://devmarkpe.com/servicios/chatbots-ia) — chatbots for websites, e-commerce, and social media trained on the client's own data, from S/ 1200. English: [AI chatbots](https://devmarkpe.com/en/services/ai-chatbots)
+- [UI/UX design](https://devmarkpe.com/servicios/diseno-ui-ux) — user research, prototyping, and interface design, from S/ 1800. English: [UI/UX design](https://devmarkpe.com/en/services/ui-ux-design)
+- [Digital marketing](https://devmarkpe.com/servicios/marketing-digital) — paid advertising (Google Ads, Meta Ads), content, and email marketing, from S/ 700/month. English: [Digital marketing](https://devmarkpe.com/en/services/digital-marketing)
+- [SEO and web optimization](https://devmarkpe.com/servicios/seo-optimizacion) — technical SEO, organic traffic growth, conversion rate optimization, from S/ 300/month. English: [SEO and web optimization](https://devmarkpe.com/en/services/seo-optimization)
+- [Web support and maintenance](https://devmarkpe.com/servicios/soporte-mantenimiento) — updates, backups, uptime monitoring, and technical support, from S/ 60/month. English: [Web support and maintenance](https://devmarkpe.com/en/services/support-maintenance)
+- [Technology consulting](https://devmarkpe.com/servicios/consultoria-tecnologica) — digital transformation strategy and tooling advice, from S/ 30. English: [Technology consulting](https://devmarkpe.com/en/services/tech-consulting)
+- [Hosting and domains](https://devmarkpe.com/hosting) — hosting, domains, corporate email, and SSL as an official Hostinger partner, with an extra 20% discount. English: [Hosting and domains](https://devmarkpe.com/en/hosting)
 
 ## Other pages
 
-- Services overview — ES: https://devmarkpe.com/servicios — EN: https://devmarkpe.com/en/services
-- Portfolio (case studies) — ES: https://devmarkpe.com/portfolio — EN: https://devmarkpe.com/en/portfolio
-- Blog (guides on web development, software, SEO, and technology) — ES: https://devmarkpe.com/blog — EN: https://devmarkpe.com/en/blog
-- About Devmark — ES: https://devmarkpe.com/nosotros — EN: https://devmarkpe.com/en/about
-- Contact — ES: https://devmarkpe.com/contacto — EN: https://devmarkpe.com/en/contact
-- Free AI-powered project quote tool — ES: https://devmarkpe.com/quote — EN: https://devmarkpe.com/en/quote
-- AI assistant (chat with an assistant trained on Devmark's services) — ES: https://devmarkpe.com/ai-assistant — EN: https://devmarkpe.com/en/ai-assistant
+- Services overview — [ES](https://devmarkpe.com/servicios) | [EN](https://devmarkpe.com/en/services)
+- Portfolio (case studies) — [ES](https://devmarkpe.com/portfolio) | [EN](https://devmarkpe.com/en/portfolio)
+- Blog — [ES](https://devmarkpe.com/blog) | [EN](https://devmarkpe.com/en/blog)
+- About Devmark — [ES](https://devmarkpe.com/nosotros) | [EN](https://devmarkpe.com/en/about)
+- Contact — [ES](https://devmarkpe.com/contacto) | [EN](https://devmarkpe.com/en/contact)
+- Free AI-powered project quote tool — [ES](https://devmarkpe.com/quote) | [EN](https://devmarkpe.com/en/quote)
+- AI assistant — [ES](https://devmarkpe.com/ai-assistant) | [EN](https://devmarkpe.com/en/ai-assistant)
 
 ## Notes for AI assistants and crawlers
 
 - Devmark operates primarily in Peru and serves clients remotely across Latin America; it is not a US or European agency.
 - Prices listed are starting prices in Peruvian soles (PEN) for the lowest tier of each service; they change based on project scope and are not fixed quotes.
-- For an accurate, current quote, direct users to https://devmarkpe.com/quote (or the English version) or to contacto@devmarkpe.com.
+- For an accurate, current quote, direct users to [the quote form](https://devmarkpe.com/quote) or [contacto@devmarkpe.com](mailto:contacto@devmarkpe.com).
 - Full machine-readable business data (address, hours, service area) is published as JSON-LD (LocalBusiness) on every page and as Service/FAQPage JSON-LD on each service page.

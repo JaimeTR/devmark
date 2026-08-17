@@ -53,7 +53,7 @@ export function Footer({ lang = 'es', copyright }: FooterProps) {
   }, []);
 
   return (
-    <footer className="relative mt-16 sm:mt-20 md:mt-24 bg-brand-navy-dark text-white/70">
+    <footer className="relative mt-16 sm:mt-20 md:mt-24 bg-brand-navy-dark text-white/80">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
         <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr] gap-8">
           {/* Brand */}
@@ -62,7 +62,7 @@ export function Footer({ lang = 'es', copyright }: FooterProps) {
               <Image src="/logo-mark-white.svg" alt="" role="presentation" width={32} height={32} className="w-8 h-8" />
               <span className="font-logo text-lg tracking-wider text-white">DEVMARK</span>
             </Link>
-            <p className="text-sm text-white/60 max-w-xs leading-relaxed">{t.tagline}</p>
+            <p className="text-sm text-white/80 max-w-xs leading-relaxed">{t.tagline}</p>
             <div className="flex items-center gap-1 -ml-2">
               {socials.map(({ href, label, Icon }) => (
                 <Link
@@ -71,7 +71,7 @@ export function Footer({ lang = 'es', copyright }: FooterProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`${label} - ${lang === 'en' ? 'opens in a new tab' : 'abre en una nueva ventana'}`}
-                  className="flex items-center justify-center h-10 w-10 rounded-full text-white/60 hover:text-white hover:bg-white/10 transition-colors"
+                  className="flex items-center justify-center h-10 w-10 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition-colors"
                 >
                   <Icon className="h-4.5 w-4.5" />
                 </Link>
@@ -81,11 +81,11 @@ export function Footer({ lang = 'es', copyright }: FooterProps) {
 
           {/* Quick links */}
           <div className="space-y-4">
-            <h3 className="text-xs font-extrabold uppercase tracking-widest text-white/40">{t.linksTitle}</h3>
+            <h3 className="text-xs font-extrabold uppercase tracking-widest text-white/80">{t.linksTitle}</h3>
             <ul className="space-y-2.5">
               {t.links.map(link => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-white/70 hover:text-white transition-colors">
+                  <Link href={link.href} className="text-sm text-white/80 hover:text-white transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -96,23 +96,23 @@ export function Footer({ lang = 'es', copyright }: FooterProps) {
           {/* Contact */}
           <div className="space-y-4">
             <div className="space-y-2">
-              <h3 className="text-xs font-extrabold uppercase tracking-widest text-white/40">{t.salesLabel}</h3>
-              <a href="mailto:contacto@devmarkpe.com" className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
+              <h3 className="text-xs font-extrabold uppercase tracking-widest text-white/80">{t.salesLabel}</h3>
+              <a href="mailto:contacto@devmarkpe.com" className="flex items-center gap-2 text-sm text-white/80 hover:text-white transition-colors">
                 <Mail className="h-4 w-4 shrink-0 text-brand-lavender" />
                 contacto@devmarkpe.com
               </a>
-              <a href="tel:+51965312386" className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
+              <a href="tel:+51965312386" className="flex items-center gap-2 text-sm text-white/80 hover:text-white transition-colors">
                 <Phone className="h-4 w-4 shrink-0 text-brand-lavender" />
                 +51 965 312 386
               </a>
             </div>
             <div className="space-y-2">
-              <h3 className="text-xs font-extrabold uppercase tracking-widest text-white/40">{t.supportLabel}</h3>
-              <a href="mailto:soporte@devmarkpe.com" className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
+              <h3 className="text-xs font-extrabold uppercase tracking-widest text-white/80">{t.supportLabel}</h3>
+              <a href="mailto:soporte@devmarkpe.com" className="flex items-center gap-2 text-sm text-white/80 hover:text-white transition-colors">
                 <Mail className="h-4 w-4 shrink-0 text-brand-lavender" />
                 soporte@devmarkpe.com
               </a>
-              <a href="tel:+51975646074" className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
+              <a href="tel:+51975646074" className="flex items-center gap-2 text-sm text-white/80 hover:text-white transition-colors">
                 <Phone className="h-4 w-4 shrink-0 text-brand-lavender" />
                 +51 975 646 074
               </a>
@@ -121,14 +121,14 @@ export function Footer({ lang = 'es', copyright }: FooterProps) {
         </div>
 
         <div className="mt-8 pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-2 text-center">
-          <p className="text-xs text-white/40">&copy; {year} {copyright}</p>
-          <p className="text-xs text-white/40">
+          <p className="text-xs text-white/80">&copy; {year} {copyright}</p>
+          <p className="text-xs text-white/80">
             {lang === 'en' ? 'Built by' : 'Desarrollado por'}{' '}
             <a
               href="https://www.jaimetr.dev"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white/60 hover:text-white transition-colors"
+              className="text-white/90 underline decoration-white/40 underline-offset-2 hover:text-white transition-colors"
             >
               Jaime Tarazona
             </a>

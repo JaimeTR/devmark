@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { forwardRef, useState } from 'react';
 import type { QuoteProjectOutput } from '@/ai/flows/quote-project-flow';
 
@@ -58,7 +59,7 @@ export const ProposalDocument = forwardRef<HTMLDivElement, ProposalDocumentProps
       >
         <div className="flex items-start justify-between pb-6 border-b-2 border-brand-blue/20">
           <div className="flex items-center gap-3">
-            <img src="/logo-mark-black.svg" alt="DEVMARK" className="h-10 w-10" />
+            <Image src="/logo-mark-black.svg" alt="DEVMARK" width={40} height={40} className="h-10 w-10" />
             <div>
               <span className="font-logo text-2xl tracking-wider text-brand-navy block leading-none">DEVMARK</span>
               <span className="text-xs text-slate-500">{content.documentTitle}</span>
@@ -124,7 +125,14 @@ export const ProposalDocument = forwardRef<HTMLDivElement, ProposalDocumentProps
             {!qrError && (
               <div className="shrink-0 w-28 text-center">
                 <div className="w-28 h-28 rounded-xl border-2 border-slate-200 bg-white flex items-center justify-center overflow-hidden p-1.5">
-                  <img src="/payment-qr.png" alt="QR Yape / Plin" className="w-full h-full object-contain" onError={() => setQrError(true)} />
+                  <Image
+                    src="/payment-qr.png"
+                    alt="QR Yape / Plin"
+                    width={112}
+                    height={112}
+                    className="w-full h-full object-contain"
+                    onError={() => setQrError(true)}
+                  />
                 </div>
                 <p className="text-[10px] text-slate-400 mt-1 leading-tight">{content.qrCaption}</p>
               </div>

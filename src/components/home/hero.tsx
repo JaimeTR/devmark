@@ -30,17 +30,19 @@ export function Hero({ badgeMessages, title, description, servicesButton, servic
     return () => clearInterval(id);
   }, [badgeMessages.length]);
 
-  useEffect(() => {
-    (async function () {
-      const cal = await getCalApi({"namespace":"30min"});
-      cal("ui", {
-        "theme":"light",
-        "styles": { "branding": { "brandColor": "#3D34BC" } },
-        "hideEventTypeDetails":false,
-        "layout":"month_view"
+  const handleBookNow = async () => {
+    try {
+      const cal = await getCalApi({ namespace: '30min' });
+      cal('ui', {
+        theme: 'light',
+        styles: { branding: { brandColor: '#3D34BC' } },
+        hideEventTypeDetails: false,
+        layout: 'month_view',
       });
-    })();
-  }, []);
+    } catch (error) {
+      console.warn('Cal.com could not initialize:', error);
+    }
+  };
 
   return (
     <section id="hero" className="relative flex items-center justify-center overflow-hidden pt-32 pb-16 lg:min-h-screen lg:pt-0 lg:pb-0">
@@ -69,10 +71,8 @@ export function Hero({ badgeMessages, title, description, servicesButton, servic
             </Link>
             <button
               type="button"
+              onClick={handleBookNow}
               className="h-[52px] px-8 rounded-2xl border-2 border-brand-blue hover:border-brand-blue-darker hover:bg-transparent bg-white text-brand-blue hover:text-brand-blue-darker font-semibold flex items-center justify-center gap-2 shadow-xl shadow-brand-blue/10 hover:shadow-xl hover:shadow-brand-blue/20 transition-all duration-300 hover:-translate-y-1 group"
-              data-cal-namespace="30min"
-              data-cal-link="devmark.pe/30min"
-              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"light"}'
             >
               {contactButton}
               <Calendar className="w-4 h-4 group-hover:scale-110 transition-all duration-300 ease-out" />
@@ -95,6 +95,7 @@ export function Hero({ badgeMessages, title, description, servicesButton, servic
               fill
               className="object-contain drop-shadow-xl select-none p-2 sm:p-4"
               priority
+              fetchPriority="high"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
 

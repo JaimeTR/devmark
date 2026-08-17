@@ -92,6 +92,14 @@ create index if not exists idx_quotes_contact_email on quotes(contact_email);
 create index if not exists idx_quotes_project_type on quotes(project_type);
 create index if not exists idx_quotes_lang on quotes(lang);
 
+-- 5b) Índices para el catálogo de proyectos compartido (jaimetr.dev + DEVMARK).
+-- Estas consultas se usan en /portfolio y en el chat IA, por eso conviene que
+-- estén cubiertas por índices compuestos en lugar de escanear la tabla completa.
+create index if not exists idx_projects_visible_sort_order on public.projects (is_visible, sort_order);
+create index if not exists idx_projects_visible_created_at on public.projects (is_visible, created_at desc);
+create index if not exists idx_projects_slug on public.projects (slug);
+create index if not exists idx_projects_category_visible on public.projects (category, is_visible);
+
 -- 6) Seguridad a nivel de fila (RLS): el sitio inserta cotizaciones con la
 -- clave anónima (público), pero solo un usuario autenticado (admin) puede
 -- leerlas — así nadie puede ver las cotizaciones de otros desde el sitio.

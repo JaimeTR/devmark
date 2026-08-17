@@ -22,6 +22,9 @@ CREATE TABLE IF NOT EXISTS knowledge_docs (
 );
 
 CREATE INDEX IF NOT EXISTS idx_knowledge_docs_lang ON knowledge_docs(lang);
+CREATE INDEX IF NOT EXISTS idx_knowledge_docs_lang_title ON knowledge_docs(lang, title);
+CREATE INDEX IF NOT EXISTS idx_knowledge_docs_lang_created_at ON knowledge_docs(lang, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_knowledge_docs_tags ON knowledge_docs USING gin (tags);
 CREATE INDEX IF NOT EXISTS idx_knowledge_docs_content ON knowledge_docs USING gin (to_tsvector('spanish', content));
 
 ALTER TABLE knowledge_docs ENABLE ROW LEVEL SECURITY;
