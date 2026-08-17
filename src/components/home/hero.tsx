@@ -36,6 +36,16 @@ export function Hero({ badgeMessages, title, description, servicesButton, servic
     try {
       const cal = await getCalApi({ namespace: '30min' });
       if (typeof cal === 'function') {
+        cal('ui', {
+          theme: 'light',
+          layout: 'month_view',
+          hideEventTypeDetails: false,
+          styles: {
+            branding: {
+              brandColor: '#3D34BC',
+            },
+          },
+        } as any);
         cal('modal', { calLink });
         return;
       }
