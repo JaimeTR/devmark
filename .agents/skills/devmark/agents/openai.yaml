@@ -1,0 +1,6 @@
+interface:
+  display_name: "Devmark"
+  short_description: "Repo-specific patterns and workflows for devmark"
+  default_prompt: "Use the devmark repo skill to follow existing architecture, testing, and workflow conventions."
+policy:
+  allow_implicit_invocation: true
