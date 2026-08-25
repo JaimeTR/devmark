@@ -49,6 +49,10 @@ const ctaContent = {
       title: '¿No sabes por dónde empezar tecnológicamente?',
       text: 'Te asesoramos para elegir la tecnología correcta, optimizar tus procesos y planificar tu crecimiento digital. Un consultor estratégico para cada una de tus decisiones tecnológicas.',
     },
+    geo: {
+      title: '¿Quieres que tu marca aparezca en las respuestas de ChatGPT y Google?',
+      text: 'El SEO tradicional ya no es suficiente: cada vez más usuarios preguntan directamente a la IA en vez de buscar en Google. En DEVMARK optimizamos tu contenido, tu estructura técnica y tus datos estructurados para que los motores generativos te citen como fuente confiable. Da el salto del SEO al GEO con nuestro equipo de expertos.',
+    },
     contactButton: 'Hablemos de tu proyecto',
   },
   en: {
@@ -88,6 +92,10 @@ const ctaContent = {
       title: 'Not sure where to start tech-wise?',
       text: 'We advise you on choosing the right technology, optimizing your processes, and planning your digital growth. A strategic consultant for every one of your technology decisions.',
     },
+    geo: {
+      title: 'Want your brand to show up in ChatGPT and Google AI answers?',
+      text: 'Traditional SEO is no longer enough: more and more users ask AI directly instead of searching on Google. At DEVMARK we optimize your content, technical structure, and structured data so generative engines cite you as a trusted source. Make the leap from SEO to GEO with our team of experts.',
+    },
     contactButton: 'Let\'s talk about your project',
   }
 }
@@ -104,6 +112,7 @@ const ctaButtonLinks: Record<'es' | 'en', Record<string, string>> = {
     cms: '/servicios/desarrollo-cms',
     support: '/servicios/soporte-mantenimiento',
     consulting: '/servicios/consultoria-tecnologica',
+    geo: '/servicios/seo-optimizacion',
   },
   en: {
     web: '/en/services/custom-web-development',
@@ -116,6 +125,7 @@ const ctaButtonLinks: Record<'es' | 'en', Record<string, string>> = {
     cms: '/en/services/cms-development',
     support: '/en/services/support-maintenance',
     consulting: '/en/services/tech-consulting',
+    geo: '/en/services/seo-optimization',
   },
 };
 
@@ -964,6 +974,59 @@ const posts: Record<'es' | 'en', Post[]> = {
         <div class="cta-block"><h3>${ctaContent.es.consulting.title}</h3><p>${ctaContent.es.consulting.text}</p><a href="${ctaButtonLinks.es.consulting}" class="cta-button">${ctaContent.es.contactButton}</a></div>
       `,
     },
+    {
+      slug: 'que-es-geo-optimizacion-para-motores-generativos-ia',
+      title: 'Qué es el GEO (Generative Engine Optimization) y cómo aparecer en las respuestas de ChatGPT y Google AI',
+      description: 'El SEO ya no basta: millones de usuarios preguntan directamente a la IA. Te explicamos qué es el GEO, en qué se diferencia del SEO tradicional y cómo optimizar tu web para aparecer citada en ChatGPT, Gemini, Perplexity y Google AI Overviews.',
+      date: '2026-08-25T23:59:59.000Z',
+      author: 'Jaime Tarazona',
+      image: '/undraw_web-devices_i15y.svg',
+      imageHint: 'geo generative engine optimization ia',
+      tags: ['SEO', 'GEO', 'Marketing Digital'],
+      content: `
+        <p>Durante más de dos décadas, aparecer en la primera página de Google fue la meta de cualquier estrategia digital. Pero el comportamiento de búsqueda está cambiando a gran velocidad: cada vez más personas le preguntan directamente a ChatGPT, Gemini, Perplexity o al resumen de <strong>Google AI Overviews</strong> en lugar de hacer clic en una lista de enlaces azules. Si tu marca no está optimizada para que estas plataformas la mencionen y la citen, simplemente se vuelve invisible en una parte creciente del tráfico digital. A esto responde el <strong>GEO (Generative Engine Optimization)</strong>, la evolución natural del SEO para la era de la inteligencia artificial.</p>
+
+        <h2>¿Qué es el GEO (Generative Engine Optimization)?</h2>
+        <p>El GEO es el conjunto de técnicas para optimizar el contenido, la estructura técnica y la autoridad de una web con el objetivo de que los motores generativos de IA la utilicen como fuente al construir sus respuestas. No se trata de "posicionar un enlace", sino de convertirte en la referencia que la IA cita, recomienda o menciona cuando un usuario pregunta sobre tu sector, tus productos o los problemas que resuelves.</p>
+
+        <h2>GEO vs. SEO tradicional: diferencias clave</h2>
+        <table><thead><tr><th>Aspecto</th><th>SEO tradicional</th><th>GEO</th></tr></thead><tbody>
+        <tr><td>Objetivo</td><td>Aparecer en el top 10 de resultados</td><td>Ser citado dentro de la respuesta generada por la IA</td></tr>
+        <tr><td>Métrica de éxito</td><td>Ranking, clics, posición</td><td>Menciones, citas y presencia en la respuesta</td></tr>
+        <tr><td>Formato de contenido</td><td>Artículos optimizados por palabra clave</td><td>Respuestas claras, verificables y bien estructuradas</td></tr>
+        <tr><td>Confianza</td><td>Backlinks y autoridad de dominio</td><td>Datos estructurados, citas externas y coherencia de marca en toda la web</td></tr>
+        <tr><td>Motores</td><td>Google, Bing</td><td>ChatGPT, Gemini, Perplexity, Google AI Overviews, Copilot</td></tr>
+        </tbody></table>
+
+        <h2>¿Cómo funcionan los motores generativos al elegir sus fuentes?</h2>
+        <p>Herramientas como ChatGPT o Perplexity combinan modelos de lenguaje con sistemas de recuperación de información (RAG) que rastrean la web en tiempo real o usan índices actualizados. Priorizan contenido que sea fácil de "extraer" y verificar: respuestas directas a preguntas concretas, datos con fuente clara, estructura semántica limpia y coherencia entre lo que dice tu sitio y lo que se dice de ti en otras webs, reseñas y menciones externas.</p>
+
+        <h2>Estrategias de GEO para que tu marca aparezca en las respuestas de la IA</h2>
+        <ul>
+          <li><strong>Responde preguntas concretas:</strong> Estructura tu contenido en formato pregunta-respuesta (FAQs), con párrafos cortos y directos que un modelo pueda citar tal cual.</li>
+          <li><strong>Refuerza los datos estructurados (Schema.org):</strong> Marca tu contenido con schema de Organization, FAQPage, Product o Article para que la IA entienda exactamente qué es cada dato.</li>
+          <li><strong>Construye autoridad fuera de tu dominio:</strong> Menciones en medios, directorios de tu sector, reseñas y contenido citado por terceros aumentan la probabilidad de que la IA te reconozca como fuente confiable.</li>
+          <li><strong>Sé específico y cuantificable:</strong> Cifras, estadísticas y afirmaciones verificables se citan con más frecuencia que texto genérico o promocional.</li>
+          <li><strong>Mantén la coherencia de marca:</strong> Nombre, descripción y datos de tu empresa deben coincidir en tu web, redes sociales, Google Business Profile y directorios.</li>
+          <li><strong>No abandones el SEO técnico:</strong> Un sitio rápido, indexable y con buena arquitectura sigue siendo la base que los rastreadores de IA necesitan para acceder a tu contenido.</li>
+        </ul>
+
+        <h2>GEO y SEO técnico: la base que ya deberías tener</h2>
+        <p>El GEO no reemplaza al SEO técnico, lo complementa. Un sitio lento, sin sitemap, sin HTTPS o con URLs desordenadas será igual de invisible para un rastreador de IA que para Google. Antes de invertir en GEO, asegúrate de tener resueltos los fundamentos: velocidad de carga, indexación correcta, datos estructurados y una arquitectura de contenidos clara. Sobre esa base sólida es donde el GEO realmente marca la diferencia.</p>
+
+        <h2>Preguntas frecuentes</h2>
+        <h3>¿El GEO reemplaza al SEO?</h3>
+        <p>No. El GEO se construye sobre los fundamentos del SEO técnico y de contenidos. Ambos deben trabajar juntos: el SEO te trae tráfico orgánico desde buscadores tradicionales, y el GEO te da visibilidad dentro de las respuestas de IA.</p>
+        <h3>¿Cómo sé si mi marca ya aparece en respuestas de IA?</h3>
+        <p>Puedes probar directamente preguntando a ChatGPT, Gemini o Perplexity sobre tu sector, productos o servicios, y revisar si te mencionan. También existen herramientas especializadas de monitoreo de menciones en IA.</p>
+        <h3>¿Cuánto tiempo toma ver resultados en GEO?</h3>
+        <p>Al ser una disciplina reciente, los tiempos varían, pero mejoras en datos estructurados y contenido bien organizado pueden reflejarse en semanas, ya que muchos motores generativos actualizan sus índices con frecuencia.</p>
+        <h3>¿Necesito rehacer todo mi contenido para hacer GEO?</h3>
+        <p>No necesariamente. En la mayoría de los casos basta con reestructurar el contenido existente (formato de preguntas y respuestas, datos estructurados, claridad) en lugar de reescribirlo desde cero.</p>
+
+        <div class="cta-block"><h3>${ctaContent.es.geo.title}</h3><p>${ctaContent.es.geo.text}</p><a href="${ctaButtonLinks.es.geo}" class="cta-button">${ctaContent.es.contactButton}</a></div>
+      `,
+    },
   ],
   en: [
     {
@@ -1778,6 +1841,59 @@ const posts: Record<'es' | 'en', Post[]> = {
         <h3>To prepare for growth</h3>
         <p>When your business is ready to scale, planning the right architecture and integrations from the start prevents painful migrations in the future.</p>
         <div class="cta-block"><h3>${ctaContent.en.consulting.title}</h3><p>${ctaContent.en.consulting.text}</p><a href="${ctaButtonLinks.en.consulting}" class="cta-button">${ctaContent.en.contactButton}</a></div>
+      `,
+    },
+    {
+      slug: 'what-is-geo-generative-engine-optimization-ai-search',
+      title: 'What is GEO (Generative Engine Optimization) and how to show up in ChatGPT and Google AI answers',
+      description: "SEO alone isn't enough anymore: millions of users now ask AI directly. We explain what GEO is, how it differs from traditional SEO, and how to optimize your site to be cited by ChatGPT, Gemini, Perplexity, and Google AI Overviews.",
+      date: '2026-08-25T23:59:59.000Z',
+      author: 'Jaime Tarazona',
+      image: '/undraw_web-devices_i15y.svg',
+      imageHint: 'geo generative engine optimization ai',
+      tags: ['SEO', 'GEO', 'Digital Marketing'],
+      content: `
+        <p>For more than two decades, ranking on Google's first page was the goal of any digital strategy. But search behavior is changing fast: more and more people ask ChatGPT, Gemini, Perplexity, or <strong>Google AI Overviews</strong> directly instead of clicking through a list of blue links. If your brand isn't optimized for these platforms to mention and cite it, it simply becomes invisible to a growing share of digital traffic. That's what <strong>GEO (Generative Engine Optimization)</strong> addresses — the natural evolution of SEO for the AI era.</p>
+
+        <h2>What is GEO (Generative Engine Optimization)?</h2>
+        <p>GEO is the set of techniques used to optimize a website's content, technical structure, and authority so that generative AI engines use it as a source when building their answers. It's not about "ranking a link" — it's about becoming the reference the AI cites, recommends, or mentions when a user asks about your industry, your products, or the problems you solve.</p>
+
+        <h2>GEO vs. traditional SEO: key differences</h2>
+        <table><thead><tr><th>Aspect</th><th>Traditional SEO</th><th>GEO</th></tr></thead><tbody>
+        <tr><td>Goal</td><td>Rank in the top 10 search results</td><td>Get cited inside the AI-generated answer</td></tr>
+        <tr><td>Success metric</td><td>Ranking, clicks, position</td><td>Mentions, citations, and presence in the answer</td></tr>
+        <tr><td>Content format</td><td>Keyword-optimized articles</td><td>Clear, verifiable, well-structured answers</td></tr>
+        <tr><td>Trust signal</td><td>Backlinks and domain authority</td><td>Structured data, external citations, and brand consistency across the web</td></tr>
+        <tr><td>Engines</td><td>Google, Bing</td><td>ChatGPT, Gemini, Perplexity, Google AI Overviews, Copilot</td></tr>
+        </tbody></table>
+
+        <h2>How do generative engines choose their sources?</h2>
+        <p>Tools like ChatGPT or Perplexity combine language models with retrieval systems (RAG) that crawl the web in real time or rely on frequently updated indexes. They prioritize content that's easy to "extract" and verify: direct answers to specific questions, clearly sourced data, clean semantic structure, and consistency between what your site says and what's said about you elsewhere — reviews, mentions, and third-party sources.</p>
+
+        <h2>GEO strategies to get your brand into AI answers</h2>
+        <ul>
+          <li><strong>Answer specific questions:</strong> Structure your content in question-and-answer format (FAQs), with short, direct paragraphs a model can quote as-is.</li>
+          <li><strong>Strengthen structured data (Schema.org):</strong> Mark up your content with Organization, FAQPage, Product, or Article schema so the AI understands exactly what each piece of data is.</li>
+          <li><strong>Build authority outside your own domain:</strong> Mentions in media, industry directories, reviews, and content cited by third parties increase the odds that AI recognizes you as a trusted source.</li>
+          <li><strong>Be specific and quantifiable:</strong> Figures, statistics, and verifiable claims get cited far more often than generic or promotional text.</li>
+          <li><strong>Keep your brand consistent:</strong> Your name, description, and business details should match across your website, social media, Google Business Profile, and directories.</li>
+          <li><strong>Don't drop technical SEO:</strong> A fast, indexable site with a solid architecture is still the foundation AI crawlers need to access your content.</li>
+        </ul>
+
+        <h2>GEO and technical SEO: the foundation you should already have</h2>
+        <p>GEO doesn't replace technical SEO — it builds on it. A slow site, missing a sitemap, without HTTPS, or with messy URLs will be just as invisible to an AI crawler as it is to Google. Before investing in GEO, make sure the fundamentals are covered: load speed, proper indexing, structured data, and a clear content architecture. That solid foundation is where GEO really makes the difference.</p>
+
+        <h2>Frequently asked questions</h2>
+        <h3>Does GEO replace SEO?</h3>
+        <p>No. GEO builds on the foundations of technical and content SEO. Both need to work together: SEO brings you organic traffic from traditional search engines, while GEO gives you visibility inside AI-generated answers.</p>
+        <h3>How do I know if my brand already shows up in AI answers?</h3>
+        <p>You can test it directly by asking ChatGPT, Gemini, or Perplexity about your industry, products, or services and checking whether you're mentioned. Specialized AI-mention monitoring tools also exist for this.</p>
+        <h3>How long does it take to see GEO results?</h3>
+        <p>Since it's a recent discipline, timelines vary, but improvements to structured data and well-organized content can show up within weeks, since many generative engines update their indexes frequently.</p>
+        <h3>Do I need to rewrite all my content to do GEO?</h3>
+        <p>Not necessarily. In most cases, restructuring existing content (question-and-answer format, structured data, clarity) is enough, rather than rewriting it from scratch.</p>
+
+        <div class="cta-block"><h3>${ctaContent.en.geo.title}</h3><p>${ctaContent.en.geo.text}</p><a href="${ctaButtonLinks.en.geo}" class="cta-button">${ctaContent.en.contactButton}</a></div>
       `,
     },
   ],
