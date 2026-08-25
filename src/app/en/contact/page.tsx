@@ -26,7 +26,7 @@ const contactContent = {
   emailLabel: 'Email:',
   email: 'contacto@devmarkpe.com',
   phoneLabel: 'Phone:',
-  phone: '+51 930 414 494',
+  phone: '+51 975 646 074',
   timeZoneLabel: 'Local Time:',
   formTitle: 'Contact form',
   formDescription: 'Fill out the form and we will get in touch with you.',
@@ -63,3 +63,4 @@ export default function ContactPage() {
     </div>
   );
 }
+

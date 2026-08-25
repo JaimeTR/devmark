@@ -101,9 +101,9 @@ export function Footer({ lang = 'es', copyright }: FooterProps) {
                 <Mail className="h-4 w-4 shrink-0 text-brand-lavender" />
                 contacto@devmarkpe.com
               </a>
-              <a href="tel:+51965312386" className="flex items-center gap-2 text-sm text-white/80 hover:text-white transition-colors">
+              <a href="tel:+51975646074" className="flex items-center gap-2 text-sm text-white/80 hover:text-white transition-colors">
                 <Phone className="h-4 w-4 shrink-0 text-brand-lavender" />
-                +51 965 312 386
+                +51 975 646 074
               </a>
             </div>
             <div className="space-y-2">
@@ -138,3 +138,4 @@ export function Footer({ lang = 'es', copyright }: FooterProps) {
     </footer>
   );
 }
+
