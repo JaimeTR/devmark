@@ -1,5 +1,3 @@
-'use client';
-
 import { Globe, Compass, Layers, Sparkles } from 'lucide-react';
 
 interface Stat {

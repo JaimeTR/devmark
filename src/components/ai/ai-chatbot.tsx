@@ -368,7 +368,7 @@ export function AiChatbot(props: AiChatbotProps) {
             {msg.role === 'model' && <AiAvatar />}
             <div
               className={cn(
-                'px-4 py-2.5 rounded-2xl max-w-[85%] shadow-sm backdrop-blur-md',
+                'px-4 py-2.5 rounded-2xl max-w-[85%] shadow-sm backdrop-blur-md min-w-0',
                 msg.role === 'user'
                   ? 'bg-brand-blue/85 text-white rounded-br-md border border-white/10'
                   : 'bg-white/60 border border-white/60 text-foreground rounded-bl-md'
@@ -381,7 +381,7 @@ export function AiChatbot(props: AiChatbotProps) {
                   <span className="w-1.5 h-1.5 bg-brand-blue/50 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }} />
                 </div>
               ) : (
-                <p className="text-sm whitespace-pre-wrap leading-relaxed">
+                <p className="text-sm whitespace-pre-wrap break-words leading-relaxed">
                   {msg.content}
                   {isCurrentlyStreaming && (
                     <span className="inline-block w-[2px] h-3.5 bg-brand-blue ml-0.5 align-middle animate-pulse" />

@@ -1,6 +1,3 @@
-
-'use client';
-
 import { AnimatedBackground } from '@/components/home/animated-background';
 import { Header } from '@/components/home/header';
 import { Footer } from '@/components/home/footer';

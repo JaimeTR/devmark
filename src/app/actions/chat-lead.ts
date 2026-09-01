@@ -1,7 +1,7 @@
 'use server';
 
 import { z } from 'zod';
-import { buildTransporter, escapeHtml, ADMIN_NOTIFICATION_EMAILS } from '@/app/actions/quoter-shared';
+import { buildTransporter, escapeHtml, getEmailFrom, ADMIN_NOTIFICATION_EMAILS } from '@/app/actions/quoter-shared';
 
 const leadSchema = z.object({
   service: z.string().min(2, 'Selecciona un servicio').trim(),
@@ -26,34 +26,34 @@ function leadHtml(payload: LeadPayload) {
   return `<!DOCTYPE html>
 <html lang="es">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
-<body style="margin:0;padding:0;background:#0a0a1a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
-  <div style="max-width:640px;margin:0 auto;background:#0a0a1a;">
-    <div style="background:linear-gradient(135deg,#0066FF 0%,#3b82f6 60%,#0066FF 100%);padding:36px 28px;text-align:center;">
+<body style="margin:0;padding:0;background:#110C29;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <div style="max-width:640px;margin:0 auto;background:#110C29;">
+    <div style="background:linear-gradient(135deg,#3D34BC 0%,#5B53D0 60%,#3D34BC 100%);padding:36px 28px;text-align:center;">
       <h1 style="margin:0;color:#fff;font-size:26px;font-weight:700;letter-spacing:-0.4px;">Nuevo lead desde el chatbot</h1>
       <p style="margin:10px 0 0;color:rgba(255,255,255,0.9);font-size:15px;">IA no disponible / sin cuota</p>
     </div>
     <div style="background:#14141f;padding:32px 28px;">
-      <div style="background:linear-gradient(135deg,#0066FF15 0%,#3b82f615 100%);border-left:4px solid #0066FF;padding:18px;border-radius:10px;margin-bottom:22px;">
+      <div style="background:linear-gradient(135deg,#3D34BC15 0%,#5B53D015 100%);border-left:4px solid #3D34BC;padding:18px;border-radius:10px;margin-bottom:22px;">
         <p style="margin:0;color:#fff;font-size:17px;font-weight:600;">Lead capturado automáticamente</p>
         <p style="margin:6px 0 0;color:#9ca3af;font-size:13px;">Responde en menos de 15 minutos para maximizar conversión</p>
       </div>
       <div style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:22px;margin-bottom:18px;">
-        <h2 style="margin:0 0 14px;color:#0066FF;font-size:15px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;">Datos del lead</h2>
+        <h2 style="margin:0 0 14px;color:#3D34BC;font-size:15px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;">Datos del lead</h2>
         <p style="margin:0 0 8px;color:#d1d5db;font-size:15px;"><strong style="color:#9ca3af;font-size:13px;text-transform:uppercase;letter-spacing:0.3px;">Nombre:</strong> ${escapeHtml(name)}</p>
         <p style="margin:0 0 8px;color:#d1d5db;font-size:15px;"><strong style="color:#9ca3af;font-size:13px;text-transform:uppercase;letter-spacing:0.3px;">Email:</strong> ${escapeHtml(email)}</p>
         <p style="margin:0 0 8px;color:#d1d5db;font-size:15px;"><strong style="color:#9ca3af;font-size:13px;text-transform:uppercase;letter-spacing:0.3px;">Teléfono:</strong> ${escapeHtml(phone)}</p>
         <p style="margin:0;color:#d1d5db;font-size:15px;"><strong style="color:#9ca3af;font-size:13px;text-transform:uppercase;letter-spacing:0.3px;">Servicio:</strong> ${escapeHtml(service)}</p>
       </div>
       <div style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:22px;margin-bottom:18px;">
-        <h2 style="margin:0 0 12px;color:#0066FF;font-size:15px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;">Necesidad</h2>
+        <h2 style="margin:0 0 12px;color:#3D34BC;font-size:15px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;">Necesidad</h2>
         <p style="margin:0;color:#d1d5db;font-size:15px;line-height:1.6;white-space:pre-wrap;">${escapeHtml(details)}</p>
       </div>
       ${transcript ? `<div style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:22px;">
-        <h2 style="margin:0 0 12px;color:#0066FF;font-size:15px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;">Transcripción completa</h2>
+        <h2 style="margin:0 0 12px;color:#3D34BC;font-size:15px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;">Transcripción completa</h2>
         <p style="margin:0;color:#9ca3af;font-size:14px;line-height:1.5;white-space:pre-wrap;">${escapeHtml(transcript)}</p>
       </div>` : ''}
     </div>
-    <div style="background:#0a0a1a;padding:22px;text-align:center;border-top:1px solid #2a2a3e;">
+    <div style="background:#110C29;padding:22px;text-align:center;border-top:1px solid #2a2a3e;">
       <p style="margin:0;color:#6b7280;font-size:12px;">DEVMARK · Lead generado automáticamente desde devmarkpe.com</p>
     </div>
   </div>
@@ -67,7 +67,7 @@ function confirmationHtml(name: string) {
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
 <body style="margin:0;padding:0;background:#f3f4f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
   <div style="max-width:640px;margin:0 auto;background:#fff;">
-    <div style="background:linear-gradient(135deg,#0066FF 0%,#3b82f6 60%,#0066FF 100%);padding:42px 28px;text-align:center;">
+    <div style="background:linear-gradient(135deg,#3D34BC 0%,#5B53D0 60%,#3D34BC 100%);padding:42px 28px;text-align:center;">
       <h1 style="margin:0;color:#fff;font-size:28px;font-weight:700;letter-spacing:-0.3px;">¡Gracias, ${escapeHtml(name)}!</h1>
       <p style="margin:10px 0 0;color:rgba(255,255,255,0.9);font-size:16px;">Tu consulta quedó registrada</p>
     </div>
@@ -96,14 +96,14 @@ export async function sendLeadFromChat(payload: LeadPayload): Promise<LeadResult
     await transporter.verify();
 
     await transporter.sendMail({
-      from: process.env.SMTP_EMAIL,
+      from: getEmailFrom(),
       to: ADMIN_NOTIFICATION_EMAILS,
       subject: '🤖 Nuevo lead (chat sin IA)',
       html: leadHtml(result.data),
     });
 
     await transporter.sendMail({
-      from: process.env.SMTP_EMAIL,
+      from: getEmailFrom(),
       to: result.data.email,
       subject: '✅ Recibimos tu consulta - DEVMARK',
       html: confirmationHtml(result.data.name),

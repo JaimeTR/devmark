@@ -107,7 +107,7 @@ const quoterContent = {
     disclaimer: 'This price is approximate. To confirm it, send us your proposal or details by email or WhatsApp and we\'ll validate it with you now.',
     summaryLabel: 'Project summary',
     scopeLabel: 'Project detail and scope',
-    priceLabel: 'Estimated price (USD)',
+    priceLabel: 'Estimated price',
     recommendationsLabel: 'AI recommendations',
     paymentMethodsLabel: 'Payment methods',
     qrCaption: 'Scan to pay with Yape / Plin',

@@ -41,12 +41,12 @@ const footerContent = {
 const curatedTags = ['Desarrollo Web', 'Software a Medida', 'SEO', 'Diseño UI/UX', 'Marketing Digital', 'Automatización'];
 
 const TAG_ICONS: Record<string, JSX.Element> = {
-  'Desarrollo Web': <Globe className="mr-2 h-4 w-4" aria-hidden="true" />,
-  'Software a Medida': <Code className="mr-2 h-4 w-4" aria-hidden="true" />,
-  'SEO': <Search className="mr-2 h-4 w-4" aria-hidden="true" />,
-  'Diseño UI/UX': <Paintbrush className="mr-2 h-4 w-4" aria-hidden="true" />,
-  'Marketing Digital': <Zap className="mr-2 h-4 w-4" aria-hidden="true" />,
-  'Automatización': <Bot className="mr-2 h-4 w-4" aria-hidden="true" />,
+  'Desarrollo Web': <Globe className="ml-2 h-4 w-4" aria-hidden="true" />,
+  'Software a Medida': <Code className="ml-2 h-4 w-4" aria-hidden="true" />,
+  'SEO': <Search className="ml-2 h-4 w-4" aria-hidden="true" />,
+  'Diseño UI/UX': <Paintbrush className="ml-2 h-4 w-4" aria-hidden="true" />,
+  'Marketing Digital': <Zap className="ml-2 h-4 w-4" aria-hidden="true" />,
+  'Automatización': <Bot className="ml-2 h-4 w-4" aria-hidden="true" />,
 };
 
 export default function BlogPage() {
@@ -111,8 +111,8 @@ export default function BlogPage() {
                 )}
               >
                 <span className="inline-flex items-center">
-                  {TAG_ICONS[tag]}
                   {tag}
+                  {TAG_ICONS[tag]}
                 </span>
               </Button>
             ))}

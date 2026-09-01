@@ -8,10 +8,19 @@ import {
   getFallbackResponse,
   LEAD_CAPTURE_MARKER,
 } from '@/ai/chat-shared';
+import { isRateLimited, getClientIp } from '@/lib/rate-limit';
 
 export const runtime = 'nodejs';
 
 const encoder = new TextEncoder();
+
+// Límites anti-abuso: este endpoint consume cuota real de Groq/OpenAI por
+// request, así que se protege con un límite simple por IP y topes de tamaño
+// de payload (sin agregar dependencias nuevas).
+const RATE_LIMIT_MAX = 15;
+const RATE_LIMIT_WINDOW_MS = 60_000; // 15 requests/minuto por IP
+const MAX_HISTORY_LENGTH = 40;
+const MAX_MESSAGE_LENGTH = 4000;
 
 // Delimitador que separa el texto visible del chunk final de metadata
 // (origen de la respuesta + si se debe disparar captura de lead).
@@ -62,7 +71,26 @@ function openaiKeyConfigured() {
 }
 
 export async function POST(req: Request) {
-  const { history } = (await req.json()) as { history: Message[] };
+  const ip = getClientIp(req);
+  if (isRateLimited(ip, RATE_LIMIT_MAX, RATE_LIMIT_WINDOW_MS)) {
+    return new Response('Too many requests. Please try again in a minute.', { status: 429 });
+  }
+
+  let body: { history?: Message[] };
+  try {
+    body = await req.json();
+  } catch {
+    return new Response('Invalid JSON body', { status: 400 });
+  }
+
+  const history = Array.isArray(body.history) ? body.history : [];
+  if (
+    history.length === 0 ||
+    history.length > MAX_HISTORY_LENGTH ||
+    history.some(m => typeof m?.content !== 'string' || m.content.length > MAX_MESSAGE_LENGTH)
+  ) {
+    return new Response('Invalid request payload', { status: 400 });
+  }
 
   const lastUserMessage = history.filter(m => m.role === 'user').pop()?.content || '';
   const lang = detectLang(lastUserMessage);

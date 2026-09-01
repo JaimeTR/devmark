@@ -268,7 +268,7 @@ export function Header({ lang = 'es', contactButton, aiAssistant, aiAssistantToo
           <div className="lg:hidden shrink-0">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="outline" size="icon" className="h-11 w-11" aria-label="Abrir menú de navegación">
+                <Button variant="outline" size="icon" className="h-11 w-11 rounded-xl" aria-label="Abrir menú de navegación">
                   <Menu className="h-6 w-6" />
                   <span className="sr-only">Open navigation menu</span>
                 </Button>

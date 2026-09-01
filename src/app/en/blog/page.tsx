@@ -40,12 +40,12 @@ const footerContent = {
 const curatedTags = ['Web Development', 'Custom Software', 'SEO', 'UI/UX Design', 'Digital Marketing', 'Automation'];
 
 const TAG_ICONS: Record<string, JSX.Element> = {
-  'Web Development': <Globe className="mr-2 h-4 w-4" aria-hidden="true" />,
-  'Custom Software': <Code className="mr-2 h-4 w-4" aria-hidden="true" />,
-  'SEO': <Search className="mr-2 h-4 w-4" aria-hidden="true" />,
-  'UI/UX Design': <Paintbrush className="mr-2 h-4 w-4" aria-hidden="true" />,
-  'Digital Marketing': <Zap className="mr-2 h-4 w-4" aria-hidden="true" />,
-  'Automation': <Bot className="mr-2 h-4 w-4" aria-hidden="true" />,
+  'Web Development': <Globe className="ml-2 h-4 w-4" aria-hidden="true" />,
+  'Custom Software': <Code className="ml-2 h-4 w-4" aria-hidden="true" />,
+  'SEO': <Search className="ml-2 h-4 w-4" aria-hidden="true" />,
+  'UI/UX Design': <Paintbrush className="ml-2 h-4 w-4" aria-hidden="true" />,
+  'Digital Marketing': <Zap className="ml-2 h-4 w-4" aria-hidden="true" />,
+  'Automation': <Bot className="ml-2 h-4 w-4" aria-hidden="true" />,
 };
 
 
@@ -111,8 +111,8 @@ export default function BlogPage() {
                 )}
               >
                 <span className="inline-flex items-center">
-                  {TAG_ICONS[tag]}
                   {tag}
+                  {TAG_ICONS[tag]}
                 </span>
               </Button>
             ))}
