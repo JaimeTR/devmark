@@ -10,7 +10,19 @@ const contactSchema = z.object({
   email: z.string().email('Por favor ingresa un email válido').trim(),
   phone: z.string().min(8, 'El teléfono debe tener al menos 8 caracteres').trim(),
   message: z.string().min(10, 'El mensaje debe tener al menos 10 caracteres').trim(),
+  // Opcional: el visitante puede no elegir ninguno.
+  service: z.enum(['web', 'tienda', 'software', 'automatizacion', 'chatbot', 'seo', 'otro']).optional(),
 });
+
+const SERVICE_LABEL = {
+  web: 'Página web',
+  tienda: 'Tienda online',
+  software: 'Software a medida',
+  automatizacion: 'Automatización',
+  chatbot: 'Chatbot con IA',
+  seo: 'SEO y GEO',
+  otro: 'Otro',
+} as const;
 
 // Evita inyección de cabeceras al construir asuntos de correo (CR/LF).
 function sanitizeHeader(value: string): string {
@@ -56,6 +68,7 @@ export async function sendContactEmail(
     email: formData.get('email'),
     phone: formData.get('phone'),
     message: formData.get('message'),
+    service: formData.get('service') || undefined,
   });
 
   if (!validatedFields.success) {
@@ -88,13 +101,14 @@ export async function sendContactEmail(
       throw new Error(`Error de conexión SMTP: ${detail}`);
     }
 
-    const { firstName, lastName, email, phone, message } = validatedFields.data;
+    const { firstName, lastName, email, phone, message, service } = validatedFields.data;
+    const serviceLabel = service ? SERVICE_LABEL[service] : null;
 
     // Email al administrador
     await transporter.sendMail({
       from: process.env.SMTP_EMAIL,
       to: ADMIN_NOTIFICATION_EMAILS,
-      subject: `🔔 Nuevo mensaje de contacto - ${sanitizeHeader(firstName)} ${sanitizeHeader(lastName)}`,
+      subject: `🔔 Nuevo mensaje de contacto - ${sanitizeHeader(firstName)} ${sanitizeHeader(lastName)}${serviceLabel ? ` (${serviceLabel})` : ''}`,
       html: `
         <!DOCTYPE html>
         <html lang="es">
@@ -138,6 +152,7 @@ export async function sendContactEmail(
                 </div>
               </div>
               
+              ${serviceLabel ? `<p style="margin: 0 0 20px 0; color: #d1d5db; font-size: 15px;">Le interesa: <strong style="color: #ffffff;">${serviceLabel}</strong></p>` : ''}
               <!-- Mensaje -->
               <div style="background-color: #1a1a2e; border: 1px solid #2a2a3e; border-radius: 12px; padding: 25px;">
                 <h2 style="margin: 0 0 15px 0; color: #0066FF; font-size: 16px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">💬 Mensaje</h2>
