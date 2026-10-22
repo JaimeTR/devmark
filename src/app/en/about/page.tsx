@@ -1,6 +1,7 @@
 import { AnimatedBackground } from '@/components/home/animated-background';
 import { Header } from '@/components/home/header';
 import { Footer } from '@/components/home/footer';
+import { GlobalReach } from '@/components/globe/global-reach';
 import Link from 'next/link';
 import { CodeXml, ShieldCheck, Users, TrendingUp, ArrowUpRight } from 'lucide-react';
 import { Metadata } from 'next';
@@ -118,6 +119,8 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
+
+        <GlobalReach lang="en" />
 
         <section className="py-16">
           <div className="max-w-6xl mx-auto px-6">
