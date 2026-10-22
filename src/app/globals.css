@@ -541,54 +541,65 @@ html {
     box-shadow: 0 10px 30px -12px rgba(17, 12, 41, 0.18);
   }
 
-  /* Boton con baldosa de icono. */
+  /*
+   * Boton con baldosa de icono: "vidrio con destello" (elegido por Jaime, 22 oct 2026).
+   * Principal en indigo con luz arriba; secundarios de vidrio. Al pasar el cursor sube 2 px,
+   * un brillo cruza el boton y el icono se inclina.
+   */
   .btn {
-    @apply inline-flex items-center gap-3 h-14 pl-2 pr-6 rounded-[10px] font-medium text-[15px] whitespace-nowrap select-none;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    @apply relative isolate inline-flex items-center gap-3 h-14 pl-2 pr-6 rounded-[14px] font-medium text-[15px] whitespace-nowrap select-none overflow-hidden;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
       background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
   }
-  .btn:hover {
-    transform: translateY(-2px);
+  .btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -60%;
+    width: 45%;
+    background: linear-gradient(100deg, transparent, var(--btn-shine, rgba(255, 255, 255, 0.5)), transparent);
+    transform: skewX(-18deg);
+    transition: left 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
   }
   .btn:active {
     transform: translateY(0) scale(0.98);
   }
   .btn-tile {
-    @apply grid place-items-center h-10 w-10 shrink-0 rounded-[7px];
-    transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    @apply grid place-items-center h-10 w-10 shrink-0 rounded-[10px];
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .btn:hover .btn-tile {
-    @apply w-12;
+  @media (hover: hover) {
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+    .btn:hover::after {
+      left: 120%;
+    }
+    .btn:hover .btn-tile {
+      transform: rotate(-10deg) scale(1.06);
+    }
   }
-  .btn-tile svg {
-    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .btn:hover .btn-tile svg {
-    transform: scale(1.12) rotate(-6deg);
-  }
-  .btn-light {
-    @apply btn bg-white text-ink;
-    box-shadow: 0 10px 24px -14px rgba(17, 12, 41, 0.55);
-  }
-  .btn-light .btn-tile {
-    @apply bg-primary text-white;
-  }
-  .btn-light:hover {
-    box-shadow: 0 18px 34px -16px rgba(61, 52, 188, 0.55);
-  }
+  /* Principal sobre tinta y sobre papel: el mismo indigo. */
+  .btn-light,
   .btn-ink {
-    @apply btn bg-ink text-white;
-    box-shadow: 0 10px 24px -14px rgba(17, 12, 41, 0.6);
+    @apply btn text-white;
+    background-image: linear-gradient(180deg, #4b42d0, #3d34bc);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 12px 28px -14px rgba(61, 52, 188, 0.8);
   }
+  .btn-light .btn-tile,
   .btn-ink .btn-tile {
-    @apply bg-white text-ink;
+    background: rgba(255, 255, 255, 0.16);
   }
+  .btn-light:hover,
   .btn-ink:hover {
-    @apply bg-primary;
-    box-shadow: 0 18px 34px -16px rgba(61, 52, 188, 0.6);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 18px 34px -14px rgba(61, 52, 188, 0.85);
   }
+  /* Secundario sobre tinta: vidrio oscuro. */
   .btn-glass {
     @apply btn text-white glass-dark;
+    --btn-shine: rgba(255, 255, 255, 0.18);
   }
   .btn-glass .btn-tile {
     @apply bg-white/10;
@@ -596,23 +607,26 @@ html {
   .btn-glass:hover {
     background: rgba(255, 255, 255, 0.12);
   }
+  /* Secundario sobre papel: vidrio claro. */
   .btn-outline {
-    @apply btn bg-transparent text-ink border border-ink/15;
+    @apply btn text-ink;
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: inset 0 0 0 1px rgba(17, 12, 41, 0.1), 0 10px 30px -12px rgba(17, 12, 41, 0.18);
+    backdrop-filter: blur(14px) saturate(150%);
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
   }
   .btn-outline .btn-tile {
     @apply bg-mist text-ink;
   }
   .btn-outline:hover {
-    @apply border-primary/50 text-primary;
+    @apply text-primary;
+    box-shadow: inset 0 0 0 1px rgba(61, 52, 188, 0.35), 0 16px 32px -14px rgba(17, 12, 41, 0.22);
   }
   .btn-sm {
-    @apply h-11 pl-1.5 pr-4 text-sm gap-2.5;
+    @apply h-11 pl-1.5 pr-4 text-sm gap-2.5 rounded-xl;
   }
   .btn-sm .btn-tile {
-    @apply h-8 w-8;
-  }
-  .btn-sm:hover .btn-tile {
-    @apply w-10;
+    @apply h-8 w-8 rounded-lg;
   }
 
   /* Campos de formulario sobre tinta y sobre papel. */
