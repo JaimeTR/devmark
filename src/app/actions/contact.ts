@@ -2,6 +2,7 @@
 
 import { z } from 'zod';
 import { buildTransporter, escapeHtml, ADMIN_NOTIFICATION_EMAILS } from '@/app/actions/quoter-shared';
+import { visitanteDentroDelLimite } from '@/lib/rate-limit';
 
 const contactSchema = z.object({
   firstName: z.string().min(2, 'El nombre debe tener al menos 2 caracteres').trim(),
@@ -41,6 +42,14 @@ export async function sendContactEmail(
     };
   }
 
+  // Cada envio manda dos correos (al equipo y al visitante): 5 cada 10 minutos por visitante.
+  if (!(await visitanteDentroDelLimite('contacto', 5, 10 * 60_000))) {
+    return {
+      success: false,
+      message: 'Recibimos varios mensajes seguidos desde tu conexión. Espera unos minutos e inténtalo de nuevo.',
+    };
+  }
+
   const validatedFields = contactSchema.safeParse({
     firstName: formData.get('firstName'),
     lastName: formData.get('lastName'),
@@ -53,7 +62,7 @@ export async function sendContactEmail(
     return {
       success: false,
       message: 'Por favor verifica los datos ingresados',
-      errors: validatedFields.error.flatten().fieldErrors as any,
+      errors: validatedFields.error.flatten().fieldErrors,
     };
   }
 
@@ -73,9 +82,10 @@ export async function sendContactEmail(
     // Verificar la conexión con mejor manejo de errores
     try {
       await transporter.verify();
-    } catch (verifyError: any) {
-      console.error('Error al verificar conexión SMTP:', verifyError.message);
-      throw new Error(`Error de conexión SMTP: ${verifyError.message}`);
+    } catch (verifyError) {
+      const detail = verifyError instanceof Error ? verifyError.message : String(verifyError);
+      console.error('Error al verificar conexión SMTP:', detail);
+      throw new Error(`Error de conexión SMTP: ${detail}`);
     }
 
     const { firstName, lastName, email, phone, message } = validatedFields.data;
@@ -276,7 +286,8 @@ export async function sendContactEmail(
       success: true,
       message: '¡Mensaje enviado exitosamente! Un asesor personalizado se pondrá en contacto contigo pronto.',
     };
-  } catch (error: any) {
+  } catch (caught) {
+    const error = caught as Error & { code?: string; command?: string };
     console.error('Error completo al enviar email:', {
       message: error.message,
       code: error.code,

@@ -83,7 +83,6 @@ const messages: Record<MessageType, MessageConfig> = {
 function ThankYouContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [mounted, setMounted] = useState(false);
   const [countdown, setCountdown] = useState(60);
 
   const type = (searchParams.get('type') as MessageType) || 'default';
@@ -95,14 +94,11 @@ function ThankYouContent() {
   const displaySubtitle = customMessage || config.subtitle;
 
   useEffect(() => {
-    setMounted(true);
     // Scroll to top when page loads
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   useEffect(() => {
-    if (!mounted) return;
-
     const timer = setInterval(() => {
       setCountdown((prev) => {
         if (prev <= 1) {
@@ -114,11 +110,7 @@ function ThankYouContent() {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [mounted, config.ctaLink, router]);
-
-  if (!mounted) {
-    return null;
-  }
+  }, [config.ctaLink, router]);
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">

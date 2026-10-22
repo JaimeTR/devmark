@@ -3,7 +3,6 @@
 import { Github, Linkedin, Instagram, Facebook, Mail, Phone } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
 
 interface FooterProps {
   lang?: 'es' | 'en';
@@ -45,12 +44,8 @@ const copy = {
 };
 
 export function Footer({ lang = 'es', copyright }: FooterProps) {
-  const [year, setYear] = useState(new Date().getFullYear());
+  const year = new Date().getFullYear();
   const t = copy[lang];
-
-  useEffect(() => {
-    setYear(new Date().getFullYear());
-  }, []);
 
   return (
     <footer className="relative mt-16 sm:mt-20 md:mt-24 bg-brand-navy-dark text-white/80">

@@ -6,7 +6,7 @@ import { Footer } from '@/components/home/footer';
 import { Header } from '@/components/home/header';
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 import { Calendar, User } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -147,7 +147,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 <div className="flex items-center gap-2">
                     <Calendar className="h-4 w-4" />
                     <time dateTime={post.date}>
-                        {format(new Date(post.date), "MMMM d, yyyy", { locale: enUS })}
+                        {format(parseISO(post.date), "MMMM d, yyyy", { locale: enUS })}
                     </time>
                 </div>
             </div>

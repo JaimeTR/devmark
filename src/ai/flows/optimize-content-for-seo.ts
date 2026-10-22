@@ -1,6 +1,5 @@
 // This file is machine-generated - edit with care!
 
-'use server';
 
 /**
  * @fileOverview An AI agent that optimizes text content for clarity, readability, and SEO using Groq.
@@ -13,7 +12,7 @@
 import { groq, GROQ_MODEL } from '@/ai/groq';
 import { z } from 'zod';
 
-const OptimizeContentInputSchema = z.object({
+export const OptimizeContentInputSchema = z.object({
   content: z.string().describe('The text content to be optimized.'),
   keywords: z
     .string()

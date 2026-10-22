@@ -59,7 +59,7 @@ function buildNavLinks(lang: 'es' | 'en', pathname: string | null): NavLink[] {
   ];
 }
 
-export function Header({ lang = 'es', contactButton, aiAssistant, aiAssistantTooltip }: HeaderProps) {
+export function Header({ lang = 'es', contactButton, aiAssistant }: HeaderProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');

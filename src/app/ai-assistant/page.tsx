@@ -5,7 +5,6 @@ import { Footer } from '@/components/home/footer';
 import { Header } from '@/components/home/header';
 import { Button } from '@/components/ui/button';
 import { AiChatbot } from '@/components/ai/ai-chatbot';
-import { SeoOptimizer } from '@/components/ai/seo-optimizer';
 
 const headerContent = {
   lang: 'es' as const,
@@ -19,27 +18,6 @@ const headerContent = {
   contactButton: 'Contactar',
   aiAssistant: 'Asistente IA',
   aiAssistantTooltip: '¡Hola! Soy tu asistente de IA.',
-};
-
-const seoOptimizerContent = {
-  badge: 'HERRAMIENTA DIGITAL',
-  title: 'Optimizador de contenido con IA',
-  subtitle:
-    'Potencia tu marketing con nuestra IA. Ingresa tu texto y palabras clave relevantes para obtener una versión optimizada para SEO y claridad.',
-  contentLabel: 'Contenido a optimizar',
-  contentPlaceholder:
-    "Ej: 'Nuestra empresa vende los mejores zapatos del mundo...'",
-  keywordsLabel: 'Palabras clave (separadas por coma)',
-  keywordsPlaceholder:
-    "Ej: 'zapatos de cuero', 'tienda de zapatos online', 'calzado'",
-  submitButton: 'Optimizar contenido',
-  submitButtonPending: 'Optimizando...',
-  resultsTitle: 'Resultados de la optimización',
-  resultsDescription:
-    'El contenido mejorado y las sugerencias aparecerán aquí.',
-  optimizedContentLabel: 'Contenido optimizado',
-  suggestionsLabel: 'Sugerencias',
-  placeholder: 'La magia de la IA aparecerá aquí.',
 };
 
 const chatbotContent = {
@@ -76,7 +54,6 @@ export default function AiAssistantPage() {
           </div>
           <div className="flex flex-col gap-16 sm:gap-24 md:gap-32 lg:gap-40">
             <AiChatbot {...chatbotContent} />
-            {/* <SeoOptimizer {...seoOptimizerContent} /> */}
           </div>
         </div>
       </main>

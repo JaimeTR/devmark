@@ -1,5 +1,6 @@
 'use client';
 
+import type React from 'react';
 import Cal from '@calcom/embed-react';
 
 interface BookingModalProps {
@@ -44,7 +45,7 @@ export function BookingModal({ open, onOpenChange }: BookingModalProps) {
                 'cal-bg-secondary': '#f8fafc',
               },
             },
-          } as any}
+          } as unknown as React.ComponentProps<typeof Cal>['config']}
           style={{ width: '100%', height: '760px', overflow: 'hidden' }}
         />
       </div>

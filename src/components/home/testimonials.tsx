@@ -26,7 +26,7 @@ interface TestimonialsProps {
 }
 
 export function Testimonials({ badge, title, subtitle, items }: TestimonialsProps) {
-  const plugin = React.useRef(
+  const [plugin] = React.useState(() =>
     Autoplay({ delay: 3000, stopOnInteraction: true, stopOnMouseEnter: true })
   );
 
@@ -39,7 +39,7 @@ export function Testimonials({ badge, title, subtitle, items }: TestimonialsProp
       </div>
 
       <Carousel
-        plugins={[plugin.current]}
+        plugins={[plugin]}
         className="w-full animate-fade-in-up"
         opts={{
           align: "start",

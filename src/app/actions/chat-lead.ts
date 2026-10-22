@@ -1,6 +1,7 @@
 'use server';
 
 import { z } from 'zod';
+import { visitanteDentroDelLimite } from '@/lib/rate-limit';
 import { buildTransporter, escapeHtml, ADMIN_NOTIFICATION_EMAILS } from '@/app/actions/quoter-shared';
 
 const leadSchema = z.object({
@@ -89,6 +90,10 @@ export async function sendLeadFromChat(payload: LeadPayload): Promise<LeadResult
   // Honeypot anti-spam: si el campo oculto viene relleno, descartar.
   if (result.data.company && result.data.company.trim().length > 0) {
     return { success: true, message: 'Lead enviado correctamente' };
+  }
+
+  if (!(await visitanteDentroDelLimite('lead-chat', 5, 10 * 60_000))) {
+    return { success: false, message: 'Recibimos varios envíos seguidos. Espera unos minutos e inténtalo de nuevo.' };
   }
 
   try {

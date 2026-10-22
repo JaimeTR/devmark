@@ -4,6 +4,7 @@
 
 import { z } from 'zod';
 import { quoteProject, type QuoteProjectOutput } from '@/ai/flows/quote-project-flow';
+import { visitanteDentroDelLimite } from '@/lib/rate-limit';
 import { supabase, type QuoteRecord, isSupabaseConfigured } from '@/lib/supabase';
 import { buildTransporter, escapeHtml, ADMIN_NOTIFICATION_EMAILS } from '@/app/actions/quoter-shared';
 
@@ -184,6 +185,18 @@ export async function quoteProjectAction(
     };
   }
   
+  // Cada cotizacion llama a la IA y envia correos: 5 por hora por visitante.
+  if (!(await visitanteDentroDelLimite('cotizador', 5, 60 * 60_000))) {
+    return {
+      message: validatedFields.data.lang === 'en'
+        ? 'You have requested several quotes in a short time. Please try again later or write to us on WhatsApp.'
+        : 'Pediste varias cotizaciones en poco tiempo. Inténtalo más tarde o escríbenos por WhatsApp.',
+      data: null,
+      errors: [],
+      projectName: null,
+    };
+  }
+
   try {
     const result = await quoteProject(validatedFields.data);
 
@@ -301,6 +314,11 @@ export async function notifyProposalDownloaded(
   contactEmail: string,
   lang: 'es' | 'en'
 ): Promise<void> {
+  // Aviso interno al equipo: se ignora en silencio si alguien lo dispara en bucle.
+  if (!(await visitanteDentroDelLimite('propuesta-descargada', 10, 60 * 60_000))) return;
+  projectName = projectName.slice(0, 200);
+  contactEmail = contactEmail.slice(0, 254);
+
   try {
     const transporter = buildTransporter();
     await transporter.verify();

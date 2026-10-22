@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { Mail, Clock, Phone, Video, Bot, Loader2, CheckCircle, AlertCircle } from "lucide-react";
 import { useState, useEffect, useActionState } from 'react';
+import { useClientValue } from '@/hooks/use-client-value';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { sendContactEmail } from '@/app/actions/contact';
@@ -42,7 +43,13 @@ interface ContactProps {
 
 export function Contact(props: ContactProps) {
   const [time, setTime] = useState('');
-  const [timeZone, setTimeZone] = useState('');
+  const timeZone = useClientValue(() => {
+    try {
+      return Intl.DateTimeFormat().resolvedOptions().timeZone;
+    } catch {
+      return '';
+    }
+  }, '');
   const [state, formAction, isPending] = useActionState(sendContactEmail, null);
   const router = useRouter();
   const quoteLink = props.lang === 'en' ? '/en/quote' : '/quote';
@@ -51,12 +58,6 @@ export function Contact(props: ContactProps) {
     const timer = setInterval(() => {
       setTime(new Date().toLocaleTimeString());
     }, 1000);
-    
-    try {
-      setTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone);
-    } catch (e) {
-      console.error("Could not determine timezone.");
-    }
 
     return () => clearInterval(timer);
   }, []);

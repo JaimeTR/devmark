@@ -7,7 +7,7 @@ import { Header } from '@/components/home/header';
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
 import Link from 'next/link';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { Calendar, User, ArrowRight, Clock } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -161,7 +161,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="flex items-center gap-2">
             <Calendar className="h-4 w-4" />
             <time dateTime={post.date}>
-              {format(new Date(post.date), "d 'de' MMMM, yyyy", { locale: es })}
+              {format(parseISO(post.date), "d 'de' MMMM, yyyy", { locale: es })}
             </time>
           </div>
         </div>
@@ -201,7 +201,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                           </h4>
                           <p className="text-xs text-slate-500 mt-1 flex items-center gap-1">
                             <Clock className="h-3 w-3" />
-                            {format(new Date(rp.date), "d MMM, yyyy", { locale: es })}
+                            {format(parseISO(rp.date), "d MMM, yyyy", { locale: es })}
                           </p>
                         </div>
                       </div>

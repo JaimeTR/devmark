@@ -1,13 +1,13 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, type JSX } from 'react';
 import { AnimatedBackground } from '@/components/home/animated-background';
 import { Footer } from '@/components/home/footer';
 import { Header } from '@/components/home/header';
 import { Card, CardContent } from '@/components/ui/card';
 import { getPosts } from '@/data/blog-posts';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -135,7 +135,7 @@ export default function BlogPage() {
                     <div className="flex-grow">
                       <p className="text-sm text-muted-foreground mb-2 flex items-center gap-2">
                         <Calendar className="h-4 w-4" aria-hidden="true" />
-                        {format(new Date(post.date), "MMMM d, yyyy", { locale: enUS })}
+                        {format(parseISO(post.date), "MMMM d, yyyy", { locale: enUS })}
                       </p>
                       <h2 className="font-headline text-xl font-bold mb-2 text-gradient-blue">{post.title}</h2>
                       <p className="text-muted-foreground line-clamp-3">

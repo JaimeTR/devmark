@@ -28,7 +28,7 @@ function detectPreferredLocale(request: NextRequest): 'es' | 'en' {
   return 'es';
 }
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const isEnPath = pathname === '/en' || pathname.startsWith('/en/');
   const currentLocale: 'es' | 'en' = isEnPath ? 'en' : 'es';

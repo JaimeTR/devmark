@@ -46,8 +46,6 @@ const categoryToProjectType: Record<string, string> = {
 export function FeaturedProjectsCarousel({
   projects,
   lang = 'es',
-  title = 'Proyectos',
-  subtitle = '',
   viewMoreText = 'Ver mas proyectos',
   statsLabel = 'PROYECTOS',
   statsNumber = '+140',

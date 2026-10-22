@@ -1,6 +1,5 @@
 // This file is machine-generated - edit with care!
 
-'use server';
 
 /**
  * @fileOverview An AI agent that generates project proposals and quotes using Groq.
@@ -13,7 +12,7 @@
 import { groq, GROQ_MODEL } from '@/ai/groq';
 import { z } from 'zod';
 
-const QuoteProjectInputSchema = z.object({
+export const QuoteProjectInputSchema = z.object({
   responsibleName: z.string().describe('Name of the person requesting the quote.'),
   companyName: z.string().optional().describe('Company or business name, if any.'),
   projectName: z.string().describe('The name of the project.'),

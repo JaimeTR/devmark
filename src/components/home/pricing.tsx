@@ -2,7 +2,8 @@
 
 'use client';
 
-import {useEffect, useMemo, useState} from 'react';
+import {useMemo, useState} from 'react';
+import { useClientValue } from '@/hooks/use-client-value';
 import {loadStripe} from '@stripe/stripe-js';
 import {usePathname} from 'next/navigation';
 import {CheckCircle, Star} from 'lucide-react';
@@ -18,9 +19,16 @@ import {
   type CurrencyCode,
 } from '@/lib/currency';
 
-const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
-);
+const STRIPE_KEY = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
+
+// Stripe.js se descarga solo al pagar y solo si hay clave: cargarlo al abrir la
+// pagina fallaba en cada visita (sin clave o bloqueado) y pesaba sin usarse.
+let stripePromise: ReturnType<typeof loadStripe> | null = null;
+function getStripe() {
+  if (!STRIPE_KEY) return null;
+  stripePromise ??= loadStripe(STRIPE_KEY);
+  return stripePromise;
+}
 
 interface Plan {
   name: string;
@@ -65,11 +73,12 @@ export function Pricing({title, subtitle, plans, lang, baseCurrency = 'PEN', wha
     return 'es';
   }, [lang, pathname]);
 
-  const [currency, setCurrency] = useState<CurrencyCode>(() => detectCurrency(inferredLang));
-
-  useEffect(() => {
-    setCurrency(detectCurrency(inferredLang));
-  }, [inferredLang]);
+  // La moneda depende del navegador (zona horaria e idioma): en el servidor se
+  // usa la del idioma de la pagina y al hidratar se ajusta.
+  const currency = useClientValue<CurrencyCode>(
+    () => detectCurrency(inferredLang),
+    inferredLang === 'es' ? 'PEN' : 'USD',
+  );
 
   const openWhatsApp = (plan: Plan, priceLabel: string) => {
     const number = whatsappNumber.replace(/[^0-9]/g, '');
@@ -81,7 +90,7 @@ export function Pricing({title, subtitle, plans, lang, baseCurrency = 'PEN', wha
   };
 
   const handleCheckout = async (plan: Plan, priceLabel: string) => {
-    const hasValidStripe = plan.priceId && !plan.priceId.includes('...');
+    const hasValidStripe = Boolean(STRIPE_KEY) && plan.priceId && !plan.priceId.includes('...');
     if (!hasValidStripe) {
       openWhatsApp(plan, priceLabel);
       return;
@@ -90,7 +99,7 @@ export function Pricing({title, subtitle, plans, lang, baseCurrency = 'PEN', wha
     setLoading(plan.priceId || null);
     try {
       const {sessionId} = await createCheckoutSession(plan.priceId);
-      const stripe = await stripePromise;
+      const stripe = await getStripe();
       if (stripe) {
         await stripe.redirectToCheckout({sessionId});
       }

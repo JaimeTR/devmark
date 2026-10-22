@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useClientValue } from '@/hooks/use-client-value';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -75,17 +75,13 @@ const copy = {
 export default function NotFound() {
   const pathname = usePathname();
   const router = useRouter();
-  const [canGoBack, setCanGoBack] = useState(false);
+  // window.history.length > 1 no garantiza que la página anterior sea de
+  // este mismo sitio, pero evita mostrar "Página anterior" cuando el 404
+  // fue la primera carga (llegada directa/enlace externo roto).
+  const canGoBack = useClientValue(() => window.history.length > 1, false);
 
   const lang = pathname?.startsWith('/en') ? 'en' : 'es';
   const t = copy[lang];
-
-  useEffect(() => {
-    // window.history.length > 1 no garantiza que la página anterior sea de
-    // este mismo sitio, pero evita mostrar "Página anterior" cuando el 404
-    // fue la primera carga (llegada directa/enlace externo roto).
-    setCanGoBack(window.history.length > 1);
-  }, []);
 
   return (
     <div className="relative overflow-x-hidden bg-background min-h-screen">

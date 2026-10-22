@@ -153,6 +153,8 @@ export function AiChatbot(props: AiChatbotProps) {
 
   useEffect(() => {
     const stored = loadStoredMessages(lang);
+    // localStorage solo existe en el navegador: se lee tras hidratar para que el HTML coincida.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMessages(stored ?? [{ role: 'model', content: props.initialMessage }]);
     sessionIdRef.current = getOrCreateSessionId(lang);
     // Solo al montar: no queremos que un re-render por cambio de idioma pise
