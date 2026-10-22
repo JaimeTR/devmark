@@ -4,7 +4,7 @@ import { useActionState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { AlertCircle, ArrowUpRight, Calculator, CheckCircle, Loader2, Mail, Phone, Video } from 'lucide-react';
 import { sendContactEmail } from '@/app/actions/contact';
-import { WHATSAPP_GREETING, whatsappHref } from '@/lib/contact';
+import { BOOKING_URL, WHATSAPP_GREETING, whatsappHref } from '@/lib/contact';
 import { cn } from '@/lib/utils';
 import type { TitleParts } from '@/content/home';
 import { TitleText } from '@/components/site/title-text';
@@ -50,7 +50,6 @@ export function Contact(props: ContactProps) {
   const router = useRouter();
   const es = props.lang === 'es';
   const quoteLink = es ? '/quote' : '/en/quote';
-  const meetLink = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=Reuni%C3%B3n%20con%20DevMark&details=Hola%2C%20estoy%20interesado%20en%20sus%20servicios.%20Me%20gustar%C3%ADa%20agendar%20una%20reuni%C3%B3n.&add=${encodeURIComponent('contacto@devmarkpe.com')}&conferenceDataVersion=1&conferenceData.createRequest=1`;
 
   // Redirigir a la página de agradecimiento cuando el envío sea exitoso.
   useEffect(() => {
@@ -77,7 +76,7 @@ export function Contact(props: ContactProps) {
               </span>
               {es ? 'Escríbenos por WhatsApp' : 'Message us on WhatsApp'}
             </a>
-            <a href={meetLink} target="_blank" rel="noopener noreferrer" className="btn-glass">
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="btn-glass">
               <span className="btn-tile">
                 <Video className="h-5 w-5" />
               </span>

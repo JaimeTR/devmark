@@ -209,10 +209,10 @@ function GraciasContent() {
                   <p className="text-sm text-muted-foreground">
                     ¿Tienes alguna pregunta? Contáctanos en{' '}
                     <a 
-                      href="mailto:correo@devmarkpe.com" 
+                      href="mailto:contacto@devmarkpe.com" 
                       className="text-primary hover:underline font-medium"
                     >
-                      correo@devmarkpe.com
+                      contacto@devmarkpe.com
                     </a>
                   </p>
                 </div>

@@ -154,7 +154,7 @@ export const ProposalDocument = forwardRef<HTMLDivElement, ProposalDocumentProps
         </div>
 
         <div className="pt-8 text-center text-xs text-slate-400">
-          devmarkpe.com · correo@devmarkpe.com
+          devmarkpe.com · contacto@devmarkpe.com
         </div>
       </div>
     );

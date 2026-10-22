@@ -95,7 +95,7 @@ export function ServicesIndex({ lang }: { lang: Lang }) {
             <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {t.extra.map((s, i) => {
                 const Icon = icons[i];
-                const from = getStartingPrice(s.href);
+                const from = getStartingPrice(s.href, lang);
                 return (
                   <Link key={s.href} href={s.href} className="reveal group flex flex-col rounded-2xl bg-mist p-6 transition-colors duration-500 hover:bg-ink hover:text-white">
                     <span className="grid h-11 w-11 place-items-center rounded-lg bg-white text-ink transition-colors duration-500 group-hover:bg-white/10 group-hover:text-white">

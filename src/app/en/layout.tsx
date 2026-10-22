@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     countryName: 'Peru',
     images: [
       {
-        url: '/og-image.svg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Devmark - Web Development & Software in Peru',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Devmark - Web Development Agency in Peru',
     description: 'Web development, custom software and AI chatbots in Lima, Peru.',
-    images: ['/og-image.svg'],
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,

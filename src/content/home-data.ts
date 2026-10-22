@@ -195,7 +195,7 @@ export const contactContent = {
   es: {
     lang: 'es',
     title: "Hablemos de tu proyecto",
-    description: "¿Listo para llevar tu negocio al siguiente nivel? Completa el formulario o agenda una reunión y nuestro equipo global se pondrá en contacto contigo.",
+    description: "¿Listo para llevar tu negocio al siguiente nivel? Completa el formulario o agenda una reunión y nuestro equipo se pondrá en contacto contigo.",
     contactSubtitle: "Contáctanos ahora",
     emailLabel: "Correo:",
     email: "contacto@devmarkpe.com",
@@ -215,13 +215,13 @@ export const contactContent = {
     messageLabel: "Mensaje",
     messagePlaceholder: "Cuéntanos sobre tu proyecto...",
     submitButton: "Enviar mensaje",
-    scheduleButton: "Agendar reunión por Meet",
+    scheduleButton: 'Agendar videollamada',
     quoteButton: "Cotiza con nuestra IA"
   },
   en: {
     lang: 'en',
     title: "Let's talk about your project",
-    description: "Ready to take your business to the next level? Complete the form or schedule a meeting and our global team will contact you shortly.",
+    description: "Ready to take your business to the next level? Complete the form or schedule a meeting and our team will contact you shortly.",
     contactSubtitle: "Contact us now",
     emailLabel: "Email:",
     email: "contacto@devmarkpe.com",
@@ -241,7 +241,7 @@ export const contactContent = {
     messageLabel: "Message",
     messagePlaceholder: "Tell us about your project...",
     submitButton: "Send message",
-    scheduleButton: "Schedule a meeting with Meet",
+    scheduleButton: 'Book a video call',
     quoteButton: "Quote with our AI"
   },
 } as const;

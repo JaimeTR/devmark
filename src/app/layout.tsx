@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     countryName: 'Peru',
     images: [
       {
-        url: '/og-image.svg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Devmark - Agencia de desarrollo web y software en Lima, Perú',
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Devmark - Agencia de desarrollo web y software en Lima, Perú',
     description: 'Desarrollo web, software a medida y chatbots IA en Lima, Peru.',
-    images: ['/og-image.svg'],
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,
@@ -142,7 +142,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
               sameAs: [
                 'https://www.instagram.com/devmark.pe/',
                 'https://www.facebook.com/devmark.pe/',
-                'https://www.linkedin.com/company/devmarkpe/',
+                'https://www.linkedin.com/company/devmark.pe/',
                 'https://github.com/JaimeTR',
               ],
               openingHoursSpecification: {

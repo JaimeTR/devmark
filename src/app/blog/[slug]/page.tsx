@@ -119,7 +119,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               url: 'https://devmarkpe.com',
               logo: {
                 '@type': 'ImageObject',
-                url: 'https://devmarkpe.com/og-image.svg',
+                url: 'https://devmarkpe.com/og-image.png',
               },
             },
           }),

@@ -12,7 +12,7 @@ interface FooterProps {
 const socials = [
   { href: 'https://www.instagram.com/devmark.pe/', label: 'Instagram', Icon: Instagram },
   { href: 'https://www.facebook.com/devmark.pe/', label: 'Facebook', Icon: Facebook },
-  { href: 'https://www.linkedin.com/company/devmarkpe/', label: 'LinkedIn', Icon: Linkedin },
+  { href: 'https://www.linkedin.com/company/devmark.pe/', label: 'LinkedIn', Icon: Linkedin },
   { href: 'https://github.com/JaimeTR', label: 'GitHub', Icon: Github },
 ];
 

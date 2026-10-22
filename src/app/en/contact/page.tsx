@@ -22,7 +22,7 @@ const contactContent = {
   lang: 'en' as const,
   title: 'Contact us',
   description:
-    'Ready to take your business to the next level? Fill out the form or schedule a meeting and our global team will get in touch with you.',
+    'Ready to take your business to the next level? Fill out the form or schedule a meeting and our team will get in touch with you.',
   contactSubtitle: 'Contact us now',
   emailLabel: 'Email:',
   email: 'contacto@devmarkpe.com',
@@ -42,7 +42,7 @@ const contactContent = {
   messageLabel: 'Message',
   messagePlaceholder: 'Tell us about your project...',
   submitButton: 'Send message',
-  scheduleButton: 'Schedule Meeting',
+  scheduleButton: 'Book a video call',
   quoteButton: 'Get a Quote',
 };
 

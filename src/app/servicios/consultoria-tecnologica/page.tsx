@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: 'Consultoría Tecnológica | Devmark Perú',
     description: 'Te guiamos en la transformación digital de tu negocio con una estrategia tecnológica sólida y escalable.',
     siteName: 'Devmark',
-    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Consultoría tecnológica - DEVMARK' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Consultoría tecnológica - DEVMARK' }],
   },
 };
 
@@ -140,7 +140,7 @@ const pricingContent = {
 const contactContent = {
     lang: 'es' as const,
     title: "Hablemos de tu proyecto",
-    description: "¿Listo para llevar tu negocio al siguiente nivel? Completa el formulario o agenda una reunión y nuestro equipo global se pondrá en contacto contigo.",
+    description: "¿Listo para llevar tu negocio al siguiente nivel? Completa el formulario o agenda una reunión y nuestro equipo se pondrá en contacto contigo.",
     contactSubtitle: "Contáctanos ahora",
     emailLabel: "Correo:",
     email: "contacto@devmarkpe.com",
@@ -160,7 +160,7 @@ const contactContent = {
     messageLabel: "Mensaje",
     messagePlaceholder: "Cuéntanos sobre tu proyecto...",
     submitButton: "Enviar Mensaje",
-    scheduleButton: "Agendar reunión por Meet",
+    scheduleButton: 'Agendar videollamada',
     quoteButton: "Cotiza tu proyecto con IA"
 };
 

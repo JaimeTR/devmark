@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: 'Desarrollo Web a Medida en Perú | Devmark',
     description: 'Creamos sitios web únicos y de alto rendimiento adaptados a tu negocio en Perú.',
     siteName: 'Devmark',
-    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Desarrollo web a medida - DEVMARK' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Desarrollo web a medida - DEVMARK' }],
   },
 };
 
@@ -166,7 +166,7 @@ const contactContent = {
     messageLabel: "Mensaje",
     messagePlaceholder: "Cuentanos sobre tu proyecto...",
     submitButton: "Enviar mensaje",
-    scheduleButton: "Agendar reunion por Meet",
+    scheduleButton: 'Agendar videollamada',
     quoteButton: "Cotiza tu proyecto con IA"
 };
 

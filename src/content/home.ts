@@ -119,8 +119,8 @@ const servicesEn: Omit<HomeService, 'from'>[] = [
   },
 ];
 
-const withPrice = (list: Omit<HomeService, 'from'>[]): HomeService[] =>
-  list.map((s) => ({ ...s, from: getStartingPrice(s.href) }));
+const withPrice = (list: Omit<HomeService, 'from'>[], lang: 'es' | 'en'): HomeService[] =>
+  list.map((s) => ({ ...s, from: getStartingPrice(s.href, lang) }));
 
 export const homeContent = {
   es: {
@@ -154,7 +154,7 @@ export const homeContent = {
       details: 'Ver detalles',
       includes: 'Qué incluye',
       quoteMessage: (title: string) => `Hola DEVMARK, quiero cotizar el servicio de ${title}.`,
-      items: withPrice(servicesEs),
+      items: withPrice(servicesEs, 'es'),
       extraTitle: 'También hacemos',
       extra: [
         { title: 'Diseño UI/UX', href: '/servicios/diseno-ui-ux' },
@@ -267,7 +267,7 @@ export const homeContent = {
       details: 'View details',
       includes: "What's included",
       quoteMessage: (title: string) => `Hi DEVMARK, I'd like a quote for ${title}.`,
-      items: withPrice(servicesEn),
+      items: withPrice(servicesEn, 'en'),
       extraTitle: 'We also do',
       extra: [
         { title: 'UI/UX design', href: '/en/services/ui-ux-design' },

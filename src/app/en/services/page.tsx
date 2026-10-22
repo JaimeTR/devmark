@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title: 'Services | Devmark - Web Development, Software & Digital Marketing',
     description: 'Discover our services: custom web development, software, AI chatbots, SEO and digital marketing.',
     siteName: 'Devmark',
-    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'DEVMARK Services' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'DEVMARK Services' }],
   },
 };
 

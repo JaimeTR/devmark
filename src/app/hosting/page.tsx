@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title: 'Hosting y Dominios | Devmark - Partner Oficial de Hostinger',
     description: 'Hosting profesional, dominios, correos corporativos y SSL con 20% de descuento adicional.',
     siteName: 'Devmark',
-    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Hosting y dominios - DEVMARK' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Hosting y dominios - DEVMARK' }],
   },
 };
 

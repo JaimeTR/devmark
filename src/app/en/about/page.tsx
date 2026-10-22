@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title: 'About Us | Devmark - Web & Software Development Agency in Peru',
     description: 'Meet Devmark: a studio in Lima, Peru that fuses strategy, design, and technology.',
     siteName: 'Devmark',
-    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'About DEVMARK' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'About DEVMARK' }],
   },
 };
 

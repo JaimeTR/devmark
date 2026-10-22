@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title: 'Nosotros | Devmark - Agencia de Desarrollo Web y Software en Perú',
     description: 'Conoce a Devmark: un estudio en Lima, Perú que fusiona estrategia, diseño y tecnología.',
     siteName: 'Devmark',
-    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Nosotros - DEVMARK' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Nosotros - DEVMARK' }],
   },
 };
 

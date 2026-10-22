@@ -228,7 +228,7 @@ export async function sendContactEmail(
               <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-left: 4px solid #0066FF; border-radius: 8px; padding: 20px; margin: 25px 0;">
                 <p style="margin: 0 0 10px 0; color: #1f2937; font-size: 15px; font-weight: 600;">💡 ¿Tienes más preguntas?</p>
                 <p style="margin: 0; color: #4b5563; font-size: 14px; line-height: 1.5;">
-                  No dudes en responder este correo o escribirnos directamente a <strong style="color: #0066FF;">correo@devmarkpe.com</strong>
+                  No dudes en responder este correo o escribirnos directamente a <strong style="color: #0066FF;">contacto@devmarkpe.com</strong>
                 </p>
               </div>
               
@@ -296,14 +296,14 @@ export async function sendContactEmail(
     });
     
     // Mensajes de error más específicos
-    let errorMessage = 'Hubo un error al enviar el mensaje. Por favor intenta más tarde o contacta directamente a correo@devmarkpe.com';
+    let errorMessage = 'Hubo un error al enviar el mensaje. Por favor intenta más tarde o contacta directamente a contacto@devmarkpe.com';
     
     if (error.code === 'ECONNECTION' || error.code === 'ETIMEDOUT') {
       errorMessage = 'Error de conexión con el servidor de correo. Por favor verifica tu conexión a internet e intenta nuevamente.';
     } else if (error.code === 'EAUTH') {
       errorMessage = 'Error de autenticación del servidor. Por favor contacta al administrador.';
     } else if (error.message?.includes('SMTP')) {
-      errorMessage = 'Error en el servicio de correo. Por favor contacta directamente a correo@devmarkpe.com';
+      errorMessage = 'Error en el servicio de correo. Por favor contacta directamente a contacto@devmarkpe.com';
     }
     
     return {

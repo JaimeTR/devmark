@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: 'Technology Consulting | Devmark Peru',
     description: 'We guide your business digital transformation with a solid, scalable tech strategy.',
     siteName: 'Devmark',
-    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Technology consulting - DEVMARK' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Technology consulting - DEVMARK' }],
   },
 };
 
@@ -139,7 +139,7 @@ const pricingContent = {
 const contactContent = {
   lang: 'en' as const,
   title: "Let's talk about your project",
-  description: "Ready to take your business to the next level? Complete the form or schedule a meeting and our global team will contact you shortly.",
+  description: "Ready to take your business to the next level? Complete the form or schedule a meeting and our team will contact you shortly.",
   contactSubtitle: "Contact us now",
   emailLabel: "Email:",
   email: "contacto@devmarkpe.com",
@@ -159,7 +159,7 @@ const contactContent = {
   messageLabel: "Message",
   messagePlaceholder: "Tell us about your project...",
   submitButton: "Send message",
-  scheduleButton: "Schedule a meeting with Meet",
+  scheduleButton: 'Book a video call',
   quoteButton: "Quote your project with our AI"
 };
 
