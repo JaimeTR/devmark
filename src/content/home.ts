@@ -424,8 +424,19 @@ export const clients = [
   'SUPERPROFE',
   'NEWDENIM',
   'OFFROADPERU',
-  'BREEZLINGO',
+  'BREEZE LINGO',
   'AS ABOGADOS',
+  'ZONA DENTAL',
+  'DENTALLIFE',
+  'DROTHON',
+  'VISUAL MEDICAL',
+  'MATARRAÑA AVENTURA',
+  'GEOPARQUE MAESTRAZGO',
+  'ESPAÑA ABOGADOS',
+  'AMYSA SHOP',
+  'SEGITTUR',
+  'URBAZN',
+  'ENOVA',
 ] as const;
 
 export type TitleParts = readonly (string | { readonly em: string })[];

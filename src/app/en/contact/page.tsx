@@ -1,8 +1,6 @@
 import { Footer } from '@/components/home/footer';
 import { Header } from '@/components/home/header';
-import { Contact } from '@/components/home/contact';
-import { Faq } from '@/components/landing/faq';
-import { homeContent } from '@/content/home';
+import { ContactPage as ContactSections } from '@/components/landing/contact-page';
 
 const headerContent = {
   lang: 'en' as const,
@@ -55,8 +53,7 @@ export default function ContactPage() {
     <div className="bg-paper">
       <Header {...headerContent} />
       <main id="main-content" className="flex flex-col gap-2 sm:gap-3">
-        <Contact {...contactContent} heading={homeContent.en.contact.title} first />
-        <Faq lang="en" />
+        <ContactSections lang="en" form={contactContent} />
       </main>
       <Footer lang="en" copyright={footerContent.copyright} />
     </div>
