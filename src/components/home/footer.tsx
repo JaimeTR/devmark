@@ -95,9 +95,9 @@ export function Footer({ lang = 'es', copyright }: FooterProps) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="grid h-11 w-11 place-items-center rounded-lg bg-white text-ink transition-colors hover:bg-ink hover:text-white"
+              className="group grid h-11 w-11 place-items-center rounded-lg bg-white text-ink transition-colors hover:bg-ink hover:text-white"
             >
-              <Icon className="h-4 w-4" />
+              <Icon className="icon-tilt h-4 w-4" />
             </a>
           ))}
         </div>
@@ -116,7 +116,7 @@ export function Footer({ lang = 'es', copyright }: FooterProps) {
             <ul className="mt-4 space-y-2.5">
               {t.links.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-[15px] text-ink-muted transition-colors hover:text-white">
+                  <Link href={l.href} className="title-link text-[15px] text-ink-muted transition-colors hover:text-white">
                     {l.label}
                   </Link>
                 </li>
@@ -128,7 +128,7 @@ export function Footer({ lang = 'es', copyright }: FooterProps) {
             <ul className="mt-4 space-y-2.5">
               {t.services.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-[15px] text-ink-muted transition-colors hover:text-white">
+                  <Link href={l.href} className="title-link text-[15px] text-ink-muted transition-colors hover:text-white">
                     {l.label}
                   </Link>
                 </li>

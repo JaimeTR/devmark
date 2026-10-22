@@ -108,9 +108,9 @@ export function AboutPage({ lang }: { lang: Lang }) {
               {t.values.map((v, i) => {
                 const Icon = icons[i];
                 return (
-                  <div key={v.title} className="reveal group rounded-2xl bg-mist p-6 transition-colors duration-500 hover:bg-ink hover:text-white">
+                  <div key={v.title} className="reveal lift group rounded-2xl bg-mist p-6 transition-colors duration-500 hover:bg-ink hover:text-white">
                     <span className="grid h-11 w-11 place-items-center rounded-lg bg-white text-ink transition-colors duration-500 group-hover:bg-white/10 group-hover:text-white">
-                      <Icon className="h-5 w-5" />
+                      <Icon className="icon-tilt h-5 w-5" />
                     </span>
                     <h3 className="headline mt-10 text-2xl">{v.title}</h3>
                     <p className="mt-3 text-[15px] leading-relaxed text-ink/70 transition-colors duration-500 group-hover:text-ink-muted">{v.description}</p>

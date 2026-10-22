@@ -64,10 +64,10 @@ export function ClientPortal({ lang }: { lang: Lang }) {
             {t.items.map((it, i) => {
               const Icon = icons[i];
               return (
-                <div key={it.title} className="reveal rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                <div key={it.title} className="reveal lift group rounded-2xl border border-white/10 bg-white/[0.03] p-5 hover:border-white/20 hover:bg-white/[0.06]">
                   <dt className="flex items-center gap-3">
                     <span className="grid h-9 w-9 place-items-center rounded-lg bg-white/10 text-periwinkle">
-                      <Icon className="h-4 w-4" />
+                      <Icon className="icon-tilt h-4 w-4" />
                     </span>
                     <span className="headline text-xl">{it.title}</span>
                   </dt>

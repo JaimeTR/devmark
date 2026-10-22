@@ -161,7 +161,7 @@ export function Pricing({title, subtitle, plans, lang, baseCurrency = 'PEN', wha
             return (
               <div
                 key={plan.name}
-                className={cn('reveal flex flex-col rounded-2xl p-7', featured ? 'bg-ink text-white' : 'bg-mist text-ink')}
+                className={cn('reveal lift group flex flex-col rounded-2xl p-7', featured ? 'bg-ink text-white' : 'bg-mist text-ink')}
               >
                 <div className="flex items-center justify-between gap-3">
                   <h3 className="headline text-2xl">{plan.name}</h3>

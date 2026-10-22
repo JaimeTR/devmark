@@ -150,7 +150,7 @@ export function Header({ lang = 'es', aiAssistant }: HeaderProps) {
                     : 'text-ink/70 hover:text-ink',
               )}
             >
-              {link.label}
+              <span className="title-link pb-0.5">{link.label}</span>
             </Link>
           ))}
         </nav>

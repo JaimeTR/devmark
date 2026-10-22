@@ -104,7 +104,7 @@ export function PortfolioPage({ projects, lang }: { projects: Project[]; lang: '
 
             <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {filtered.map((p, i) => (
-                <article key={`${p.title}-${i}`} className="group flex flex-col overflow-hidden rounded-2xl bg-mist">
+                <article key={`${p.title}-${i}`} className="lift group flex flex-col overflow-hidden rounded-2xl bg-mist">
                   <button type="button" onClick={() => setSelected(p)} className="relative aspect-[16/10] overflow-hidden bg-ink text-left" aria-label={`${t.detail}: ${p.title}`}>
                     {p.hasCover && p.image ? (
                       <Image src={p.image} alt={p.hint} fill sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-[1.04]" />
@@ -116,11 +116,13 @@ export function PortfolioPage({ projects, lang }: { projects: Project[]; lang: '
                     <span className="chip glass-dark absolute left-3 top-3 py-1.5 pl-3 text-xs text-white">{label(p.category)}</span>
                   </button>
                   <div className="flex flex-1 flex-col p-6">
-                    <h2 className="headline text-2xl">{p.title}</h2>
+                    <h2 className="headline text-2xl">
+                      <span className="title-link">{p.title}</span>
+                    </h2>
                     <p className="mt-2 line-clamp-2 text-[15px] leading-relaxed text-ink/70">{p.description}</p>
                     <div className="mt-4 flex flex-wrap gap-1.5">
                       {p.tags.slice(0, 3).map((tag) => (
-                        <span key={tag} className="rounded-md bg-white px-2.5 py-1 text-xs text-ink/60">
+                        <span key={tag} className="tag rounded-md bg-white px-2.5 py-1 text-xs text-ink/60">
                           {tag}
                         </span>
                       ))}

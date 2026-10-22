@@ -21,8 +21,8 @@ export function ServiceMethodology({ title, subtitle, steps }: ServiceMethodolog
         </div>
         <ol className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, i) => (
-            <li key={step.title} className="reveal group flex flex-col rounded-2xl bg-white p-6 transition-colors duration-500 hover:bg-ink hover:text-white">
-              <span className="grid h-10 w-10 place-items-center rounded-lg bg-mist text-sm font-semibold tabular-nums text-ink transition-colors duration-500 group-hover:bg-white/10 group-hover:text-white">
+            <li key={step.title} className="reveal lift group flex flex-col rounded-2xl bg-white p-6 transition-colors duration-500 hover:bg-ink hover:text-white">
+              <span className="icon-tilt grid h-10 w-10 place-items-center rounded-lg bg-mist text-sm font-semibold tabular-nums text-ink transition-colors duration-500 group-hover:bg-white/10 group-hover:text-white">
                 {String(i + 1).padStart(2, '0')}
               </span>
               <h3 className="headline mt-8 text-2xl">{step.title}</h3>

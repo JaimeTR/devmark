@@ -39,9 +39,9 @@ export function Why({ lang }: { lang: Lang }) {
           {t.chips.map((chip, i) => {
             const Icon = icons[i];
             return (
-              <li key={chip} className={`reveal chip glass-dark text-[15px] text-white lg:absolute ${spots[i]}`}>
+              <li key={chip} className={`reveal lift group chip glass-dark text-[15px] text-white lg:absolute ${spots[i]}`}>
                 <span className="chip-tile bg-white/10 text-periwinkle">
-                  <Icon className="h-4 w-4" />
+                  <Icon className="icon-tilt h-4 w-4" />
                 </span>
                 {chip}
               </li>

@@ -42,7 +42,7 @@ export function Products({ lang }: { lang: Lang }) {
         </div>
 
         <div className="mt-12 grid gap-3 lg:grid-cols-2">
-          <article data-tone="dark" className="reveal flex flex-col rounded-2xl bg-ink p-7 text-white sm:p-9">
+          <article data-tone="dark" className="reveal lift group flex flex-col rounded-2xl bg-ink p-7 text-white sm:p-9">
             <p className="font-logo text-2xl tracking-wider">{t.ai.name}</p>
             <h3 className="headline mt-5 text-[clamp(1.75rem,2.8vw,2.5rem)]">{t.ai.tagline}</h3>
             <p className="mt-4 text-[15px] leading-relaxed text-ink-muted">{t.ai.description}</p>
@@ -72,7 +72,7 @@ export function Products({ lang }: { lang: Lang }) {
             </div>
           </article>
 
-          <article className="reveal flex flex-col rounded-2xl bg-white p-7 sm:p-9">
+          <article className="reveal lift group flex flex-col rounded-2xl bg-white p-7 sm:p-9">
             <p className="font-logo text-2xl tracking-wider">{t.erp.name}</p>
             <h3 className="headline mt-5 text-[clamp(1.75rem,2.8vw,2.5rem)]">{t.erp.tagline}</h3>
             <p className="mt-4 text-[15px] leading-relaxed text-ink/70">{t.erp.description}</p>

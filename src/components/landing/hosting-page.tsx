@@ -120,9 +120,9 @@ export function HostingPage({ lang }: { lang: Lang }) {
               {hostingFeatures[lang].map((f) => {
                 const Icon = icons[f.icon as keyof typeof icons];
                 return (
-                  <div key={f.title} className="reveal rounded-2xl bg-white p-6">
+                  <div key={f.title} className="reveal lift group rounded-2xl bg-white p-6">
                     <span className="grid h-11 w-11 place-items-center rounded-lg bg-mist text-ink">
-                      <Icon className="h-5 w-5" />
+                      <Icon className="icon-tilt h-5 w-5" />
                     </span>
                     <h3 className="headline mt-8 text-2xl">{f.title}</h3>
                     <p className="mt-3 text-[15px] leading-relaxed text-ink/70">{f.description}</p>
@@ -151,7 +151,7 @@ export function HostingPage({ lang }: { lang: Lang }) {
             </div>
             <div className="mt-12 grid gap-3 md:grid-cols-3">
               {hostingPlans[lang].map((plan) => (
-                <div key={plan.name} className={cn('reveal flex flex-col rounded-2xl p-7', plan.recommended ? 'bg-ink text-white' : 'bg-mist')}>
+                <div key={plan.name} className={cn('reveal lift group flex flex-col rounded-2xl p-7', plan.recommended ? 'bg-ink text-white' : 'bg-mist')}>
                   <div className="flex items-center justify-between gap-3">
                     <h3 className="headline text-2xl">{plan.name}</h3>
                     {plan.recommended && <span className="rounded-md bg-white/10 px-2.5 py-1 text-xs">{t.popular}</span>}
@@ -199,7 +199,7 @@ export function HostingPage({ lang }: { lang: Lang }) {
               </h2>
               <div className="mt-10 space-y-3">
                 {t.domains.map((d) => (
-                  <div key={d.title} className="reveal rounded-2xl bg-white p-6">
+                  <div key={d.title} className="reveal lift group rounded-2xl bg-white p-6">
                     <h3 className="headline text-2xl">{d.title}</h3>
                     <p className="mt-2 text-[15px] text-ink/70">{d.text}</p>
                     <ul className="mt-4 grid gap-2 sm:grid-cols-2">
