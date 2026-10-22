@@ -17,7 +17,7 @@ export function ButtonPress() {
       void btn.offsetWidth; // reinicia la animacion si se presiona seguido
       btn.classList.add('btn-press');
       window.clearTimeout(timers.get(btn));
-      timers.set(btn, window.setTimeout(() => btn.classList.remove('btn-press'), 1050));
+      timers.set(btn, window.setTimeout(() => btn.classList.remove('btn-press'), 1650));
     };
     document.addEventListener('pointerdown', alPresionar);
     return () => document.removeEventListener('pointerdown', alPresionar);
