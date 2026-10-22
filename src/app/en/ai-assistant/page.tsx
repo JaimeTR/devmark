@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { Calculator } from 'lucide-react';
-import { AnimatedBackground } from '@/components/home/animated-background';
 import { Footer } from '@/components/home/footer';
 import { Header } from '@/components/home/header';
 import { AiChatbot } from '@/components/ai/ai-chatbot';
@@ -54,27 +53,27 @@ const footerContent = {
 
 export default function AiAssistantPage() {
   return (
-    <div className="relative overflow-x-hidden bg-background">
-      <AnimatedBackground />
+    <div className="bg-paper">
       <Header {...headerContent} />
-      <main>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
+      <main id="main-content">
+        <section className="panel-mist mt-2 pb-16 pt-28 sm:mt-3 sm:pt-36">
+          <div className="panel-inner">
           <div className="flex flex-col gap-16 sm:gap-24 md:gap-32 lg:gap-40">
             <div className="flex flex-col gap-6">
               <AiChatbot {...chatbotContent} />
               <div className="text-center">
-                <Link
-                  href="/en/quote"
-                  className="inline-flex items-center justify-center gap-1.5 h-11 px-5 rounded-2xl bg-white border-2 border-brand-blue text-brand-blue hover:bg-transparent font-semibold text-sm transition-all duration-300"
-                >
+                <Link href="/en/quote" className="btn-ink">
+                  <span className="btn-tile">
+                    <Calculator className="h-5 w-5" />
+                  </span>
                   Quote my project with AI
-                  <Calculator className="w-4 h-4" />
                 </Link>
               </div>
             </div>
             <SeoOptimizer {...seoOptimizerContent} />
           </div>
-        </div>
+          </div>
+        </section>
       </main>
       <Footer lang="en" copyright={footerContent.copyright} />
     </div>

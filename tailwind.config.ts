@@ -1,3 +1,4 @@
+import animate from 'tailwindcss-animate';
 import type {Config} from 'tailwindcss';
 
 export default {
@@ -17,12 +18,29 @@ export default {
     },
     extend: {
       fontFamily: {
-        body: ['var(--font-poppins)', 'sans-serif'],
-        headline: ['var(--font-poppins)', 'sans-serif'],
+        body: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        headline: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        // Solo para la frase en cursiva dentro de un titulo.
+        serif: ['var(--font-serif)', 'Georgia', 'serif'],
         // Logo-only wordmark face — the DEVMARK brand mark, and (per client request) client wordmarks in the logos marquee.
         logo: ['var(--font-braze)', 'sans-serif'],
       },
       colors: {
+        // Mundo del rediseno 2026: papel, tinta, niebla y banda. Indigo (primary) solo para actuar.
+        paper: '#FFFFFF',
+        ink: {
+          DEFAULT: '#110C29',
+          soft: '#1C1640',
+          line: 'rgba(255,255,255,0.12)',
+          muted: '#B4B1D6',
+        },
+        mist: {
+          DEFAULT: '#EEF0FB',
+          deep: '#E1E5F8',
+          line: '#D5DAF3',
+        },
+        band: '#CBD5FA',
+        periwinkle: '#A9B4FF',
         brand: {
           navy: '#35347B',
           'navy-dark': '#110C29',
@@ -77,7 +95,11 @@ export default {
           '6': 'hsl(var(--chart-6))',
         },
       },
+      transitionTimingFunction: {
+        'out-expo': 'cubic-bezier(0.16, 1, 0.3, 1)',
+      },
       borderRadius: {
+        panel: '20px',
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
@@ -124,5 +146,5 @@ export default {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [animate],
 } satisfies Config;

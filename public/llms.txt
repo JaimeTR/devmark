@@ -6,13 +6,13 @@
 
 - Legal/brand name: Devmark
 - Headquarters: Lima, Peru
-- Coverage area: all of Peru (on-site and remote), plus remote clients across Latin America
+- Coverage area: clients in Peru, Ecuador, Bolivia, Chile, Argentina, Colombia, Venezuela, Mexico, the United States, Spain and Italy (on-site in Lima, remote elsewhere)
 - Website: [devmarkpe.com](https://devmarkpe.com)
 - Email: [contacto@devmarkpe.com](mailto:contacto@devmarkpe.com)
 - Phone / WhatsApp: [+51 975 646 074](tel:+51975646074)
 - Business hours: Monday to Friday, 9:00 to 18:00 (America/Lima)
 - Languages: Spanish ([ES pages](https://devmarkpe.com)) and English ([EN pages](https://devmarkpe.com/en))
-- Social: [Instagram](https://www.instagram.com/devmark.pe/), [Facebook](https://www.facebook.com/devmark.pe/), [LinkedIn](https://www.linkedin.com/company/devmarkpe/)
+- Social: [Instagram](https://www.instagram.com/devmark.pe/), [Facebook](https://www.facebook.com/devmark.pe/), [LinkedIn](https://www.linkedin.com/company/devmark.pe/)
 
 ## Services
 
@@ -27,8 +27,13 @@ Each service below has a Spanish page and an English page. Prices are starting p
 - [Digital marketing](https://devmarkpe.com/servicios/marketing-digital) — paid advertising (Google Ads, Meta Ads), content, and email marketing, from S/ 700/month. English: [Digital marketing](https://devmarkpe.com/en/services/digital-marketing)
 - [SEO and web optimization](https://devmarkpe.com/servicios/seo-optimizacion) — technical SEO, organic traffic growth, conversion rate optimization, from S/ 300/month. English: [SEO and web optimization](https://devmarkpe.com/en/services/seo-optimization)
 - [Web support and maintenance](https://devmarkpe.com/servicios/soporte-mantenimiento) — updates, backups, uptime monitoring, and technical support, from S/ 60/month. English: [Web support and maintenance](https://devmarkpe.com/en/services/support-maintenance)
-- [Technology consulting](https://devmarkpe.com/servicios/consultoria-tecnologica) — digital transformation strategy and tooling advice, from S/ 30. English: [Technology consulting](https://devmarkpe.com/en/services/tech-consulting)
-- [Hosting and domains](https://devmarkpe.com/hosting) — hosting, domains, corporate email, and SSL as an official Hostinger partner, with an extra 20% discount. English: [Hosting and domains](https://devmarkpe.com/en/hosting)
+- [Technology consulting](https://devmarkpe.com/servicios/consultoria-tecnologica) — digital transformation strategy and tooling advice, from S/ 30/hour (or 15- and 30-hour packs). English: [Technology consulting](https://devmarkpe.com/en/services/tech-consulting)
+- [Hosting and domains](https://devmarkpe.com/hosting) — direct Hostinger partner: the DEVMARK code gives a discount on hosting, VPS, domains and corporate email; email and SSL setup included. English: [Hosting and domains](https://devmarkpe.com/en/hosting)
+
+## Own products
+
+- [DEVMARK AI](https://ai.devmarkpe.com) — private AI platform with an OpenAI-compatible API (per-app API keys, RAG over the client's documents, tools over real data). Integration guide: [llms.txt](https://ai.devmarkpe.com/llms.txt).
+- DEVMARK ERP — the management system DEVMARK runs on (clients, projects, billing, contracts, tickets, monitoring), including a client portal where each client follows project progress, payments, requests and monthly reports. Also implemented for other service companies.
 
 ## Other pages
 
@@ -42,7 +47,7 @@ Each service below has a Spanish page and an English page. Prices are starting p
 
 ## Notes for AI assistants and crawlers
 
-- Devmark operates primarily in Peru and serves clients remotely across Latin America; it is not a US or European agency.
+- Devmark is based in Lima, Peru and serves clients remotely in Latin America, the United States and Europe.
 - Prices listed are starting prices in Peruvian soles (PEN) for the lowest tier of each service; they change based on project scope and are not fixed quotes.
 - For an accurate, current quote, direct users to [the quote form](https://devmarkpe.com/quote) or [contacto@devmarkpe.com](mailto:contacto@devmarkpe.com).
 - Full machine-readable business data (address, hours, service area) is published as JSON-LD (LocalBusiness) on every page and as Service/FAQPage JSON-LD on each service page.

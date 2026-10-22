@@ -2,12 +2,12 @@
 
 'use client';
 
-import {useEffect, useMemo, useState} from 'react';
-import {loadStripe} from '@stripe/stripe-js';
+import {useMemo, useState} from 'react';
+import { useClientValue } from '@/hooks/use-client-value';
+import {loadStripe} from '@stripe/stripe-js/pure';
 import {usePathname} from 'next/navigation';
 import {CheckCircle, Star} from 'lucide-react';
-import {Button} from '@/components/ui/button';
-import {Card, CardContent, CardHeader, CardTitle, CardDescription} from '@/components/ui/card';
+import { WhatsAppIcon } from '@/components/site/whatsapp-icon';
 import {createCheckoutSession} from '@/app/actions/stripe';
 import {cn} from '@/lib/utils';
 import {
@@ -18,9 +18,16 @@ import {
   type CurrencyCode,
 } from '@/lib/currency';
 
-const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
-);
+const STRIPE_KEY = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
+
+// Stripe.js se descarga solo al pagar y solo si hay clave: cargarlo al abrir la
+// pagina fallaba en cada visita (sin clave o bloqueado) y pesaba sin usarse.
+let stripePromise: ReturnType<typeof loadStripe> | null = null;
+function getStripe() {
+  if (!STRIPE_KEY) return null;
+  stripePromise ??= loadStripe(STRIPE_KEY);
+  return stripePromise;
+}
 
 interface Plan {
   name: string;
@@ -57,7 +64,6 @@ function parsePrice(raw?: string): number | null {
 export function Pricing({title, subtitle, plans, lang, baseCurrency = 'PEN', whatsappNumber = '+51975646074'}: PricingProps) {
   const pathname = usePathname();
   const [loading, setLoading] = useState<string | null>(null);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const inferredLang = useMemo<'es' | 'en'>(() => {
     if (lang) return lang;
@@ -65,11 +71,12 @@ export function Pricing({title, subtitle, plans, lang, baseCurrency = 'PEN', wha
     return 'es';
   }, [lang, pathname]);
 
-  const [currency, setCurrency] = useState<CurrencyCode>(() => detectCurrency(inferredLang));
-
-  useEffect(() => {
-    setCurrency(detectCurrency(inferredLang));
-  }, [inferredLang]);
+  // La moneda depende del navegador (zona horaria e idioma): en el servidor se
+  // usa la del idioma de la pagina y al hidratar se ajusta.
+  const currency = useClientValue<CurrencyCode>(
+    () => detectCurrency(inferredLang),
+    inferredLang === 'es' ? 'PEN' : 'USD',
+  );
 
   const openWhatsApp = (plan: Plan, priceLabel: string) => {
     const number = whatsappNumber.replace(/[^0-9]/g, '');
@@ -81,7 +88,7 @@ export function Pricing({title, subtitle, plans, lang, baseCurrency = 'PEN', wha
   };
 
   const handleCheckout = async (plan: Plan, priceLabel: string) => {
-    const hasValidStripe = plan.priceId && !plan.priceId.includes('...');
+    const hasValidStripe = Boolean(STRIPE_KEY) && plan.priceId && !plan.priceId.includes('...');
     if (!hasValidStripe) {
       openWhatsApp(plan, priceLabel);
       return;
@@ -90,7 +97,7 @@ export function Pricing({title, subtitle, plans, lang, baseCurrency = 'PEN', wha
     setLoading(plan.priceId || null);
     try {
       const {sessionId} = await createCheckoutSession(plan.priceId);
-      const stripe = await stripePromise;
+      const stripe = await getStripe();
       if (stripe) {
         await stripe.redirectToCheckout({sessionId});
       }
@@ -137,67 +144,63 @@ export function Pricing({title, subtitle, plans, lang, baseCurrency = 'PEN', wha
     : `Showing prices in ${currencyLabel[currency]?.en ?? currency} based on your language or region. Base currency: soles (PEN).`;
 
   return (
-    <section id="pricing" className="py-12 md:py-20">
-      <div className="text-center max-w-3xl mx-auto mb-12">
-        <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight animate-fade-in-up">
-          {title}
-        </h2>
-        <p className="mt-4 text-lg text-muted-foreground animate-fade-in-up stagger-1">{subtitle}</p>
-        <p className="mt-2 text-sm text-muted-foreground animate-fade-in-up stagger-2">{currencyNote}</p>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
-        {plans.map((plan, index) => (
-          <Card
-            key={index}
-            className={cn(
-              'flex flex-col bg-white/60 backdrop-blur-md border border-blue-100/80 shadow-sm transition-all duration-300 animate-fade-in-up hover:shadow-lg hover:shadow-blue-100/50 hover:border-blue-200/80 hover:-translate-y-1',
-              index === 1
-                ? 'border-blue-300 shadow-lg shadow-brand-blue/10 scale-[1.02] md:scale-105 ring-2 ring-brand-blue/30'
-                : '',
-              hoveredIndex === index && 'gradient-border-hover pricing-card-hover'
-            )}
-            onMouseEnter={() => setHoveredIndex(index)}
-            onMouseLeave={() => setHoveredIndex(null)}
-            style={{animationDelay: `${index * 0.15}s`}}
-          >
-            <CardHeader className="text-center pt-7">
-              {plan.recommended && (
-                <div className="mb-3">
-                  <span className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded-full bg-gradient-to-r from-primary to-brand-blue text-white shadow-md shadow-brand-blue/30">
-                    <Star className="h-3.5 w-3.5 fill-current" />
-                    {inferredLang === 'es' ? 'Recomendado' : 'Recommended'}
-                  </span>
-                </div>
-              )}
-              <CardTitle className="font-headline text-2xl">{plan.name}</CardTitle>
-              <CardDescription className="text-4xl font-bold text-primary">{resolvePriceLabel(plan)}</CardDescription>
-              <CardDescription className="pt-1 leading-relaxed">{plan.description}</CardDescription>
-            </CardHeader>
-            <CardContent className="flex flex-col flex-grow pt-6">
-              <ul className="space-y-3 mb-8">
-                {plan.features.map((feature, i) => (
-                  <li key={i} className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-2 shrink-0 mt-0.5" />
-                    <span className="leading-relaxed">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-auto pt-2">
-                <Button
-                  onClick={() => handleCheckout(plan, resolvePriceLabel(plan))}
-                  disabled={loading === plan.priceId && !!plan.priceId}
-                  variant={index === 1 ? 'default' : 'outline'}
-                  className={cn(
-                    'w-full h-12 rounded-2xl focus-ring hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300',
-                    index === 1 && 'btn-gradient shadow-lg shadow-brand-blue/20'
+    <section id="pricing" className="panel-paper py-20 sm:py-28">
+      <div className="panel-inner">
+        <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr] lg:items-end">
+          <h2 className="headline reveal text-[clamp(2rem,4.2vw,3.5rem)]">{title}</h2>
+          <div className="reveal">
+            <p className="max-w-[46ch] text-[17px] leading-relaxed text-ink/70">{subtitle}</p>
+            <p className="mt-2 text-sm text-ink/50">{currencyNote}</p>
+          </div>
+        </div>
+        <div className="mt-12 grid grid-cols-1 items-stretch gap-3 md:grid-cols-3">
+          {plans.map((plan, index) => {
+            const featured = index === 1;
+            const priceLabel = resolvePriceLabel(plan);
+            const busy = loading === plan.priceId && !!plan.priceId;
+            return (
+              <div
+                key={plan.name}
+                className={cn('reveal flex flex-col rounded-2xl p-7', featured ? 'bg-ink text-white' : 'bg-mist text-ink')}
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="headline text-2xl">{plan.name}</h3>
+                  {(plan.recommended || featured) && (
+                    <span className="chip glass-dark py-1 pl-1.5 text-xs text-white">
+                      <span className="chip-tile h-6 w-6 bg-white/10">
+                        <Star className="h-3 w-3 fill-current" />
+                      </span>
+                      {inferredLang === 'es' ? 'Recomendado' : 'Recommended'}
+                    </span>
                   )}
+                </div>
+                <p className="headline mt-6 text-[clamp(2rem,3.4vw,2.75rem)] tabular-nums">{priceLabel}</p>
+                <p className={cn('mt-3 text-[15px] leading-relaxed', featured ? 'text-ink-muted' : 'text-ink/65')}>{plan.description}</p>
+                <ul className={cn('mt-6 space-y-3 border-t pt-6', featured ? 'border-white/10' : 'border-ink/10')}>
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-3 text-[15px]">
+                      <span className={cn('mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded', featured ? 'bg-white/10 text-periwinkle' : 'bg-white text-ink')}>
+                        <CheckCircle className="h-3.5 w-3.5" />
+                      </span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  type="button"
+                  onClick={() => handleCheckout(plan, priceLabel)}
+                  disabled={busy}
+                  className={cn('mt-auto w-full disabled:opacity-60', featured ? 'btn-light' : 'btn-ink', 'mt-8')}
                 >
-                  {loading === plan.priceId && !!plan.priceId ? 'Redirecting...' : plan.buttonText}
-                </Button>
+                  <span className="btn-tile">
+                    <WhatsAppIcon />
+                  </span>
+                  {busy ? (inferredLang === 'es' ? 'Redirigiendo…' : 'Redirecting…') : plan.buttonText}
+                </button>
               </div>
-            </CardContent>
-          </Card>
-        ))}
+            );
+          })}
+        </div>
       </div>
     </section>
   );

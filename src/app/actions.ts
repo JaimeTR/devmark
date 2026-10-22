@@ -1,15 +1,17 @@
 'use server';
 
 import { z } from 'zod';
+import { visitanteDentroDelLimite } from '@/lib/rate-limit';
 import { optimizeContentForSeo, type OptimizeContentOutput } from '@/ai/flows/optimize-content-for-seo';
 
 const schema = z.object({
   content: z.string({
     required_error: "Content cannot be empty.",
-  }).min(20, { message: 'Content must be at least 20 characters long.' }),
+  }).min(20, { message: 'Content must be at least 20 characters long.' })
+    .max(8000, { message: 'Content must be at most 8000 characters long.' }),
   keywords: z.string({
     required_error: "Keywords cannot be empty.",
-  }).min(3, { message: 'Please enter at least one keyword.' }),
+  }).min(3, { message: 'Please enter at least one keyword.' }).max(300),
 });
 
 export type FormState = {
@@ -25,6 +27,11 @@ export async function optimizeContentAction(
   prevState: FormState,
   formData: FormData
 ): Promise<FormState> {
+  // Cada optimizacion llama a la IA: 10 por hora por visitante.
+  if (!(await visitanteDentroDelLimite('optimizador-seo', 10, 60 * 60_000))) {
+    return { message: 'Too many requests. Please try again later.', data: null, errors: null };
+  }
+
   const validatedFields = schema.safeParse({
     content: formData.get('content'),
     keywords: formData.get('keywords'),

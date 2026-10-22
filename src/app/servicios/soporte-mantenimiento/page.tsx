@@ -1,11 +1,10 @@
-import { AnimatedBackground } from '@/components/home/animated-background';
 import { Header } from '@/components/home/header';
 import { Footer } from '@/components/home/footer';
 import { ServiceHero } from '@/components/home/service-hero';
 import { ServiceMethodology } from '@/components/home/service-methodology';
 import { Pricing } from '@/components/home/pricing';
 import { Contact } from '@/components/home/contact';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { ServiceFaq } from '@/components/home/service-faq';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -25,7 +24,7 @@ export const metadata: Metadata = {
     title: 'Soporte y Mantenimiento Web | Devmark Perú',
     description: 'Mantenimiento continuo para que tu web o app funcione de forma óptima, segura y actualizada.',
     siteName: 'Devmark',
-    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Soporte y mantenimiento - DEVMARK' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Soporte y mantenimiento - DEVMARK' }],
   },
 };
 
@@ -146,7 +145,7 @@ const pricingContent = {
 const contactContent = {
     lang: 'es' as const,
     title: "Hablemos de tu proyecto",
-    description: "¿Listo para llevar tu negocio al siguiente nivel? Completa el formulario o agenda una reunión y nuestro equipo global se pondrá en contacto contigo.",
+    description: "¿Listo para llevar tu negocio al siguiente nivel? Completa el formulario o agenda una reunión y nuestro equipo se pondrá en contacto contigo.",
     contactSubtitle: "Contáctanos ahora",
     emailLabel: "Correo:",
     email: "contacto@devmarkpe.com",
@@ -166,7 +165,7 @@ const contactContent = {
     messageLabel: "Mensaje",
     messagePlaceholder: "Cuéntanos sobre tu proyecto...",
     submitButton: "Enviar Mensaje",
-    scheduleButton: "Agendar reunión por Meet",
+    scheduleButton: 'Agendar videollamada',
     quoteButton: "Cotiza tu proyecto con IA"
 };
 
@@ -176,8 +175,7 @@ const footerContent = {
 
 export default function MaintenancePage() {
   return (
-    <div className="relative overflow-x-hidden bg-background">
-      <AnimatedBackground />
+    <div className="bg-paper">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -242,28 +240,16 @@ export default function MaintenancePage() {
         }}
       />
       <Header {...headerContent} />
-      <main>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
+      <main id="main-content" className="flex flex-col gap-2 sm:gap-3">
           <ServiceHero {...heroContent} />
 
           <Pricing {...pricingContent} />
 
           <ServiceMethodology {...methodologyContent} />
 
-          <section id="faq" className="py-12 md:py-20 max-w-3xl mx-auto">
-            <h2 className="font-headline text-3xl sm:text-4xl text-center font-semibold tracking-tight mb-8">{faqContent.title}</h2>
-            <Accordion type="single" collapsible className="w-full">
-              {faqContent.items.map((item, index) => (
-                <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger>{item.question}</AccordionTrigger>
-                  <AccordionContent>{item.answer}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </section>
+        <ServiceFaq title={faqContent.title} items={faqContent.items} />
 
           <Contact {...contactContent} />
-        </div>
       </main>
       <Footer copyright={footerContent.copyright} />
     </div>

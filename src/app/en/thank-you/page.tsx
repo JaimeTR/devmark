@@ -8,7 +8,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { CheckCircle, MessageCircle, Calendar, Sparkles, ArrowRight } from 'lucide-react';
 import { Header } from '@/components/home/header';
 import { Footer } from '@/components/home/footer';
-import { AnimatedBackground } from '@/components/home/animated-background';
 
 const headerData = {
   lang: 'en' as const,
@@ -83,7 +82,6 @@ const messages: Record<MessageType, MessageConfig> = {
 function ThankYouContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [mounted, setMounted] = useState(false);
   const [countdown, setCountdown] = useState(60);
 
   const type = (searchParams.get('type') as MessageType) || 'default';
@@ -95,14 +93,11 @@ function ThankYouContent() {
   const displaySubtitle = customMessage || config.subtitle;
 
   useEffect(() => {
-    setMounted(true);
     // Scroll to top when page loads
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   useEffect(() => {
-    if (!mounted) return;
-
     const timer = setInterval(() => {
       setCountdown((prev) => {
         if (prev <= 1) {
@@ -114,20 +109,15 @@ function ThankYouContent() {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [mounted, config.ctaLink, router]);
-
-  if (!mounted) {
-    return null;
-  }
+  }, [config.ctaLink, router]);
 
   return (
-    <div className="min-h-screen bg-background relative overflow-hidden">
-      <AnimatedBackground />
+    <div className="bg-paper">
       
       <div className="relative z-10">
         <Header {...headerData} />
         
-        <main className="container mx-auto px-4 py-20 md:py-32 min-h-[calc(100vh-300px)]">
+        <main id="main-content" className="panel-mist mt-2 px-5 pb-20 pt-32 sm:mt-3 md:pt-40">
           <div className="max-w-3xl mx-auto">
             <Card className="bg-card/50 backdrop-blur-xl border-primary/20 shadow-2xl overflow-hidden">
               <div className="bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-8 md:p-12">
@@ -219,10 +209,10 @@ function ThankYouContent() {
                   <p className="text-sm text-muted-foreground">
                     Have any questions? Contact us at{' '}
                     <a 
-                      href="mailto:correo@devmarkpe.com" 
+                      href="mailto:contacto@devmarkpe.com" 
                       className="text-primary hover:underline font-medium"
                     >
-                      correo@devmarkpe.com
+                      contacto@devmarkpe.com
                     </a>
                   </p>
                 </div>

@@ -1,3 +1,4 @@
+import { z } from 'zod';
 import { getGroqClient, GROQ_MODEL } from '@/ai/groq';
 import { getOpenAIClient } from '@/ai/openai';
 import {
@@ -8,6 +9,7 @@ import {
   getFallbackResponse,
   LEAD_CAPTURE_MARKER,
 } from '@/ai/chat-shared';
+import { dentroDelLimite, ipDelVisitante } from '@/lib/rate-limit';
 
 export const runtime = 'nodejs';
 
@@ -61,8 +63,36 @@ function openaiKeyConfigured() {
   return Boolean(key && key.trim() !== '' && key.startsWith('sk-') && !key.includes('xxxxx'));
 }
 
+// Lo que llega del navegador se valida: roles conocidos, historial acotado y
+// mensajes de largo razonable. Sin esto cualquiera podia mandar historiales
+// enormes y gastar tokens de Groq/OpenAI a costa de DEVMARK.
+const chatBodySchema = z.object({
+  history: z
+    .array(
+      z.object({
+        role: z.enum(['user', 'model']),
+        content: z.string().max(4000),
+      }),
+    )
+    .min(1)
+    .max(200),
+});
+
+// 20 mensajes por minuto por visitante: holgado para una persona, corto para un bot.
+const CHAT_LIMITE = 20;
+const CHAT_VENTANA_MS = 60_000;
+
 export async function POST(req: Request) {
-  const { history } = (await req.json()) as { history: Message[] };
+  if (!dentroDelLimite(`chat:${await ipDelVisitante()}`, CHAT_LIMITE, CHAT_VENTANA_MS)) {
+    return Response.json({ error: 'Demasiados mensajes. Espera un minuto e intenta de nuevo.' }, { status: 429 });
+  }
+
+  const parsed = chatBodySchema.safeParse(await req.json().catch(() => null));
+  if (!parsed.success) {
+    return Response.json({ error: 'Mensaje no valido.' }, { status: 400 });
+  }
+  // Solo los ultimos 12 turnos viajan al modelo: suficiente contexto y costo acotado.
+  const history = parsed.data.history.slice(-12) as Message[];
 
   const lastUserMessage = history.filter(m => m.role === 'user').pop()?.content || '';
   const lang = detectLang(lastUserMessage);
@@ -118,7 +148,7 @@ export async function POST(req: Request) {
           });
 
           const completion = await openaiClient.chat.completions.create({
-            model: 'gpt-3.5-turbo',
+            model: process.env.OPENAI_CHAT_MODEL || 'gpt-4o-mini',
             messages,
             max_tokens: 512,
             temperature: 0.7,

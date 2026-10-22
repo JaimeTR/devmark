@@ -4,7 +4,7 @@
 import Image from 'next/image';
 import { useActionState, useEffect, useRef, useState, useTransition } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
@@ -225,8 +225,8 @@ export function ProjectQuoter({ content }: ProjectQuoterProps) {
 
   // Se re-renderiza el paso cuando cambian, para mostrar/ocultar el campo
   // de detalle de "Otro" al vuelo.
-  const watchedProjectType = form.watch('projectType');
-  const watchedCurrency = form.watch('currency');
+  const watchedProjectType = useWatch({ control: form.control, name: 'projectType' });
+  const watchedCurrency = useWatch({ control: form.control, name: 'currency' });
 
   const goNext = async () => {
     const field = STEP_FIELDS[currentStep];
@@ -296,21 +296,28 @@ export function ProjectQuoter({ content }: ProjectQuoterProps) {
     handleDownloadPdf();
   };
 
-  useEffect(() => {
-    if (state.message) {
-      if (state.errors) {
-        toast({
-          title: "Error",
-          description: state.message,
-          variant: "destructive",
-        });
-      }
-    }
-     if (state.data) {
+  // Cuando llega una cotizacion nueva se ajusta el estado en el mismo render
+  // (patron de React para derivar estado de un cambio, sin efecto en cascada).
+  const [handledState, setHandledState] = useState(state);
+  if (state !== handledState) {
+    setHandledState(state);
+    if (state.data) {
       setShowForm(false);
-      resultsRef.current?.scrollIntoView({ behavior: 'smooth' });
       const now = new Date();
       setProposalMeta({ generatedAt: now, validUntil: new Date(now.getTime() + VALID_DAYS * 24 * 60 * 60 * 1000) });
+    }
+  }
+
+  useEffect(() => {
+    if (state.message && state.errors) {
+      toast({
+        title: "Error",
+        description: state.message,
+        variant: "destructive",
+      });
+    }
+    if (state.data) {
+      resultsRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
   }, [state, toast]);
 

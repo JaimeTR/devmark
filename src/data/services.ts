@@ -5,6 +5,8 @@
 export interface ServicePlan {
   name: string;
   price: string;
+  /** Precio recurrente o por hora: se muestra junto al monto para no confundirlo con un pago unico. */
+  period?: 'mes' | 'hora';
 }
 
 export interface ServiceInfo {
@@ -84,9 +86,9 @@ export const SERVICES: ServiceInfo[] = [
     descriptionEs: 'SEO técnico y de contenidos, Core Web Vitals, e-commerce.',
     descriptionEn: 'Technical and content SEO, Core Web Vitals, e-commerce.',
     plans: [
-      { name: 'Emprendedor', price: 'S/ 300' },
-      { name: 'Negocio', price: 'S/ 600' },
-      { name: 'Empresa', price: 'S/ 1200' },
+      { name: 'Emprendedor', price: 'S/ 300', period: 'mes' },
+      { name: 'Negocio', price: 'S/ 600', period: 'mes' },
+      { name: 'Empresa', price: 'S/ 1200', period: 'mes' },
     ],
   },
   {
@@ -108,9 +110,9 @@ export const SERVICES: ServiceInfo[] = [
     descriptionEs: 'Campañas publicitarias, email marketing y automatización de ventas.',
     descriptionEn: 'Ad campaigns, email marketing and sales automation.',
     plans: [
-      { name: 'Emprendedor', price: 'S/ 700' },
-      { name: 'Negocio', price: 'S/ 1500' },
-      { name: 'Empresa', price: 'S/ 3000' },
+      { name: 'Emprendedor', price: 'S/ 700', period: 'mes' },
+      { name: 'Negocio', price: 'S/ 1500', period: 'mes' },
+      { name: 'Empresa', price: 'S/ 3000', period: 'mes' },
     ],
   },
   {
@@ -120,9 +122,9 @@ export const SERVICES: ServiceInfo[] = [
     descriptionEs: 'Actualizaciones, monitoreo de rendimiento y soporte técnico continuo.',
     descriptionEn: 'Updates, performance monitoring and continuous technical support.',
     plans: [
-      { name: 'Básico', price: 'S/ 60' },
-      { name: 'Profesional', price: 'S/ 150' },
-      { name: 'Empresa', price: 'S/ 300' },
+      { name: 'Básico', price: 'S/ 60', period: 'mes' },
+      { name: 'Profesional', price: 'S/ 150', period: 'mes' },
+      { name: 'Empresa', price: 'S/ 300', period: 'mes' },
     ],
   },
   {
@@ -132,7 +134,7 @@ export const SERVICES: ServiceInfo[] = [
     descriptionEs: 'Asesoría para digitalización de procesos y elección de plataformas.',
     descriptionEn: 'Advisory for process digitization and platform selection.',
     plans: [
-      { name: 'Emprendedor', price: 'S/ 30' },
+      { name: 'Emprendedor', price: 'S/ 30', period: 'hora' },
       { name: 'Negocio', price: 'S/ 450' },
       { name: 'Empresa', price: 'S/ 900' },
     ],
@@ -143,7 +145,7 @@ export function formatServicesForPrompt(lang: 'es' | 'en'): string {
   return SERVICES.map(s => {
     const name = lang === 'en' ? s.nameEn : s.nameEs;
     const desc = lang === 'en' ? s.descriptionEn : s.descriptionEs;
-    const plans = s.plans.map(p => `${p.name}: ${p.price}`).join(', ');
+    const plans = s.plans.map(p => `${p.name}: ${p.price}${p.period ? (lang === 'en' ? (p.period === 'mes' ? '/month' : '/hour') : `/${p.period}`) : ''}`).join(', ');
     return `- ${name}: ${desc} (${plans})`;
   }).join('\n');
 }
@@ -199,17 +201,19 @@ export function getQuoteHrefForService(href: string, lang: 'es' | 'en' = 'es'): 
 // Precio del plan más económico de un servicio, para mostrar "Desde S/ X"
 // en las cards. Extrae el primer número de cada precio (algunos son "A
 // medida" sin número, se ignoran) y toma el menor.
-export function getStartingPrice(href: string): string | null {
+export function getStartingPrice(href: string, lang: 'es' | 'en' = 'es'): string | null {
   const service = SERVICES.find(s => s.slug === slugFromHref(href));
   if (!service) return null;
 
-  const amounts = service.plans
+  const priced = service.plans
     .map(p => {
       const match = p.price.match(/[\d,]+/);
-      return match ? parseInt(match[0].replace(/,/g, ''), 10) : null;
+      return match ? { amount: parseInt(match[0].replace(/,/g, ''), 10), period: p.period } : null;
     })
-    .filter((n): n is number => n !== null);
+    .filter((p): p is { amount: number; period: ServicePlan['period'] } => p !== null);
 
-  if (amounts.length === 0) return null;
-  return `S/ ${Math.min(...amounts)}`;
+  if (priced.length === 0) return null;
+  const cheapest = priced.reduce((a, b) => (b.amount < a.amount ? b : a));
+  const unit = cheapest.period ? (lang === 'en' ? (cheapest.period === 'mes' ? '/month' : '/hour') : `/${cheapest.period}`) : '';
+  return `S/ ${cheapest.amount}${unit}`;
 }

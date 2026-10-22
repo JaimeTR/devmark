@@ -2,6 +2,7 @@
 
 import { z } from 'zod';
 import { buildTransporter, escapeHtml, ADMIN_NOTIFICATION_EMAILS } from '@/app/actions/quoter-shared';
+import { visitanteDentroDelLimite } from '@/lib/rate-limit';
 
 const contactSchema = z.object({
   firstName: z.string().min(2, 'El nombre debe tener al menos 2 caracteres').trim(),
@@ -41,6 +42,14 @@ export async function sendContactEmail(
     };
   }
 
+  // Cada envio manda dos correos (al equipo y al visitante): 5 cada 10 minutos por visitante.
+  if (!(await visitanteDentroDelLimite('contacto', 5, 10 * 60_000))) {
+    return {
+      success: false,
+      message: 'Recibimos varios mensajes seguidos desde tu conexión. Espera unos minutos e inténtalo de nuevo.',
+    };
+  }
+
   const validatedFields = contactSchema.safeParse({
     firstName: formData.get('firstName'),
     lastName: formData.get('lastName'),
@@ -53,7 +62,7 @@ export async function sendContactEmail(
     return {
       success: false,
       message: 'Por favor verifica los datos ingresados',
-      errors: validatedFields.error.flatten().fieldErrors as any,
+      errors: validatedFields.error.flatten().fieldErrors,
     };
   }
 
@@ -73,9 +82,10 @@ export async function sendContactEmail(
     // Verificar la conexión con mejor manejo de errores
     try {
       await transporter.verify();
-    } catch (verifyError: any) {
-      console.error('Error al verificar conexión SMTP:', verifyError.message);
-      throw new Error(`Error de conexión SMTP: ${verifyError.message}`);
+    } catch (verifyError) {
+      const detail = verifyError instanceof Error ? verifyError.message : String(verifyError);
+      console.error('Error al verificar conexión SMTP:', detail);
+      throw new Error(`Error de conexión SMTP: ${detail}`);
     }
 
     const { firstName, lastName, email, phone, message } = validatedFields.data;
@@ -218,7 +228,7 @@ export async function sendContactEmail(
               <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-left: 4px solid #0066FF; border-radius: 8px; padding: 20px; margin: 25px 0;">
                 <p style="margin: 0 0 10px 0; color: #1f2937; font-size: 15px; font-weight: 600;">💡 ¿Tienes más preguntas?</p>
                 <p style="margin: 0; color: #4b5563; font-size: 14px; line-height: 1.5;">
-                  No dudes en responder este correo o escribirnos directamente a <strong style="color: #0066FF;">correo@devmarkpe.com</strong>
+                  No dudes en responder este correo o escribirnos directamente a <strong style="color: #0066FF;">contacto@devmarkpe.com</strong>
                 </p>
               </div>
               
@@ -276,7 +286,8 @@ export async function sendContactEmail(
       success: true,
       message: '¡Mensaje enviado exitosamente! Un asesor personalizado se pondrá en contacto contigo pronto.',
     };
-  } catch (error: any) {
+  } catch (caught) {
+    const error = caught as Error & { code?: string; command?: string };
     console.error('Error completo al enviar email:', {
       message: error.message,
       code: error.code,
@@ -285,14 +296,14 @@ export async function sendContactEmail(
     });
     
     // Mensajes de error más específicos
-    let errorMessage = 'Hubo un error al enviar el mensaje. Por favor intenta más tarde o contacta directamente a correo@devmarkpe.com';
+    let errorMessage = 'Hubo un error al enviar el mensaje. Por favor intenta más tarde o contacta directamente a contacto@devmarkpe.com';
     
     if (error.code === 'ECONNECTION' || error.code === 'ETIMEDOUT') {
       errorMessage = 'Error de conexión con el servidor de correo. Por favor verifica tu conexión a internet e intenta nuevamente.';
     } else if (error.code === 'EAUTH') {
       errorMessage = 'Error de autenticación del servidor. Por favor contacta al administrador.';
     } else if (error.message?.includes('SMTP')) {
-      errorMessage = 'Error en el servicio de correo. Por favor contacta directamente a correo@devmarkpe.com';
+      errorMessage = 'Error en el servicio de correo. Por favor contacta directamente a contacto@devmarkpe.com';
     }
     
     return {

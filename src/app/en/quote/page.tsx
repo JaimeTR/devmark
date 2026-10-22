@@ -1,6 +1,5 @@
 
 import { Suspense } from 'react';
-import { AnimatedBackground } from '@/components/home/animated-background';
 import { Footer } from '@/components/home/footer';
 import { Header } from '@/components/home/header';
 import { ProjectQuoter } from '@/components/ai/project-quoter';
@@ -132,15 +131,16 @@ const footerContent = {
 
 export default function QuotePage() {
   return (
-    <div className="relative overflow-x-hidden bg-background">
-      <AnimatedBackground />
+    <div className="bg-paper">
       <Header {...headerContent} />
-      <main>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
+      <main id="main-content">
+        <section className="panel-mist mt-2 pb-16 pt-28 sm:mt-3 sm:pt-36">
+          <div className="panel-inner">
           <Suspense fallback={null}>
             <ProjectQuoter content={quoterContent} />
           </Suspense>
-        </div>
+          </div>
+        </section>
       </main>
       <Footer lang="en" copyright={footerContent.copyright} />
     </div>

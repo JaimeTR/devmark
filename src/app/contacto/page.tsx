@@ -1,7 +1,8 @@
-import { AnimatedBackground } from '@/components/home/animated-background';
 import { Footer } from '@/components/home/footer';
 import { Header } from '@/components/home/header';
 import { Contact } from '@/components/home/contact';
+import { Faq } from '@/components/landing/faq';
+import { homeContent } from '@/content/home';
 
 const headerContent = {
   lang: 'es' as const,
@@ -21,7 +22,7 @@ const contactContent = {
   lang: 'es' as const,
   title: 'Contáctanos',
   description:
-    '¿Listo para llevar tu negocio al siguiente nivel? Completa el formulario o agenda una reunión y nuestro equipo global se pondrá en contacto contigo.',
+    '¿Listo para llevar tu negocio al siguiente nivel? Completa el formulario o agenda una reunión y nuestro equipo se pondrá en contacto contigo.',
   contactSubtitle: 'Contáctanos ahora',
   emailLabel: 'Email:',
   email: 'contacto@devmarkpe.com',
@@ -41,7 +42,7 @@ const contactContent = {
   messageLabel: 'Mensaje',
   messagePlaceholder: 'Cuéntanos sobre tu proyecto...',
   submitButton: 'Enviar Mensaje',
-  scheduleButton: 'Agendar Reunión',
+  scheduleButton: 'Agendar videollamada',
   quoteButton: 'Cotizar Proyecto',
 };
 
@@ -51,15 +52,13 @@ const footerContent = {
 
 export default function ContactoPage() {
   return (
-    <div className="relative overflow-x-hidden bg-background">
-      <AnimatedBackground />
+    <div className="bg-paper">
       <Header {...headerContent} />
-      <main id="main-content">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
-          <Contact {...contactContent} />
-        </div>
+      <main id="main-content" className="flex flex-col gap-2 sm:gap-3">
+        <Contact {...contactContent} heading={homeContent.es.contact.title} first />
+        <Faq lang="es" />
       </main>
-      <Footer copyright={footerContent.copyright} />
+      <Footer lang="es" copyright={footerContent.copyright} />
     </div>
   );
 }

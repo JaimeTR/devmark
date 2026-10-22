@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     title: 'SEO y Optimización Web | Devmark Perú',
     description: 'Aumentamos tu visibilidad en buscadores y mejoramos la tasa de conversión de tu sitio web.',
     siteName: 'Devmark',
-    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'SEO y optimización web - DEVMARK' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'SEO y optimización web - DEVMARK' }],
   },
 };
 

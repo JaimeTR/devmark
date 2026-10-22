@@ -1,12 +1,11 @@
 
-import { AnimatedBackground } from '@/components/home/animated-background';
 import { Header } from '@/components/home/header';
 import { Footer } from '@/components/home/footer';
 import { ServiceHero } from '@/components/home/service-hero';
 import { ServiceMethodology } from '@/components/home/service-methodology';
 import { Pricing } from '@/components/home/pricing';
 import { Contact } from '@/components/home/contact';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { ServiceFaq } from '@/components/home/service-faq';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -26,7 +25,7 @@ export const metadata: Metadata = {
     title: 'Desarrollo Web a Medida en Perú | Devmark',
     description: 'Creamos sitios web únicos y de alto rendimiento adaptados a tu negocio en Perú.',
     siteName: 'Devmark',
-    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Desarrollo web a medida - DEVMARK' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Desarrollo web a medida - DEVMARK' }],
   },
 };
 
@@ -167,7 +166,7 @@ const contactContent = {
     messageLabel: "Mensaje",
     messagePlaceholder: "Cuentanos sobre tu proyecto...",
     submitButton: "Enviar mensaje",
-    scheduleButton: "Agendar reunion por Meet",
+    scheduleButton: 'Agendar videollamada',
     quoteButton: "Cotiza tu proyecto con IA"
 };
 
@@ -177,8 +176,7 @@ const footerContent = {
 
 export default function CustomWebDevelopmentPage() {
   return (
-    <div className="relative overflow-x-hidden bg-background">
-      <AnimatedBackground />
+    <div className="bg-paper">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -243,28 +241,16 @@ export default function CustomWebDevelopmentPage() {
         }}
       />
       <Header {...headerContent} />
-      <main>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
-            <ServiceHero {...heroContent} />
+      <main id="main-content" className="flex flex-col gap-2 sm:gap-3">
+        <ServiceHero {...heroContent} />
 
-            <Pricing {...pricingContent} />
+        <Pricing {...pricingContent} />
 
-            <ServiceMethodology {...methodologyContent} />
+        <ServiceMethodology {...methodologyContent} />
 
-            <section id="faq" className="py-12 md:py-20 max-w-3xl mx-auto">
-                <h2 className="font-headline text-3xl sm:text-4xl text-center font-semibold tracking-tight mb-8">{faqContent.title}</h2>
-                <Accordion type="single" collapsible className="w-full">
-                    {faqContent.items.map((item, index) => (
-                        <AccordionItem key={index} value={`item-${index}`}>
-                            <AccordionTrigger>{item.question}</AccordionTrigger>
-                            <AccordionContent>{item.answer}</AccordionContent>
-                        </AccordionItem>
-                    ))}
-                </Accordion>
-            </section>
+        <ServiceFaq title={faqContent.title} items={faqContent.items} />
 
-            <Contact {...contactContent} />
-        </div>
+        <Contact {...contactContent} />
       </main>
       <Footer copyright={footerContent.copyright} />
     </div>

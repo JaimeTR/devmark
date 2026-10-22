@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: 'Cotizador de Proyectos - Devmark | Presupuestos Personalizados',
     description: 'Obtén un presupuesto personalizado para tu proyecto de desarrollo web o software con nuestro cotizador inteligente con IA.',
     siteName: 'Devmark',
-    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Cotizador de proyectos - DEVMARK' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Cotizador de proyectos - DEVMARK' }],
   },
 };
 

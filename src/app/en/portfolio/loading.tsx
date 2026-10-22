@@ -1,21 +1,12 @@
-import { PortfolioSkeleton } from '@/components/home/portfolio-skeleton';
-import { Skeleton } from '@/components/ui/skeleton';
-
 export default function Loading() {
   return (
-    <div className="min-h-screen bg-white">
-      <div className="h-20" />
-      <section className="pt-32 pb-16 bg-gradient-to-b from-brand-light/80 to-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-          <Skeleton className="h-10 w-72 mx-auto bg-slate-200/70" />
-          <Skeleton className="h-5 w-96 max-w-full mx-auto bg-slate-200/70" />
-        </div>
-      </section>
-      <section className="py-8">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <PortfolioSkeleton />
-        </div>
-      </section>
+    <div className="bg-paper">
+      <div className="panel-ink mt-2 h-[460px] animate-pulse sm:mt-3" />
+      <div className="panel-inner mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {[0, 1, 2, 3, 4, 5].map((i) => (
+          <div key={i} className="aspect-[4/5] animate-pulse rounded-2xl bg-mist" />
+        ))}
+      </div>
     </div>
   );
 }
