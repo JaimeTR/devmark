@@ -81,10 +81,10 @@ export const SERVICES: ServiceInfo[] = [
   },
   {
     slug: 'seo-optimizacion',
-    nameEs: 'SEO y optimización web',
-    nameEn: 'SEO & web optimization',
-    descriptionEs: 'SEO técnico y de contenidos, Core Web Vitals, e-commerce.',
-    descriptionEn: 'Technical and content SEO, Core Web Vitals, e-commerce.',
+    nameEs: 'SEO y GEO',
+    nameEn: 'SEO & GEO',
+    descriptionEs: 'SEO técnico y de contenidos, Core Web Vitals y GEO para buscadores con IA.',
+    descriptionEn: 'Technical and content SEO, Core Web Vitals and GEO for AI search.',
     plans: [
       { name: 'Emprendedor', price: 'S/ 300', period: 'mes' },
       { name: 'Negocio', price: 'S/ 600', period: 'mes' },

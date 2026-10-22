@@ -60,10 +60,10 @@ const servicesEs: Omit<HomeService, 'from'>[] = [
   },
   {
     id: 'seo',
-    title: 'SEO y optimización web',
-    short: 'SEO',
-    description: 'Estrategia, SEO técnico y de contenidos y Core Web Vitals para que más gente te encuentre en Google.',
-    includes: ['SEO técnico', 'Contenidos', 'Core Web Vitals', 'SEO para e-commerce'],
+    title: 'SEO y GEO',
+    short: 'SEO y GEO',
+    description: 'Que te encuentren en Google y que ChatGPT, Gemini y Perplexity te recomienden: SEO técnico y de contenidos, Core Web Vitals y GEO.',
+    includes: ['SEO técnico', 'GEO para buscadores con IA', 'Contenidos', 'Core Web Vitals'],
     href: '/servicios/seo-optimizacion',
   },
 ];
@@ -111,10 +111,10 @@ const servicesEn: Omit<HomeService, 'from'>[] = [
   },
   {
     id: 'seo',
-    title: 'SEO & web optimization',
-    short: 'SEO',
-    description: 'Strategy, technical and content SEO and Core Web Vitals so more people find you on Google.',
-    includes: ['Technical SEO', 'Content', 'Core Web Vitals', 'E-commerce SEO'],
+    title: 'SEO & GEO',
+    short: 'SEO & GEO',
+    description: 'Get found on Google and recommended by ChatGPT, Gemini and Perplexity: technical and content SEO, Core Web Vitals and GEO.',
+    includes: ['Technical SEO', 'GEO for AI search', 'Content', 'Core Web Vitals'],
     href: '/en/services/seo-optimization',
   },
 ];
@@ -128,12 +128,11 @@ export const homeContent = {
       proof: '+100 clientes satisfechos',
       title: ['Agencia de desarrollo', { em: 'web y software' }, 'en Lima, Perú.'],
       description:
-        'Creamos páginas web, tiendas online, software a medida, automatizaciones, chatbots con IA y estrategias SEO para que tu negocio venda más en internet.',
+        'Creamos páginas web, tiendas online, software a medida, automatizaciones, chatbots con IA y estrategias SEO y GEO para que tu negocio venda más en internet.',
       whatsapp: 'Hablemos por WhatsApp',
       whatsappMessage: 'Hola DEVMARK, vi su web y quiero conversar sobre un proyecto.',
       secondary: 'Ver servicios',
       secondaryHref: '/servicios',
-      chips: ['+100 proyectos entregados en Perú', '91% más rápido en ejecución'],
     },
     intro: {
       title: ['Un equipo chico', { em: 'a propósito:' }, 'quien diseña tu proyecto es quien responde tus mensajes.'],
@@ -144,7 +143,6 @@ export const homeContent = {
         { value: '91%', label: 'mayor rapidez de ejecución' },
         { value: '11', label: 'países con clientes' },
       ],
-      clientsLabel: 'Negocios que ya trabajan con nosotros',
     },
     services: {
       title: ['Todo lo que tu negocio necesita', { em: 'para venderse en internet,' }, 'en un solo equipo.'],
@@ -274,12 +272,11 @@ export const homeContent = {
       proof: '+100 happy clients',
       title: ['Web and software', { em: 'development agency' }, 'in Lima, Peru.'],
       description:
-        'We build websites, online stores, custom software, automations, AI chatbots and SEO strategies so your business sells more online.',
+        'We build websites, online stores, custom software, automations, AI chatbots and SEO & GEO strategies so your business sells more online.',
       whatsapp: "Let's talk on WhatsApp",
       whatsappMessage: 'Hi DEVMARK, I saw your website and would like to talk about a project.',
       secondary: 'See services',
       secondaryHref: '/en/services',
-      chips: ['+100 projects delivered in Peru', '91% faster execution'],
     },
     intro: {
       title: ['A small team', { em: 'on purpose:' }, 'whoever designs your project is the one answering your messages.'],
@@ -290,7 +287,6 @@ export const homeContent = {
         { value: '91%', label: 'faster execution' },
         { value: '11', label: 'countries with clients' },
       ],
-      clientsLabel: 'Businesses already working with us',
     },
     services: {
       title: ['Everything your business needs', { em: 'to sell online,' }, 'in one team.'],

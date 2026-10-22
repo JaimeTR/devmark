@@ -8,8 +8,8 @@ import { ServiceFaq } from '@/components/home/service-faq';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'SEO & Web Optimization to Rank Higher in Peru',
-  description: "We increase your visibility in search engines, attract quality organic traffic, and improve your website's conversion rate across Peru and beyond.",
+  title: 'SEO & GEO: rank on Google and in AI answers',
+  description: 'We rank your website on Google (SEO) and in ChatGPT, Gemini and Perplexity (GEO) to bring you more customers.',
   alternates: {
     canonical: 'https://devmarkpe.com/en/services/seo-optimization',
     languages: {
@@ -21,10 +21,10 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://devmarkpe.com/en/services/seo-optimization',
-    title: 'SEO & Web Optimization | Devmark Peru',
-    description: 'We increase your visibility in search engines and improve your conversion rate.',
+    title: 'SEO & GEO | DEVMARK Peru',
+    description: 'Get found on Google and recommended by ChatGPT, Gemini and Perplexity.',
     siteName: 'Devmark',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'SEO and web optimization - DEVMARK' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'SEO & GEO - DEVMARK' }],
   },
 };
 
@@ -37,9 +37,9 @@ const headerContent = {
 };
 
 const heroContent = {
-  badge: "Positioning and performance",
-  title: "SEO and web optimization",
-  description: "We increase your visibility in search engines, attract quality organic traffic, and improve your website's conversion rate.",
+  badge: "Google and AI search",
+  title: "SEO & GEO",
+  description: "We rank you on Google (SEO) and prepare your website so ChatGPT, Gemini, Perplexity and Google's AI Overviews recommend you (GEO). More quality visits and more customers.",
   lang: 'en' as const,
   form: {
     title: 'Tell us about your project',
@@ -59,13 +59,13 @@ const heroContent = {
 
 const methodologyContent = {
   badge: 'Our methodology',
-  title: 'Our SEO and optimization methodology',
-  subtitle: 'A structured process to improve your search rankings.',
+  title: 'How we improve your visibility',
+  subtitle: 'A clear, measurable process so people find you on Google and in AI answers.',
   steps: [
     { title: 'SEO audit and strategy', description: "We conduct a complete analysis of your website and competition to define a keyword strategy and actions to achieve your goals." },
     { title: 'On-page and content SEO', description: "We optimize your site's structure, tags, content, and internal links to improve your ranking on Google." },
     { title: 'Technical SEO', description: "We improve loading speed (Core Web Vitals), indexing, URL structure, and other critical technical factors for SEO." },
-    { title: 'Link building and off-page SEO', description: "We develop quality link-building strategies to increase your domain's authority and improve your online reputation." },
+    { title: 'Authority and GEO', description: "We build quality links and reputation, and structure your content so AI search engines understand it and cite you as a source." },
   ],
 };
 
@@ -79,6 +79,10 @@ const faqContent = {
     {
       question: "Is SEO a one-time investment?",
       answer: "No, SEO is an ongoing process. Search engine algorithms are constantly changing and the competition is always active. We recommend monthly work to maintain and improve results."
+    },
+    {
+      question: "What is GEO and why do I need it?",
+      answer: "GEO (Generative Engine Optimization) means optimizing your website so AI search engines such as ChatGPT, Gemini, Perplexity and Google's AI Overviews understand it and cite it when someone asks about what you sell. More and more people search this way, so we work on it together with SEO."
     },
     {
       question: "Do you guarantee the first position on Google?",
@@ -182,7 +186,7 @@ export default function SeoOptimizationPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            "name": "SEO and web optimization",
+            "name": "SEO & GEO",
             "description": "We increase your visibility in search engines, attract quality organic traffic, and improve your website",
             "provider": {
               "@type": "Organization",
@@ -210,32 +214,11 @@ export default function SeoOptimizationPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "When will I start to see SEO results?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "SEO is a medium- to long-term strategy. Generally, significant results can be seen between 3 and 6 months, although this can vary depending on the competitiveness of your industry."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Is SEO a one-time investment?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "No, SEO is an ongoing process. Search engine algorithms are constantly changing and the competition is always active. We recommend monthly work to maintain and improve results."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Do you guarantee the first position on Google?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "No serious SEO agency can guarantee the first position, as Google's algorithm is complex and beyond our control. What we do guarantee is professional, transparent work focused on sustainably improving your visibility and traffic."
-                }
-              }
-            ]
+            "mainEntity": faqContent.items.map((it) => ({
+              "@type": "Question",
+              "name": it.question,
+              "acceptedAnswer": { "@type": "Answer", "text": it.answer },
+            }))
           }),
         }}
       />

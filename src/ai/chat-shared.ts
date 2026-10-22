@@ -93,8 +93,8 @@ export function getFallbackResponse(question: string, lang: 'es' | 'en'): string
       en: '💰 Our prices vary by project:\n\n• Web development: from S/ 1200\n• CMS/E-commerce: from S/ 1800\n• Custom software: from S/ 3000\n• Other services: inquire\n\nWould you like a personalized quote? Contact: 📧 contacto@devmarkpe.com or 📱 +51 975 646 074.',
     },
     services: {
-      es: '🛠️ Ofrecemos los siguientes servicios:\n\n• Desarrollo web a medida\n• CMS/E-commerce (WordPress, Shopify)\n• Software personalizado\n• Automatización de procesos\n• Chatbots con IA\n• SEO y optimización\n• Diseño UI/UX\n• Marketing digital\n• Consultoría tecnológica\n• Soporte y mantenimiento\n\n¿Qué servicio te interesa más?',
-      en: '🛠️ We offer the following services:\n\n• Custom web development\n• CMS/E-commerce (WordPress, Shopify)\n• Custom software\n• Process automation\n• AI chatbots\n• SEO and optimization\n• UI/UX design\n• Digital marketing\n• Tech consulting\n• Support and maintenance\n\nWhich service interests you most?',
+      es: '🛠️ Ofrecemos los siguientes servicios:\n\n• Desarrollo web a medida\n• CMS/E-commerce (WordPress, Shopify)\n• Software personalizado\n• Automatización de procesos\n• Chatbots con IA\n• SEO y GEO (Google y buscadores con IA)\n• Diseño UI/UX\n• Marketing digital\n• Consultoría tecnológica\n• Soporte y mantenimiento\n\n¿Qué servicio te interesa más?',
+      en: '🛠️ We offer the following services:\n\n• Custom web development\n• CMS/E-commerce (WordPress, Shopify)\n• Custom software\n• Process automation\n• AI chatbots\n• SEO & GEO (Google and AI search)\n• UI/UX design\n• Digital marketing\n• Tech consulting\n• Support and maintenance\n\nWhich service interests you most?',
     },
     contact: {
       es: '📞 Puedes contactarnos en:\n\n• Email: contacto@devmarkpe.com\n• Teléfono: +51 975 646 074\n\nEstamos disponibles para resolver tus dudas y ayudarte con tu proyecto digital. ¡Escríbenos o llámanos!',
@@ -113,8 +113,8 @@ export function getFallbackResponse(question: string, lang: 'es' | 'en'): string
       en: '🤖 We develop AI chatbots:\n\n• Custom training with your knowledge base\n• Available 24/7\n• Automated customer service\n• Sales assistant\n• Technical support\n\nAre you interested in implementing one?',
     },
     seo: {
-      es: '🔍 Ofrecemos servicios de SEO y optimización:\n\n• Análisis de keywords\n• Optimización on-page\n• Link building\n• Core Web Vitals\n• Estrategias de contenido\n• Mejora de posicionamiento en Google\n\n¿Quieres mejorar tu visibilidad online?',
-      en: '🔍 We offer SEO and optimization services:\n\n• Keyword analysis\n• On-page optimization\n• Link building\n• Core Web Vitals\n• Content strategies\n• Google ranking improvement\n\nWant to improve your online visibility?',
+      es: '🔍 Ofrecemos SEO y GEO:\n\n• Análisis de keywords\n• Optimización on-page\n• Link building\n• Core Web Vitals\n• Estrategias de contenido\n• Mejora de posicionamiento en Google\n• GEO: que ChatGPT, Gemini y Perplexity recomienden tu negocio\n\n¿Quieres mejorar tu visibilidad online?',
+      en: '🔍 We offer SEO & GEO:\n\n• Keyword analysis\n• On-page optimization\n• Link building\n• Core Web Vitals\n• Content strategies\n• Google ranking improvement\n• GEO: get recommended by ChatGPT, Gemini and Perplexity\n\nWant to improve your online visibility?',
     },
     default: {
       es: '💼 ¡Hola! Soy el asistente de DEVMARK. Puedo ayudarte con:\n\n• Información sobre nuestros servicios\n• Precios y cotizaciones\n• Desarrollo web, e-commerce, software\n• Chatbots con IA, SEO, marketing digital\n\nEscribe preguntas como: "precios", "servicios", "desarrollo web", "contacto", etc.\n\nPara consultas más específicas: 📧 contacto@devmarkpe.com | 📱 +51 975 646 074',
@@ -129,7 +129,7 @@ export function getFallbackResponse(question: string, lang: 'es' | 'en'): string
   const websiteKeywords = ['sitio', 'web', 'website', 'pagina', 'página', 'landing', 'desarrollo', 'desarroll', 'crear', 'hacer'];
   const ecommerceKeywords = ['tienda', 'store', 'ecommerce', 'comercio', 'shopify', 'woocommerce', 'venta', 'vender', 'productos'];
   const chatbotKeywords = ['chatbot', 'bot', 'chat', 'asistente', 'virtual', 'ia', 'inteligencia', 'artificial', 'autom', 'automat'];
-  const seoKeywords = ['seo', 'posicionamiento', 'ranking', 'google', 'busqueda', 'búsqueda', 'optimizacion', 'optimización', 'visible'];
+  const seoKeywords = ['seo', 'geo', 'chatgpt', 'perplexity', 'gemini', 'posicionamiento', 'ranking', 'google', 'busqueda', 'búsqueda', 'optimizacion', 'optimización', 'visible'];
 
   if (containsSimilar(q, greetingKeywords) || q.length < 5) {
     return responses.greeting[lang];
