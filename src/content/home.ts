@@ -134,7 +134,6 @@ export const homeContent = {
       secondary: 'Ver servicios',
       secondaryHref: '/servicios',
       chips: ['+100 proyectos entregados en Perú', '91% más rápido en ejecución'],
-      globeLabel: 'Arcos desde Lima hacia ciudades donde trabajamos',
     },
     intro: {
       title: ['Un equipo chico', { em: 'a propósito:' }, 'quien diseña tu proyecto es quien responde tus mensajes.'],
@@ -281,7 +280,6 @@ export const homeContent = {
       secondary: 'See services',
       secondaryHref: '/en/services',
       chips: ['+100 projects delivered in Peru', '91% faster execution'],
-      globeLabel: 'Arcs from Lima to cities where we work',
     },
     intro: {
       title: ['A small team', { em: 'on purpose:' }, 'whoever designs your project is the one answering your messages.'],

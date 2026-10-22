@@ -24,6 +24,8 @@ type WorldGlobeProps = {
   view?: { lat: number; lng: number };
   /** Sobre fondo claro (paneles niebla) u oscuro (paneles tinta). */
   tone?: 'light' | 'dark';
+  /** Se puede girar arrastrando (mouse o dedo); si nadie lo toca, gira solo. */
+  interactive?: boolean;
   className?: string;
 };
 
@@ -46,7 +48,7 @@ function tokenColor(name: string, alpha = 1) {
   return alpha === 1 ? `hsl(${h}, ${s}, ${l})` : `hsla(${h}, ${s}, ${l}, ${alpha})`;
 }
 
-export function WorldGlobe({ arcs, focus, view = focus, tone = 'light', className }: WorldGlobeProps) {
+export function WorldGlobe({ arcs, focus, view = focus, tone = 'light', interactive = false, className }: WorldGlobeProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -93,7 +95,7 @@ export function WorldGlobe({ arcs, focus, view = focus, tone = 'light', classNam
         .pointColor(() => (dark ? DARK.point : primary))
         .pointAltitude(0.01)
         .pointRadius(0.6)
-        .ringsData(reducedMotion ? [] : [focus])
+        .ringsData(reducedMotion ? [] : interactive ? [focus, ...arcs.map((a) => ({ lat: a.endLat, lng: a.endLng }))] : [focus])
         .ringColor(() => (dark ? DARK.ring : (t: number) => tokenColor('--primary', 1 - t)))
         .ringMaxRadius(5)
         .ringPropagationSpeed(2)
@@ -141,11 +143,54 @@ export function WorldGlobe({ arcs, focus, view = focus, tone = 'light', classNam
       // Solo dibuja mientras se ve: fuera de pantalla no gasta bateria.
       let visible = true;
       let frame = 0;
-      // Vaiven suave alrededor del foco en vez de giro completo: Lima no se pierde de vista.
+      // Arrastre: giro horizontal libre e inclinacion limitada. touch-action pan-y deja que el
+      // dedo siga haciendo scroll vertical de la pagina y solo el gesto horizontal gire el globo.
+      let dragging = false;
+      let lastX = 0;
+      let lastY = 0;
+      let lastTouch = -Infinity;
+      let spin = baseY;
+      const canvas = renderer.domElement;
+      const onDown = (e: PointerEvent) => {
+        dragging = true;
+        lastX = e.clientX;
+        lastY = e.clientY;
+        canvas.setPointerCapture(e.pointerId);
+        canvas.style.cursor = 'grabbing';
+      };
+      const onMove = (e: PointerEvent) => {
+        if (!dragging) return;
+        spin += (e.clientX - lastX) * 0.006;
+        globe.rotation.x = Math.max(-0.7, Math.min(0.7, globe.rotation.x + (e.clientY - lastY) * 0.004));
+        lastX = e.clientX;
+        lastY = e.clientY;
+        lastTouch = performance.now();
+      };
+      const onUp = () => {
+        dragging = false;
+        lastTouch = performance.now();
+        canvas.style.cursor = 'grab';
+      };
+      if (interactive) {
+        canvas.style.cursor = 'grab';
+        canvas.style.touchAction = 'pan-y';
+        canvas.addEventListener('pointerdown', onDown);
+        canvas.addEventListener('pointermove', onMove);
+        canvas.addEventListener('pointerup', onUp);
+        canvas.addEventListener('pointercancel', onUp);
+      }
+
+      // Sin interaccion: vaiven suave alrededor del foco (Lima no se pierde de vista).
+      // Interactivo: gira solo despues de unos segundos sin que nadie lo toque.
       const render = (time: number) => {
         frame = 0;
         if (!visible) return;
-        if (!reducedMotion) globe.rotation.y = baseY + Math.sin(time / 4000) * 0.25;
+        if (interactive) {
+          if (!dragging && !reducedMotion && time - lastTouch > 2500) spin += 0.0018;
+          globe.rotation.y = spin;
+        } else if (!reducedMotion) {
+          globe.rotation.y = baseY + Math.sin(time / 4000) * 0.25;
+        }
         renderer.render(scene, camera);
         frame = requestAnimationFrame(render);
       };
@@ -158,6 +203,10 @@ export function WorldGlobe({ arcs, focus, view = focus, tone = 'light', classNam
 
       cleanup = () => {
         cancelAnimationFrame(frame);
+        canvas.removeEventListener('pointerdown', onDown);
+        canvas.removeEventListener('pointermove', onMove);
+        canvas.removeEventListener('pointerup', onUp);
+        canvas.removeEventListener('pointercancel', onUp);
         visibility.disconnect();
         resizeObserver.disconnect();
         renderer.dispose();
@@ -181,7 +230,7 @@ export function WorldGlobe({ arcs, focus, view = focus, tone = 'light', classNam
       lazy.disconnect();
       cleanup?.();
     };
-  }, [arcs, focus, view, tone]);
+  }, [arcs, focus, view, tone, interactive]);
 
   return <div ref={containerRef} className={className} />;
 }

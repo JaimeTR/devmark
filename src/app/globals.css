@@ -488,8 +488,9 @@ html {
 
 @layer components {
   /* Panel enmarcado: la pagina es una pila de paneles separados del borde. */
+  /* overflow clip (no hidden): recorta igual pero no rompe position: sticky por dentro. */
   .panel {
-    @apply relative mx-2 sm:mx-3 rounded-panel overflow-hidden;
+    @apply relative mx-2 sm:mx-3 rounded-panel overflow-clip;
   }
   .panel-ink {
     @apply panel bg-ink text-white;
@@ -828,4 +829,24 @@ html {
 }
 .article .cta-block .cta-button:hover {
   background: #cbd5fa;
+}
+
+@keyframes float-a {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -12px; }
+}
+@keyframes float-b {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 10px; }
+}
+
+@keyframes step-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.985); filter: blur(6px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+.step-in {
+  animation: step-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .step-in { animation: none; }
 }

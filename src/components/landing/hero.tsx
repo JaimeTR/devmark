@@ -1,14 +1,12 @@
-import { ArrowDownRight, Award, Rocket } from 'lucide-react';
+import { ArrowDownRight } from 'lucide-react';
 import { homeContent, clients, type Lang } from '@/content/home';
 import { whatsappHref } from '@/lib/contact';
 import { Btn } from '@/components/site/btn';
 import { TitleText } from '@/components/site/title-text';
 import { WhatsAppIcon } from '@/components/site/whatsapp-icon';
-import { HeroGlobe } from './hero-globe';
+import { HeroShowcase } from './hero-showcase';
 
-const chipIcons = [Award, Rocket];
-
-/** Primer pantallazo: panel tinta con el titular, la prueba social y el globo con arcos desde Lima. */
+/** Primer pantallazo: panel tinta con el titular, la prueba social y los entregables flotando. */
 export function Hero({ lang }: { lang: Lang }) {
   const t = homeContent[lang].hero;
   const initials = clients.slice(0, 5).map((c) => c.split(' ').map((w) => w[0]).join('').slice(0, 2));
@@ -52,24 +50,8 @@ export function Hero({ lang }: { lang: Lang }) {
           </div>
         </div>
 
-        <div className="relative -mx-5 h-[380px] sm:h-[480px] lg:mx-0 lg:h-[640px]">
-          <HeroGlobe label={t.globeLabel} />
-          <ul className="pointer-events-none absolute inset-0">
-            {t.chips.map((chip, i) => {
-              const Icon = chipIcons[i];
-              return (
-                <li
-                  key={chip}
-                  className={`chip glass-dark absolute text-white ${i === 0 ? 'left-4 top-[14%] sm:left-6' : 'bottom-[16%] right-4 sm:right-6'}`}
-                >
-                  <span className="chip-tile bg-white/10">
-                    <Icon className="h-4 w-4" />
-                  </span>
-                  {chip}
-                </li>
-              );
-            })}
-          </ul>
+        <div className="relative h-[460px] sm:h-[540px] lg:h-[640px]">
+          <HeroShowcase lang={lang} chips={t.chips} />
         </div>
       </div>
     </section>
