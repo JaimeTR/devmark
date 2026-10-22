@@ -19,3 +19,14 @@ export const WHATSAPP_GREETING = {
   es: 'Hola DEVMARK, quiero conversar sobre un proyecto.',
   en: 'Hi DEVMARK, I would like to talk about a project.',
 } as const;
+
+/** Link de Cal.com para el calendario embebido (sin dominio). */
+export const CAL_LINK = process.env.NEXT_PUBLIC_CAL_LINK || 'devmark.pe/30min';
+
+/** Atendemos de lunes a viernes de 9:00 a 18:00 en Lima (UTC-5, sin horario de verano). */
+export function abiertoEnLima(now = new Date()): boolean {
+  const lima = new Date(now.getTime() - 5 * 3600_000);
+  const dia = lima.getUTCDay();
+  const hora = lima.getUTCHours();
+  return dia >= 1 && dia <= 5 && hora >= 9 && hora < 18;
+}

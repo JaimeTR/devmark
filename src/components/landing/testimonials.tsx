@@ -97,7 +97,7 @@ export function Testimonials({ lang }: { lang: Lang }) {
 
       <div className="mt-16">
         <p className="panel-inner text-sm text-ink/60">{c.clientsLabel}</p>
-        <div className="marquee mt-5 overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]" style={{ ['--marquee-speed' as string]: '50s' }}>
+        <div className="marquee mt-5 overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]" style={{ ['--marquee-speed' as string]: '110s' }}>
           <ul className="marquee-track items-center">
             {loop.map((name, i) => (
               <li

@@ -155,7 +155,9 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           }}
         />
         {children}
-        <FloatingAssistant />
+        <div className="print:hidden">
+          <FloatingAssistant />
+        </div>
         <Toaster />
         <GoogleAnalytics />
       </body>

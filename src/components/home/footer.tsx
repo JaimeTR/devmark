@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Facebook, Github, Instagram, Linkedin, Mail, Phone } from 'lucide-react';
+import { BookOpen, Facebook, Github, Instagram, Linkedin, Mail, Phone } from 'lucide-react';
 import { EMAIL, HOURS, PHONE_DISPLAY, SUPPORT_EMAIL, WHATSAPP_GREETING, WHATSAPP_NUMBER, whatsappHref } from '@/lib/contact';
 import { WhatsAppIcon } from '@/components/site/whatsapp-icon';
 
@@ -43,6 +43,7 @@ const copy = {
     support: 'Soporte',
     place: 'Lima, Perú · atención online',
     built: 'Desarrollado por',
+    complaints: 'Libro de Reclamaciones',
   },
   en: {
     tagline: 'Web and software development agency in Lima, Peru. Websites, stores, systems and AI for businesses that want to sell more online.',
@@ -70,6 +71,7 @@ const copy = {
     support: 'Support',
     place: 'Lima, Peru · online service',
     built: 'Built by',
+    complaints: 'Complaints Book',
   },
 };
 
@@ -167,6 +169,10 @@ export function Footer({ lang = 'es', copyright }: FooterProps) {
           <p>
             © {year} {copyright}
           </p>
+          <Link href="/libro-de-reclamaciones" className="group inline-flex items-center gap-2 rounded-lg border border-white/15 px-3 py-1.5 text-white transition-colors hover:border-white/30 hover:bg-white/5">
+            <BookOpen className="icon-tilt h-4 w-4" />
+            {t.complaints}
+          </Link>
           <p>
             {t.built}{' '}
             <a href="https://www.jaimetr.dev" target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-4 hover:text-periwinkle">
