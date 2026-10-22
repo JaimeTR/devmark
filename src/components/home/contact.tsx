@@ -1,8 +1,8 @@
 'use client';
 
-import { useActionState, useEffect } from 'react';
+import { useActionState, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { AlertCircle, ArrowUpRight, Calculator, CheckCircle, Clock, Loader2, Lock, Mail, MessageSquare, Phone, User, Video } from 'lucide-react';
+import { AlertCircle, ArrowUpRight, CheckCircle, Clock, Loader2, Lock, Mail, MessageSquare, Phone, Sparkles, User, Video } from 'lucide-react';
 import { sendContactEmail } from '@/app/actions/contact';
 import { BOOKING_URL, HOURS, WHATSAPP_GREETING, whatsappHref } from '@/lib/contact';
 import { cn } from '@/lib/utils';
@@ -46,6 +46,17 @@ const field =
 // Icono dentro del campo: se aclara cuando el campo tiene el foco.
 const fieldIcon = 'pointer-events-none absolute left-4 h-4 w-4 text-white/40 transition-colors peer-focus:text-periwinkle';
 
+const detailCard = 'lift group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition-colors hover:border-white/20 hover:bg-white/[0.07]';
+const detailTile = 'grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white/10 text-periwinkle';
+
+/** Atendemos de lunes a viernes de 9:00 a 18:00 en Lima (UTC-5, sin horario de verano). */
+function abiertoEnLima(now = new Date()) {
+  const lima = new Date(now.getTime() - 5 * 3600_000);
+  const dia = lima.getUTCDay();
+  const hora = lima.getUTCHours();
+  return dia >= 1 && dia <= 5 && hora >= 9 && hora < 18;
+}
+
 const services = {
   es: [
     ['web', 'Página web'],
@@ -73,6 +84,14 @@ export function Contact(props: ContactProps) {
   const router = useRouter();
   const es = props.lang === 'es';
   const quoteLink = es ? '/quote' : '/en/quote';
+  // Se calcula en el navegador para no desfasar el HTML del servidor con la hora real.
+  const [open, setOpen] = useState<boolean | null>(null);
+  useEffect(() => {
+    const tick = () => setOpen(abiertoEnLima());
+    tick();
+    const id = setInterval(tick, 60_000);
+    return () => clearInterval(id);
+  }, []);
 
   // Redirigir a la página de agradecimiento cuando el envío sea exitoso.
   useEffect(() => {
@@ -108,38 +127,54 @@ export function Contact(props: ContactProps) {
             </a>
           </div>
 
-          <dl className="mt-auto grid gap-5 pt-12 sm:grid-cols-2">
-            <div>
-              <dt className="text-sm text-ink-muted">{props.emailLabel.replace(':', '')}</dt>
-              <dd className="mt-1.5">
-                <a href={`mailto:${props.email}`} className="inline-flex items-center gap-2 text-[17px] hover:text-periwinkle">
-                  <Mail className="h-4 w-4" />
-                  {props.email}
-                </a>
-              </dd>
+          <div className="mt-auto grid gap-2.5 pt-12">
+            <a href={`mailto:${props.email}`} className={detailCard}>
+              <span className={detailTile}>
+                <Mail className="icon-tilt h-5 w-5" />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-xs text-ink-muted">{props.emailLabel.replace(':', '')}</span>
+                <span className="block truncate text-[15px]">{props.email}</span>
+              </span>
+            </a>
+            <a href={`tel:${props.phone.replace(/\s/g, '')}`} className={detailCard}>
+              <span className={detailTile}>
+                <Phone className="icon-tilt h-5 w-5" />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-xs text-ink-muted">{props.phoneLabel.replace(':', '')}</span>
+                <span className="block text-[15px]">{props.phone}</span>
+              </span>
+            </a>
+            <div className={detailCard}>
+              <span className={detailTile}>
+                <Clock className="icon-tilt h-5 w-5" />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="flex items-center gap-2 text-xs text-ink-muted">
+                  {es ? 'Horario' : 'Hours'}
+                  {open !== null && (
+                    <span className={cn('inline-flex items-center gap-1.5 rounded-md px-1.5 py-0.5', open ? 'bg-emerald-400/15 text-emerald-300' : 'bg-white/10')}>
+                      <span className={cn('h-1.5 w-1.5 rounded-full', open ? 'si-ring bg-emerald-400' : 'bg-ink-muted')} />
+                      {open ? (es ? 'Abierto ahora' : 'Open now') : es ? 'Cerrado ahora' : 'Closed now'}
+                    </span>
+                  )}
+                </span>
+                <span className="block text-[15px]">{HOURS[props.lang]}</span>
+              </span>
             </div>
-            <div>
-              <dt className="text-sm text-ink-muted">{props.phoneLabel.replace(':', '')}</dt>
-              <dd className="mt-1.5">
-                <a href={`tel:${props.phone.replace(/\s/g, '')}`} className="inline-flex items-center gap-2 text-[17px] hover:text-periwinkle">
-                  <Phone className="h-4 w-4" />
-                  {props.phone}
-                </a>
-              </dd>
-            </div>
-            <div className="sm:col-span-2">
-              <dt className="text-sm text-ink-muted">{es ? 'Horario' : 'Hours'}</dt>
-              <dd className="mt-1.5 inline-flex items-center gap-2 text-[17px]">
-                <Clock className="h-4 w-4" />
-                {HOURS[props.lang]}
-              </dd>
-            </div>
-          </dl>
-          <a href={quoteLink} className="mt-6 inline-flex items-center gap-2 text-[15px] text-ink-muted hover:text-white">
-            <Calculator className="h-4 w-4" />
-            {props.quoteButton}
-            <ArrowUpRight className="h-4 w-4" />
-          </a>
+            <a href={quoteLink} className="lift group relative flex items-center gap-4 overflow-hidden rounded-2xl border border-periwinkle/25 bg-primary/20 p-4">
+              <span aria-hidden className="pointer-events-none absolute -right-10 -top-16 h-40 w-40 rounded-full bg-primary/50 blur-3xl" />
+              <span className="relative grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white text-primary">
+                <Sparkles className="icon-tilt h-5 w-5" />
+              </span>
+              <span className="relative min-w-0 flex-1">
+                <span className="block text-[15px] font-medium">{props.quoteButton}</span>
+                <span className="block text-sm text-ink-muted">{es ? 'Una propuesta en PDF al momento, sin esperar.' : 'A PDF proposal right away, no waiting.'}</span>
+              </span>
+              <ArrowUpRight className="icon-nudge relative h-5 w-5 shrink-0" />
+            </a>
+          </div>
         </div>
 
         <div className="flex flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:p-8">
