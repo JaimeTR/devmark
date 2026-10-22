@@ -850,3 +850,162 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .step-in { animation: none; }
 }
+
+/*
+ * Ilustraciones vivas: dentro de un contenedor .live, cada pieza marcada con .lv entra en
+ * su etapa (.lv-1 a .lv-5) de un ciclo de 9 s y todas salen juntas al final. Con .live-hover
+ * (portadas del blog) solo se arma al pasar el cursor por la tarjeta (.group). El estado por
+ * defecto es la ilustracion completa: sin animacion (movimiento reducido o sin soporte) se ve entera.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  :is(.live, .group:hover .live-hover) .lv {
+    --lv-t0: translateY(8px) scale(0.97);
+    --lv-o0: 0;
+    animation-duration: var(--lv-dur, 9s);
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    animation-fill-mode: both;
+    animation-delay: calc(var(--i, 0) * 90ms + var(--lv-offset, 0s));
+  }
+  .live[data-paused] .lv,
+  .live[data-paused] .lv-typing,
+  .live[data-paused] .lv-typing span,
+  .live[data-paused] .lv-pulse {
+    animation-play-state: paused !important;
+  }
+  :is(.live, .group:hover .live-hover) .lv-grow {
+    --lv-t0: scaleX(0);
+    --lv-o0: 1;
+    transform-origin: left center;
+  }
+  :is(.live, .group:hover .live-hover) .lv-bar {
+    --lv-t0: scaleY(0.06);
+    --lv-o0: 1;
+    transform-origin: center bottom;
+  }
+  :is(.live, .group:hover .live-hover) .lv-pop {
+    --lv-t0: scale(0.4);
+  }
+  :is(.live, .group:hover .live-hover) .lv-1 { animation-name: lv-s1; }
+  :is(.live, .group:hover .live-hover) .lv-2 { animation-name: lv-s2; }
+  :is(.live, .group:hover .live-hover) .lv-3 { animation-name: lv-s3; }
+  :is(.live, .group:hover .live-hover) .lv-4 { animation-name: lv-s4; }
+  :is(.live, .group:hover .live-hover) .lv-5 { animation-name: lv-s5; }
+  :is(.live, .group:hover .live-hover) .lv-typing {
+    animation: lv-typing var(--lv-dur, 9s) linear infinite both;
+  }
+  :is(.live, .group:hover .live-hover) .lv-typing span {
+    animation: lv-dot 0.9s ease-in-out infinite;
+  }
+  :is(.live, .group:hover .live-hover) .lv-typing span:nth-child(2) { animation-delay: 0.15s; }
+  :is(.live, .group:hover .live-hover) .lv-typing span:nth-child(3) { animation-delay: 0.3s; }
+  :is(.live, .group:hover .live-hover) .lv-pulse {
+    animation: lv-pulse 2.4s ease-in-out infinite;
+  }
+}
+.lv-typing {
+  opacity: 0;
+}
+
+@keyframes lv-s1 {
+  0%, 4% { opacity: var(--lv-o0); transform: var(--lv-t0); }
+  12%, 93% { opacity: 1; transform: none; }
+  97%, 100% { opacity: var(--lv-o0); transform: var(--lv-t0); }
+}
+@keyframes lv-s2 {
+  0%, 20% { opacity: var(--lv-o0); transform: var(--lv-t0); }
+  28%, 93% { opacity: 1; transform: none; }
+  97%, 100% { opacity: var(--lv-o0); transform: var(--lv-t0); }
+}
+@keyframes lv-s3 {
+  0%, 36% { opacity: var(--lv-o0); transform: var(--lv-t0); }
+  44%, 93% { opacity: 1; transform: none; }
+  97%, 100% { opacity: var(--lv-o0); transform: var(--lv-t0); }
+}
+@keyframes lv-s4 {
+  0%, 52% { opacity: var(--lv-o0); transform: var(--lv-t0); }
+  60%, 93% { opacity: 1; transform: none; }
+  97%, 100% { opacity: var(--lv-o0); transform: var(--lv-t0); }
+}
+@keyframes lv-s5 {
+  0%, 66% { opacity: var(--lv-o0); transform: var(--lv-t0); }
+  74%, 93% { opacity: 1; transform: none; }
+  97%, 100% { opacity: var(--lv-o0); transform: var(--lv-t0); }
+}
+/* Los tres puntos de "escribiendo" justo antes de la respuesta (etapa 3). */
+@keyframes lv-typing {
+  0%, 18% { opacity: 0; }
+  21%, 35% { opacity: 1; }
+  37%, 100% { opacity: 0; }
+}
+@keyframes lv-dot {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(-3px); opacity: 1; }
+}
+@keyframes lv-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(169, 180, 255, 0.45); }
+  50% { box-shadow: 0 0 0 6px rgba(169, 180, 255, 0); }
+}
+
+/*
+ * Hovers suaves. Una sola curva (salida exponencial) y desplazamientos cortos:
+ * - .lift: tarjeta que sube y gana sombra.
+ * - .group:hover .icon-tilt / .icon-nudge: el icono gira un poco o la flecha avanza.
+ * - .tag: etiqueta que se tine de indigo.
+ * - .title-link: subrayado que crece desde la izquierda.
+ * - .zoom: la imagen se acerca dentro de su marco.
+ */
+.lift {
+  /* translate (no transform) para no chocar con la entrada .reveal, que anima transform. */
+  transition: translate 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.3s ease, border-color 0.3s ease;
+}
+.icon-tilt,
+.icon-nudge,
+.zoom img,
+.zoom > .zoom-target {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, color 0.3s ease;
+}
+.tag {
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.title-link {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition: background-size 0.5s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+}
+@media (hover: hover) {
+  .lift:hover {
+    translate: 0 -4px;
+    box-shadow: 0 26px 50px -30px rgba(17, 12, 41, 0.45);
+  }
+  .group:hover .icon-tilt {
+    transform: rotate(-8deg) scale(1.08);
+  }
+  .group:hover .icon-nudge {
+    transform: translate(3px, -3px);
+  }
+  .group:hover .icon-nudge-x {
+    transform: translateX(4px);
+  }
+  .tag:hover,
+  .group:hover .tag {
+    background-color: rgba(61, 52, 188, 0.1);
+    color: #3d34bc;
+  }
+  .title-link:hover,
+  .group:hover .title-link {
+    background-size: 100% 1px;
+  }
+  .zoom:hover img,
+  .group:hover .zoom img,
+  .zoom:hover > .zoom-target,
+  .group:hover .zoom > .zoom-target {
+    transform: scale(1.045);
+  }
+}
+.icon-nudge-x {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}

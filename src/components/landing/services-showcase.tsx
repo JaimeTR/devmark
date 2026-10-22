@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 import { TitleText } from '@/components/site/title-text';
 import { WhatsAppIcon } from '@/components/site/whatsapp-icon';
 import { SERVICE_ICONS } from './service-band';
+import { Live } from '@/components/site/live';
 import { ServiceVisual } from './service-visuals';
 
 /**
@@ -56,9 +57,9 @@ export function ServicesShowcase({ lang }: { lang: Lang }) {
               >
                 {open ? (
                   <div id={`${baseId}-${i}`} className="grid h-full grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-8 p-6">
-                    <div className="rounded-xl bg-ink p-5">
+                    <Live className="rounded-xl bg-ink p-5">
                       <ServiceVisual id={s.id} lang={lang} />
-                    </div>
+                    </Live>
                     <div className="flex flex-col py-2 pr-2">
                       <span className="grid h-11 w-11 place-items-center rounded-lg bg-mist text-ink">
                         <Icon className="h-5 w-5" />
@@ -153,9 +154,9 @@ export function ServicesShowcase({ lang }: { lang: Lang }) {
                 </button>
                 {open && (
                   <div id={`${baseId}-m-${i}`} className="px-4 pb-5">
-                    <div className="h-64 rounded-xl bg-ink p-3 sm:h-80">
+                    <Live className="h-64 rounded-xl bg-ink p-3 sm:h-80">
                       <ServiceVisual id={s.id} lang={lang} />
-                    </div>
+                    </Live>
                     <p className="mt-5 text-[15px] leading-relaxed text-ink/70">{s.description}</p>
                     <ul className="mt-4 grid grid-cols-2 gap-2">
                       {s.includes.map((inc) => (

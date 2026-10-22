@@ -40,7 +40,7 @@ export function ProjectsGrid({ projects, lang, visit }: { projects: Project[]; l
             type="button"
             onClick={() => setSelected(p)}
             className={cn(
-              'reveal group relative overflow-hidden rounded-2xl bg-ink text-left',
+              'reveal lift group relative overflow-hidden rounded-2xl bg-ink text-left',
               i === 0 ? 'aspect-[4/3] lg:row-span-2 lg:aspect-auto' : 'aspect-[16/9]',
             )}
           >
@@ -59,11 +59,13 @@ export function ProjectsGrid({ projects, lang, visit }: { projects: Project[]; l
             <span className="chip glass-dark absolute left-4 top-4 py-1.5 pl-3 text-xs text-white">{label(p.category || 'webs')}</span>
             <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 sm:p-6">
               <div>
-                <h3 className={cn('headline text-white', i === 0 ? 'text-[clamp(1.75rem,3vw,2.5rem)]' : 'text-2xl')}>{p.title}</h3>
+                <h3 className={cn('headline text-white', i === 0 ? 'text-[clamp(1.75rem,3vw,2.5rem)]' : 'text-2xl')}>
+                  <span className="title-link">{p.title}</span>
+                </h3>
                 {p.rubro && <p className="mt-1.5 text-sm text-white/70">{p.rubro}</p>}
               </div>
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-white text-ink transition-transform duration-500 group-hover:-rotate-12">
-                <ArrowUpRight className="h-5 w-5" />
+                <ArrowUpRight className="icon-nudge h-5 w-5" />
                 <span className="sr-only">{visit}</span>
               </span>
             </div>

@@ -99,9 +99,9 @@ export function ServicesIndex({ lang }: { lang: Lang }) {
                 const Icon = icons[i];
                 const from = getStartingPrice(s.href, lang);
                 return (
-                  <Link key={s.href} href={s.href} className="reveal group flex flex-col rounded-2xl bg-mist p-6 transition-colors duration-500 hover:bg-ink hover:text-white">
+                  <Link key={s.href} href={s.href} className="reveal lift group flex flex-col rounded-2xl bg-mist p-6 transition-colors duration-500 hover:bg-ink hover:text-white">
                     <span className="grid h-11 w-11 place-items-center rounded-lg bg-white text-ink transition-colors duration-500 group-hover:bg-white/10 group-hover:text-white">
-                      <Icon className="h-5 w-5" />
+                      <Icon className="icon-tilt h-5 w-5" />
                     </span>
                     <h3 className="headline mt-8 text-2xl">{s.title}</h3>
                     <p className="mt-3 text-[15px] leading-relaxed text-ink/70 transition-colors duration-500 group-hover:text-ink-muted">{s.description}</p>
@@ -112,7 +112,7 @@ export function ServicesIndex({ lang }: { lang: Lang }) {
                         </p>
                       )}
                       <span className="grid h-10 w-10 place-items-center rounded-lg bg-ink text-white transition-colors group-hover:bg-white group-hover:text-ink">
-                        <ArrowUpRight className="h-4 w-4" />
+                        <ArrowUpRight className="icon-nudge h-4 w-4" />
                         <span className="sr-only">{t.more}</span>
                       </span>
                     </div>

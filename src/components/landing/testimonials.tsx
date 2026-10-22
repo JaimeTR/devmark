@@ -76,7 +76,7 @@ export function Testimonials({ lang }: { lang: Lang }) {
               <p className="text-sm text-ink/60">{c.countries}</p>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {CLIENT_COUNTRIES.map((k) => (
-                  <li key={k.code} className="flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-[15px]">
+                  <li key={k.code} className="tag flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-[15px]">
                     <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-primary" />
                     {k[lang]}
                   </li>
@@ -97,7 +97,7 @@ export function Testimonials({ lang }: { lang: Lang }) {
         <p className="mt-12 text-sm text-ink/60">{c.clientsLabel}</p>
         <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
           {clients.map((name) => (
-            <li key={name} className="reveal grid min-h-20 place-items-center rounded-2xl bg-mist px-3 py-5 text-center font-logo text-base tracking-wider text-ink/70 sm:text-lg">
+            <li key={name} className="reveal lift grid min-h-20 place-items-center rounded-2xl bg-mist px-3 py-5 text-center font-logo text-base tracking-wider text-ink/70 hover:bg-white hover:text-ink sm:text-lg">
               {name}
             </li>
           ))}
@@ -106,7 +106,7 @@ export function Testimonials({ lang }: { lang: Lang }) {
         {items.length > 0 && (
           <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {items.map((it) => (
-              <figure key={`${it.service}-${it.name}`} className="reveal flex flex-col rounded-2xl bg-mist p-6">
+              <figure key={`${it.service}-${it.name}`} className="reveal lift flex flex-col rounded-2xl bg-mist p-6">
                 <span className="self-start rounded-md bg-white px-2.5 py-1 text-xs text-ink/60">{it.service}</span>
                 <blockquote className="mt-4 text-[15px] leading-relaxed text-ink/80">“{it.quote}”</blockquote>
                 <figcaption className="mt-auto flex items-center gap-3 pt-5">

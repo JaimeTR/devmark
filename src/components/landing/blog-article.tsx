@@ -1,10 +1,12 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { format, parseISO } from 'date-fns';
 import { enUS, es } from 'date-fns/locale';
 import { ArrowUpRight } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/site/whatsapp-icon';
 import { whatsappHref } from '@/lib/contact';
+import { topicOf } from '@/data/blog-topics';
+import { BlogCover, TOPIC_ICON } from '@/components/blog/blog-cover';
+import { Live } from '@/components/site/live';
 
 interface PostLike {
   slug: string;
@@ -85,9 +87,9 @@ export function BlogArticle({ post, recent, lang }: { post: PostLike; recent: Po
               </span>
             </div>
           </div>
-          <div className="relative hidden aspect-[4/3] overflow-hidden rounded-2xl bg-band lg:block">
-            <Image src={post.image} alt="" fill sizes="40vw" className="object-contain p-10" priority />
-          </div>
+          <Live className="relative hidden aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 lg:block">
+            <BlogCover topic={topicOf(post)} lang={lang} />
+          </Live>
         </div>
       </section>
 
@@ -100,8 +102,8 @@ export function BlogArticle({ post, recent, lang }: { post: PostLike; recent: Po
               {recent.map((rp) => (
                 <li key={rp.slug}>
                   <Link href={`${t.base}/${rp.slug}`} className="group grid grid-cols-[64px_1fr] items-center gap-3 rounded-xl p-1.5 transition-colors hover:bg-mist">
-                    <span className="relative h-16 w-16 overflow-hidden rounded-lg bg-band">
-                      <Image src={rp.image} alt="" fill sizes="64px" className="object-contain p-1.5" />
+                    <span className="grid h-16 w-16 place-items-center rounded-lg bg-ink text-periwinkle">
+                      <TopicIcon topic={topicOf(rp)} />
                     </span>
                     <span>
                       <span className="line-clamp-2 text-[15px] font-medium leading-snug group-hover:text-primary">{rp.title}</span>
@@ -143,4 +145,9 @@ export function BlogArticle({ post, recent, lang }: { post: PostLike; recent: Po
       </section>
     </main>
   );
+}
+
+function TopicIcon({ topic }: { topic: ReturnType<typeof topicOf> }) {
+  const Icon = TOPIC_ICON[topic];
+  return <Icon className="icon-tilt h-6 w-6" />;
 }

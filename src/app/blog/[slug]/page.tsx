@@ -38,13 +38,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       siteName: 'Devmark',
       publishedTime: post.date,
       authors: [post.author],
-      images: [{ url: post.image, width: 1200, height: 630, alt: post.title }],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: post.description,
-      images: [post.image],
     },
   };
 }
@@ -89,7 +87,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const recentPosts = allPosts.filter(p => p.slug !== post.slug).slice(0, 3);
 
   const canonicalUrl = `https://devmarkpe.com/blog/${resolvedParams.slug}`;
-  const absoluteImage = post.image.startsWith('http') ? post.image : `https://devmarkpe.com${post.image}`;
+  const absoluteImage = `https://devmarkpe.com/blog/${post.slug}/opengraph-image`;
 
   return (
     <div className="bg-paper">
