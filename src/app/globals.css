@@ -585,6 +585,7 @@ html {
   .btn-light,
   .btn-ink {
     @apply btn text-white;
+    --btn-fg: #fff;
     background-image: linear-gradient(180deg, #4b42d0, #3d34bc);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 12px 28px -14px rgba(61, 52, 188, 0.8);
   }
@@ -599,6 +600,7 @@ html {
   /* Secundario sobre tinta: vidrio oscuro. */
   .btn-glass {
     @apply btn text-white glass-dark;
+    --btn-fg: #fff;
     --btn-shine: rgba(255, 255, 255, 0.18);
   }
   .btn-glass .btn-tile {
@@ -610,6 +612,7 @@ html {
   /* Secundario sobre papel: vidrio claro. */
   .btn-outline {
     @apply btn text-ink;
+    --btn-fg: #110c29;
     background: rgba(255, 255, 255, 0.72);
     box-shadow: inset 0 0 0 1px rgba(17, 12, 41, 0.1), 0 10px 30px -12px rgba(17, 12, 41, 0.18);
     backdrop-filter: blur(14px) saturate(150%);
@@ -1052,4 +1055,51 @@ html {
 @keyframes si-ring {
   0% { box-shadow: 0 0 0 0 rgba(61, 52, 188, 0.45); }
   70%, 100% { box-shadow: 0 0 0 12px rgba(61, 52, 188, 0); }
+}
+
+/*
+ * Clic en un boton (.btn): la baldosa del icono se despliega en horizontal hasta cubrir el boton,
+ * borrando el texto con un fundido suave, y vuelve. El margen negativo compensa el ancho
+ * para que el texto no se mueva. --btn-w lo pone ButtonPress (ancho real del boton).
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .btn-press {
+    animation: btn-borrado 1s cubic-bezier(0.65, 0, 0.35, 1) both;
+  }
+  .btn-press .btn-tile {
+    position: relative;
+    z-index: 1;
+    justify-items: end;
+    color: var(--btn-fg, #fff);
+    transform: none !important;
+    animation: btn-despliegue 1s cubic-bezier(0.65, 0, 0.35, 1) both;
+  }
+  .btn-press .btn-tile > svg {
+    margin-right: var(--btn-icon-pad, 11px);
+  }
+  .btn-sm.btn-press {
+    --btn-icon-pad: 8px;
+  }
+}
+@keyframes btn-despliegue {
+  0%,
+  100% {
+    width: var(--btn-tile-w, 40px);
+    margin-right: 0;
+  }
+  45%,
+  60% {
+    width: calc(var(--btn-w) - 2 * var(--btn-pad, 8px));
+    margin-right: calc(var(--btn-tile-w, 40px) - var(--btn-w) + 2 * var(--btn-pad, 8px));
+  }
+}
+@keyframes btn-borrado {
+  35%,
+  65% {
+    color: transparent;
+  }
+}
+.btn-sm {
+  --btn-tile-w: 32px;
+  --btn-pad: 6px;
 }
