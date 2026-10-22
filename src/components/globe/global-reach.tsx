@@ -38,7 +38,7 @@ export function GlobalReach({ lang }: { lang: 'es' | 'en' }) {
           </ul>
         </div>
         <div role="img" aria-label={t.label} className="relative -mx-5 aspect-square lg:mx-0">
-          <WorldGlobe arcs={ARCS} focus={LIMA} view={ENCUADRE} tone="dark" className="absolute inset-0" />
+          <WorldGlobe arcs={ARCS} focus={LIMA} view={ENCUADRE} tone="dark" interactive className="absolute inset-0" />
         </div>
       </div>
     </section>

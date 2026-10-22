@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CalendarDays, Check, Globe2, Target } from 'lucide-react';
 import { homeContent, type Lang } from '@/content/home';
 import { processSteps } from '@/content/home-data';
@@ -103,54 +103,106 @@ export function Process({ lang }: { lang: Lang }) {
   const t = homeContent[lang].process;
   const steps = processSteps[lang];
   const [active, setActive] = useState(0);
+  const trackRef = useRef<HTMLElement>(null);
+  const barRef = useRef<HTMLDivElement>(null);
+
+  // En escritorio el scroll maneja los pasos: la seccion mide un tramo de pantalla por paso
+  // y lo de adentro queda fijo (sticky) mientras se recorre. En celular se toca cada paso.
+  useEffect(() => {
+    const desktop = window.matchMedia('(min-width: 1024px)');
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const el = trackRef.current;
+      if (!el || !desktop.matches) return;
+      const rect = el.getBoundingClientRect();
+      const run = rect.height - window.innerHeight;
+      const progress = run > 0 ? Math.min(1, Math.max(0, -rect.top / run)) : 0;
+      barRef.current?.style.setProperty('--p', String(progress));
+      setActive(Math.min(steps.length - 1, Math.floor(progress * steps.length)));
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, [steps.length]);
+
+  const goTo = (i: number) => {
+    const el = trackRef.current;
+    if (el && window.matchMedia('(min-width: 1024px)').matches) {
+      const top = el.getBoundingClientRect().top + window.scrollY;
+      const run = el.offsetHeight - window.innerHeight;
+      window.scrollTo({ top: top + ((i + 0.5) / steps.length) * run, behavior: 'smooth' });
+    } else {
+      setActive(i);
+    }
+  };
 
   return (
-    <section className="panel-mist py-20 sm:py-28">
-      <div className="panel-inner grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
-        <div>
-          <h2 className="headline reveal text-[clamp(2.1rem,4.4vw,3.75rem)]">
-            <TitleText parts={t.title} />
-          </h2>
-          <p className="reveal mt-5 max-w-[46ch] text-[17px] leading-relaxed text-ink/70">{t.text}</p>
-          <ol className="mt-10 border-t border-ink/10">
-            {steps.map((s, i) => {
-              const open = i === active;
-              return (
-                <li key={s.number} className="border-b border-ink/10">
-                  <button
-                    type="button"
-                    onClick={() => setActive(i)}
-                    aria-expanded={open}
-                    className="group flex w-full items-center gap-4 py-4 text-left"
-                  >
-                    <span
-                      className={cn(
-                        'grid h-8 w-8 shrink-0 place-items-center rounded-md text-xs font-semibold tabular-nums transition-colors',
-                        open ? 'bg-ink text-white' : 'border border-ink/15 text-ink/40 group-hover:text-ink',
-                      )}
+    <section
+      ref={trackRef}
+      className="panel-mist py-20 sm:py-28 lg:h-[var(--track)] lg:py-0"
+      style={{ ['--track' as string]: `${steps.length * 70 + 30}svh` }}
+    >
+      <div className="lg:sticky lg:top-0 lg:flex lg:h-svh lg:items-center">
+        <div className="panel-inner grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-16 lg:pt-16">
+          <div>
+            <h2 className="headline reveal text-[clamp(2.1rem,4vw,3.5rem)]">
+              <TitleText parts={t.title} />
+            </h2>
+            <p className="reveal mt-4 max-w-[46ch] text-[17px] leading-relaxed text-ink/70">{t.text}</p>
+            <ol className="mt-8 border-t border-ink/10">
+              {steps.map((s, i) => {
+                const open = i === active;
+                return (
+                  <li key={s.number} className="border-b border-ink/10">
+                    <button
+                      type="button"
+                      onClick={() => goTo(i)}
+                      aria-current={open ? 'step' : undefined}
+                      className="group flex w-full items-center gap-4 py-3 text-left"
                     >
-                      {s.number}
-                    </span>
-                    <span className={cn('headline text-[1.4rem] transition-colors sm:text-2xl', open ? 'text-ink' : 'text-ink/40 group-hover:text-ink/70')}>{s.title}</span>
-                  </button>
-                  <div className={cn('grid transition-[grid-template-rows] duration-500 ease-out-expo', open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]')}>
-                    <p className="overflow-hidden pl-12 text-[15px] leading-relaxed text-ink/70">
-                      <span className="block pb-5">{s.description}</span>
-                    </p>
-                  </div>
-                </li>
-              );
-            })}
-          </ol>
-        </div>
-        <div className="lg:sticky lg:top-28 lg:h-[560px] lg:self-start">
-          <div className="h-[420px] sm:h-[480px] lg:h-full">
-            <StepVisual step={active} lang={lang} />
+                      <span
+                        className={cn(
+                          'grid h-8 w-8 shrink-0 place-items-center rounded-md text-xs font-semibold tabular-nums transition-colors duration-500',
+                          open ? 'bg-ink text-white' : i < active ? 'bg-ink/10 text-ink' : 'border border-ink/15 text-ink/40 group-hover:text-ink',
+                        )}
+                      >
+                        {s.number}
+                      </span>
+                      <span className={cn('headline text-[1.35rem] transition-colors duration-500 sm:text-[1.6rem]', open ? 'text-ink' : 'text-ink/35 group-hover:text-ink/70')}>{s.title}</span>
+                    </button>
+                    <div className={cn('grid transition-[grid-template-rows] duration-500 ease-out-expo', open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]')}>
+                      <p className="overflow-hidden pl-12 text-[15px] leading-relaxed text-ink/70">
+                        <span className="block pb-4">{s.description}</span>
+                      </p>
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
           </div>
-          <div className="mt-4 flex gap-1.5" aria-hidden>
-            {steps.map((s, i) => (
-              <span key={s.number} className={cn('h-1 flex-1 rounded-full transition-colors duration-500', i <= active ? 'bg-ink' : 'bg-ink/15')} />
-            ))}
+          <div>
+            <div key={active} className="step-in h-[420px] sm:h-[480px] lg:h-[min(560px,62svh)]">
+              <StepVisual step={active} lang={lang} />
+            </div>
+            <div ref={barRef} className="mt-4 hidden h-1 overflow-hidden rounded-full bg-ink/10 lg:block" style={{ ['--p' as string]: 0 }} aria-hidden>
+              <div className="h-full origin-left rounded-full bg-ink" style={{ transform: 'scaleX(var(--p))' }} />
+            </div>
+            <div className="mt-4 flex gap-1.5 lg:hidden" aria-hidden>
+              {steps.map((s, i) => (
+                <span key={s.number} className={cn('h-1 flex-1 rounded-full transition-colors duration-500', i <= active ? 'bg-ink' : 'bg-ink/15')} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
