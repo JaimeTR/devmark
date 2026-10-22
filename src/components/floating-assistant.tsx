@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { Bot, X, Calculator, MessageCircle } from 'lucide-react';
+import { Bot, X, Calculator } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/site/whatsapp-icon';
 import { AiChatbot } from '@/components/ai/ai-chatbot';
 
 const WHATSAPP_NUMBER = '+51975646074';
@@ -14,6 +15,8 @@ const copy = {
     quoteLink: '/quote',
     quoteLabel: 'Cotiza tu proyecto',
     whatsappLabel: 'Escríbenos por WhatsApp',
+    bubbleTitle: '¿Hablamos?',
+    bubbleStatus: 'En línea · respondemos rápido',
     whatsappMessage: 'Hola DEVMARK, me gustaría obtener más información sobre sus servicios.',
     openLabel: 'Abrir asistente',
     closeLabel: 'Cerrar asistente',
@@ -35,6 +38,8 @@ const copy = {
     quoteLink: '/en/quote',
     quoteLabel: 'Quote your project',
     whatsappLabel: 'Message us on WhatsApp',
+    bubbleTitle: "Let's talk?",
+    bubbleStatus: 'Online · quick replies',
     whatsappMessage: 'Hello DEVMARK, I would like to get more information about your services.',
     openLabel: 'Open assistant',
     closeLabel: 'Close assistant',
@@ -56,7 +61,6 @@ const copy = {
 export function FloatingAssistant() {
   const [isVisible, setIsVisible] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
   const pathname = usePathname();
   const lang = pathname?.startsWith('/en') ? 'en' : 'es';
   const t = copy[lang];
@@ -115,33 +119,36 @@ export function FloatingAssistant() {
 
       {!isOpen && (
         <div
-          className="flex items-center gap-3"
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
+          className={`flex items-center gap-2 transition-all duration-700 ease-out-expo ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'}`}
         >
-          <div
-            className={`max-w-[200px] bg-white/95 backdrop-blur-md rounded-2xl rounded-br-md border border-white/60 shadow-lg shadow-brand-blue/20 px-4 py-3 text-sm font-medium text-brand-navy transition-all duration-200 ${
-              isVisible && isHovering ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-2 pointer-events-none'
-            }`}
-          >
-            {t.greeting}
-          </div>
-
+          {/* Asistente con IA: boton cuadrado al lado de la burbuja de WhatsApp */}
           <button
             type="button"
-            onClick={() => setIsOpen((v) => !v)}
-            aria-label={isOpen ? t.closeLabel : t.openLabel}
-            className={`
-              flex items-center justify-center h-14 w-14 min-h-14 min-w-14 rounded-2xl shrink-0
-              border-2 border-transparent bg-brand-blue hover:bg-brand-navy-dark text-white
-              shadow-lg shadow-brand-blue/30 hover:shadow-xl hover:shadow-brand-blue/40
-              hover:-translate-y-1 active:scale-95
-              transition-all duration-300 ease-in-out
-              ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'}
-            `}
+            onClick={() => setIsOpen(true)}
+            aria-label={t.openLabel}
+            title={t.greeting}
+            className="grid h-14 w-14 shrink-0 place-items-center rounded-xl border border-white/10 bg-ink text-white shadow-[0_14px_30px_-12px_rgba(17,12,41,0.55)] transition-transform duration-300 hover:-translate-y-0.5 hover:bg-primary"
           >
-            <MessageCircle className="h-6 w-6" />
+            <Bot className="h-5 w-5" />
           </button>
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-3 rounded-xl border border-white/10 bg-ink/95 py-2 pl-4 pr-2 text-white shadow-[0_14px_30px_-12px_rgba(17,12,41,0.55)] backdrop-blur-md transition-transform duration-300 hover:-translate-y-0.5"
+          >
+            <span className="hidden flex-col sm:flex">
+              <span className="text-sm font-semibold">{t.bubbleTitle}</span>
+              <span className="flex items-center gap-1.5 text-xs text-ink-muted">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                {t.bubbleStatus}
+              </span>
+            </span>
+            <span className="grid h-10 w-10 place-items-center rounded-lg bg-[#25D366] text-white transition-transform duration-300 group-hover:-rotate-6">
+              <WhatsAppIcon />
+            </span>
+            <span className="sr-only sm:hidden">{t.whatsappLabel}</span>
+          </a>
         </div>
       )}
 

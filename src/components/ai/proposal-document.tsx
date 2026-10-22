@@ -55,7 +55,7 @@ export const ProposalDocument = forwardRef<HTMLDivElement, ProposalDocumentProps
       <div
         ref={ref}
         className="w-[800px] bg-white text-slate-800 p-12"
-        style={{ fontFamily: 'var(--font-poppins), sans-serif' }}
+        style={{ fontFamily: 'var(--font-sans), sans-serif' }}
       >
         <div className="flex items-start justify-between pb-6 border-b-2 border-brand-blue/20">
           <div className="flex items-center gap-3">

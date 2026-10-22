@@ -1,15 +1,15 @@
-
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Bot, Phone, Globe, Calculator, Check } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { Bot, Calculator, Check, Menu } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { WHATSAPP_GREETING, whatsappHref } from '@/lib/contact';
+import { WhatsAppIcon } from '@/components/site/whatsapp-icon';
 
 interface NavLink {
   href: string;
@@ -28,17 +28,10 @@ interface HeaderProps {
 }
 
 // Menú canónico del sitio — una sola fuente de verdad para que ninguna
-// página se quede con un header incompleto o desactualizado. "Inicio"/"Home"
-// apunta a la sección hero: hash simple si ya estás en la home, con el path
-// completo si estás en otra página (para navegar y luego hacer scroll).
-function buildNavLinks(lang: 'es' | 'en', pathname: string | null): NavLink[] {
-  const home = lang === 'en' ? '/en' : '/';
-  const isHome = pathname === home;
-  const heroHref = isHome ? '#hero' : `${home}#hero`;
-
+// página se quede con un header incompleto o desactualizado.
+function buildNavLinks(lang: 'es' | 'en'): NavLink[] {
   if (lang === 'en') {
     return [
-      { href: heroHref, label: 'Home' },
       { href: '/en/about', label: 'About' },
       { href: '/en/services', label: 'Services' },
       { href: '/en/portfolio', label: 'Portfolio' },
@@ -47,9 +40,7 @@ function buildNavLinks(lang: 'es' | 'en', pathname: string | null): NavLink[] {
       { href: '/en/contact', label: 'Contact' },
     ];
   }
-
   return [
-    { href: heroHref, label: 'Inicio' },
     { href: '/nosotros', label: 'Nosotros' },
     { href: '/servicios', label: 'Servicios' },
     { href: '/portfolio', label: 'Portafolio' },
@@ -59,277 +50,227 @@ function buildNavLinks(lang: 'es' | 'en', pathname: string | null): NavLink[] {
   ];
 }
 
-export function Header({ lang = 'es', contactButton, aiAssistant }: HeaderProps) {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
+const copy = {
+  es: { whatsapp: 'Hablemos por WhatsApp', short: 'WhatsApp', ai: 'Asistente con IA', quote: 'Cotizador con IA', language: 'Idioma', menu: 'Abrir menú', skip: 'Saltar al contenido principal', home: 'DEVMARK, inicio' },
+  en: { whatsapp: "Let's talk on WhatsApp", short: 'WhatsApp', ai: 'AI assistant', quote: 'AI quoter', language: 'Language', menu: 'Open menu', skip: 'Skip to main content', home: 'DEVMARK, home' },
+} as const;
+
+/**
+ * Barra de vidrio flotante. Cambia de tono según el panel que tiene debajo: los paneles
+ * oscuros llevan data-tone="dark"; todo lo demás se considera claro.
+ */
+export function Header({ lang = 'es', aiAssistant }: HeaderProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [tone, setTone] = useState<'dark' | 'light'>('light');
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const navLinks = useMemo(() => buildNavLinks(lang, pathname), [lang, pathname]);
+  const navLinks = useMemo(() => buildNavLinks(lang), [lang]);
+  const t = copy[lang];
+  const homeHref = lang === 'en' ? '/en' : '/';
   const aiAssistantLink = lang === 'en' ? '/en/ai-assistant' : '/ai-assistant';
   const aiQuoterLink = lang === 'en' ? '/en/quote' : '/quote';
-  const contactLink = lang === 'en' ? '/en/contact' : '/contacto';
-  const aiChooserLabels = lang === 'en'
-    ? { open: 'AI Assistant', quote: 'AI Quoter' }
-    : { open: 'Asistente con IA', quote: 'Cotizador con IA' };
+  const whatsapp = whatsappHref(WHATSAPP_GREETING[lang]);
   const languageOptions = [
     { code: 'es' as const, label: 'Español', href: '/' },
     { code: 'en' as const, label: 'English', href: '/en' },
   ];
 
   useEffect(() => {
-    // Mapear rutas de página a IDs de sección
-    const routeToSectionId: Record<string, string> = {
-      '/servicios': 'services',
-      '/en/services': 'services',
-      '/portfolio': 'portfolio',
-      '/en/portfolio': 'portfolio',
-      '/hosting': 'hosting',
-      '/en/hosting': 'hosting',
-      '/contacto': 'contact',
-      '/en/contact': 'contact',
-    };
-
     let ticking = false;
-
-    const updateScrollState = () => {
-      const scrollPosition = window.scrollY;
-      if (scrollPosition > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-
-      const sections = navLinks.map(link => {
-        // Si el link es a una página, buscar su ID de sección correspondiente
-        const sectionId = routeToSectionId[link.href] || link.href.substring(1);
-        return document.getElementById(sectionId);
-      }).filter(Boolean);
-
-      // Detectar si estamos cerca del final de la página
-      const isNearBottom = (window.innerHeight + scrollPosition) >= document.documentElement.scrollHeight - 100;
-
-      let currentSection = 'hero';
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section) {
-          // Para la última sección, activar si estamos cerca del final o dentro de su área
-          if (i === sections.length - 1 && isNearBottom) {
-            currentSection = section.id;
-            break;
-          }
-          // getBoundingClientRect en vez de offsetTop: offsetTop se rompe cuando un
-          // ancestro (p.ej. ScrollReveal) usa transform, porque eso lo convierte en
-          // el offsetParent — getBoundingClientRect siempre es relativo al viewport real.
-          const docTop = section.getBoundingClientRect().top + window.scrollY;
-          if (docTop <= scrollPosition + 150) {
-            currentSection = section.id;
-            break;
-          }
-        }
-      }
-       setActiveSection(currentSection);
-       ticking = false;
+    const update = () => {
+      ticking = false;
+      setScrolled(window.scrollY > 24);
+      // Lo que hay justo debajo de la barra decide su tono.
+      const below = document
+        .elementsFromPoint(window.innerWidth / 2, 44)
+        .find((el) => !el.closest('header'))
+        ?.closest('[data-tone]');
+      setTone(below?.getAttribute('data-tone') === 'dark' ? 'dark' : 'light');
     };
-
-    const handleScroll = () => {
+    const onScroll = () => {
       if (!ticking) {
-        window.requestAnimationFrame(updateScrollState);
         ticking = true;
+        window.requestAnimationFrame(update);
       }
     };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    updateScrollState();
-
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
     };
-  }, [navLinks]);
-  
-  const navLinkClass = (href: string) => {
-    // Mapear rutas de página a IDs de sección
-    const routeToSectionId: Record<string, string> = {
-      '/servicios': 'services',
-      '/en/services': 'services',
-      '/portfolio': 'portfolio',
-      '/en/portfolio': 'portfolio',
-      '/hosting': 'hosting',
-      '/en/hosting': 'hosting',
-      '/contacto': 'contact',
-      '/en/contact': 'contact',
-    };
-    
-    // Detectar si el link es a una página (comienza con /) o a una sección (#)
-    const isPageLink = href.startsWith('/') && !href.includes('#');
-    
-    let isActive = false;
-    
-    if (isPageLink) {
-      // Verificar si estamos en una página separada
-      const isOnSeparatePage = pathname !== '/' && pathname !== '/en';
-      
-      if (isOnSeparatePage) {
-        // Estamos en una página separada (/servicios, /portfolio, etc.)
-        isActive = pathname === href || pathname?.startsWith(href + '/');
-      } else {
-        // Estamos en la página de inicio, detectar por scroll de sección
-        const sectionId = routeToSectionId[href];
-        if (sectionId) {
-          isActive = activeSection === sectionId;
-        }
-      }
-    } else {
-      // Para secciones (#), usar la lógica de scroll existente
-      isActive = activeSection === href.substring(1);
-    }
-    
-    return cn(
-      'text-sm font-medium transition-colors hover:text-primary px-3 py-1.5 rounded-xl',
-      isActive
-        ? 'bg-primary/10 text-primary'
-        : 'text-muted-foreground hover:text-primary'
-    );
-  };
+  }, [pathname]);
+
+  const dark = tone === 'dark';
+  const isActive = (href: string) => pathname === href || pathname?.startsWith(href + '/');
 
   return (
-    <header className={cn(
-      "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out",
-      isScrolled ? "top-4" : ""
-    )}>
-      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-2 focus:bg-primary focus:text-white focus:rounded">
-        Saltar al contenido principal
+    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-3 focus:py-2 focus:text-white"
+      >
+        {t.skip}
       </a>
-        <div className={cn(
-          "container mx-auto flex items-center justify-between transition-all duration-300 ease-in-out",
-          "h-20 px-4 sm:px-6 lg:px-8",
-          isScrolled && "h-16 w-[calc(100%-1.5rem)] sm:w-[calc(100%-2rem)] md:w-auto md:max-w-7xl bg-white/95 backdrop-blur-lg rounded-3xl border border-slate-100 shadow-lg"
-        )}>
-          <Link href={lang === 'en' ? '/en' : '/'} className="flex items-center gap-2 shrink-0 whitespace-nowrap min-w-0" aria-label="DEVMARK - Inicio">
-            <Image src="/logo-mark.svg" alt="" role="presentation" width={40} height={40} className="w-9 h-9 sm:w-10 sm:h-10 shrink-0" priority />
-            <span className="font-logo text-lg sm:text-2xl tracking-wider text-brand-navy">DEVMARK</span>
-          </Link>
-          
-          <nav className="hidden lg:flex gap-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={navLinkClass(link.href)}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+      <div
+        className={cn(
+          'mx-auto flex h-16 max-w-[1240px] items-center justify-between gap-4 rounded-2xl pl-3 pr-2 transition-[background-color,border-color,box-shadow,color] duration-500',
+          dark ? 'glass-dark text-white' : 'glass-light text-ink',
+          !scrolled && dark && 'bg-transparent',
+        )}
+      >
+        <Link href={homeHref} className="flex min-w-0 shrink-0 items-center gap-2.5" aria-label={t.home}>
+          <Image
+            src={dark ? '/logo-mark-white.svg' : '/logo-mark.svg'}
+            alt=""
+            role="presentation"
+            width={36}
+            height={36}
+            className="h-8 w-8 shrink-0"
+            priority
+          />
+          <span className="font-logo text-lg tracking-wider sm:text-xl">DEVMARK</span>
+        </Link>
 
-          <div className="hidden lg:flex items-center gap-3">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="group h-11 w-11 rounded-xl bg-brand-light text-brand-navy hover:text-brand-blue hover:bg-brand-blue/10 transition-all font-bold text-xs tracking-wide" aria-label="Cambiar idioma">
-                  {lang.toUpperCase()}
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="rounded-2xl">
-                {languageOptions.map((option) => (
-                  <DropdownMenuItem key={option.code} asChild className="rounded-xl cursor-pointer">
-                    <Link href={option.href} className="flex items-center justify-between gap-3">
-                      {option.label}
-                      {option.code === lang && <Check className="h-4 w-4 text-brand-blue" />}
-                    </Link>
-                  </DropdownMenuItem>
+        <nav className="hidden items-center gap-1 lg:flex" aria-label={lang === 'en' ? 'Main' : 'Principal'}>
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              aria-current={isActive(link.href) ? 'page' : undefined}
+              className={cn(
+                'rounded-lg px-3 py-2 text-[15px] font-medium transition-colors',
+                isActive(link.href)
+                  ? dark
+                    ? 'bg-white/[0.12] text-white'
+                    : 'bg-ink/[0.06] text-ink'
+                  : dark
+                    ? 'text-white/75 hover:text-white'
+                    : 'text-ink/70 hover:text-ink',
+              )}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-1.5">
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              className={cn(
+                'hidden h-10 w-10 place-items-center rounded-lg text-xs font-semibold tracking-wide transition-colors sm:grid',
+                dark ? 'hover:bg-white/10' : 'hover:bg-ink/[0.06]',
+              )}
+              aria-label={t.language}
+            >
+              {lang.toUpperCase()}
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="rounded-xl">
+              {languageOptions.map((option) => (
+                <DropdownMenuItem key={option.code} asChild className="cursor-pointer rounded-lg">
+                  <Link href={option.href} className="flex items-center justify-between gap-3">
+                    {option.label}
+                    {option.code === lang && <Check className="h-4 w-4 text-primary" />}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              className={cn('hidden h-10 w-10 place-items-center rounded-lg transition-colors sm:grid', dark ? 'hover:bg-white/10' : 'hover:bg-ink/[0.06]')}
+              aria-label={aiAssistant}
+            >
+              <Bot className="h-5 w-5" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="rounded-xl">
+              <DropdownMenuItem asChild className="cursor-pointer rounded-lg">
+                <Link href={aiAssistantLink} className="flex items-center justify-between gap-3">
+                  {t.ai} <Bot className="h-4 w-4" />
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild className="cursor-pointer rounded-lg">
+                <Link href={aiQuoterLink} className="flex items-center justify-between gap-3">
+                  {t.quote} <Calculator className="h-4 w-4" />
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <a
+            href={whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn('btn btn-sm hidden md:inline-flex', dark ? 'btn-light' : 'btn-ink')}
+          >
+            <span className="btn-tile">
+              <WhatsAppIcon className="h-4 w-4" />
+            </span>
+            {t.whatsapp}
+          </a>
+
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger
+              className={cn('grid h-11 w-11 place-items-center rounded-lg lg:hidden', dark ? 'bg-white/10' : 'bg-ink/[0.06]')}
+              aria-label={t.menu}
+            >
+              <Menu className="h-5 w-5" />
+            </SheetTrigger>
+            <SheetContent side="right" className="flex w-[min(88vw,380px)] flex-col gap-0 border-none bg-ink p-0 text-white">
+              <SheetTitle className="sr-only">{t.menu}</SheetTitle>
+              <div className="flex items-center gap-2.5 px-6 pb-6 pt-7">
+                <Image src="/logo-mark-white.svg" alt="" role="presentation" width={32} height={32} className="h-8 w-8" />
+                <span className="font-logo text-xl tracking-wider">DEVMARK</span>
+              </div>
+              <nav className="flex flex-col px-3">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className={cn(
+                      'headline rounded-xl px-3 py-2.5 text-[32px] transition-colors',
+                      isActive(link.href) ? 'text-white' : 'text-white/60 hover:text-white',
+                    )}
+                  >
+                    {link.label}
+                  </Link>
                 ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="group h-11 w-11 rounded-xl bg-brand-light text-brand-navy hover:text-brand-blue hover:bg-brand-blue/10 transition-all" aria-label={aiAssistant}>
-                  <Bot className="h-5 w-5 group-hover:scale-110 transition-transform duration-300"/>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="rounded-2xl">
-                <DropdownMenuItem asChild className="rounded-xl cursor-pointer">
-                  <Link href={aiAssistantLink}>
-                    {aiChooserLabels.open} <Bot className="ml-2 h-4 w-4" />
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild className="rounded-xl cursor-pointer">
-                  <Link href={aiQuoterLink}>
-                    {aiChooserLabels.quote} <Calculator className="ml-2 h-4 w-4" />
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            
-            <Button asChild className="group h-11 px-5 text-sm whitespace-nowrap border-2 border-transparent bg-brand-blue hover:bg-brand-navy-dark text-white rounded-2xl shadow-xl shadow-brand-blue/30 hover:shadow-brand-blue/40 hover:-translate-y-1 transition-all duration-300">
-              <Link href={contactLink}>{contactButton}<Phone className="ml-2 h-4 w-4 shrink-0 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" /></Link>
-            </Button>
-          </div>
-          
-          <div className="lg:hidden shrink-0">
-            <Sheet open={isOpen} onOpenChange={setIsOpen}>
-              <SheetTrigger asChild>
-                <Button variant="outline" size="icon" className="h-11 w-11" aria-label="Abrir menú de navegación">
-                  <Menu className="h-6 w-6" />
-                  <span className="sr-only">Open navigation menu</span>
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right">
-                <div className="flex flex-col gap-6 p-6">
-                  <Link href={lang === 'en' ? '/en' : '/'} className="flex items-center gap-2 mb-4" onClick={() => setIsOpen(false)}>
-                    <Image src="/logo-mark.svg" alt="" role="presentation" width={36} height={36} className="w-9 h-9" />
-                    <span className="font-logo text-2xl tracking-wider text-brand-navy">DEVMARK</span>
-                  </Link>
-                  <nav className="flex flex-col gap-1">
-                    {navLinks.map((link) => (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        onClick={() => setIsOpen(false)}
-                        className="py-3 text-lg font-medium text-foreground transition-colors hover:text-primary"
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
+              </nav>
+              <div className="mt-6 flex flex-col gap-1 border-t border-white/10 px-6 pt-5 text-[15px]">
+                <Link href={aiAssistantLink} onClick={() => setIsOpen(false)} className="flex items-center justify-between py-2 text-white/80 hover:text-white">
+                  {t.ai} <Bot className="h-4 w-4" />
+                </Link>
+                <Link href={aiQuoterLink} onClick={() => setIsOpen(false)} className="flex items-center justify-between py-2 text-white/80 hover:text-white">
+                  {t.quote} <Calculator className="h-4 w-4" />
+                </Link>
+                <div className="flex gap-2 pt-3">
+                  {languageOptions.map((option) => (
                     <Link
-                        href={aiAssistantLink}
-                        onClick={() => setIsOpen(false)}
-                        className="py-3 text-lg font-medium text-foreground transition-colors hover:text-primary flex items-center"
-                      >
-                        {aiAssistant} <Bot className="ml-2 h-5 w-5"/>
-                      </Link>
-                      <Link
-                        href={aiQuoterLink}
-                        onClick={() => setIsOpen(false)}
-                        className="py-3 text-lg font-medium text-foreground transition-colors hover:text-primary flex items-center"
-                      >
-                        {aiChooserLabels.quote} <Calculator className="ml-2 h-5 w-5"/>
-                      </Link>
-                  </nav>
-                   <div className="mt-4 border-t border-border pt-4">
-                      <p className="flex items-center gap-2 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                        <Globe className="h-4 w-4" /> {lang === 'en' ? 'Language' : 'Idioma'}
-                      </p>
-                      {languageOptions.map((option) => (
-                        <Link
-                          key={option.code}
-                          href={option.href}
-                          className="flex items-center justify-between gap-2 py-3 text-lg font-medium text-foreground transition-colors hover:text-primary"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          {option.label}
-                          {option.code === lang && <Check className="h-5 w-5 text-brand-blue" />}
-                        </Link>
-                      ))}
-                    </div>
-
-                  <Button asChild className="mt-6 h-[52px] rounded-2xl text-base bg-brand-blue hover:bg-brand-navy-dark text-white">
-                    <Link href={contactLink} onClick={() => setIsOpen(false)}>{contactButton}</Link>
-                  </Button>
+                      key={option.code}
+                      href={option.href}
+                      onClick={() => setIsOpen(false)}
+                      className={cn('rounded-lg px-3 py-1.5 text-sm', option.code === lang ? 'bg-white text-ink' : 'bg-white/10 text-white/80')}
+                    >
+                      {option.label}
+                    </Link>
+                  ))}
                 </div>
-              </SheetContent>
-            </Sheet>
-          </div>
+              </div>
+              <div className="mt-auto p-6">
+                <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="btn-light w-full">
+                  <span className="btn-tile">
+                    <WhatsAppIcon />
+                  </span>
+                  {t.whatsapp}
+                </a>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
+      </div>
     </header>
   );
 }
