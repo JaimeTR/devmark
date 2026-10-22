@@ -1058,44 +1058,39 @@ html {
 }
 
 /*
- * Clic en un boton (.btn): la baldosa del icono se despliega en horizontal hasta cubrir el boton,
- * borrando el texto con un fundido suave, y vuelve. El margen negativo compensa el ancho
- * para que el texto no se mueva. --btn-w lo pone ButtonPress (ancho real del boton).
+ * Clic en un boton con icono: solo el icono viaja en linea recta hasta el otro extremo del boton
+ * mientras el texto se funde, y luego vuelve. La baldosa se queda quieta y de su tamano (sin la
+ * inclinacion del hover, para que el viaje sea horizontal). --btn-w lo pone ButtonPress.
  */
 @media (prefers-reduced-motion: no-preference) {
   .btn-press {
-    animation: btn-borrado 1s cubic-bezier(0.65, 0, 0.35, 1) both;
+    animation: btn-borrado 1.6s cubic-bezier(0.45, 0, 0.2, 1) both;
   }
   .btn-press .btn-tile {
     position: relative;
     z-index: 1;
-    justify-items: end;
     color: var(--btn-fg, #fff);
     transform: none !important;
-    animation: btn-despliegue 1s cubic-bezier(0.65, 0, 0.35, 1) both;
+    transition: none;
   }
   .btn-press .btn-tile > svg {
-    margin-right: var(--btn-icon-pad, 11px);
-  }
-  .btn-sm.btn-press {
-    --btn-icon-pad: 8px;
+    animation: btn-viaje 1.6s cubic-bezier(0.45, 0, 0.2, 1) both;
   }
 }
-@keyframes btn-despliegue {
+@keyframes btn-viaje {
   0%,
   100% {
-    width: var(--btn-tile-w, 40px);
-    margin-right: 0;
+    transform: translateX(0);
   }
   45%,
   60% {
-    width: calc(var(--btn-w) - 2 * var(--btn-pad, 8px));
-    margin-right: calc(var(--btn-tile-w, 40px) - var(--btn-w) + 2 * var(--btn-pad, 8px));
+    /* Del centro de la baldosa al borde derecho del boton, con el mismo margen. */
+    transform: translateX(calc(var(--btn-w) - var(--btn-tile-w, 40px) - 2 * var(--btn-pad, 8px)));
   }
 }
 @keyframes btn-borrado {
-  35%,
-  65% {
+  30%,
+  70% {
     color: transparent;
   }
 }
