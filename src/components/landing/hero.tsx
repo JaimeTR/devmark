@@ -50,8 +50,8 @@ export function Hero({ lang }: { lang: Lang }) {
           </div>
         </div>
 
-        <div className="relative h-[460px] sm:h-[540px] lg:h-[640px]">
-          <HeroShowcase lang={lang} chips={t.chips} />
+        <div className="relative h-[540px] sm:h-[540px] lg:h-[640px]">
+          <HeroShowcase lang={lang} />
         </div>
       </div>
     </section>

@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'SEO y Optimización Web para Posicionar tu Negocio',
-  description: 'Aumentamos tu visibilidad en buscadores, atraemos tráfico orgánico de calidad y mejoramos la tasa de conversión de tu sitio web en todo el Perú.',
+  title: 'SEO y GEO: posiciona tu negocio en Google y en la IA',
+  description: 'Posicionamos tu web en Google (SEO) y en ChatGPT, Gemini y Perplexity (GEO) para atraer más clientes en todo el Perú.',
   alternates: {
     canonical: 'https://devmarkpe.com/servicios/seo-optimizacion',
     languages: {
@@ -14,10 +14,10 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'es_PE',
     url: 'https://devmarkpe.com/servicios/seo-optimizacion',
-    title: 'SEO y Optimización Web | Devmark Perú',
-    description: 'Aumentamos tu visibilidad en buscadores y mejoramos la tasa de conversión de tu sitio web.',
+    title: 'SEO y GEO | DEVMARK Perú',
+    description: 'Te encuentran en Google y te recomiendan en ChatGPT, Gemini y Perplexity.',
     siteName: 'Devmark',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'SEO y optimización web - DEVMARK' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'SEO y GEO - DEVMARK' }],
   },
 };
 

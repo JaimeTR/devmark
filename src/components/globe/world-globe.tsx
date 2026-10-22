@@ -24,8 +24,10 @@ type WorldGlobeProps = {
   view?: { lat: number; lng: number };
   /** Sobre fondo claro (paneles niebla) u oscuro (paneles tinta). */
   tone?: 'light' | 'dark';
-  /** Se puede girar arrastrando (mouse o dedo); si nadie lo toca, gira solo. */
+  /** Se puede girar arrastrando (mouse o dedo). */
   interactive?: boolean;
+  /** Con interactive: si nadie lo toca, gira solo. En false queda quieto hasta que lo arrastren. */
+  autoRotate?: boolean;
   className?: string;
 };
 
@@ -48,7 +50,7 @@ function tokenColor(name: string, alpha = 1) {
   return alpha === 1 ? `hsl(${h}, ${s}, ${l})` : `hsla(${h}, ${s}, ${l}, ${alpha})`;
 }
 
-export function WorldGlobe({ arcs, focus, view = focus, tone = 'light', interactive = false, className }: WorldGlobeProps) {
+export function WorldGlobe({ arcs, focus, view = focus, tone = 'light', interactive = false, autoRotate = true, className }: WorldGlobeProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -181,12 +183,12 @@ export function WorldGlobe({ arcs, focus, view = focus, tone = 'light', interact
       }
 
       // Sin interaccion: vaiven suave alrededor del foco (Lima no se pierde de vista).
-      // Interactivo: gira solo despues de unos segundos sin que nadie lo toque.
+      // Interactivo: con autoRotate gira solo despues de unos segundos sin que nadie lo toque.
       const render = (time: number) => {
         frame = 0;
         if (!visible) return;
         if (interactive) {
-          if (!dragging && !reducedMotion && time - lastTouch > 2500) spin += 0.0018;
+          if (autoRotate && !dragging && !reducedMotion && time - lastTouch > 2500) spin += 0.0018;
           globe.rotation.y = spin;
         } else if (!reducedMotion) {
           globe.rotation.y = baseY + Math.sin(time / 4000) * 0.25;
@@ -230,7 +232,7 @@ export function WorldGlobe({ arcs, focus, view = focus, tone = 'light', interact
       lazy.disconnect();
       cleanup?.();
     };
-  }, [arcs, focus, view, tone, interactive]);
+  }, [arcs, focus, view, tone, interactive, autoRotate]);
 
   return <div ref={containerRef} className={className} />;
 }

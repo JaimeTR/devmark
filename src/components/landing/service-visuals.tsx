@@ -1,4 +1,4 @@
-import { ArrowRight, Bot, MessageCircle, Search, ShoppingBag, User } from 'lucide-react';
+import { ArrowRight, Bot, MessageCircle, Search, ShoppingBag, Sparkles, User } from 'lucide-react';
 import type { ServiceIcon } from '@/content/home';
 
 // Mini interfaces dibujadas en codigo para cada servicio. Son ilustrativas: no muestran
@@ -182,18 +182,27 @@ function ChatbotVisual({ lang }: { lang: 'es' | 'en' }) {
 }
 
 function SeoVisual({ lang }: { lang: 'es' | 'en' }) {
+  // SEO (resultado en Google) y GEO (la respuesta de la IA cita a tunegocio.pe).
   return (
     <div className="flex h-full flex-col rounded-xl border border-white/10 bg-ink-soft p-4">
       <div className="flex items-center gap-2 rounded-full bg-white/[0.07] px-3 py-2 text-[13px] text-white/70">
-        <Search className="h-3.5 w-3.5" />
-        {lang === 'en' ? 'web design agency lima' : 'diseño de páginas web lima'}
+        <Search className="h-3.5 w-3.5 shrink-0" />
+        <span className="truncate">{lang === 'en' ? 'web design agency lima' : 'diseño de páginas web lima'}</span>
       </div>
-      <div className="mt-4 space-y-2.5">
-        {[0, 1, 2, 3].map((i) => (
-          <div key={i} className={`lv rounded-lg p-3 ${i === 0 ? 'lv-4 bg-white' : 'lv-2 bg-white/[0.05]'}`} style={stagger(i)}>
+      <div className="lv lv-3 mt-3 rounded-lg border border-periwinkle/30 bg-primary/15 p-3">
+        <span className="flex items-center gap-1.5 text-[11px] text-periwinkle">
+          <Sparkles className="h-3 w-3" />
+          {lang === 'en' ? 'AI answer' : 'Respuesta con IA'}
+        </span>
+        <span className="lv lv-grow lv-4 mt-2 block h-1.5 w-11/12 rounded-full bg-white/40" />
+        <span className="lv lv-grow lv-4 mt-1.5 block h-1.5 w-3/4 rounded-full bg-white/25" />
+        <span className="lv lv-pop lv-5 mt-2.5 inline-flex rounded-md bg-white px-2 py-0.5 text-[10px] font-medium text-primary">tunegocio.pe</span>
+      </div>
+      <div className="mt-2.5 space-y-2.5">
+        {[0, 1, 2].map((i) => (
+          <div key={i} className={`lv rounded-lg p-3 ${i === 0 ? 'lv-2 bg-white' : 'lv-1 bg-white/[0.05]'}`} style={stagger(i)}>
             <span className={`block text-[11px] ${i === 0 ? 'text-primary' : 'text-white/40'}`}>{i === 0 ? 'tunegocio.pe' : 'otro-sitio.com'}</span>
             <span className={`mt-1.5 block h-2.5 rounded ${i === 0 ? 'w-4/5 bg-ink' : 'w-3/5 bg-white/25'}`} />
-            <span className={`mt-1.5 block h-1.5 rounded-full ${i === 0 ? 'w-11/12 bg-ink/25' : 'w-4/5 bg-white/10'}`} />
           </div>
         ))}
       </div>

@@ -57,8 +57,10 @@ export function ServicesShowcase({ lang }: { lang: Lang }) {
               >
                 {open ? (
                   <div id={`${baseId}-${i}`} className="grid h-full grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-8 p-6">
-                    <Live className="rounded-xl bg-ink p-5">
-                      <ServiceVisual id={s.id} lang={lang} />
+                    <Live className="flex items-center rounded-xl bg-ink p-5">
+                      <div className="h-[min(100%,420px)] w-full">
+                        <ServiceVisual id={s.id} lang={lang} />
+                      </div>
                     </Live>
                     <div className="flex flex-col py-2 pr-2">
                       <span className="grid h-11 w-11 place-items-center rounded-lg bg-mist text-ink">

@@ -1,10 +1,9 @@
-import { homeContent, clients, type Lang } from '@/content/home';
+import { homeContent, type Lang } from '@/content/home';
 import { RevealWords } from '@/components/site/reveal-words';
 
-/** Declaracion del estudio (se revela palabra por palabra), cifras reales y clientes. */
+/** Declaracion del estudio (se revela palabra por palabra) y cifras reales. Los clientes van en Testimonials. */
 export function Intro({ lang }: { lang: Lang }) {
   const t = homeContent[lang].intro;
-  const loop = [...clients, ...clients];
   return (
     <section className="panel-paper py-24 sm:py-32">
       <div className="panel-inner">
@@ -22,18 +21,6 @@ export function Intro({ lang }: { lang: Lang }) {
         </div>
       </div>
 
-      <div className="mt-20">
-        <p className="panel-inner text-sm text-ink/60">{t.clientsLabel}</p>
-        <div className="marquee mt-6 overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]" style={{ ['--marquee-speed' as string]: '50s' }}>
-          <ul className="marquee-track items-center">
-            {loop.map((c, i) => (
-              <li key={i} aria-hidden={i >= clients.length} className="shrink-0 px-8 font-logo text-2xl tracking-wider text-ink/35 transition-colors hover:text-ink sm:px-12 sm:text-3xl">
-                {c}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
     </section>
   );
 }
