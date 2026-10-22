@@ -1058,9 +1058,10 @@ html {
 }
 
 /*
- * Clic en un boton con icono: solo el icono viaja en linea recta hasta el otro extremo del boton
- * mientras el texto se funde, y luego vuelve. La baldosa se queda quieta y de su tamano (sin la
- * inclinacion del hover, para que el viaje sea horizontal). --btn-w lo pone ButtonPress.
+ * Clic en un boton con icono: la baldosa (cuadrada, con las mismas esquinas suaves) viaja entera
+ * con su icono en linea recta hasta el otro extremo del boton mientras el texto se funde, y luego
+ * vuelve. No se estira. La animacion reemplaza la inclinacion del hover mientras dura, asi el
+ * recorrido es horizontal. --btn-w lo pone ButtonPress.
  */
 @media (prefers-reduced-motion: no-preference) {
   .btn-press {
@@ -1070,10 +1071,7 @@ html {
     position: relative;
     z-index: 1;
     color: var(--btn-fg, #fff);
-    transform: none !important;
     transition: none;
-  }
-  .btn-press .btn-tile > svg {
     animation: btn-viaje 1.6s cubic-bezier(0.45, 0, 0.2, 1) both;
   }
 }
@@ -1084,7 +1082,7 @@ html {
   }
   45%,
   60% {
-    /* Del centro de la baldosa al borde derecho del boton, con el mismo margen. */
+    /* La baldosa llega al borde derecho con el mismo margen que tiene a la izquierda. */
     transform: translateX(calc(var(--btn-w) - var(--btn-tile-w, 40px) - 2 * var(--btn-pad, 8px)));
   }
 }
