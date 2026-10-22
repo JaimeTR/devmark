@@ -1,7 +1,8 @@
-import { AnimatedBackground } from '@/components/home/animated-background';
 import { Footer } from '@/components/home/footer';
 import { Header } from '@/components/home/header';
 import { Contact } from '@/components/home/contact';
+import { Faq } from '@/components/landing/faq';
+import { homeContent } from '@/content/home';
 
 const headerContent = {
   lang: 'en' as const,
@@ -51,13 +52,11 @@ const footerContent = {
 
 export default function ContactPage() {
   return (
-    <div className="relative overflow-x-hidden bg-background">
-      <AnimatedBackground />
+    <div className="bg-paper">
       <Header {...headerContent} />
-      <main id="main-content">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
-          <Contact {...contactContent} />
-        </div>
+      <main id="main-content" className="flex flex-col gap-2 sm:gap-3">
+        <Contact {...contactContent} heading={homeContent.en.contact.title} first />
+        <Faq lang="en" />
       </main>
       <Footer lang="en" copyright={footerContent.copyright} />
     </div>

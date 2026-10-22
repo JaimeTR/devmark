@@ -1,4 +1,3 @@
-import { Globe2 } from 'lucide-react';
 import { WorldGlobe, type GlobeArc } from './world-globe';
 
 const LIMA = { lat: -12.0464, lng: -77.0428 };
@@ -28,50 +27,32 @@ const ARCS: GlobeArc[] = DESTINOS.map(({ lat, lng, alt }) => ({
 
 const copy = {
   es: {
-    eyebrow: 'Desde Lima',
-    title: 'Un equipo en Lima, clientes en cualquier lugar',
+    title: ['Un equipo en Lima,', { em: 'clientes en cualquier lugar.' }] as const,
     text: 'Trabajamos con negocios de todo el Perú y de fuera del país. Reuniones por videollamada, avances que puedes revisar cuando quieras y el mismo equipo de principio a fin, estés donde estés.',
-    stats: [
-      { value: '100+', label: 'clientes satisfechos' },
-      { value: '6', label: 'marcas colaboradoras' },
-    ],
+    label: 'Globo con arcos desde Lima hacia ciudades donde trabajamos',
   },
   en: {
-    eyebrow: 'From Lima',
-    title: 'A team in Lima, clients anywhere',
+    title: ['A team in Lima,', { em: 'clients anywhere.' }] as const,
     text: 'We work with businesses across Peru and abroad. Video-call meetings, progress you can check whenever you want, and the same team from start to finish, wherever you are.',
-    stats: [
-      { value: '100+', label: 'happy clients' },
-      { value: '6', label: 'partner brands' },
-    ],
+    label: 'Globe with arcs from Lima to cities where we work',
   },
 } as const;
 
+/** Alcance desde Lima: panel tinta con el globo y los arcos a ciudades con clientes. */
 export function GlobalReach({ lang }: { lang: 'es' | 'en' }) {
   const t = copy[lang];
 
   return (
-    <section className="py-16">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-10 bg-brand-light rounded-3xl border border-slate-100 p-8 md:p-12 overflow-hidden">
-          <div>
-            <span className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.08em] text-brand-blue">
-              <Globe2 className="w-4 h-4" />
-              {t.eyebrow}
-            </span>
-            <h2 className="mt-4 font-semibold text-3xl sm:text-4xl text-brand-navy">{t.title}</h2>
-            <p className="mt-4 text-slate-600 leading-relaxed">{t.text}</p>
-            <dl className="mt-8 grid grid-cols-2 gap-6 max-w-sm">
-              {t.stats.map((stat) => (
-                <div key={stat.label}>
-                  <dt className="sr-only">{stat.label}</dt>
-                  <dd className="font-semibold text-3xl text-brand-navy">{stat.value}</dd>
-                  <dd className="mt-1 text-sm text-slate-600">{stat.label}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-          <WorldGlobe arcs={ARCS} focus={LIMA} view={ENCUADRE} className="relative aspect-square w-full max-w-[520px] mx-auto" />
+    <section data-tone="dark" className="panel-ink">
+      <div className="panel-inner grid grid-cols-1 items-center gap-6 py-20 lg:grid-cols-2 lg:py-10">
+        <div>
+          <h2 className="headline reveal text-[clamp(2.2rem,4.6vw,4rem)]">
+            {t.title[0]} <em>{t.title[1].em}</em>
+          </h2>
+          <p className="reveal mt-6 max-w-[48ch] text-[17px] leading-relaxed text-ink-muted">{t.text}</p>
+        </div>
+        <div role="img" aria-label={t.label} className="relative -mx-5 aspect-square lg:mx-0">
+          <WorldGlobe arcs={ARCS} focus={LIMA} view={ENCUADRE} tone="dark" className="absolute inset-0" />
         </div>
       </div>
     </section>

@@ -1,9 +1,7 @@
 import Link from 'next/link';
 import { Calculator } from 'lucide-react';
-import { AnimatedBackground } from '@/components/home/animated-background';
 import { Footer } from '@/components/home/footer';
 import { Header } from '@/components/home/header';
-import { Button } from '@/components/ui/button';
 import { AiChatbot } from '@/components/ai/ai-chatbot';
 
 const headerContent = {
@@ -39,25 +37,26 @@ const footerContent = {
 
 export default function AiAssistantPage() {
   return (
-    <div className="relative overflow-x-hidden bg-background">
-      <AnimatedBackground />
+    <div className="bg-paper">
       <Header {...headerContent} />
-      <main>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
+      <main id="main-content">
+        <section className="panel-mist mt-2 pb-16 pt-28 sm:mt-3 sm:pt-36">
+          <div className="panel-inner">
           <div className="text-center mb-8">
-            <Button asChild className="h-[52px] px-8 rounded-2xl font-semibold text-sm border-2 border-transparent bg-brand-blue hover:bg-brand-navy-dark text-white shadow-xl shadow-brand-blue/30 hover:shadow-brand-blue/40 hover:-translate-y-1 transition-all duration-300">
-              <Link href="/quote">
-                Cotizar mi proyecto con IA
-                <Calculator className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+            <Link href="/quote" className="btn-ink">
+              <span className="btn-tile">
+                <Calculator className="h-5 w-5" />
+              </span>
+              Cotizar mi proyecto con IA
+            </Link>
           </div>
           <div className="flex flex-col gap-16 sm:gap-24 md:gap-32 lg:gap-40">
             <AiChatbot {...chatbotContent} />
           </div>
-        </div>
+          </div>
+        </section>
       </main>
-      <Footer copyright={footerContent.copyright} />
+      <Footer lang="es" copyright={footerContent.copyright} />
     </div>
   );
 }

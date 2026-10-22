@@ -3,11 +3,9 @@
 import { useClientValue } from '@/hooks/use-client-value';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Compass, ArrowLeft, Home } from 'lucide-react';
+import { ArrowLeft, Home } from 'lucide-react';
 import { Header } from '@/components/home/header';
 import { Footer } from '@/components/home/footer';
-import { AnimatedBackground } from '@/components/home/animated-background';
 
 const copy = {
   es: {
@@ -84,46 +82,36 @@ export default function NotFound() {
   const t = copy[lang];
 
   return (
-    <div className="relative overflow-x-hidden bg-background min-h-screen">
-      <AnimatedBackground />
+    <div className="bg-paper">
       <Header {...t.header} />
-
-      <main className="relative flex min-h-[70vh] items-center justify-center px-4 py-32 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-xl text-center">
-          <div className="inline-flex items-center gap-2.5 px-4 py-2.5 mb-6 rounded-2xl bg-brand-lavender/80 backdrop-blur-md text-brand-navy border border-brand-lavender/50 shadow-lg shadow-brand-blue/15">
-            <Compass className="w-4 h-4 text-brand-blue shrink-0" />
-            <span className="font-medium text-[11px] sm:text-sm tracking-wider uppercase">{t.eyebrow}</span>
-          </div>
-
-          <h1 className="font-headline text-6xl sm:text-8xl font-medium tracking-tight text-gradient">404</h1>
-          <p className="mt-4 text-2xl sm:text-3xl font-semibold text-brand-navy">{t.title}</p>
-          <p className="mt-4 text-base sm:text-lg text-slate-600 max-w-md mx-auto">{t.subtitle}</p>
-
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button
-              asChild
-              className="h-[52px] px-8 rounded-2xl font-semibold text-sm border-2 border-transparent bg-brand-blue hover:bg-brand-navy-dark text-white shadow-xl shadow-brand-blue/30 hover:shadow-brand-blue/40 hover:-translate-y-1 transition-all duration-300"
-            >
-              <Link href={t.homeHref}>
+      <main id="main-content" className="flex flex-col gap-2 sm:gap-3">
+        <section data-tone="dark" className="panel-ink mt-2 sm:mt-3">
+          <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/35 blur-[130px]" />
+          <div className="panel-inner relative flex min-h-[78svh] flex-col items-center justify-center pb-16 pt-32 text-center">
+            <p className="display text-[clamp(7rem,22vw,15rem)] leading-none text-white/90">
+              4<em>0</em>4
+            </p>
+            <h1 className="headline mt-6 text-[clamp(1.75rem,3.4vw,2.75rem)]">{t.title}</h1>
+            <p className="mt-4 max-w-[46ch] text-[17px] text-ink-muted">{t.subtitle}</p>
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <Link href={t.homeHref} className="btn-light">
+                <span className="btn-tile">
+                  <Home className="h-5 w-5" />
+                </span>
                 {t.home}
-                <Home className="ml-2 h-4 w-4" />
               </Link>
-            </Button>
-
-            {canGoBack && (
-              <Button
-                onClick={() => router.back()}
-                variant="outline"
-                className="h-[52px] px-8 rounded-2xl font-semibold text-sm bg-white border-2 border-brand-blue text-brand-blue hover:bg-transparent transition-all duration-300"
-              >
-                {t.back}
-                <ArrowLeft className="ml-2 h-4 w-4" />
-              </Button>
-            )}
+              {canGoBack && (
+                <button type="button" onClick={() => router.back()} className="btn-glass">
+                  <span className="btn-tile">
+                    <ArrowLeft className="h-5 w-5" />
+                  </span>
+                  {t.back}
+                </button>
+              )}
+            </div>
           </div>
-        </div>
+        </section>
       </main>
-
       <Footer {...t.footer} />
     </div>
   );

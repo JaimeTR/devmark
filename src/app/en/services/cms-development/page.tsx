@@ -1,11 +1,10 @@
-import { AnimatedBackground } from '@/components/home/animated-background';
 import { Header } from '@/components/home/header';
 import { Footer } from '@/components/home/footer';
 import { ServiceHero } from '@/components/home/service-hero';
 import { ServiceMethodology } from '@/components/home/service-methodology';
 import { Pricing } from '@/components/home/pricing';
 import { Contact } from '@/components/home/contact';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { ServiceFaq } from '@/components/home/service-faq';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -172,8 +171,7 @@ const footerContent = {
 
 export default function CMSDevelopmentPage() {
   return (
-    <div className="relative overflow-x-hidden bg-background">
-      <AnimatedBackground />
+    <div className="bg-paper">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -238,28 +236,16 @@ export default function CMSDevelopmentPage() {
         }}
       />
       <Header {...headerContent} />
-      <main>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
-            <ServiceHero {...heroContent} />
+      <main id="main-content" className="flex flex-col gap-2 sm:gap-3">
+        <ServiceHero {...heroContent} />
 
-            <Pricing {...pricingContent} />
+        <Pricing {...pricingContent} />
 
-            <ServiceMethodology {...methodologyContent} />
+        <ServiceMethodology {...methodologyContent} />
 
-            <section id="faq" className="py-12 md:py-20 max-w-3xl mx-auto">
-                <h2 className="font-headline text-3xl sm:text-4xl text-center font-semibold tracking-tight mb-8">{faqContent.title}</h2>
-                <Accordion type="single" collapsible className="w-full">
-                    {faqContent.items.map((item, index) => (
-                        <AccordionItem key={index} value={`item-${index}`}>
-                            <AccordionTrigger>{item.question}</AccordionTrigger>
-                            <AccordionContent>{item.answer}</AccordionContent>
-                        </AccordionItem>
-                    ))}
-                </Accordion>
-            </section>
+        <ServiceFaq title={faqContent.title} items={faqContent.items} />
 
-            <Contact {...contactContent} />
-        </div>
+        <Contact {...contactContent} />
       </main>
       <Footer lang="en" copyright={footerContent.copyright} />
     </div>

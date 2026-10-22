@@ -37,6 +37,8 @@ interface ContactProps {
   quoteButton: string;
   /** Titular con la frase en cursiva; si falta se usa `title`. */
   heading?: TitleParts;
+  /** Es el primer panel de la pagina: deja sitio a la barra fija. */
+  first?: boolean;
 }
 
 const field =
@@ -58,11 +60,14 @@ export function Contact(props: ContactProps) {
   }, [state?.success, es, router]);
 
   return (
-    <section id="contact" data-tone="dark" className="panel-ink py-20 sm:py-28">
+    <section id="contact" data-tone="dark" className={cn('panel-ink py-20 sm:py-28', props.first && 'mt-2 pt-32 sm:mt-3 sm:pt-40')}>
       <div aria-hidden className="pointer-events-none absolute -left-32 bottom-0 h-[420px] w-[420px] rounded-full bg-primary/30 blur-[120px]" />
       <div className="panel-inner relative grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
         <div className="flex flex-col">
-          <h2 className="headline reveal text-[clamp(2.2rem,4.6vw,4rem)]">{props.heading ? <TitleText parts={props.heading} /> : props.title}</h2>
+          {(() => {
+            const Tag = props.first ? 'h1' : 'h2';
+            return <Tag className={cn('headline text-[clamp(2.2rem,4.6vw,4rem)]', !props.first && 'reveal')}>{props.heading ? <TitleText parts={props.heading} /> : props.title}</Tag>;
+          })()}
           <p className="mt-5 max-w-[46ch] text-[17px] leading-relaxed text-ink-muted">{props.description}</p>
 
           <div className="mt-9 flex flex-wrap gap-3">

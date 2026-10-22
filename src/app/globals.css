@@ -614,6 +614,14 @@ html {
     @apply w-10;
   }
 
+  /* Campos de formulario sobre tinta y sobre papel. */
+  .field-dark {
+    @apply w-full rounded-xl border border-white/10 bg-white/[0.06] px-4 text-[15px] text-white transition-colors placeholder:text-white/40 focus:border-periwinkle/70 focus:bg-white/[0.09] focus:outline-none;
+  }
+  .field-light {
+    @apply w-full rounded-xl border border-ink/10 bg-white px-4 text-[15px] text-ink transition-colors placeholder:text-ink/40 focus:border-primary/60 focus:outline-none;
+  }
+
   /* Banda que desfila. */
   .marquee-track {
     @apply flex w-max;
@@ -715,4 +723,109 @@ html {
     transform: none;
     filter: none;
   }
+}
+
+/* Contenido de los articulos del blog (HTML de src/data/blog-posts.ts). */
+.article {
+  font-size: 18px;
+  line-height: 1.75;
+  color: rgba(17, 12, 41, 0.82);
+}
+.article > * + * {
+  margin-top: 1.15em;
+}
+.article h2,
+.article h3 {
+  font-weight: 500;
+  color: #110c29;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+.article h2 {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  margin-top: 2.2em;
+}
+.article h3 {
+  font-size: clamp(1.35rem, 2.2vw, 1.6rem);
+  margin-top: 1.9em;
+}
+.article h2 + *,
+.article h3 + * {
+  margin-top: 0.6em;
+}
+.article strong {
+  color: #110c29;
+  font-weight: 600;
+}
+.article a {
+  color: hsl(var(--primary));
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.article ul,
+.article ol {
+  padding-left: 1.4em;
+}
+.article ul {
+  list-style: disc;
+}
+.article ol {
+  list-style: decimal;
+}
+.article li + li {
+  margin-top: 0.4em;
+}
+.article li::marker {
+  color: hsl(var(--primary));
+}
+.article code {
+  font-size: 0.9em;
+  background: #eef0fb;
+  border-radius: 6px;
+  padding: 0.1em 0.4em;
+}
+.article table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  line-height: 1.5;
+  display: block;
+  overflow-x: auto;
+}
+.article th,
+.article td {
+  text-align: left;
+  padding: 0.7em 0.9em;
+  border-bottom: 1px solid #d5daf3;
+  vertical-align: top;
+}
+.article th {
+  font-weight: 600;
+  color: #110c29;
+  background: #eef0fb;
+}
+.article .cta-block {
+  margin-top: 2.5em;
+  border-radius: 16px;
+  background: #110c29;
+  color: rgba(255, 255, 255, 0.78);
+  padding: 1.75em;
+}
+.article .cta-block h3 {
+  color: #fff;
+  margin-top: 0;
+}
+.article .cta-block .cta-button {
+  display: inline-flex;
+  margin-top: 1.1em;
+  border-radius: 10px;
+  background: #fff;
+  color: #110c29;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.75em 1.25em;
+}
+.article .cta-block .cta-button:hover {
+  background: #cbd5fa;
 }
