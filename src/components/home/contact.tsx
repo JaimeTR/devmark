@@ -2,9 +2,9 @@
 
 import { useActionState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { AlertCircle, ArrowUpRight, Calculator, CheckCircle, Loader2, Mail, Phone, Video } from 'lucide-react';
+import { AlertCircle, ArrowUpRight, Calculator, CheckCircle, Clock, Loader2, Mail, Phone, Video } from 'lucide-react';
 import { sendContactEmail } from '@/app/actions/contact';
-import { BOOKING_URL, WHATSAPP_GREETING, whatsappHref } from '@/lib/contact';
+import { BOOKING_URL, HOURS, WHATSAPP_GREETING, whatsappHref } from '@/lib/contact';
 import { cn } from '@/lib/utils';
 import type { TitleParts } from '@/content/home';
 import { TitleText } from '@/components/site/title-text';
@@ -101,6 +101,13 @@ export function Contact(props: ContactProps) {
                   <Phone className="h-4 w-4" />
                   {props.phone}
                 </a>
+              </dd>
+            </div>
+            <div className="sm:col-span-2">
+              <dt className="text-sm text-ink-muted">{es ? 'Horario' : 'Hours'}</dt>
+              <dd className="mt-1.5 inline-flex items-center gap-2 text-[17px]">
+                <Clock className="h-4 w-4" />
+                {HOURS[props.lang]}
               </dd>
             </div>
           </dl>

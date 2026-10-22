@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Facebook, Github, Instagram, Linkedin, Mail, Phone } from 'lucide-react';
-import { EMAIL, PHONE_DISPLAY, SUPPORT_EMAIL, WHATSAPP_GREETING, WHATSAPP_NUMBER, whatsappHref } from '@/lib/contact';
+import { EMAIL, HOURS, PHONE_DISPLAY, SUPPORT_EMAIL, WHATSAPP_GREETING, WHATSAPP_NUMBER, whatsappHref } from '@/lib/contact';
 import { WhatsAppIcon } from '@/components/site/whatsapp-icon';
 
 interface FooterProps {
@@ -158,6 +158,7 @@ export function Footer({ lang = 'es', copyright }: FooterProps) {
                   {PHONE_DISPLAY}
                 </a>
               </li>
+              <li className="text-sm text-ink-muted">{HOURS[lang]}</li>
               <li className="text-sm text-ink-muted">{t.place}</li>
             </ul>
           </div>

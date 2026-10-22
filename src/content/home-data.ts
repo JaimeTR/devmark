@@ -3,172 +3,23 @@
 
 export type Lang = 'es' | 'en';
 
-export const testimonials = {
-  es: [
-      {
-        name: "Carlos Rodriguez",
-        company: "Inka Corp, Perú",
-        avatar: "CR",
-        image: "/testimonials/uifaces-human-avatar.jpg",
-        hint: "man portrait",
-        quote: "DEVMARK transformó nuestra presencia en línea. Su conocimiento del mercado internacional es inigualable. ¡Muy recomendados!"
-      },
-      {
-        name: "John Smith",
-        company: "USA Tech, EE.UU.",
-        avatar: "JS",
-        image: "/testimonials/uifaces-human-avatar (1).jpg",
-        hint: "woman portrait",
-        quote: "El equipo de desarrollo de software superó nuestras expectativas. Entregaron un producto robusto y a tiempo para nuestras operaciones globales."
-      },
-      {
-        name: "Luis Torres",
-        company: "Andes Adventures, Bolivia",
-        avatar: "LT",
-        image: "/testimonials/uifaces-human-avatar (2).jpg",
-        hint: "man smiling",
-        quote: "Gracias a su estrategia SEO, nuestras reservas online aumentaron un 70% a nivel mundial. Son verdaderos expertos."
-      },
-      {
-        name: "Ana García",
-        company: "Soluciones Digitales, España",
-        avatar: "AG",
-        image: "/testimonials/uifaces-human-avatar (3).jpg",
-        hint: "woman professional",
-        quote: "Un equipo excepcional que entiende los matices de diferentes mercados. Nos ayudaron a expandirnos en Latinoamérica con éxito."
-      },
-      {
-        name: 'Sophie Dubois',
-        company: 'Chic Boutique, Francia',
-        avatar: 'SD',
-        image: '/testimonials/uifaces-human-avatar (4).jpg',
-        hint: 'woman stylish',
-        quote: 'El chatbot con IA que desarrollaron para nosotros ha revolucionado nuestro servicio al cliente. Es inteligente, rápido y ha incrementado nuestras ventas.'
-      },
-      {
-        name: 'David Chen',
-        company: 'Innovate Startup, Canadá',
-        avatar: 'DC',
-        image: '/testimonials/uifaces-popular-avatar.jpg',
-        hint: 'man thinking',
-        quote: 'La automatización de procesos nos ahorró cientos de horas. Su capacidad para entender nuestras necesidades e implementar soluciones efectivas es increíble.'
-      },
-      {
-        name: 'Fatima Al-Jamil',
-        company: 'Global Exports, EAU',
-        avatar: 'FA',
-        image: '/testimonials/uifaces-popular-avatar (1).jpg',
-        hint: 'woman smiling',
-        quote: 'Encargamos un CRM a medida y el resultado fue perfecto. Se adapta a nuestro flujo de trabajo y ha mejorado la eficiencia de nuestro equipo notablemente.'
-      },
-      {
-        name: 'Liam Murphy',
-        company: 'Creative Agency, Irlanda',
-        avatar: 'LM',
-        image: '/testimonials/uifaces-popular-avatar (2).jpg',
-        hint: 'man creative',
-        quote: 'El diseño y la experiencia de usuario de nuestra nueva web es simplemente espectacular. Han captado la esencia de nuestra marca a la perfección.'
-      },
-      {
-        name: 'Yuki Tanaka',
-        company: 'Tokyo Games, Japón',
-        avatar: 'YT',
-        image: '/testimonials/uifaces-popular-avatar (3).jpg',
-        hint: 'man gaming',
-        quote: 'Su servicio de soporte y mantenimiento nos da la tranquilidad que necesitamos. Siempre están disponibles y resuelven cualquier problema con rapidez.'
-      },
-      {
-        name: 'Maria Rossi',
-        company: 'Gastronomía Italiana, Italia',
-        avatar: 'MR',
-        image: '/testimonials/uifaces-popular-avatar (4).jpg',
-        hint: 'woman cooking',
-        quote: 'La consultoría tecnológica fue clave para nuestra transformación digital. Nos guiaron paso a paso en la elección de las mejores herramientas para nuestro negocio.'
-      }
-    ],
-  en: [
-      {
-        name: "Carlos Rodriguez",
-        company: "Inka Corp, Peru",
-        avatar: "CR",
-        image: "/testimonials/uifaces-human-avatar.jpg",
-        hint: "man portrait",
-        quote: "DEVMARK transformed our online presence. Their knowledge of the international market is unmatched. Highly recommended!"
-      },
-      {
-        name: "John Smith",
-        company: "USA Tech, USA",
-        avatar: "JS",
-        image: "/testimonials/uifaces-human-avatar (1).jpg",
-        hint: "woman portrait",
-        quote: "The software development team exceeded our expectations. They delivered a robust and timely product for our global operations."
-      },
-      {
-        name: "Luis Torres",
-        company: "Andes Adventures, Bolivia",
-        avatar: "LT",
-        image: "/testimonials/uifaces-human-avatar (2).jpg",
-        hint: "man smiling",
-        quote: "Thanks to their SEO strategy, our online bookings increased by 70% worldwide. They are true experts."
-      },
-      {
-        name: "Ana García",
-        company: "Soluciones Digitales, Spain",
-        avatar: "AG",
-        image: "/testimonials/uifaces-human-avatar (3).jpg",
-        hint: "woman professional",
-        quote: "An exceptional team that understands the nuances of different markets. They helped us expand into Latin America successfully."
-      },
-      {
-        name: 'Sophie Dubois',
-        company: 'Chic Boutique, France',
-        avatar: 'SD',
-        image: '/testimonials/uifaces-human-avatar (4).jpg',
-        hint: 'woman stylish',
-        quote: 'The AI chatbot they developed for us has revolutionized our customer service. It is intelligent, fast and has increased our sales.'
-      },
-      {
-        name: 'David Chen',
-        company: 'Innovate Start-up, Canada',
-        avatar: 'DC',
-        image: '/testimonials/uifaces-popular-avatar.jpg',
-        hint: 'man thinking',
-        quote: 'The process automation saved us hundreds of hours. Their ability to understand our needs and implement effective solutions is incredible.'
-      },
-      {
-        name: 'Fatima Al-Jamil',
-        company: 'Global Exports, UAE',
-        avatar: 'FA',
-        image: '/testimonials/uifaces-popular-avatar (1).jpg',
-        hint: 'woman smiling',
-        quote: 'We commissioned a custom CRM and the result was perfect. It fits our workflow and has significantly improved our team\'s efficiency.'
-      },
-      {
-        name: 'Liam Murphy',
-        company: 'Creative Agency, Ireland',
-        avatar: 'LM',
-        image: '/testimonials/uifaces-popular-avatar (2).jpg',
-        hint: 'man creative',
-        quote: 'The design and user experience of our new website is simply spectacular. They have captured the essence of our brand perfectly.'
-      },
-      {
-        name: 'Yuki Tanaka',
-        company: 'Tokyo Games, Japan',
-        avatar: 'YT',
-        image: '/testimonials/uifaces-popular-avatar (3).jpg',
-        hint: 'man gaming',
-        quote: 'Their technical support and maintenance service gives us the peace of mind we need. They are always available and solve any problem quickly.'
-      },
-      {
-        name: 'Maria Rossi',
-        company: 'Gastronomía Italiana, Italy',
-        avatar: 'MR',
-        image: '/testimonials/uifaces-popular-avatar (4).jpg',
-        hint: 'woman cooking',
-        quote: 'The technology consulting was key to our digital transformation. They guided us step by step in choosing the best tools for our business.'
-      }
-    ],
-} as const;
+export interface Testimonial {
+  name: string;
+  role: string;
+  company: string;
+  country: string;
+  /** Servicio que contrato, tal como aparece en la web (p. ej. "Desarrollo web a medida"). */
+  service: string;
+  quote: string;
+}
+
+// Solo testimonios REALES y aprobados por el cliente (nombre, empresa y pais verdaderos).
+// Borradores para pedir aprobacion en docs/testimonios-borrador.md. Vacio = la seccion
+// muestra clientes y paises en lugar de citas.
+export const testimonials: Record<'es' | 'en', Testimonial[]> = {
+  es: [],
+  en: [],
+};
 
 export const processSteps = {
   es: [
@@ -250,11 +101,11 @@ export const hostingContent = {
   es: {
     badge: "HOSTINGER PARTNER",
     title: "Hosting dinámico como tu negocio",
-    subtitle: "Como partners oficiales de Hostinger, te ofrecemos la mejor tecnología para alojar tu proyecto. Usa nuestro cupón para obtener un 20% de descuento adicional sobre sus promociones. Además, como servicio añadido, nosotros configuraremos tus correos profesionales y el certificado SSL de forma gratuita.",
+    subtitle: "Somos socios directos de Hostinger. Con nuestro código DEVMARK tienes descuento en todos sus servicios: hosting, VPS, dominios y correos corporativos. Además configuramos gratis tus correos profesionales y el certificado SSL.",
     features: [
+      "Descuento en hosting, VPS, dominios y correos",
       "Migración de dominios y sitios web gratis",
-      "Ejecuta WordPress o cualquier otro CMS",
-      "Hosting web totalmente administrado",
+      "Correos corporativos y SSL configurados por nosotros",
       "Soporte en directo y en español 24/7",
     ],
     guaranteeText: "Garantía de reembolso de 30 días",
@@ -268,12 +119,12 @@ export const hostingContent = {
   en: {
     badge: "HOSTINGER PARTNER",
     title: "Hosting as dynamic as your business",
-    subtitle: "As official Hostinger partners, we offer you the best technology to host your project. Use our coupon to get an additional 20% discount on top of their promotions. Plus, as an added service, we will configure your professional emails and SSL certificate for free.",
+    subtitle: "We are direct Hostinger partners. With our DEVMARK code you get a discount on all their services: hosting, VPS, domains and professional email. We also set up your professional email and SSL certificate for free.",
     features: [
+      "Discount on hosting, VPS, domains and email",
       "Free domain and website migration",
-      "Run WordPress or any other CMS",
-      "Fully managed web hosting",
-      "Live support in English 24/7",
+      "Professional email and SSL set up by us",
+      "Live support 24/7",
     ],
     guaranteeText: "30-day money-back guarantee",
     ctaButton: "Get discount",

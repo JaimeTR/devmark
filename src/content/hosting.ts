@@ -5,7 +5,7 @@ export const hostingFeatures = {
   {
     icon: 'server',
     title: 'Hosting web profesional',
-    description: 'Servidores optimizados para WordPress, aplicaciones web y más. 99.9% de uptime garantizado.',
+    description: 'Servidores optimizados para WordPress, aplicaciones web y más, con alta disponibilidad.',
     features: ['SSD NVMe ultra rápidos', 'Backups automáticos diarios', 'CDN gratuito incluido', 'Certificado SSL gratis']
   },
   {
@@ -29,21 +29,21 @@ export const hostingFeatures = {
   {
     icon: 'zap',
     title: 'Alto rendimiento',
-    description: 'Tecnología de última generación para que tu sitio cargue en menos de 1 segundo.',
+    description: 'Tecnología de última generación para que tu sitio cargue rápido.',
     features: ['LiteSpeed Cache', 'HTTP/3 habilitado', 'Optimización de imágenes', 'Compresión Gzip/Brotli']
   },
   {
-    icon: 'harddrive',
-    title: 'Almacenamiento y bases de datos',
-    description: 'Espacio ilimitado en planes premium y bases de datos MySQL/MariaDB optimizadas.',
-    features: ['Almacenamiento SSD', 'Bases de datos MySQL', 'phpMyAdmin incluido', 'Gestión sencilla']
+    icon: 'server',
+    title: 'Servidores VPS',
+    description: 'Recursos dedicados y acceso root para aplicaciones, tiendas grandes y sistemas como un ERP. También con descuento usando el código DEVMARK.',
+    features: ['Acceso root completo', 'CPU y RAM dedicadas', 'Ideal para apps, tiendas y ERP', 'Descuento con el código DEVMARK']
   }
 ],
   en: [
   {
     icon: 'server',
     title: 'Professional web hosting',
-    description: 'Optimized servers for WordPress, web apps and more. Guaranteed 99.9% uptime.',
+    description: 'Optimized servers for WordPress, web apps and more, with high availability.',
     features: ['Ultra-fast NVMe SSD', 'Automatic daily backups', 'Free CDN included', 'Free SSL certificate']
   },
   {
@@ -67,14 +67,14 @@ export const hostingFeatures = {
   {
     icon: 'zap',
     title: 'High performance',
-    description: 'Top technology to make your site load in under 1 second.',
+    description: 'Top technology so your site loads fast.',
     features: ['LiteSpeed Cache', 'HTTP/3 enabled', 'Image optimization', 'Gzip/Brotli compression']
   },
   {
-    icon: 'harddrive',
-    title: 'Storage & databases',
-    description: 'Unlimited space on premium plans and optimized MySQL/MariaDB databases.',
-    features: ['SSD storage', 'MySQL databases', 'phpMyAdmin included', 'Simple management']
+    icon: 'server',
+    title: 'VPS servers',
+    description: 'Dedicated resources and root access for apps, large stores and systems like an ERP. Also discounted with the DEVMARK code.',
+    features: ['Full root access', 'Dedicated CPU and RAM', 'Great for apps, stores and ERP', 'Discount with the DEVMARK code']
   }
 ],
 } as const;

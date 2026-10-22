@@ -66,11 +66,18 @@ Confirmado como real por Jaime (22 oct 2026):
   +100 proyectos entregados para negocios en Peru.
 - Clientes: ADLIM, JOPCO, TAKLAB, LUCE INMOBILIARIA, MEMORANDUM, MM TECH, DETALZONE,
   SUPERPROFE, NEWDENIM, OFFROADPERU, BREEZLINGO, AS ABOGADOS.
-- Testimonios del sitio.
+- Clientes en 11 paises: Peru, Ecuador, Bolivia, Chile, Argentina, Colombia, Venezuela,
+  Mexico, Estados Unidos, Espana e Italia.
+- Horario: lunes a viernes, 9:00 a 18:00 (Lima), el mismo de Google.
+- Socios directos de Hostinger; codigo DEVMARK con descuento en hosting, VPS, dominios y correos.
+- Productos propios: DEVMARK AI (ai.devmarkpe.com, API de IA compatible con OpenAI) y
+  DEVMARK ERP (gestion interna + portal del cliente para seguir su proyecto).
 
-Pendiente o no real: las fotos de public/testimonials son avatares de stock
-(uifaces), no de los clientes; las imagenes de public/portfolio son ilustrativas
-(una generada con IA). No presentarlas como fotos reales de clientes o proyectos.
+No real / pendiente: los 10 testimonios de la web anterior eran de plantilla (paises sin
+clientes, fotos de stock) y se retiraron el 22 oct 2026. Solo se publican testimonios
+aprobados por clientes reales (borradores en docs/testimonios-borrador.md). Las imagenes
+de public/portfolio son ilustrativas. El portal del cliente debe estar en linea antes de
+prometerlo en la web publicada.
 
 ## Product Principles
 

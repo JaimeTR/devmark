@@ -38,7 +38,7 @@ export function HostingBand({ lang }: { lang: Lang }) {
 
       <div className="panel-inner relative mt-14 grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-center">
         <div>
-          <p className="text-sm font-medium text-ink/60">Hostinger partner</p>
+          <p className="text-sm font-medium text-ink/60">{lang === 'en' ? 'Direct Hostinger partners' : 'Socios directos de Hostinger'}</p>
           <h2 className="headline reveal mt-3 text-[clamp(2.1rem,4.6vw,4rem)]">
             {lang === 'en' ? (
               <>

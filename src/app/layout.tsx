@@ -127,7 +127,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
               email: 'contacto@devmarkpe.com',
               telephone: '+51975646074',
               priceRange: '$$',
-              areaServed: ['PE', 'ES', 'AR', 'CO'],
+              areaServed: ['PE', 'EC', 'BO', 'CL', 'AR', 'CO', 'VE', 'MX', 'US', 'ES', 'IT'],
               address: {
                 '@type': 'PostalAddress',
                 addressLocality: 'Lima',

@@ -15,6 +15,8 @@ import { HostingBand } from './hosting-band';
 import { Testimonials } from './testimonials';
 import { BlogTeaser } from './blog-teaser';
 import { Faq } from './faq';
+import { Products } from './products';
+import { ClientPortal } from './client-portal';
 
 const headerCopy = {
   es: { contactButton: 'Contactar', aiAssistant: 'Asistente IA', aiAssistantTooltip: '¡Hola! Soy tu asistente de IA.' },
@@ -37,9 +39,11 @@ export function HomePage({ lang }: { lang: Lang }) {
         <ServicesShowcase lang={lang} />
         <Why lang={lang} />
         <Process lang={lang} />
+        <ClientPortal lang={lang} />
         <Suspense fallback={<div className="panel-paper h-[640px]" />}>
           <Projects lang={lang} />
         </Suspense>
+        <Products lang={lang} />
         <HostingBand lang={lang} />
         <Testimonials lang={lang} />
         <Contact {...contactContent[lang]} heading={homeContent[lang].contact.title} />

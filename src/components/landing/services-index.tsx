@@ -10,6 +10,8 @@ import type { Lang } from '@/content/home';
 import { ServicesShowcase } from './services-showcase';
 import { Process } from './process';
 import { Faq } from './faq';
+import { ClientPortal } from './client-portal';
+import { Products } from './products';
 
 const icons = [Compass, Megaphone, Wrench, Lightbulb];
 
@@ -121,6 +123,8 @@ export function ServicesIndex({ lang }: { lang: Lang }) {
           </div>
         </section>
         <Process lang={lang} />
+        <ClientPortal lang={lang} />
+        <Products lang={lang} />
         <Faq lang={lang} />
       </main>
       <Footer lang={lang} copyright={t.copyright} />

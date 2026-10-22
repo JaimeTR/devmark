@@ -143,6 +143,7 @@ export const homeContent = {
         { value: '100+', label: 'clientes satisfechos' },
         { value: '6', label: 'marcas colaboradoras' },
         { value: '91%', label: 'mayor rapidez de ejecución' },
+        { value: '11', label: 'países con clientes' },
       ],
       clientsLabel: 'Negocios que ya trabajan con nosotros',
     },
@@ -163,6 +164,39 @@ export const homeContent = {
         { title: 'Consultoría tecnológica', href: '/servicios/consultoria-tecnologica' },
       ],
       hint: 'Pasa el cursor o toca un servicio',
+    },
+    products: {
+      title: ['Productos', { em: 'propios,' }, 'probados primero en DEVMARK.'],
+      text: 'No solo los construimos para clientes: los usamos todos los días. Por eso los chatbots, las integraciones y los sistemas que entregamos se apoyan en herramientas nuestras.',
+      ai: {
+        name: 'DEVMARK AI',
+        tagline: 'Nuestra plataforma privada de inteligencia artificial.',
+        description: 'Una API de IA compatible con OpenAI para que las apps de tu negocio usen inteligencia artificial con tus propios datos, sin depender de servicios de terceros.',
+        features: ['API keys por aplicación, con límites y expiración', 'Conocimiento propio (RAG) con tus documentos', 'Herramientas que consultan tus datos reales', 'Uso, logs y consola de administración con 2FA'],
+        cta: 'Conocer DEVMARK AI',
+        href: 'https://ai.devmarkpe.com',
+        whatsapp: 'Hola DEVMARK, quiero conectar mi negocio a DEVMARK AI.',
+        ask: 'Quiero usarlo',
+      },
+      erp: {
+        name: 'DEVMARK ERP',
+        tagline: 'El sistema con el que gestionamos cada proyecto.',
+        description: 'Clientes, proyectos, tareas y horas, cobros y facturas, contratos, tickets de soporte, monitoreo de sitios y marketing en un solo lugar. También lo implementamos para otras empresas de servicios.',
+        features: ['Proyectos, hitos, tareas y horas', 'Cobros recurrentes, facturas y recibos', 'Contratos con aceptación y comprobantes', 'Tickets con plazos y monitoreo de sitios'],
+        cta: 'Quiero un ERP así',
+        whatsapp: 'Hola DEVMARK, quiero un ERP como el de ustedes para mi empresa.',
+      },
+    },
+    portal: {
+      title: ['Tu proyecto,', { em: 'a la vista' }, 'en tu portal de cliente.'],
+      text: 'Cada cliente de DEVMARK tiene su propio acceso para revisar el avance cuando quiera, sin esperar un correo.',
+      items: [
+        { title: 'Avance e hitos', text: 'Qué se hizo, qué sigue y las novedades de cada etapa.' },
+        { title: 'Pagos y facturas', text: 'Próximos cobros, facturas, recibos en PDF y tus vouchers.' },
+        { title: 'Solicitudes y soporte', text: 'Pide cambios o abre un ticket y sigue su estado.' },
+        { title: 'Documentos e informes', text: 'Contratos para aceptar en línea e informe mensual de tu sitio.' },
+      ],
+      mock: { project: 'Web corporativa', progress: 'Avance', stage: 'Diseño visual aprobado', next: 'Siguiente: desarrollo', invoice: 'Próximo cobro', ticket: 'Ticket #12 · Resuelto', report: 'Informe de octubre listo' },
     },
     why: {
       title: ['¿Por qué', { em: 'trabajar con' }, 'DEVMARK?'],
@@ -189,7 +223,7 @@ export const homeContent = {
       visit: 'Ver proyecto',
     },
     testimonials: {
-      title: ['Clientes contentos', { em: 'que confiaron' }, 'en nuestro trabajo.'],
+      title: ['Negocios de 11 países', { em: 'que confían' }, 'en DEVMARK.'],
       proof: '+100 clientes satisfechos',
     },
     contact: {
@@ -256,6 +290,7 @@ export const homeContent = {
         { value: '100+', label: 'happy clients' },
         { value: '6', label: 'partner brands' },
         { value: '91%', label: 'faster execution' },
+        { value: '11', label: 'countries with clients' },
       ],
       clientsLabel: 'Businesses already working with us',
     },
@@ -276,6 +311,39 @@ export const homeContent = {
         { title: 'Tech consulting', href: '/en/services/tech-consulting' },
       ],
       hint: 'Hover or tap a service',
+    },
+    products: {
+      title: ['Our own', { em: 'products,' }, 'proven at DEVMARK first.'],
+      text: "We don't only build them for clients: we use them every day. That's why the chatbots, integrations and systems we deliver run on our own tools.",
+      ai: {
+        name: 'DEVMARK AI',
+        tagline: 'Our private artificial intelligence platform.',
+        description: "An OpenAI-compatible AI API so your business apps can use artificial intelligence with your own data, without depending on third-party services.",
+        features: ['API keys per app, with limits and expiry', 'Your own knowledge (RAG) from your documents', 'Tools that query your real data', 'Usage, logs and an admin console with 2FA'],
+        cta: 'Discover DEVMARK AI',
+        href: 'https://ai.devmarkpe.com',
+        whatsapp: 'Hi DEVMARK, I want to connect my business to DEVMARK AI.',
+        ask: 'I want to use it',
+      },
+      erp: {
+        name: 'DEVMARK ERP',
+        tagline: 'The system we run every project on.',
+        description: 'Clients, projects, tasks and hours, billing and invoices, contracts, support tickets, site monitoring and marketing in one place. We also implement it for other service companies.',
+        features: ['Projects, milestones, tasks and hours', 'Recurring billing, invoices and receipts', 'Contracts with online acceptance', 'Tickets with SLAs and site monitoring'],
+        cta: 'I want an ERP like this',
+        whatsapp: 'Hi DEVMARK, I want an ERP like yours for my company.',
+      },
+    },
+    portal: {
+      title: ['Your project,', { em: 'in plain sight' }, 'in your client portal.'],
+      text: 'Every DEVMARK client gets their own access to check progress whenever they want, without waiting for an email.',
+      items: [
+        { title: 'Progress and milestones', text: "What's done, what's next and updates for each stage." },
+        { title: 'Payments and invoices', text: 'Upcoming charges, invoices, PDF receipts and your vouchers.' },
+        { title: 'Requests and support', text: 'Ask for changes or open a ticket and follow its status.' },
+        { title: 'Documents and reports', text: 'Contracts to accept online and a monthly report on your site.' },
+      ],
+      mock: { project: 'Corporate website', progress: 'Progress', stage: 'Visual design approved', next: 'Next: development', invoice: 'Next charge', ticket: 'Ticket #12 · Resolved', report: 'October report ready' },
     },
     why: {
       title: ['Why', { em: 'work with' }, 'DEVMARK?'],
@@ -302,7 +370,7 @@ export const homeContent = {
       visit: 'View project',
     },
     testimonials: {
-      title: ['Happy clients', { em: 'who trusted' }, 'our work.'],
+      title: ['Businesses in 11 countries', { em: 'that trust' }, 'DEVMARK.'],
       proof: '+100 happy clients',
     },
     contact: {

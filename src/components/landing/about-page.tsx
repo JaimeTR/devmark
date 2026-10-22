@@ -84,7 +84,7 @@ export function AboutPage({ lang }: { lang: Lang }) {
             <div className="space-y-6">
               <RevealWords as="p" parts={[t.story[0]]} className="text-[clamp(1.25rem,2vw,1.6rem)] leading-snug text-ink" />
               <p className="reveal max-w-[60ch] text-[17px] leading-relaxed text-ink/70">{t.story[1]}</p>
-              <dl className="reveal grid grid-cols-3 gap-6 border-t border-ink/10 pt-8">
+              <dl className="reveal grid grid-cols-2 gap-6 border-t border-ink/10 pt-8 sm:grid-cols-4">
                 {homeContent[lang].intro.stats.map((s) => (
                   <div key={s.label} className="flex flex-col-reverse gap-1.5">
                     <dt className="text-sm text-ink/60">{s.label}</dt>
