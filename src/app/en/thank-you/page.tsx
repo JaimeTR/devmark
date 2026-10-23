@@ -125,7 +125,7 @@ function ThankYouContent() {
                   {/* Animated icon */}
                   <div className="relative">
                     <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl animate-pulse"></div>
-                    <div className="relative bg-primary/10 p-6 rounded-full border-2 border-primary/30 animate-in zoom-in duration-500">
+                    <div className="relative bg-primary/10 p-6 rounded-3xl border-2 border-primary/30 animate-in zoom-in duration-500">
                       <div className="text-primary">
                         {config.icon}
                       </div>

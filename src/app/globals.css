@@ -40,7 +40,7 @@ html {
     --border: 224 82% 89%;
     --input: 224 82% 89%;
     --ring: 244 57% 47%;
-    --radius: 1.5rem;
+    --radius: 0.75rem;
     --chart-1: 244 57% 47%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
@@ -663,7 +663,7 @@ html {
     @apply inline-flex items-center gap-2.5 rounded-xl py-2 pl-2 pr-4 text-sm font-medium;
   }
   .chip-tile {
-    @apply grid place-items-center h-8 w-8 rounded-lg;
+    @apply grid place-items-center h-8 w-8 rounded-[7px];
   }
 }
 
