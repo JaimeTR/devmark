@@ -6,15 +6,27 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { Bot, Calculator, Check, Menu } from 'lucide-react';
+import { ArrowUpRight, Bot, Calculator, Check, ChevronDown, Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { WHATSAPP_GREETING, whatsappHref } from '@/lib/contact';
 import { WhatsAppIcon } from '@/components/site/whatsapp-icon';
+import { homeContent } from '@/content/home';
+import { SERVICE_ICONS } from '@/components/landing/service-band';
+import { ServicesMenu } from './services-menu';
+
+function NuevoBadge({ label }: { label: string }) {
+  return <span className="rounded-md bg-periwinkle px-1.5 py-0.5 font-sans text-[10px] font-semibold uppercase leading-none tracking-wide text-ink">{label}</span>;
+}
 
 interface NavLink {
   href: string;
   label: string;
+  /** Sitio aparte: abre en otra pestana. */
+  external?: boolean;
+  nuevo?: boolean;
 }
+
+const STORE_URL = 'https://devmarkpe.store';
 
 interface HeaderProps {
   lang?: 'es' | 'en';
@@ -36,6 +48,7 @@ function buildNavLinks(lang: 'es' | 'en'): NavLink[] {
       { href: '/en/services', label: 'Services' },
       { href: '/en/portfolio', label: 'Portfolio' },
       { href: '/en/hosting', label: 'Hosting' },
+      { href: STORE_URL, label: 'Store', external: true, nuevo: true },
       { href: '/en/blog', label: 'Blog' },
       { href: '/en/contact', label: 'Contact' },
     ];
@@ -45,14 +58,15 @@ function buildNavLinks(lang: 'es' | 'en'): NavLink[] {
     { href: '/servicios', label: 'Servicios' },
     { href: '/portfolio', label: 'Portafolio' },
     { href: '/hosting', label: 'Hosting' },
+    { href: STORE_URL, label: 'Tienda', external: true, nuevo: true },
     { href: '/blog', label: 'Blog' },
     { href: '/contacto', label: 'Contacto' },
   ];
 }
 
 const copy = {
-  es: { whatsapp: 'Hablemos por WhatsApp', short: 'WhatsApp', ai: 'Asistente con IA', quote: 'Cotizador con IA', language: 'Idioma', menu: 'Abrir menú', skip: 'Saltar al contenido principal', home: 'DEVMARK, inicio' },
-  en: { whatsapp: "Let's talk on WhatsApp", short: 'WhatsApp', ai: 'AI assistant', quote: 'AI quoter', language: 'Language', menu: 'Open menu', skip: 'Skip to main content', home: 'DEVMARK, home' },
+  es: { whatsapp: 'Hablemos por WhatsApp', short: 'WhatsApp', ai: 'Asistente con IA', quote: 'Cotizador con IA', language: 'Idioma', menu: 'Abrir menú', nuevo: 'Nuevo', services: 'Servicios', allServices: 'Ver todos los servicios', skip: 'Saltar al contenido principal', home: 'DEVMARK, inicio' },
+  en: { whatsapp: "Let's talk on WhatsApp", short: 'WhatsApp', ai: 'AI assistant', quote: 'AI quoter', language: 'Language', menu: 'Open menu', nuevo: 'New', services: 'Services', allServices: 'See all services', skip: 'Skip to main content', home: 'DEVMARK, home' },
 } as const;
 
 /**
@@ -66,6 +80,9 @@ export function Header({ lang = 'es', aiAssistant }: HeaderProps) {
   const pathname = usePathname();
   const navLinks = useMemo(() => buildNavLinks(lang), [lang]);
   const t = copy[lang];
+  const [serviciosAbierto, setServiciosAbierto] = useState(false);
+  const servicesHref = lang === 'en' ? '/en/services' : '/servicios';
+  const servicios = homeContent[lang].services.items;
   const homeHref = lang === 'en' ? '/en' : '/';
   const aiAssistantLink = lang === 'en' ? '/en/ai-assistant' : '/ai-assistant';
   const aiQuoterLink = lang === 'en' ? '/en/quote' : '/quote';
@@ -115,7 +132,7 @@ export function Header({ lang = 'es', aiAssistant }: HeaderProps) {
       </a>
       <div
         className={cn(
-          'mx-auto flex h-16 max-w-[1240px] items-center justify-between gap-4 rounded-2xl pl-3 pr-2 transition-[background-color,border-color,box-shadow,color] duration-500',
+          'relative mx-auto flex h-16 max-w-[1240px] items-center justify-between gap-4 rounded-2xl pl-3 pr-2 transition-[background-color,border-color,box-shadow,color] duration-500',
           dark ? 'glass-dark text-white' : 'glass-light text-ink',
           !scrolled && dark && 'bg-transparent',
         )}
@@ -133,26 +150,31 @@ export function Header({ lang = 'es', aiAssistant }: HeaderProps) {
           <span className="font-logo text-lg tracking-wider sm:text-xl">DEVMARK</span>
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label={lang === 'en' ? 'Main' : 'Principal'}>
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              aria-current={isActive(link.href) ? 'page' : undefined}
-              className={cn(
-                'rounded-lg px-3 py-2 text-[15px] font-medium transition-colors',
-                isActive(link.href)
-                  ? dark
-                    ? 'bg-white/[0.12] text-white'
-                    : 'bg-ink/[0.06] text-ink'
-                  : dark
-                    ? 'text-white/75 hover:text-white'
-                    : 'text-ink/70 hover:text-ink',
-              )}
-            >
-              <span className="title-link pb-0.5">{link.label}</span>
-            </Link>
-          ))}
+        <nav className="hidden items-center gap-0.5 lg:flex xl:gap-1" aria-label={lang === 'en' ? 'Main' : 'Principal'}>
+          {navLinks.map((link) => {
+            const servicios = link.href === servicesHref;
+            if (servicios) return <ServicesMenu key={link.href} lang={lang} dark={dark} active={isActive(link.href)} />;
+            const clase = cn(
+              'flex items-center gap-1.5 rounded-lg px-2.5 py-2 text-[15px] font-medium transition-colors xl:px-3',
+              isActive(link.href)
+                ? dark
+                  ? 'bg-white/[0.12] text-white'
+                  : 'bg-ink/[0.06] text-ink'
+                : dark
+                  ? 'text-white/75 hover:text-white'
+                  : 'text-ink/70 hover:text-ink',
+            );
+            return link.external ? (
+              <a key={link.href} href={link.href} target="_blank" rel="noopener" className={clase}>
+                <span className="title-link pb-0.5">{link.label}</span>
+                {link.nuevo && <NuevoBadge label={t.nuevo} />}
+              </a>
+            ) : (
+              <Link key={link.href} href={link.href} aria-current={isActive(link.href) ? 'page' : undefined} className={clase}>
+                <span className="title-link pb-0.5">{link.label}</span>
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-1.5">
@@ -203,12 +225,13 @@ export function Header({ lang = 'es', aiAssistant }: HeaderProps) {
             href={whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className={cn('btn btn-sm hidden md:inline-flex', dark ? 'btn-light' : 'btn-ink')}
+            aria-label={t.whatsapp}
+            className={cn('btn btn-sm hidden md:inline-flex lg:max-xl:pr-1.5', dark ? 'btn-light' : 'btn-ink')}
           >
             <span className="btn-tile">
               <WhatsAppIcon className="h-4 w-4" />
             </span>
-            {t.whatsapp}
+            <span className="lg:max-xl:sr-only">{t.whatsapp}</span>
           </a>
 
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -224,22 +247,58 @@ export function Header({ lang = 'es', aiAssistant }: HeaderProps) {
                 <Image src="/logo-mark-white.svg" alt="" role="presentation" width={32} height={32} className="h-8 w-8" />
                 <span className="font-logo text-xl tracking-wider">DEVMARK</span>
               </div>
-              <nav className="flex flex-col px-3">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className={cn(
-                      'headline rounded-xl px-3 py-2.5 text-[32px] transition-colors',
-                      isActive(link.href) ? 'text-white' : 'text-white/60 hover:text-white',
-                    )}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+              <nav className="flex min-h-0 flex-1 flex-col overflow-y-auto px-3">
+                {navLinks.map((link) => {
+                  const clase = cn(
+                    'headline flex items-center gap-3 rounded-xl px-3 py-1.5 text-[28px] transition-colors',
+                    isActive(link.href) ? 'text-white' : 'text-white/60 hover:text-white',
+                  );
+                  if (link.href === servicesHref) {
+                    return (
+                      <div key={link.href}>
+                        <button type="button" onClick={() => setServiciosAbierto((v) => !v)} aria-expanded={serviciosAbierto} className={cn(clase, 'w-full justify-between')}>
+                          {link.label}
+                          <ChevronDown className={cn('h-6 w-6 transition-transform duration-300', serviciosAbierto && 'rotate-180')} />
+                        </button>
+                        {serviciosAbierto && (
+                          <ul className="step-in mb-2 grid gap-1 px-2">
+                            {servicios.map((item) => {
+                              const Icon = SERVICE_ICONS[item.id];
+                              return (
+                                <li key={item.href}>
+                                  <Link href={item.href} onClick={() => setIsOpen(false)} className="flex items-center gap-3 rounded-xl px-2 py-2 text-[15px] text-white/80 hover:bg-white/[0.06] hover:text-white">
+                                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[9px] bg-white/[0.08] text-periwinkle">
+                                      <Icon className="h-4 w-4" />
+                                    </span>
+                                    {item.title}
+                                  </Link>
+                                </li>
+                              );
+                            })}
+                            <li>
+                              <Link href={link.href} onClick={() => setIsOpen(false)} className="flex items-center gap-2 px-2 py-2 text-sm font-medium text-periwinkle">
+                                {t.allServices}
+                                <ArrowUpRight className="h-4 w-4" />
+                              </Link>
+                            </li>
+                          </ul>
+                        )}
+                      </div>
+                    );
+                  }
+                  return link.external ? (
+                    <a key={link.href} href={link.href} target="_blank" rel="noopener" onClick={() => setIsOpen(false)} className={clase}>
+                      {link.label}
+                      {link.nuevo && <NuevoBadge label={t.nuevo} />}
+                    </a>
+                  ) : (
+                    <Link key={link.href} href={link.href} onClick={() => setIsOpen(false)} className={clase}>
+                      {link.label}
+                    </Link>
+                  );
+                })}
               </nav>
-              <div className="mt-6 flex flex-col gap-1 border-t border-white/10 px-6 pt-5 text-[15px]">
+              <div className="mt-4 flex shrink-0 flex-col gap-1 border-t border-white/10 px-6 pt-5 text-[15px]">
                 <Link href={aiAssistantLink} onClick={() => setIsOpen(false)} className="flex items-center justify-between py-2 text-white/80 hover:text-white">
                   {t.ai} <Bot className="h-4 w-4" />
                 </Link>
@@ -259,7 +318,7 @@ export function Header({ lang = 'es', aiAssistant }: HeaderProps) {
                   ))}
                 </div>
               </div>
-              <div className="mt-auto p-6">
+              <div className="shrink-0 p-6">
                 <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="btn-light w-full">
                   <span className="btn-tile">
                     <WhatsAppIcon />
