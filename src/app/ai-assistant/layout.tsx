@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: 'Asistente IA - Devmark | Chat con IA',
     description: 'Conversa con nuestro asistente de IA para resolver dudas sobre nuestros servicios de desarrollo web y software.',
     siteName: 'Devmark',
-    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Asistente IA - DEVMARK' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Asistente IA - DEVMARK' }],
   },
 };
 

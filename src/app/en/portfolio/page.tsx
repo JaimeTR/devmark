@@ -1,7 +1,7 @@
 import { getProjects } from '@/data/projects';
-import { PortfolioClient } from './portfolio-client';
+import { PortfolioPage } from '@/components/landing/portfolio-page';
 
-export default async function PortfolioPage() {
+export default async function Page() {
   const projects = await getProjects('en');
-  return <PortfolioClient projects={projects} />;
+  return <PortfolioPage projects={projects} lang="en" />;
 }

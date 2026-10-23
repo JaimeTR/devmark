@@ -71,7 +71,7 @@ export function detectCurrency(preferredLang: 'es' | 'en' = 'es'): CurrencyCode 
       if (tz && tz.toLowerCase().includes('lima')) {
         return 'PEN';
       }
-    } catch (_) {
+    } catch {
       // ignore
     }
 

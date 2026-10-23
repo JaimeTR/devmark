@@ -55,13 +55,12 @@ export const ProposalDocument = forwardRef<HTMLDivElement, ProposalDocumentProps
       <div
         ref={ref}
         className="w-[800px] bg-white text-slate-800 p-12"
-        style={{ fontFamily: 'var(--font-poppins), sans-serif' }}
+        style={{ fontFamily: 'var(--font-sans), sans-serif' }}
       >
         <div className="flex items-start justify-between pb-6 border-b-2 border-brand-blue/20">
           <div className="flex items-center gap-3">
-            <Image src="/logo-mark-black.svg" alt="DEVMARK" width={40} height={40} className="h-10 w-10" />
+            <Image src="/marca/devmark-logotipo.svg" alt="DEVMARK" width={250} height={40} className="h-10 w-auto" />
             <div>
-              <span className="font-logo text-2xl tracking-wider text-brand-navy block leading-none">DEVMARK</span>
               <span className="text-xs text-slate-500">{content.documentTitle}</span>
             </div>
           </div>
@@ -154,7 +153,7 @@ export const ProposalDocument = forwardRef<HTMLDivElement, ProposalDocumentProps
         </div>
 
         <div className="pt-8 text-center text-xs text-slate-400">
-          devmarkpe.com · correo@devmarkpe.com
+          devmarkpe.com · contacto@devmarkpe.com
         </div>
       </div>
     );

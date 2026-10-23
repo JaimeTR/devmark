@@ -1,14 +1,13 @@
 
 'use client';
 
-import { AnimatedBackground } from '@/components/home/animated-background';
 import { Header } from '@/components/home/header';
 import { Footer } from '@/components/home/footer';
 import { ServiceHero } from '@/components/home/service-hero';
 import { ServiceMethodology } from '@/components/home/service-methodology';
 import { Pricing } from '@/components/home/pricing';
 import { Contact } from '@/components/home/contact';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { ServiceFaq } from '@/components/home/service-faq';
 
 const headerContent = {
   lang: 'es' as const,
@@ -19,9 +18,9 @@ const headerContent = {
 };
 
 const heroContent = {
-  badge: 'Posicionamiento y Rendimiento',
-  title: 'SEO y optimización web',
-  description: 'Aumentamos tu visibilidad en los motores de búsqueda, atraemos tráfico orgánico de calidad y mejoramos la tasa de conversión de tu sitio web.',
+  badge: 'Google y buscadores con IA',
+  title: 'SEO y GEO',
+  description: 'Te posicionamos en Google (SEO) y preparamos tu web para que ChatGPT, Gemini, Perplexity y los resúmenes con IA de Google te recomienden (GEO). Más visitas de calidad y más clientes.',
   lang: 'es' as const,
   form: {
     title: 'Cuéntanos sobre tu proyecto',
@@ -42,7 +41,7 @@ const heroContent = {
 const methodologyContent = {
   badge: 'Nuestra metodología',
   title: 'Cómo mejoramos tu posicionamiento',
-  subtitle: 'Un proceso claro y medible para llevar tu sitio a los primeros resultados de búsqueda.',
+  subtitle: 'Un proceso claro y medible para que te encuentren en Google y en las respuestas de la IA.',
   steps: [
     {
       title: 'Auditoría y estrategia',
@@ -57,8 +56,8 @@ const methodologyContent = {
       description: 'Mejoramos velocidad, indexación y arquitectura técnica para cumplir con los Core Web Vitals.',
     },
     {
-      title: 'Link building y off-page',
-      description: 'Construimos enlaces de calidad y reputación online para aumentar la autoridad de tu dominio.',
+      title: 'Autoridad y GEO',
+      description: 'Construimos enlaces y reputación de calidad, y estructuramos tu contenido para que los buscadores con IA lo entiendan y te citen como fuente.',
     },
   ],
 };
@@ -73,6 +72,10 @@ const faqContent = {
     {
       question: "¿Es el SEO una inversión única?",
       answer: "No, el SEO es un proceso continuo. Los algoritmos de los motores de búsqueda cambian constantemente y la competencia siempre está activa. Recomendamos un trabajo mensual para mantener y mejorar los resultados."
+    },
+    {
+      question: "¿Qué es el GEO y por qué lo necesito?",
+      answer: "GEO (Generative Engine Optimization) es optimizar tu web para que los buscadores con IA, como ChatGPT, Gemini, Perplexity y los resúmenes con IA de Google, la entiendan y la citen cuando alguien pregunta por lo que vendes. Cada vez más personas buscan así, por eso lo trabajamos junto con el SEO."
     },
     {
       question: "¿Garantizan la primera posición en Google?",
@@ -139,7 +142,7 @@ const pricingContent = {
 const contactContent = {
     lang: 'es' as const,
     title: "Hablemos de tu proyecto",
-    description: "¿Listo para llevar tu negocio al siguiente nivel? Completa el formulario o agenda una reunión y nuestro equipo global se pondrá en contacto contigo.",
+    description: "¿Listo para llevar tu negocio al siguiente nivel? Completa el formulario o agenda una reunión y nuestro equipo se pondrá en contacto contigo.",
     contactSubtitle: "Contáctanos ahora",
     emailLabel: "Correo:",
     email: "contacto@devmarkpe.com",
@@ -159,7 +162,7 @@ const contactContent = {
     messageLabel: "Mensaje",
     messagePlaceholder: "Cuéntanos sobre tu proyecto...",
     submitButton: "Enviar Mensaje",
-    scheduleButton: "Agendar reunión por Meet",
+    scheduleButton: 'Agendar videollamada',
     quoteButton: "Cotiza tu proyecto con IA"
 };
 
@@ -169,16 +172,15 @@ const footerContent = {
 
 export default function SeoOptimizationPage() {
   return (
-    <div className="relative overflow-x-hidden bg-background">
-      <AnimatedBackground />
+    <div className="bg-paper">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            "name": "SEO y optimización web",
-            "description": "Aumentamos tu visibilidad en los motores de búsqueda, atraemos tráfico orgánico de calidad y mejoramos la tasa de conversión de tu sitio web.",
+            "name": "SEO y GEO",
+            "description": heroContent.description,
             "provider": {
               "@type": "Organization",
               "name": "Devmark",
@@ -205,58 +207,25 @@ export default function SeoOptimizationPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "¿Cuándo empezaré a ver resultados del SEO?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "El SEO es una estrategia a medio-largo plazo. Generalmente, se pueden empezar a ver resultados significativos entre los 3 y 6 meses, aunque esto puede variar según la competitividad de tu sector."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "¿Es el SEO una inversión única?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "No, el SEO es un proceso continuo. Los algoritmos de los motores de búsqueda cambian constantemente y la competencia siempre está activa. Recomendamos un trabajo mensual para mantener y mejorar los resultados."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "¿Garantizan la primera posición en Google?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Ninguna agencia de SEO seria puede garantizar la primera posición, ya que el algoritmo de Google es complejo y está fuera de nuestro control. Lo que sí garantizamos es un trabajo profesional, transparente y enfocado en mejorar tu visibilidad y tráfico de forma sostenible."
-                }
-              }
-            ]
+            "mainEntity": faqContent.items.map((it) => ({
+              "@type": "Question",
+              "name": it.question,
+              "acceptedAnswer": { "@type": "Answer", "text": it.answer },
+            }))
           }),
         }}
       />
       <Header {...headerContent} />
-      <main>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
-            <ServiceHero {...heroContent} />
+      <main id="main-content" className="flex flex-col gap-2 sm:gap-3">
+        <ServiceHero {...heroContent} />
 
-            <Pricing {...pricingContent} />
+        <Pricing {...pricingContent} />
 
-            <ServiceMethodology {...methodologyContent} />
+        <ServiceMethodology {...methodologyContent} />
 
-            <section id="faq" className="py-12 md:py-20 max-w-3xl mx-auto">
-                <h2 className="font-headline text-3xl sm:text-4xl text-center font-semibold tracking-tight mb-8">{faqContent.title}</h2>
-                <Accordion type="single" collapsible className="w-full">
-                    {faqContent.items.map((item, index) => (
-                        <AccordionItem key={index} value={`item-${index}`}>
-                            <AccordionTrigger>{item.question}</AccordionTrigger>
-                            <AccordionContent>{item.answer}</AccordionContent>
-                        </AccordionItem>
-                    ))}
-                </Accordion>
-            </section>
+        <ServiceFaq title={faqContent.title} items={faqContent.items} />
 
-            <Contact {...contactContent} />
-        </div>
+        <Contact {...contactContent} />
       </main>
       <Footer copyright={footerContent.copyright} />
     </div>

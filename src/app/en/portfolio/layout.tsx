@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: 'Portfolio - Devmark | Featured Projects',
     description: 'Discover our best projects in web development, custom software, e-commerce and digital solutions.',
     siteName: 'Devmark',
-    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'DEVMARK Portfolio' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'DEVMARK Portfolio' }],
   },
 };
 

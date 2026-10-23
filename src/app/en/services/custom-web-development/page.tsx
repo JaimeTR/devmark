@@ -1,11 +1,10 @@
-import { AnimatedBackground } from '@/components/home/animated-background';
 import { Header } from '@/components/home/header';
 import { Footer } from '@/components/home/footer';
 import { ServiceHero } from '@/components/home/service-hero';
 import { ServiceMethodology } from '@/components/home/service-methodology';
 import { Pricing } from '@/components/home/pricing';
 import { Contact } from '@/components/home/contact';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { ServiceFaq } from '@/components/home/service-faq';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -25,7 +24,7 @@ export const metadata: Metadata = {
     title: 'Custom Web Development | Devmark Peru',
     description: 'We create unique, high-performance websites tailored to your business.',
     siteName: 'Devmark',
-    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Custom web development - DEVMARK' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Custom web development - DEVMARK' }],
   },
 };
 
@@ -142,7 +141,7 @@ const pricingContent = {
 const contactContent = {
   lang: 'en' as const,
   title: "Let's talk about your project",
-  description: "Ready to take your business to the next level? Complete the form or schedule a meeting and our global team will contact you shortly.",
+  description: "Ready to take your business to the next level? Complete the form or schedule a meeting and our team will contact you shortly.",
   contactSubtitle: "Contact us now",
   emailLabel: "Email:",
   email: "contacto@devmarkpe.com",
@@ -162,7 +161,7 @@ const contactContent = {
   messageLabel: "Message",
   messagePlaceholder: "Tell us about your project...",
   submitButton: "Send message",
-  scheduleButton: "Schedule a meeting with Meet",
+  scheduleButton: 'Book a video call',
   quoteButton: "Quote your project with our AI"
 };
 
@@ -172,8 +171,7 @@ const footerContent = {
 
 export default function CustomWebDevelopmentPage() {
   return (
-    <div className="relative overflow-x-hidden bg-background">
-      <AnimatedBackground />
+    <div className="bg-paper">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -238,28 +236,16 @@ export default function CustomWebDevelopmentPage() {
         }}
       />
       <Header {...headerContent} />
-      <main>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
+      <main id="main-content" className="flex flex-col gap-2 sm:gap-3">
           <ServiceHero {...heroContent} />
 
           <Pricing {...pricingContent} />
 
           <ServiceMethodology {...methodologyContent} />
 
-          <section id="faq" className="py-12 md:py-20 max-w-3xl mx-auto">
-            <h2 className="font-headline text-3xl sm:text-4xl text-center font-semibold tracking-tight mb-8">{faqContent.title}</h2>
-            <Accordion type="single" collapsible className="w-full">
-              {faqContent.items.map((item, index) => (
-                <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger>{item.question}</AccordionTrigger>
-                  <AccordionContent>{item.answer}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </section>
+        <ServiceFaq title={faqContent.title} items={faqContent.items} />
 
           <Contact {...contactContent} />
-        </div>
       </main>
       <Footer lang="en" copyright={footerContent.copyright} />
     </div>

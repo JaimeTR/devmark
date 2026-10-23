@@ -1,7 +1,6 @@
-import { AnimatedBackground } from '@/components/home/animated-background';
 import { Footer } from '@/components/home/footer';
 import { Header } from '@/components/home/header';
-import { Contact } from '@/components/home/contact';
+import { ContactPage as ContactSections } from '@/components/landing/contact-page';
 
 const headerContent = {
   lang: 'en' as const,
@@ -21,12 +20,12 @@ const contactContent = {
   lang: 'en' as const,
   title: 'Contact us',
   description:
-    'Ready to take your business to the next level? Fill out the form or schedule a meeting and our global team will get in touch with you.',
+    'Ready to take your business to the next level? Fill out the form or schedule a meeting and our team will get in touch with you.',
   contactSubtitle: 'Contact us now',
   emailLabel: 'Email:',
   email: 'contacto@devmarkpe.com',
   phoneLabel: 'Phone:',
-  phone: '+51 930 414 494',
+  phone: '+51 975 646 074',
   timeZoneLabel: 'Local Time:',
   formTitle: 'Contact form',
   formDescription: 'Fill out the form and we will get in touch with you.',
@@ -41,7 +40,7 @@ const contactContent = {
   messageLabel: 'Message',
   messagePlaceholder: 'Tell us about your project...',
   submitButton: 'Send message',
-  scheduleButton: 'Schedule Meeting',
+  scheduleButton: 'Book a video call',
   quoteButton: 'Get a Quote',
 };
 
@@ -51,15 +50,13 @@ const footerContent = {
 
 export default function ContactPage() {
   return (
-    <div className="relative overflow-x-hidden bg-background">
-      <AnimatedBackground />
+    <div className="bg-paper">
       <Header {...headerContent} />
-      <main id="main-content">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
-          <Contact {...contactContent} />
-        </div>
+      <main id="main-content" className="flex flex-col gap-2 sm:gap-3">
+        <ContactSections lang="en" form={contactContent} />
       </main>
       <Footer lang="en" copyright={footerContent.copyright} />
     </div>
   );
 }
+

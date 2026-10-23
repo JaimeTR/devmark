@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: 'Project Quoter - Devmark | Personalized Estimates',
     description: 'Get a personalized quote for your web development or software project with our AI-powered quoter.',
     siteName: 'Devmark',
-    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'DEVMARK project quoter' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'DEVMARK project quoter' }],
   },
 };
 
