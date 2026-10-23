@@ -130,7 +130,7 @@ export function FloatingAssistant() {
         >
           {!isOpen && <span aria-hidden className="absolute inset-0 animate-ping rounded-[14px] bg-primary/30 [animation-duration:2.6s]" />}
           {isOpen ? <X className="relative h-5 w-5" /> : <Bot className="relative h-5 w-5 transition-transform duration-300 group-hover:-rotate-12" />}
-          {!isOpen && <span className="absolute -right-1 -top-1 rounded-md bg-periwinkle px-1.5 py-0.5 text-[9px] font-semibold leading-none text-ink">IA</span>}
+          {!isOpen && <span className="absolute -right-1 -top-1 rounded-[5px] bg-periwinkle px-1.5 py-0.5 text-[9px] font-semibold leading-none text-ink">IA</span>}
         </button>
         {!isOpen && (
           <a

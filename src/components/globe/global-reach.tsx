@@ -31,7 +31,7 @@ export function GlobalReach({ lang }: { lang: 'es' | 'en' }) {
           <p className="reveal mt-6 max-w-[48ch] text-[17px] leading-relaxed text-ink-muted">{t.text}</p>
           <ul className="reveal mt-8 flex max-w-[52ch] flex-wrap gap-2">
             {CLIENT_COUNTRIES.map((c) => (
-              <li key={c.code} className="rounded-lg border border-white/10 bg-white/[0.06] px-3 py-1.5 text-sm">
+              <li key={c.code} className="rounded-[7px] border border-white/10 bg-white/[0.06] px-3 py-1.5 text-sm">
                 {c[lang]}
               </li>
             ))}

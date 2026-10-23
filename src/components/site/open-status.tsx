@@ -21,7 +21,7 @@ export function OpenStatus({ lang, tone = 'dark', className }: { lang: 'es' | 'e
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-1.5 rounded-md px-1.5 py-0.5 text-xs',
+        'inline-flex items-center gap-1.5 rounded-[5px] px-1.5 py-0.5 text-xs',
         open ? (tone === 'dark' ? 'bg-emerald-400/15 text-emerald-300' : 'bg-emerald-500/10 text-emerald-700') : tone === 'dark' ? 'bg-white/10 text-ink-muted' : 'bg-ink/5 text-ink/55',
         className,
       )}

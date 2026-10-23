@@ -10,7 +10,8 @@ function PortalMock({ lang }: { lang: Lang }) {
   return (
     <div className="overflow-hidden rounded-2xl border border-white/10 bg-ink-soft shadow-[0_30px_70px_-30px_rgba(0,0,0,0.6)]">
       <div className="flex items-center justify-between border-b border-white/10 px-5 py-3.5">
-        <span className="font-logo text-sm tracking-wider text-white">DEVMARK</span>
+        {/* eslint-disable-next-line @next/next/no-img-element -- logo decorativo de la maqueta */}
+        <img src="/marca/devmark-logotipo-sin-lema-fondo-oscuro.svg" alt="DEVMARK" width={138} height={22} className="h-[22px] w-auto" />
         <span className="grid h-7 w-7 place-items-center rounded-md bg-band text-[11px] font-semibold text-ink">TN</span>
       </div>
       <div className="grid gap-3 p-5">
@@ -23,8 +24,8 @@ function PortalMock({ lang }: { lang: Lang }) {
             <div className="h-full w-[60%] rounded-full bg-periwinkle" />
           </div>
           <div className="mt-4 flex flex-wrap gap-2 text-xs">
-            <span className="rounded-md bg-emerald-400/15 px-2 py-1 text-emerald-200">{m.stage}</span>
-            <span className="rounded-md bg-white/10 px-2 py-1 text-ink-muted">{m.next}</span>
+            <span className="rounded-[7px] bg-emerald-400/15 px-2 py-1 text-emerald-200">{m.stage}</span>
+            <span className="rounded-[7px] bg-white/10 px-2 py-1 text-ink-muted">{m.next}</span>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-3">

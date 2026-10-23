@@ -86,7 +86,7 @@ export function Testimonials({ lang }: { lang: Lang }) {
             <p className="text-xs text-ink-muted">{c.countries}</p>
             <ul className="mt-2 flex flex-wrap gap-1.5">
               {CLIENT_COUNTRIES.map((k) => (
-                <li key={k.code} className="flex items-center gap-1.5 rounded-md bg-white/10 px-2 py-1 text-xs">
+                <li key={k.code} className="flex items-center gap-1.5 rounded-[7px] bg-white/10 px-2 py-1 text-xs">
                   <span aria-hidden className="h-1 w-1 rounded-full bg-periwinkle" />
                   {k[lang]}
                 </li>
@@ -125,7 +125,7 @@ export function Testimonials({ lang }: { lang: Lang }) {
         <div className="panel-inner mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((it) => (
             <figure key={`${it.service}-${it.name}`} className="reveal lift flex flex-col rounded-2xl bg-mist p-6">
-              <span className="self-start rounded-md bg-white px-2.5 py-1 text-xs text-ink/60">{it.service}</span>
+              <span className="self-start rounded-[7px] bg-white px-2.5 py-1 text-xs text-ink/60">{it.service}</span>
               <blockquote className="mt-4 text-[15px] leading-relaxed text-ink/80">“{it.quote}”</blockquote>
               <figcaption className="mt-auto flex items-center gap-3 pt-5">
                 <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-ink text-xs font-semibold text-white">

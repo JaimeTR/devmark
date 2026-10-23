@@ -197,3 +197,7 @@ guardar_logo("devmark-logotipo-tinta.svg", TINTA_T)
 VIDRIO_T = {"iso": ("url(#v1)", "url(#v2)", "url(#v3)"), "dev": "#F3F6FF", "m": "url(#vt)", "ark": "#EEF2FF", "lema": "#F1F4FF"}
 guardar_logo("devmark-logotipo-vidrio.svg", VIDRIO_T, True, VIDRIO_DEFS.replace("</defs>", '<linearGradient id="vt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3F6FF"/><stop offset="1" stop-color="#C9D6FD"/></linearGradient></defs>'), ' stroke="#B9C9FC" stroke-width="2"')
 print("ok")
+
+# Variantes sin lema para cabeceras (fondo oscuro y blanco).
+guardar_logo("devmark-logotipo-sin-lema-fondo-oscuro.svg", OSCURO_T, False)
+guardar_logo("devmark-logotipo-sin-lema-blanco.svg", BLANCO_T, False)

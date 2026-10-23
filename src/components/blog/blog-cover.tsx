@@ -202,7 +202,7 @@ function PricingVisual({ lang }: { lang: 'es' | 'en' }) {
     <Frame className="flex flex-col p-4">
       <div className="flex items-center justify-between">
         <span className="text-sm font-medium text-white">{lang === 'en' ? 'Quote' : 'Cotización'}</span>
-        <span className="rounded-md bg-white/10 px-2 py-0.5 text-[11px] text-white/60">PDF</span>
+        <span className="rounded-[5px] bg-white/10 px-2 py-0.5 text-[11px] text-white/60">PDF</span>
       </div>
       <div className="mt-3 space-y-2">
         {rows.map((r, i) => (

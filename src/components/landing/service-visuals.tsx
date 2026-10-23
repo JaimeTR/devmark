@@ -19,7 +19,7 @@ export function Browser({ children, url }: { children: React.ReactNode; url: str
         <span className="h-2 w-2 rounded-full bg-white/20" />
         <span className="h-2 w-2 rounded-full bg-white/20" />
         <span className="h-2 w-2 rounded-full bg-white/20" />
-        <span className="ml-2 truncate rounded-md bg-white/5 px-2 py-0.5 text-[11px] text-white/50">{url}</span>
+        <span className="ml-2 truncate rounded-[5px] bg-white/5 px-2 py-0.5 text-[11px] text-white/50">{url}</span>
       </div>
       <div className="flex-1 p-4">{children}</div>
     </div>
@@ -185,7 +185,7 @@ function SeoVisual({ lang }: { lang: 'es' | 'en' }) {
   // SEO (resultado en Google) y GEO (la respuesta de la IA cita a tunegocio.pe).
   return (
     <div className="flex h-full flex-col rounded-xl border border-white/10 bg-ink-soft p-4">
-      <div className="flex items-center gap-2 rounded-full bg-white/[0.07] px-3 py-2 text-[13px] text-white/70">
+      <div className="flex items-center gap-2 rounded-[10px] bg-white/[0.07] px-3 py-2 text-[13px] text-white/70">
         <Search className="h-3.5 w-3.5 shrink-0" />
         <span className="truncate">{lang === 'en' ? 'web design agency lima' : 'diseño de páginas web lima'}</span>
       </div>
@@ -196,7 +196,7 @@ function SeoVisual({ lang }: { lang: 'es' | 'en' }) {
         </span>
         <span className="lv lv-grow lv-4 mt-2 block h-1.5 w-11/12 rounded-full bg-white/40" />
         <span className="lv lv-grow lv-4 mt-1.5 block h-1.5 w-3/4 rounded-full bg-white/25" />
-        <span className="lv lv-pop lv-5 mt-2.5 inline-flex rounded-md bg-white px-2 py-0.5 text-[10px] font-medium text-primary">tunegocio.pe</span>
+        <span className="lv lv-pop lv-5 mt-2.5 inline-flex rounded-[5px] bg-white px-2 py-0.5 text-[10px] font-medium text-primary">tunegocio.pe</span>
       </div>
       <div className="mt-2.5 space-y-2.5">
         {[0, 1, 2].map((i) => (

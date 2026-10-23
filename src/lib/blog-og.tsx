@@ -14,7 +14,7 @@ export async function blogOgImage(slug: string, lang: 'es' | 'en') {
   const [sans, serif, logo] = await Promise.all([
     readFile(join(process.cwd(), 'src/fonts/SchibstedGrotesk-Medium.ttf')),
     readFile(join(process.cwd(), 'src/fonts/InstrumentSerif-Italic.ttf')),
-    readFile(join(process.cwd(), 'public/logo-mark-white.svg')),
+    readFile(join(process.cwd(), 'public/marca/devmark-logotipo-sin-lema-fondo-oscuro.svg')),
   ]);
   const title = post?.title ?? 'DEVMARK';
   const topic = TOPIC_LABEL[post ? topicOf(post) : 'web'][lang];
@@ -26,8 +26,7 @@ export async function blogOgImage(slug: string, lang: 'es' | 'en') {
         <div style={{ position: 'absolute', right: -160, top: -220, width: 720, height: 720, borderRadius: 720, background: 'radial-gradient(circle closest-side, rgba(61,52,188,0.75) 0%, rgba(61,52,188,0) 100%)', display: 'flex' }} />
         <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
           {/* eslint-disable-next-line @next/next/no-img-element -- ImageResponse solo acepta <img> */}
-          <img src={logoSrc} width={56} height={56} alt="" />
-          <span style={{ fontSize: 30, letterSpacing: 4 }}>DEVMARK</span>
+          <img src={logoSrc} width={300} height={48} alt="" />
           <span style={{ marginLeft: 18, fontSize: 24, padding: '8px 18px', borderRadius: 12, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.14)', color: '#CBD5FA' }}>{topic}</span>
         </div>
         <div style={{ display: 'flex', fontSize: title.length > 70 ? 54 : 64, lineHeight: 1.08, letterSpacing: -1.5, maxWidth: 1000 }}>{title}</div>

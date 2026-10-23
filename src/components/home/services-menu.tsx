@@ -113,7 +113,7 @@ export function ServicesMenu({ lang, dark, active }: { lang: Lang; dark: boolean
             <ul className="mt-2 space-y-0.5">
               {s.extra.map((e) => (
                 <li key={e.href}>
-                  <Link href={e.href} className="group flex items-center justify-between rounded-lg px-2 py-1.5 text-sm text-ink/80 transition-colors hover:bg-white hover:text-ink">
+                  <Link href={e.href} className="group flex items-center justify-between rounded-[7px] px-2 py-1.5 text-sm text-ink/80 transition-colors hover:bg-white hover:text-ink">
                     {e.title}
                     <ArrowUpRight className="icon-nudge h-3.5 w-3.5 text-ink/40 group-hover:text-primary" />
                   </Link>
