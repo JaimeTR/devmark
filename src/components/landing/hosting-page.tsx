@@ -9,13 +9,13 @@ import type { Lang } from '@/content/home';
 import { cn } from '@/lib/utils';
 import { CouponCopy } from './coupon-copy';
 
-const REFERRAL = 'https://hostinger.com?REFERRALCODE=JAIMETRDEV';
+const REFERRAL = 'https://www.hostinger.com?REFERRALCODE=DEVMARKPE';
 const icons = { server: Server, globe: Globe, mail: Mail, lock: Lock, zap: Zap, harddrive: HardDrive } as const;
 
 const copy = {
   es: {
     title: ['Hosting profesional', { em: 'para tu negocio' }] as const,
-    description: 'Somos socios directos de Hostinger: con el código DEVMARK tienes descuento en hosting, VPS, dominios y correos corporativos, y configuramos gratis tus correos y el certificado SSL.',
+    description: 'Somos socios directos de Hostinger: con el código DEVMARKPE tienes descuento en hosting, VPS, dominios y correos corporativos, y configuramos gratis tus correos y el certificado SSL.',
     cta: 'Obtener 20% de descuento',
     coupon: 'Cupón',
     copy: 'Copiar',
@@ -44,7 +44,7 @@ const copy = {
   },
   en: {
     title: ['Professional hosting', { em: 'for your business' }] as const,
-    description: 'We are direct Hostinger partners: with the DEVMARK code you get a discount on hosting, VPS, domains and professional email, and we set up your email and SSL certificate for free.',
+    description: 'We are direct Hostinger partners: with the DEVMARKPE code you get a discount on hosting, VPS, domains and professional email, and we set up your email and SSL certificate for free.',
     cta: 'Get 20% off',
     coupon: 'Coupon',
     copy: 'Copy',
@@ -97,7 +97,7 @@ export function HostingPage({ lang }: { lang: Lang }) {
                 </span>
                 {t.cta}
               </a>
-              <CouponCopy code="DEVMARK" label={t.coupon} copyLabel={t.copy} copiedLabel={t.copied} />
+              <CouponCopy code="DEVMARKPE" label={t.coupon} copyLabel={t.copy} copiedLabel={t.copied} />
             </>
           }
         >

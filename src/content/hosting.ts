@@ -35,8 +35,8 @@ export const hostingFeatures = {
   {
     icon: 'server',
     title: 'Servidores VPS',
-    description: 'Recursos dedicados y acceso root para aplicaciones, tiendas grandes y sistemas como un ERP. También con descuento usando el código DEVMARK.',
-    features: ['Acceso root completo', 'CPU y RAM dedicadas', 'Ideal para apps, tiendas y ERP', 'Descuento con el código DEVMARK']
+    description: 'Recursos dedicados y acceso root para aplicaciones, tiendas grandes y sistemas como un ERP. También con descuento usando el código DEVMARKPE.',
+    features: ['Acceso root completo', 'CPU y RAM dedicadas', 'Ideal para apps, tiendas y ERP', 'Descuento con el código DEVMARKPE']
   }
 ],
   en: [
@@ -73,8 +73,8 @@ export const hostingFeatures = {
   {
     icon: 'server',
     title: 'VPS servers',
-    description: 'Dedicated resources and root access for apps, large stores and systems like an ERP. Also discounted with the DEVMARK code.',
-    features: ['Full root access', 'Dedicated CPU and RAM', 'Great for apps, stores and ERP', 'Discount with the DEVMARK code']
+    description: 'Dedicated resources and root access for apps, large stores and systems like an ERP. Also discounted with the DEVMARKPE code.',
+    features: ['Full root access', 'Dedicated CPU and RAM', 'Great for apps, stores and ERP', 'Discount with the DEVMARKPE code']
   }
 ],
 } as const;

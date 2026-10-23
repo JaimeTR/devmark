@@ -72,7 +72,7 @@ Confirmado como real por Jaime (22 oct 2026):
 - Clientes en 11 paises: Peru, Ecuador, Bolivia, Chile, Argentina, Colombia, Venezuela,
   Mexico, Estados Unidos, Espana e Italia.
 - Horario: lunes a viernes, 9:00 a 18:00 (Lima), el mismo de Google.
-- Socios directos de Hostinger; codigo DEVMARK con descuento en hosting, VPS, dominios y correos.
+- Socios directos de Hostinger; codigo DEVMARKPE con descuento en hosting, VPS, dominios y correos.
 - Productos propios: DEVMARK AI (ai.devmarkpe.com, API de IA compatible con OpenAI) y
   DEVMARK ERP (gestion interna + portal del cliente para seguir su proyecto).
 

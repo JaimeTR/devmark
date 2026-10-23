@@ -262,7 +262,7 @@ export const homeContent = {
         },
         {
           q: '¿Me ayudan con el hosting y los correos?',
-          a: 'Sí. Somos partners de Hostinger: con el cupón DEVMARK obtienes un descuento adicional y te configuramos gratis los correos profesionales y el certificado SSL.',
+          a: 'Sí. Somos partners de Hostinger: con el cupón DEVMARKPE obtienes un descuento adicional y te configuramos gratis los correos profesionales y el certificado SSL.',
         },
       ],
     },
@@ -406,7 +406,7 @@ export const homeContent = {
         },
         {
           q: 'Can you help with hosting and email?',
-          a: 'Yes. We are Hostinger partners: with the DEVMARK coupon you get an extra discount, and we set up your professional email and SSL certificate for free.',
+          a: 'Yes. We are Hostinger partners: with the DEVMARKPE coupon you get an extra discount, and we set up your professional email and SSL certificate for free.',
         },
       ],
     },
