@@ -10,9 +10,9 @@ import { Btn } from '@/components/site/btn';
 import { TitleText } from '@/components/site/title-text';
 
 /** Ultimos articulos del blog: uno destacado y dos en lista. */
-export function BlogTeaser({ lang }: { lang: Lang }) {
+export async function BlogTeaser({ lang }: { lang: Lang }) {
   const t = homeContent[lang].blog;
-  const [first, ...rest] = getPosts(lang).slice(0, 3);
+  const [first, ...rest] = (await getPosts(lang)).slice(0, 3);
   if (!first) return null;
   const date = (d: string) => format(parseISO(d), lang === 'en' ? 'MMM d, yyyy' : "d 'de' MMM, yyyy", { locale: lang === 'en' ? enUS : es });
 

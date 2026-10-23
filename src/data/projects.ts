@@ -1,4 +1,5 @@
 import { supabaseProjects, type ProjectRow } from '@/lib/supabase-projects';
+import { erpLeer } from '@/lib/erp-sitio';
 
 export interface Project {
   title: string;
@@ -77,10 +78,42 @@ function mapRow(row: ProjectRow, lang: 'es' | 'en'): Project {
   };
 }
 
-// Shared with jaimetr.dev: both sites read the same "projects" table in
-// Supabase (different design/pages per site), so this fetches live instead
-// of shipping its own copy of the data.
+type ProyectoErp = {
+  titulo: string; tituloEn: string | null; descripcion: string; descripcionEn: string | null; categoria: string; rubro: string | null; tecnologias: string[];
+  portada: string | null; imagen: string | null; logo: string | null; enlace: string | null; github: string | null; cliente: string | null; marca: string | null; destacado: boolean; fecha: string;
+};
+
+function desdeErp(p: ProyectoErp, lang: 'es' | 'en'): Project {
+  const title = (lang === 'en' ? p.tituloEn : null) || p.titulo;
+  const image = p.portada || p.imagen || '';
+  return {
+    title,
+    description: (lang === 'en' ? p.descripcionEn : null) || p.descripcion,
+    image,
+    hasCover: Boolean(image),
+    hint: p.rubro || p.categoria || title,
+    tags: p.tecnologias,
+    link: p.enlace || undefined,
+    url: p.enlace || undefined,
+    category: normalizeCategory(p.categoria),
+    rubro: p.rubro || undefined,
+    date: p.fecha,
+    isFeatured: p.destacado,
+    logoUrl: p.logo || undefined,
+    secondaryImage: p.imagen && p.imagen !== image ? p.imagen : undefined,
+    githubUrl: p.github || undefined,
+    clientName: p.cliente || undefined,
+    companyName: p.marca || undefined,
+  };
+}
+
+// El portafolio se administra en el ERP (Sitios > Portafolio), en el orden que se fije alla. Si el ERP no
+// esta conectado o aun no tiene proyectos, se lee la tabla "projects" del Supabase compartido con
+// jaimetr.dev, como antes.
 export async function getProjects(lang: 'es' | 'en'): Promise<Project[]> {
+  const erp = await erpLeer<{ proyectos: ProyectoErp[] }>('/portafolio');
+  if (erp && erp.proyectos.length > 0) return erp.proyectos.map((p) => desdeErp(p, lang));
+
   if (!supabaseProjects) {
     return [];
   }

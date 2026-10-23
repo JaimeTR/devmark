@@ -1,5 +1,6 @@
+import { erpLeer } from '@/lib/erp-sitio';
 
-interface Post {
+export interface Post {
   slug: string;
   title: string;
   description: string;
@@ -1783,19 +1784,66 @@ const posts: Record<'es' | 'en', Post[]> = {
   ],
 };
 
-export function getPosts(lang: 'es' | 'en'): Post[] {
-  return posts[lang].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+// ------------------------------------------------------------------------------------------------
+// El blog se administra en el ERP (Sitios > Blog). Si el ERP no esta conectado, no responde o aun no
+// tiene articulos, se usan los de este archivo como respaldo.
+
+type ArticuloErp = { slug: string; titulo: string; resumen: string | null; idioma: 'es' | 'en'; grupo: string | null; autor: string | null; imagen: string | null; imagenAlt: string | null; etiquetas: string[]; publicadoEn: string | null; actualizadoEn: string };
+type ArticuloErpCompleto = ArticuloErp & { contenido: string; traduccion: { slug: string; idioma: 'es' | 'en' } | null };
+
+const IMAGEN_POR_DEFECTO = '/undraw_programming_j1zw.svg';
+
+function aPost(a: ArticuloErp, contenido = ''): Post {
+  return {
+    slug: a.slug,
+    title: a.titulo,
+    description: a.resumen ?? '',
+    date: (a.publicadoEn ?? a.actualizadoEn).slice(0, 10),
+    author: a.autor ?? 'DEVMARK',
+    image: a.imagen || IMAGEN_POR_DEFECTO,
+    imageHint: a.imagenAlt ?? a.titulo,
+    content: contenido,
+    tags: a.etiquetas,
+  };
 }
 
-export function getPostBySlug(slug: string, lang: 'es' | 'en'): Post | undefined {
+async function articulosDelErp(lang: 'es' | 'en'): Promise<ArticuloErp[] | null> {
+  const r = await erpLeer<{ articulos: ArticuloErp[] }>(`/articulos?idioma=${lang}`);
+  return r && r.articulos.length > 0 ? r.articulos : null;
+}
+
+/** Los pares es/en del codigo, en su orden original (para copiarlos al ERP con su traduccion enlazada). */
+export function paresDelCodigo(): { es: Post; en: Post | undefined }[] {
+  return posts.es.map((es, i) => ({ es, en: posts.en[i] }));
+}
+
+/** Los articulos del codigo, sin pasar por el ERP. */
+export function postsDelCodigo(lang: 'es' | 'en'): Post[] {
+  return [...posts[lang]].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+}
+
+export async function getPosts(lang: 'es' | 'en'): Promise<Post[]> {
+  const erp = await articulosDelErp(lang);
+  return erp ? erp.map((a) => aPost(a)) : postsDelCodigo(lang);
+}
+
+export async function getPostBySlug(slug: string, lang: 'es' | 'en'): Promise<Post | undefined> {
+  if (await articulosDelErp(lang)) {
+    const a = /^[a-z0-9-]{1,90}$/.test(slug) ? await erpLeer<ArticuloErpCompleto>(`/articulos/${slug}`) : null;
+    return a && a.idioma === lang ? aPost(a, a.contenido) : undefined;
+  }
   return posts[lang].find((post) => post.slug === slug);
 }
 
-// Blog posts are authored as 1:1 translated pairs, in the same order, in the `posts`
-// object above. This resolves the equivalent post slug in the other language for
-// hreflang / canonical alternates, without depending on the (date-sorted) getPosts() order.
-export function getTranslatedSlug(slug: string, fromLang: 'es' | 'en'): string | undefined {
+// En el codigo, los articulos son pares traducidos 1:1, en el mismo orden, en `posts`. En el ERP, la
+// version traducida comparte `grupo`. Asi se resuelve el slug equivalente para hreflang y canonical.
+export async function getTranslatedSlug(slug: string, fromLang: 'es' | 'en'): Promise<string | undefined> {
   const toLang = fromLang === 'es' ? 'en' : 'es';
+  const [desde, hacia] = await Promise.all([articulosDelErp(fromLang), articulosDelErp(toLang)]);
+  if (desde && hacia) {
+    const grupo = desde.find((a) => a.slug === slug)?.grupo;
+    return grupo ? hacia.find((a) => a.grupo === grupo)?.slug : undefined;
+  }
   const index = posts[fromLang].findIndex((post) => post.slug === slug);
   if (index === -1) return undefined;
   return posts[toLang][index]?.slug;

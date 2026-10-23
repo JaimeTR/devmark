@@ -2,7 +2,8 @@
 
 import { z } from 'zod';
 import { buildTransporter, escapeHtml, ADMIN_NOTIFICATION_EMAILS } from '@/app/actions/quoter-shared';
-import { visitanteDentroDelLimite } from '@/lib/rate-limit';
+import { ipDelVisitante, visitanteDentroDelLimite } from '@/lib/rate-limit';
+import { registrarMensaje } from '@/lib/erp-sitio';
 
 const contactSchema = z.object({
   firstName: z.string().min(2, 'El nombre debe tener al menos 2 caracteres').trim(),
@@ -79,10 +80,26 @@ export async function sendContactEmail(
     };
   }
 
+  // El mensaje queda en el panel del ERP (Mensajes de los sitios); el correo es el aviso.
+  const datos = validatedFields.data;
+  const enErp = await registrarMensaje(
+    {
+      tipo: 'CONTACTO',
+      nombre: `${datos.firstName} ${datos.lastName}`,
+      correo: datos.email,
+      telefono: datos.phone,
+      servicio: datos.service ? SERVICE_LABEL[datos.service] : undefined,
+      mensaje: datos.message,
+      idioma: 'es',
+    },
+    await ipDelVisitante(),
+  );
+
   try {
     // Validar que las variables de entorno existan
     if (!process.env.SMTP_EMAIL || !process.env.SMTP_PASSWORD) {
       console.error('Variables de entorno SMTP no configuradas');
+      if (enErp) return { success: true, message: '¡Mensaje enviado con éxito! Te responderemos pronto.' };
       return {
         success: false,
         message: 'Error en la configuración del servidor. Por favor contacta al administrador.',
@@ -303,6 +320,11 @@ export async function sendContactEmail(
     };
   } catch (caught) {
     const error = caught as Error & { code?: string; command?: string };
+    // Si el mensaje ya quedo en el panel del ERP, que no salga el correo no es un error para el visitante.
+    if (enErp) {
+      console.error('El mensaje quedo en el ERP pero no salio el correo:', error.message);
+      return { success: true, message: '¡Mensaje enviado con éxito! Te responderemos pronto.' };
+    }
     console.error('Error completo al enviar email:', {
       message: error.message,
       code: error.code,

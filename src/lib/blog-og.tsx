@@ -10,7 +10,7 @@ import { TOPIC_LABEL, topicOf } from '@/data/blog-topics';
 export const ogSize = { width: 1200, height: 630 };
 
 export async function blogOgImage(slug: string, lang: 'es' | 'en') {
-  const post = getPostBySlug(slug, lang);
+  const post = await getPostBySlug(slug, lang);
   const [sans, serif, logo] = await Promise.all([
     readFile(join(process.cwd(), 'src/fonts/SchibstedGrotesk-Medium.ttf')),
     readFile(join(process.cwd(), 'src/fonts/InstrumentSerif-Italic.ttf')),
