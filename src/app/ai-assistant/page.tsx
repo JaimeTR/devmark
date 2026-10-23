@@ -1,7 +1,6 @@
-import Link from 'next/link';
-import { Calculator } from 'lucide-react';
 import { Footer } from '@/components/home/footer';
 import { Header } from '@/components/home/header';
+import { AiHero } from '@/components/ai/ai-hero';
 import { AiChatbot } from '@/components/ai/ai-chatbot';
 
 const headerContent = {
@@ -40,19 +39,10 @@ export default function AiAssistantPage() {
     <div className="bg-paper">
       <Header {...headerContent} />
       <main id="main-content">
-        <section className="panel-mist mt-2 pb-16 pt-28 sm:mt-3 sm:pt-36">
+        <AiHero lang="es" kind="assistant" />
+        <section className="panel-mist mt-2 py-14 sm:mt-3 sm:py-20">
           <div className="panel-inner">
-          <div className="text-center mb-8">
-            <Link href="/quote" className="btn-ink">
-              <span className="btn-tile">
-                <Calculator className="h-5 w-5" />
-              </span>
-              Cotizar mi proyecto con IA
-            </Link>
-          </div>
-          <div className="flex flex-col gap-16 sm:gap-24 md:gap-32 lg:gap-40">
             <AiChatbot {...chatbotContent} />
-          </div>
           </div>
         </section>
       </main>

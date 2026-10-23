@@ -38,7 +38,6 @@ const copy = {
   },
 };
 
-const buttonBase = 'inline-flex items-center justify-center gap-2 h-[52px] px-8 rounded-2xl font-semibold text-sm transition-all duration-300';
 
 export function ProjectDetailModal({ project, open, onOpenChange, lang = 'es', categoryLabel, contactHref, quoteHref }: ProjectDetailModalProps) {
   const t = copy[lang];
@@ -109,41 +108,33 @@ export function ProjectDetailModal({ project, open, onOpenChange, lang = 'es', c
             </div>
           )}
 
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2">
+            <Link href={quoteHref} className="btn-ink btn-sm">
+              <span className="btn-tile">
+                <Calculator className="h-4 w-4" />
+              </span>
+              {t.quoteButton}
+            </Link>
             {project.url && (
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${buttonBase} border-2 border-transparent bg-brand-blue hover:bg-brand-navy-dark text-white shadow-lg shadow-brand-blue/30 hover:shadow-brand-blue/40`}
-              >
+              <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn-outline btn-sm">
+                <span className="btn-tile">
+                  <ExternalLink className="h-4 w-4" />
+                </span>
                 {t.visitButton}
-                <ExternalLink className="h-4 w-4" />
               </a>
             )}
-            <Link
-              href={quoteHref}
-              className={`${buttonBase} border-2 border-transparent bg-brand-blue hover:bg-brand-navy-dark text-white shadow-lg shadow-brand-blue/30 hover:shadow-brand-blue/40`}
-            >
-              {t.quoteButton}
-              <Calculator className="h-4 w-4" />
-            </Link>
-            <Link
-              href={contactHref}
-              className={`${buttonBase} bg-white border-2 border-brand-blue text-brand-blue hover:bg-transparent`}
-            >
+            <Link href={contactHref} className="btn-outline btn-sm">
+              <span className="btn-tile">
+                <Phone className="h-4 w-4" />
+              </span>
               {t.contactButton}
-              <Phone className="h-4 w-4" />
             </Link>
             {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${buttonBase} bg-white border-2 border-brand-blue text-brand-blue hover:bg-transparent`}
-              >
+              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="btn-outline btn-sm">
+                <span className="btn-tile">
+                  <Github className="h-4 w-4" />
+                </span>
                 {t.codeButton}
-                <Github className="h-4 w-4" />
               </a>
             )}
           </div>
