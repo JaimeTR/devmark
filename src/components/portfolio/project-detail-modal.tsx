@@ -76,7 +76,7 @@ export function ProjectDetailModal({ project, open, onOpenChange, lang = 'es', c
                 </div>
               )}
               {categoryLabel && (
-                <span className="text-xs font-semibold text-brand-blue bg-brand-lavender/50 rounded-full px-3 py-1">
+                <span className="text-xs font-semibold text-brand-blue bg-brand-lavender/50 rounded-[7px] px-3 py-1">
                   {categoryLabel}
                 </span>
               )}
@@ -100,7 +100,7 @@ export function ProjectDetailModal({ project, open, onOpenChange, lang = 'es', c
               {project.tags.map(tag => (
                 <span
                   key={tag}
-                  className="text-xs font-medium text-slate-600 bg-brand-light rounded-full px-3 py-1 border border-slate-200"
+                  className="text-xs font-medium text-slate-600 bg-brand-light rounded-[7px] px-3 py-1 border border-slate-200"
                 >
                   {tag}
                 </span>

@@ -31,7 +31,7 @@ function CorreosVisual({ lang }: { lang: Lang }) {
 function SslVisual({ lang }: { lang: Lang }) {
   return (
     <div className="flex h-full flex-col justify-center gap-3 p-4">
-      <div className="flex items-center gap-2 rounded-full bg-white/[0.07] px-3 py-2">
+      <div className="flex items-center gap-2 rounded-[10px] bg-white/[0.07] px-3 py-2">
         <span className="relative grid h-5 w-5 place-items-center">
           <Lock className="lv lv-pop lv-2 h-3.5 w-3.5 text-emerald-400" />
         </span>
@@ -98,11 +98,11 @@ export function DomainVisual({ lang }: { lang: Lang }) {
       <div className="flex items-center gap-2 rounded-xl bg-white px-3 py-2.5 text-ink">
         <Search className="h-4 w-4 text-ink/40" />
         <span className="lv lv-1 block whitespace-nowrap text-[14px] font-medium">{lang === 'en' ? 'yourcompany' : 'tuempresa'}</span>
-        <span className="ml-auto rounded-md bg-primary px-2.5 py-1 text-[11px] font-medium text-white">{lang === 'en' ? 'Search' : 'Buscar'}</span>
+        <span className="ml-auto rounded-[7px] bg-primary px-2.5 py-1 text-[11px] font-medium text-white">{lang === 'en' ? 'Search' : 'Buscar'}</span>
       </div>
       <div className="grid gap-1.5">
         {ext.map((e, i) => (
-          <div key={e} className={`lv lv-${i < 2 ? 2 : 3} flex items-center justify-between rounded-lg bg-white/[0.07] px-3 py-1.5`} style={stagger(i % 2)}>
+          <div key={e} className={`lv lv-${i < 2 ? 2 : 3} flex items-center justify-between rounded-[7px] bg-white/[0.07] px-3 py-1.5`} style={stagger(i % 2)}>
             <span className="text-[13px] text-white">
               <span className="text-white/50">{lang === 'en' ? 'yourcompany' : 'tuempresa'}</span>
               {e}

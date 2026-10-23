@@ -2,7 +2,7 @@
 
 import { useId, useState } from 'react';
 import Link from 'next/link';
-import { ArrowUpRight, Check, Plus } from 'lucide-react';
+import { ArrowUpRight, Check, Compass, LifeBuoy, Megaphone, Palette, Plus, Sparkles } from 'lucide-react';
 import { homeContent, type Lang } from '@/content/home';
 import { whatsappHref } from '@/lib/contact';
 import { cn } from '@/lib/utils';
@@ -11,6 +11,16 @@ import { WhatsAppIcon } from '@/components/site/whatsapp-icon';
 import { SERVICE_ICONS } from './service-band';
 import { Live } from '@/components/site/live';
 import { ServiceVisual } from './service-visuals';
+
+/** Icono de cada servicio adicional, por su direccion (es y en). */
+const EXTRA_ICONOS: [string, typeof Sparkles][] = [
+  ['ui-ux', Palette],
+  ['marketing', Megaphone],
+  ['soporte', LifeBuoy],
+  ['support', LifeBuoy],
+  ['consultoria', Compass],
+  ['consulting', Compass],
+];
 
 /**
  * Servicios como columnas que se abren: en escritorio la activa se expande y las demas
@@ -194,14 +204,24 @@ export function ServicesShowcase({ lang }: { lang: Lang }) {
           })}
         </div>
 
-        <div className="mt-12 flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-ink/10 pt-6">
-          <span className="text-sm text-ink/50">{t.extraTitle}</span>
-          {t.extra.map((e) => (
-            <Link key={e.href} href={e.href} className="group inline-flex items-center gap-1 rounded-lg px-2 py-1 text-[15px] font-medium text-ink transition-colors hover:bg-white">
-              {e.title}
-              <ArrowUpRight className="h-4 w-4 text-ink/40 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
-            </Link>
-          ))}
+        <div className="mt-12 border-t border-ink/10 pt-8">
+          <p className="text-sm font-medium text-ink/55">{t.extraTitle}</p>
+          <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {t.extra.map((e) => {
+              const Icono = EXTRA_ICONOS.find(([clave]) => e.href.includes(clave))?.[1] ?? Sparkles;
+              return (
+                <li key={e.href}>
+                  <Link href={e.href} className="lift group flex items-center gap-3 rounded-2xl bg-white p-3 pr-4 ring-1 ring-ink/[0.06] transition-colors hover:ring-primary/30">
+                    <span className="icon-tilt grid h-11 w-11 shrink-0 place-items-center rounded-[11px] bg-mist text-primary transition-colors duration-500 group-hover:bg-primary group-hover:text-white">
+                      <Icono className="h-5 w-5" />
+                    </span>
+                    <span className="min-w-0 flex-1 text-[15px] font-medium leading-snug text-ink">{e.title}</span>
+                    <ArrowUpRight className="h-4 w-4 shrink-0 text-ink/35 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
     </section>

@@ -15,7 +15,7 @@ import { SERVICE_ICONS } from '@/components/landing/service-band';
 import { ServicesMenu } from './services-menu';
 
 function NuevoBadge({ label }: { label: string }) {
-  return <span className="rounded-md bg-periwinkle px-1.5 py-0.5 font-sans text-[10px] font-semibold uppercase leading-none tracking-wide text-ink">{label}</span>;
+  return <span className="rounded-[5px] bg-periwinkle px-1.5 py-0.5 font-sans text-[10px] font-semibold uppercase leading-none tracking-wide text-ink">{label}</span>;
 }
 
 interface NavLink {
@@ -138,16 +138,15 @@ export function Header({ lang = 'es', aiAssistant }: HeaderProps) {
         )}
       >
         <Link href={homeHref} className="flex min-w-0 shrink-0 items-center gap-2.5" aria-label={t.home}>
+          {/* Logotipo nuevo: version clara u oscura segun el panel que hay debajo. */}
           <Image
-            src={dark ? '/logo-mark-white.svg' : '/logo-mark.svg'}
-            alt=""
-            role="presentation"
-            width={36}
-            height={36}
-            className="h-8 w-8 shrink-0"
+            src={dark ? '/marca/devmark-logotipo-sin-lema-fondo-oscuro.svg' : '/marca/devmark-logotipo-sin-lema.svg'}
+            alt="DEVMARK"
+            width={213}
+            height={34}
+            className="h-[30px] w-auto sm:h-[34px]"
             priority
           />
-          <span className="font-logo text-lg tracking-wider sm:text-xl">DEVMARK</span>
         </Link>
 
         <nav className="hidden items-center gap-0.5 lg:flex xl:gap-1" aria-label={lang === 'en' ? 'Main' : 'Principal'}>
@@ -244,8 +243,7 @@ export function Header({ lang = 'es', aiAssistant }: HeaderProps) {
             <SheetContent side="right" className="flex w-[min(88vw,380px)] flex-col gap-0 border-none bg-ink p-0 text-white">
               <SheetTitle className="sr-only">{t.menu}</SheetTitle>
               <div className="flex items-center gap-2.5 px-6 pb-6 pt-7">
-                <Image src="/logo-mark-white.svg" alt="" role="presentation" width={32} height={32} className="h-8 w-8" />
-                <span className="font-logo text-xl tracking-wider">DEVMARK</span>
+                <Image src="/marca/devmark-logotipo-sin-lema-fondo-oscuro.svg" alt="DEVMARK" width={213} height={34} className="h-[34px] w-auto" />
               </div>
               <nav className="flex min-h-0 flex-1 flex-col overflow-y-auto px-3">
                 {navLinks.map((link) => {
@@ -311,7 +309,7 @@ export function Header({ lang = 'es', aiAssistant }: HeaderProps) {
                       key={option.code}
                       href={option.href}
                       onClick={() => setIsOpen(false)}
-                      className={cn('rounded-lg px-3 py-1.5 text-sm', option.code === lang ? 'bg-white text-ink' : 'bg-white/10 text-white/80')}
+                      className={cn('rounded-[7px] px-3 py-1.5 text-sm', option.code === lang ? 'bg-white text-ink' : 'bg-white/10 text-white/80')}
                     >
                       {option.label}
                     </Link>

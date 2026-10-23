@@ -425,7 +425,7 @@ export function AiChatbot(props: AiChatbotProps) {
       {sinConversacion && (
         <div className="flex flex-wrap gap-2 pl-10">
           {t.suggestions.map((q) => (
-            <button key={q} type="button" onClick={() => enviar(q)} className="tag rounded-lg border border-primary/20 bg-white px-3 py-1.5 text-left text-sm text-primary transition-colors hover:border-primary hover:bg-primary hover:text-white">
+            <button key={q} type="button" onClick={() => enviar(q)} className="tag rounded-[7px] border border-primary/20 bg-white px-3 py-1.5 text-left text-sm text-primary transition-colors hover:border-primary hover:bg-primary hover:text-white">
               {q}
             </button>
           ))}
@@ -439,7 +439,7 @@ export function AiChatbot(props: AiChatbotProps) {
               type="button"
               onClick={() => handleLeadFlow(option)}
               disabled={isLoading}
-              className="tag rounded-lg border border-primary/20 bg-white px-3 py-1.5 text-sm text-primary transition-colors hover:border-primary hover:bg-primary hover:text-white disabled:opacity-50"
+              className="tag rounded-[7px] border border-primary/20 bg-white px-3 py-1.5 text-sm text-primary transition-colors hover:border-primary hover:bg-primary hover:text-white disabled:opacity-50"
             >
               {option}
             </button>

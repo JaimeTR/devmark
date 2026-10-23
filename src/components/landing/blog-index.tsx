@@ -66,7 +66,7 @@ export function BlogIndex({ posts, lang }: { posts: PostSummary[]; lang: 'es' | 
                 </div>
                 <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-12">
                   <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink/55">
-                    <span className="rounded-md bg-ink px-2.5 py-1 text-xs font-medium text-white">{t.latest}</span>
+                    <span className="rounded-[7px] bg-ink px-2.5 py-1 text-xs font-medium text-white">{t.latest}</span>
                     {date(p.date)}
                   </p>
                   <h2 className="headline mt-4 text-[clamp(1.75rem,2.8vw,2.6rem)]">
@@ -75,7 +75,7 @@ export function BlogIndex({ posts, lang }: { posts: PostSummary[]; lang: 'es' | 
                   <p className="mt-4 text-[16px] leading-relaxed text-ink/70">{p.description}</p>
                   <div className="mt-6 flex flex-wrap gap-1.5">
                     {p.tags.slice(0, 3).map((x) => (
-                      <span key={x} className="tag rounded-md bg-white px-2.5 py-1 text-xs text-ink/60">
+                      <span key={x} className="tag rounded-[7px] bg-white px-2.5 py-1 text-xs text-ink/60">
                         {x}
                       </span>
                     ))}
@@ -106,7 +106,7 @@ export function BlogIndex({ posts, lang }: { posts: PostSummary[]; lang: 'es' | 
                 <div className="mt-auto flex items-center justify-between gap-3 pt-6">
                   <div className="flex flex-wrap gap-1.5">
                     {p.tags.slice(0, 2).map((x) => (
-                      <span key={x} className="tag rounded-md bg-white px-2.5 py-1 text-xs text-ink/60">
+                      <span key={x} className="tag rounded-[7px] bg-white px-2.5 py-1 text-xs text-ink/60">
                         {x}
                       </span>
                     ))}

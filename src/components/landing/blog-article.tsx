@@ -80,7 +80,7 @@ export function BlogArticle({ post, recent, lang }: { post: PostLike; recent: Po
               <time dateTime={post.date}>{fmt(post.date)}</time>
               <span className="flex flex-wrap gap-1.5">
                 {post.tags.map((tag) => (
-                  <span key={tag} className="rounded-md bg-white/10 px-2.5 py-1 text-xs text-white">
+                  <span key={tag} className="rounded-[7px] bg-white/10 px-2.5 py-1 text-xs text-white">
                     {tag}
                   </span>
                 ))}

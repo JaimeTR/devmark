@@ -25,7 +25,7 @@ function StepVisual({ step, lang }: { step: number; lang: Lang }) {
         <span className="h-2.5 w-2.5 rounded-full bg-ink/15" />
         <span className="h-2.5 w-2.5 rounded-full bg-ink/15" />
         <span className="h-2.5 w-2.5 rounded-full bg-ink/15" />
-        <span className="ml-3 flex items-center gap-1.5 rounded-md bg-mist px-2.5 py-1 text-xs text-ink/60">
+        <span className="ml-3 flex items-center gap-1.5 rounded-[7px] bg-mist px-2.5 py-1 text-xs text-ink/60">
           {step === 6 && <span className="si-ring h-1.5 w-1.5 rounded-full bg-emerald-500" />}
           tunegocio.pe
         </span>

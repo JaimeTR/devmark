@@ -84,8 +84,7 @@ export function Footer({ lang = 'es', copyright }: FooterProps) {
     <footer className="mx-2 mb-2 mt-2 grid gap-2 sm:mx-3 sm:mb-3 sm:mt-3 sm:gap-3 lg:grid-cols-[1fr_2fr]">
       <div className="flex flex-col rounded-panel bg-mist p-7 text-ink sm:p-9">
         <Link href={lang === 'en' ? '/en' : '/'} className="inline-flex items-center gap-2.5">
-          <Image src="/logo-mark.svg" alt="" role="presentation" width={36} height={36} className="h-9 w-9" />
-          <span className="font-logo text-xl tracking-wider">DEVMARK</span>
+          <Image src="/marca/devmark-logotipo.svg" alt="DEVMARK, agencia de desarrollo web y software" width={376} height={60} className="h-[52px] w-auto sm:h-[60px]" />
         </Link>
         <p className="mt-5 max-w-[42ch] text-[15px] leading-relaxed text-ink/70">{t.tagline}</p>
         <p className="mt-9 text-sm font-medium text-ink/60">{t.follow}</p>
@@ -169,7 +168,7 @@ export function Footer({ lang = 'es', copyright }: FooterProps) {
           <p>
             © {year} {copyright}
           </p>
-          <Link href="/libro-de-reclamaciones" className="group inline-flex items-center gap-2 rounded-lg border border-white/15 px-3 py-1.5 text-white transition-colors hover:border-white/30 hover:bg-white/5">
+          <Link href="/libro-de-reclamaciones" className="group inline-flex items-center gap-2 rounded-[7px] border border-white/15 px-3 py-1.5 text-white transition-colors hover:border-white/30 hover:bg-white/5">
             <BookOpen className="icon-tilt h-4 w-4" />
             {t.complaints}
           </Link>

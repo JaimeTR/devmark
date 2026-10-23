@@ -122,7 +122,7 @@ export function PortfolioPage({ projects, lang }: { projects: Project[]; lang: '
                     <p className="mt-2 line-clamp-2 text-[15px] leading-relaxed text-ink/70">{p.description}</p>
                     <div className="mt-4 flex flex-wrap gap-1.5">
                       {p.tags.slice(0, 3).map((tag) => (
-                        <span key={tag} className="tag rounded-md bg-white px-2.5 py-1 text-xs text-ink/60">
+                        <span key={tag} className="tag rounded-[7px] bg-white px-2.5 py-1 text-xs text-ink/60">
                           {tag}
                         </span>
                       ))}

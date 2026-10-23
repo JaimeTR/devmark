@@ -168,7 +168,7 @@ export function HostingPage({ lang }: { lang: Lang }) {
                       </span>
                       <h3 className="headline text-2xl">{plan.name}</h3>
                     </span>
-                    {plan.recommended && <span className="rounded-md bg-periwinkle px-2.5 py-1 text-xs font-medium text-ink">{t.popular}</span>}
+                    {plan.recommended && <span className="rounded-[7px] bg-periwinkle px-2.5 py-1 text-xs font-medium text-ink">{t.popular}</span>}
                   </div>
                   <Precio texto={plan.price} oscuro={plan.recommended} />
                   <p className={cn('relative mt-2 text-[15px]', plan.recommended ? 'text-ink-muted' : 'text-ink/65')}>{plan.description}</p>
@@ -227,7 +227,7 @@ export function HostingPage({ lang }: { lang: Lang }) {
                     <p className="mt-2 text-[15px] text-ink/70">{d.text}</p>
                     <ul className="mt-4 flex flex-wrap gap-2">
                       {d.items.map((x) => (
-                        <li key={x} className="tag flex items-center gap-1.5 rounded-lg bg-mist px-2.5 py-1.5 text-[13px]">
+                        <li key={x} className="tag flex items-center gap-1.5 rounded-[7px] bg-mist px-2.5 py-1.5 text-[13px]">
                           <Check className="h-3.5 w-3.5 shrink-0 text-primary" />
                           {x}
                         </li>
