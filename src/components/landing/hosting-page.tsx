@@ -1,4 +1,4 @@
-import { ArrowUpRight, Check, Globe, HardDrive, Lock, Mail, Server, Zap } from 'lucide-react';
+import { ArrowUpRight, Building2, Check, Globe, HardDrive, Lock, Mail, Rocket, Server, Zap } from 'lucide-react';
 import { Header } from '@/components/home/header';
 import { Footer } from '@/components/home/footer';
 import { Contact } from '@/components/home/contact';
@@ -7,7 +7,9 @@ import { contactContent } from '@/content/home-data';
 import { hostingFeatures, hostingPlans } from '@/content/hosting';
 import type { Lang } from '@/content/home';
 import { cn } from '@/lib/utils';
+import { Live } from '@/components/site/live';
 import { CouponCopy } from './coupon-copy';
+import { DomainVisual, EmailVisual, IncludedVisual } from './hosting-visuals';
 
 const REFERRAL = 'https://www.hostinger.com?REFERRALCODE=DEVMARKPE';
 const icons = { server: Server, globe: Globe, mail: Mail, lock: Lock, zap: Zap, harddrive: HardDrive } as const;
@@ -25,6 +27,7 @@ const copy = {
     plansTitle: ['Planes', { em: 'de hosting' }] as const,
     plansText: 'Todos los planes incluyen configuración gratuita de correos corporativos y certificado SSL por parte de nuestro equipo.',
     popular: 'Más popular',
+    couponNote: 'Precio de referencia en Hostinger. Con el cupón DEVMARKPE pagas menos.',
     hire: 'Contratar ahora',
     includedTitle: ['Servicios', { em: 'incluidos' }] as const,
     included: [
@@ -54,6 +57,7 @@ const copy = {
     plansTitle: ['Hosting', { em: 'plans' }] as const,
     plansText: 'Every plan includes free setup of your professional email and SSL certificate by our team.',
     popular: 'Most popular',
+    couponNote: 'Reference price at Hostinger. Pay less with the DEVMARKPE coupon.',
     hire: 'Get it now',
     includedTitle: ['Services', { em: 'included' }] as const,
     included: [
@@ -150,15 +154,25 @@ export function HostingPage({ lang }: { lang: Lang }) {
               <p className="reveal max-w-[46ch] text-[17px] text-ink/70">{t.plansText}</p>
             </div>
             <div className="mt-12 grid gap-3 md:grid-cols-3">
-              {hostingPlans[lang].map((plan) => (
-                <div key={plan.name} className={cn('reveal lift group flex flex-col rounded-2xl p-7', plan.recommended ? 'bg-ink text-white' : 'bg-mist')}>
-                  <div className="flex items-center justify-between gap-3">
-                    <h3 className="headline text-2xl">{plan.name}</h3>
-                    {plan.recommended && <span className="rounded-md bg-white/10 px-2.5 py-1 text-xs">{t.popular}</span>}
+              {hostingPlans[lang].map((plan, i) => (
+                <div
+                  key={plan.name}
+                  className={cn('reveal lift group relative flex flex-col overflow-hidden rounded-2xl p-7', plan.recommended ? 'bg-ink text-white' : 'bg-mist')}
+                  {...(plan.recommended ? { 'data-tone': 'dark' } : {})}
+                >
+                  {plan.recommended && <div aria-hidden className="pointer-events-none absolute -right-16 -top-20 h-56 w-56 rounded-full bg-primary/50 blur-3xl" />}
+                  <div className="relative flex items-center justify-between gap-3">
+                    <span className="flex items-center gap-3">
+                      <span className={cn('grid h-11 w-11 place-items-center rounded-xl', plan.recommended ? 'bg-white/10 text-periwinkle' : 'bg-white text-primary')}>
+                        <PlanIcon index={i} />
+                      </span>
+                      <h3 className="headline text-2xl">{plan.name}</h3>
+                    </span>
+                    {plan.recommended && <span className="rounded-md bg-periwinkle px-2.5 py-1 text-xs font-medium text-ink">{t.popular}</span>}
                   </div>
-                  <p className="headline mt-6 text-[clamp(2rem,3.4vw,2.75rem)]">{plan.price}</p>
-                  <p className={cn('mt-3 text-[15px]', plan.recommended ? 'text-ink-muted' : 'text-ink/65')}>{plan.description}</p>
-                  <ul className={cn('mt-6 space-y-2.5 border-t pt-6', plan.recommended ? 'border-white/10' : 'border-ink/10')}>
+                  <Precio texto={plan.price} oscuro={plan.recommended} />
+                  <p className={cn('relative mt-2 text-[15px]', plan.recommended ? 'text-ink-muted' : 'text-ink/65')}>{plan.description}</p>
+                  <ul className={cn('relative mb-8 mt-6 space-y-2.5 border-t pt-6', plan.recommended ? 'border-white/10' : 'border-ink/10')}>
                     {plan.features.map((x) => (
                       <li key={x} className="flex items-start gap-2.5 text-[15px]">
                         <Check className={cn('mt-0.5 h-4 w-4 shrink-0', plan.recommended ? 'text-periwinkle' : 'text-primary')} />
@@ -166,12 +180,13 @@ export function HostingPage({ lang }: { lang: Lang }) {
                       </li>
                     ))}
                   </ul>
-                  <a href={REFERRAL} target="_blank" rel="noopener noreferrer" className={cn('mt-8', plan.recommended ? 'btn-light' : 'btn-ink')}>
+                  <a href={REFERRAL} target="_blank" rel="noopener noreferrer" className={cn('relative mt-auto', plan.recommended ? 'btn-light' : 'btn-ink')}>
                     <span className="btn-tile">
                       <ArrowUpRight className="h-5 w-5" />
                     </span>
                     {t.hire}
                   </a>
+                  <p className={cn('relative mt-3 text-center text-xs', plan.recommended ? 'text-ink-muted' : 'text-ink/50')}>{t.couponNote}</p>
                 </div>
               ))}
             </div>
@@ -179,40 +194,48 @@ export function HostingPage({ lang }: { lang: Lang }) {
         </section>
 
         <section className="panel bg-band py-20 text-ink sm:py-28">
-          <div className="panel-inner grid gap-12 lg:grid-cols-2">
-            <div>
-              <h2 className="headline reveal text-[clamp(2rem,4.2vw,3.5rem)]">
-                <Title parts={t.includedTitle} />
-              </h2>
-              <dl className="mt-10 grid gap-3 sm:grid-cols-2">
-                {t.included.map((x) => (
-                  <div key={x.title} className="reveal rounded-2xl bg-white/70 p-5">
-                    <dt className="headline text-xl">{x.title}</dt>
-                    <dd className="mt-2 text-[15px] leading-relaxed text-ink/70">{x.text}</dd>
+          <div className="panel-inner">
+            <h2 className="headline reveal text-[clamp(2rem,4.2vw,3.5rem)]">
+              <Title parts={t.includedTitle} />
+            </h2>
+            <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {t.included.map((x, i) => (
+                <article key={x.title} className="reveal lift group flex flex-col overflow-hidden rounded-2xl bg-white/80">
+                  <Live className="m-2 h-40 rounded-xl bg-ink">
+                    <IncludedVisual index={i} lang={lang} />
+                  </Live>
+                  <div className="p-5 pt-3">
+                    <h3 className="headline text-xl">{x.title}</h3>
+                    <p className="mt-2 text-[15px] leading-relaxed text-ink/70">{x.text}</p>
                   </div>
-                ))}
-              </dl>
+                </article>
+              ))}
             </div>
-            <div>
-              <h2 className="headline reveal text-[clamp(2rem,4.2vw,3.5rem)]">
-                <Title parts={t.domainsTitle} />
-              </h2>
-              <div className="mt-10 space-y-3">
-                {t.domains.map((d) => (
-                  <div key={d.title} className="reveal lift group rounded-2xl bg-white p-6">
-                    <h3 className="headline text-2xl">{d.title}</h3>
+
+            <h2 className="headline reveal mt-20 text-[clamp(2rem,4.2vw,3.5rem)]">
+              <Title parts={t.domainsTitle} />
+            </h2>
+            <div className="mt-10 grid gap-3 lg:grid-cols-2">
+              {t.domains.map((d, i) => (
+                <article key={d.title} className="reveal lift group grid overflow-hidden rounded-2xl bg-white sm:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)]">
+                  <Live className="m-2 min-h-56 rounded-xl bg-ink">{i === 0 ? <DomainVisual lang={lang} /> : <EmailVisual lang={lang} />}</Live>
+                  <div className="p-6 sm:pl-4">
+                    <span className="grid h-11 w-11 place-items-center rounded-xl bg-mist text-primary">
+                      {i === 0 ? <Globe className="icon-tilt h-5 w-5" /> : <Mail className="icon-tilt h-5 w-5" />}
+                    </span>
+                    <h3 className="headline mt-4 text-2xl">{d.title}</h3>
                     <p className="mt-2 text-[15px] text-ink/70">{d.text}</p>
-                    <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+                    <ul className="mt-4 flex flex-wrap gap-2">
                       {d.items.map((x) => (
-                        <li key={x} className="flex items-start gap-2 text-[15px]">
-                          <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                        <li key={x} className="tag flex items-center gap-1.5 rounded-lg bg-mist px-2.5 py-1.5 text-[13px]">
+                          <Check className="h-3.5 w-3.5 shrink-0 text-primary" />
                           {x}
                         </li>
                       ))}
                     </ul>
                   </div>
-                ))}
-              </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
@@ -220,6 +243,30 @@ export function HostingPage({ lang }: { lang: Lang }) {
         <Contact {...contactContent[lang]} heading={t.contactTitle} />
       </main>
       <Footer lang={lang} copyright={t.copyright} />
+    </div>
+  );
+}
+
+const ICONOS_PLAN = [Rocket, Zap, Building2];
+function PlanIcon({ index }: { index: number }) {
+  const Icono = ICONOS_PLAN[index] ?? Server;
+  return <Icono className="icon-tilt h-5 w-5" />;
+}
+
+/** "Desde S/20/mes" -> "Desde" chico, "S/ 20" grande y "/mes" chico. Si no calza, muestra el texto tal cual. */
+function Precio({ texto, oscuro }: { texto: string; oscuro: boolean }) {
+  const m = texto.match(/^(Desde|From)\s+(S\/|US\$|\$)\s*([\d.,]+)\s*\/\s*(mes|mo)$/i);
+  const tenue = oscuro ? 'text-ink-muted' : 'text-ink/55';
+  if (!m) return <p className="headline relative mt-6 text-[clamp(2rem,3.4vw,2.75rem)]">{texto}</p>;
+  const [, desde, moneda, monto, periodo] = m;
+  return (
+    <div className="relative mt-7">
+      <p className={cn('text-sm', tenue)}>{desde}</p>
+      <p className="mt-1 flex items-baseline gap-1">
+        <span className={cn('headline text-2xl', tenue)}>{moneda}</span>
+        <span className="headline text-[clamp(3rem,5vw,4rem)] leading-none tabular-nums">{monto}</span>
+        <span className={cn('text-[15px]', tenue)}>/{periodo}</span>
+      </p>
     </div>
   );
 }
