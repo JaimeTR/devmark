@@ -14,8 +14,18 @@ import { homeContent } from '@/content/home';
 import { SERVICE_ICONS } from '@/components/landing/service-band';
 import { ServicesMenu } from './services-menu';
 
-function NuevoBadge({ label }: { label: string }) {
-  return <span className="rounded-[5px] bg-periwinkle px-1.5 py-0.5 font-sans text-[10px] font-semibold uppercase leading-none tracking-wide text-ink">{label}</span>;
+/** Etiqueta "Nuevo". `esquina` la cuelga arriba a la derecha del enlace para no ocupar ancho en la barra. */
+function NuevoBadge({ label, esquina }: { label: string; esquina?: boolean }) {
+  return (
+    <span
+      className={cn(
+        'rounded-[5px] bg-periwinkle px-1.5 py-0.5 font-sans text-[10px] font-semibold uppercase leading-none tracking-wide text-ink',
+        esquina && 'pointer-events-none absolute -right-2.5 -top-1.5 px-1 text-[8.5px] shadow-[0_4px_10px_-4px_rgba(17,12,41,0.5)]',
+      )}
+    >
+      {label}
+    </span>
+  );
 }
 
 interface NavLink {
@@ -164,9 +174,9 @@ export function Header({ lang = 'es', aiAssistant }: HeaderProps) {
                   : 'text-ink/70 hover:text-ink',
             );
             return link.external ? (
-              <a key={link.href} href={link.href} target="_blank" rel="noopener" className={clase}>
+              <a key={link.href} href={link.href} target="_blank" rel="noopener" className={cn(clase, 'relative')}>
                 <span className="title-link pb-0.5">{link.label}</span>
-                {link.nuevo && <NuevoBadge label={t.nuevo} />}
+                {link.nuevo && <NuevoBadge label={t.nuevo} esquina />}
               </a>
             ) : (
               <Link key={link.href} href={link.href} aria-current={isActive(link.href) ? 'page' : undefined} className={clase}>
