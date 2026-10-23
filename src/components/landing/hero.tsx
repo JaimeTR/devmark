@@ -1,5 +1,6 @@
 import { ArrowDownRight } from 'lucide-react';
-import { homeContent, clients, type Lang } from '@/content/home';
+import { homeContent, type Lang } from '@/content/home';
+import { CLIENT_AVATARS } from '@/data/client-logos';
 import { whatsappHref } from '@/lib/contact';
 import { Btn } from '@/components/site/btn';
 import { TitleText } from '@/components/site/title-text';
@@ -9,7 +10,6 @@ import { HeroShowcase } from './hero-showcase';
 /** Primer pantallazo: panel tinta con el titular, la prueba social y los entregables flotando. */
 export function Hero({ lang }: { lang: Lang }) {
   const t = homeContent[lang].hero;
-  const initials = clients.slice(0, 5).map((c) => c.split(' ').map((w) => w[0]).join('').slice(0, 2));
 
   return (
     <section id="hero" data-tone="dark" className="panel-ink mt-2 sm:mt-3">
@@ -21,13 +21,10 @@ export function Hero({ lang }: { lang: Lang }) {
         <div className="hero-in relative z-10 flex flex-col">
           <div className="flex items-center gap-3">
             <div className="flex -space-x-2">
-              {initials.map((ini, i) => (
-                <span
-                  key={i}
-                  className="grid h-9 w-9 place-items-center rounded-lg border border-ink bg-band text-[11px] font-semibold tracking-wide text-ink"
-                  style={{ backgroundColor: ['#CBD5FA', '#A9B4FF', '#E1E5F8', '#B8C2F8', '#DDE2FB'][i] }}
-                >
-                  {ini}
+              {CLIENT_AVATARS.map((c) => (
+                <span key={c.nombre} title={c.nombre} className="grid h-10 w-10 place-items-center overflow-hidden rounded-xl border-2 border-ink bg-white p-1.5">
+                  {/* eslint-disable-next-line @next/next/no-img-element -- avatar de 40 px ya optimizado */}
+                  <img src={c.src} alt={c.nombre} width={28} height={28} className="h-full w-full object-contain" />
                 </span>
               ))}
             </div>
