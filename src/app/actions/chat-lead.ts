@@ -1,7 +1,8 @@
 'use server';
 
 import { z } from 'zod';
-import { visitanteDentroDelLimite } from '@/lib/rate-limit';
+import { ipDelVisitante, visitanteDentroDelLimite } from '@/lib/rate-limit';
+import { registrarMensaje } from '@/lib/erp-sitio';
 import { buildTransporter, escapeHtml, ADMIN_NOTIFICATION_EMAILS } from '@/app/actions/quoter-shared';
 
 const leadSchema = z.object({
@@ -96,6 +97,19 @@ export async function sendLeadFromChat(payload: LeadPayload): Promise<LeadResult
     return { success: false, message: 'Recibimos varios envíos seguidos. Espera unos minutos e inténtalo de nuevo.' };
   }
 
+  const enErp = await registrarMensaje(
+    {
+      tipo: 'LEAD_CHAT',
+      nombre: result.data.name,
+      correo: result.data.email,
+      telefono: result.data.phone,
+      servicio: result.data.service,
+      mensaje: result.data.details,
+      datos: result.data.transcript ? { transcripcion: result.data.transcript.slice(0, 20_000) } : {},
+    },
+    await ipDelVisitante(),
+  );
+
   try {
     const transporter = buildTransporter();
     await transporter.verify();
@@ -117,6 +131,7 @@ export async function sendLeadFromChat(payload: LeadPayload): Promise<LeadResult
     return { success: true, message: 'Lead enviado correctamente' };
   } catch (error) {
     console.error('Error enviando lead del chat:', error);
+    if (enErp) return { success: true, message: 'Lead enviado correctamente' };
     return { success: false, message: 'No pudimos enviar el lead. Intenta de nuevo.' };
   }
 }

@@ -29,7 +29,7 @@ const enServices = [
 
 const lastModified = new Date();
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://devmarkpe.com';
 
   const mainPages: MetadataRoute.Sitemap = [
@@ -280,11 +280,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  const esPosts = getPosts('es');
-  const enPosts = getPosts('en');
+  const esPosts = await getPosts('es');
+  const enPosts = await getPosts('en');
 
-  const esBlogRoutes: MetadataRoute.Sitemap = esPosts.map((post) => {
-    const enSlug = getTranslatedSlug(post.slug, 'es');
+  const esBlogRoutes: MetadataRoute.Sitemap = await Promise.all(esPosts.map(async (post) => {
+    const enSlug = await getTranslatedSlug(post.slug, 'es');
     return {
       url: `${baseUrl}/blog/${post.slug}`,
       lastModified: new Date(post.date),
@@ -298,11 +298,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
             },
           }
         : undefined,
-    };
-  });
+    } satisfies MetadataRoute.Sitemap[number];
+  }));
 
-  const enBlogRoutes: MetadataRoute.Sitemap = enPosts.map((post) => {
-    const esSlug = getTranslatedSlug(post.slug, 'en');
+  const enBlogRoutes: MetadataRoute.Sitemap = await Promise.all(enPosts.map(async (post) => {
+    const esSlug = await getTranslatedSlug(post.slug, 'en');
     return {
       url: `${baseUrl}/en/blog/${post.slug}`,
       lastModified: new Date(post.date),
@@ -316,8 +316,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
             },
           }
         : undefined,
-    };
-  });
+    } satisfies MetadataRoute.Sitemap[number];
+  }));
 
   return [
     ...mainPages,

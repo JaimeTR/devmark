@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-import { ArrowUpRight, Bot, Lightbulb, Loader2, RotateCcw, SendHorizontal } from 'lucide-react';
+import { useState, useRef, useEffect, useCallback } from 'react';
+import { ArrowUpRight, Bot, Headset, Lightbulb, Loader2, RotateCcw, SendHorizontal } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/site/whatsapp-icon';
 import { whatsappHref } from '@/lib/contact';
 import { type Message } from '@/ai/flows/ask-devmark';
@@ -11,16 +11,23 @@ import { logChatMessage } from '@/app/actions/chat-log';
 
 const CHAT_META_DELIMITER = '__DEVMARK_CHAT_META__';
 
-type ChatMeta = { source: 'groq' | 'openai' | 'fallback'; leadCapture: boolean };
+type ChatMeta = { source: 'groq' | 'openai' | 'fallback' | 'asesor'; leadCapture: boolean; conversacionId?: string; estado?: string };
+type ExtraChat = { visitante?: string; conversacionId?: string; pagina?: string };
+type MensajeErp = { id: string; autor: 'VISITANTE' | 'IA' | 'ASESOR'; texto: string; creadoEn: string; asesor?: string };
+
+// Mientras un asesor atiende, el widget consulta sus mensajes cada pocos segundos.
+const CADA_CONSULTA_MS = 4000;
 
 async function streamChatResponse(
   history: Message[],
-  onDelta: (delta: string) => void
+  onDelta: (delta: string) => void,
+  extra: ExtraChat = {},
 ): Promise<ChatMeta> {
   const res = await fetch('/api/chat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ history }),
+    // El historial viaja sin la metadata de cada mensaje (el servidor no la necesita).
+    body: JSON.stringify({ history: history.map(({ role, content }) => ({ role, content })), ...extra }),
   });
 
   if (!res.ok || !res.body) {
@@ -30,7 +37,7 @@ async function streamChatResponse(
   const reader = res.body.getReader();
   const decoder = new TextDecoder();
   let buffer = '';
-  let meta: { source: 'groq' | 'openai' | 'fallback'; leadCapture: boolean } = { source: 'fallback', leadCapture: false };
+  let meta: ChatMeta = { source: 'fallback', leadCapture: false };
 
   while (true) {
     const { done, value } = await reader.read();
@@ -82,6 +89,13 @@ const UI = {
     humanText: 'Te respondemos por WhatsApp de lunes a viernes, de 9:00 a 18:00.',
     humanCta: 'Escríbenos',
     humanMessage: 'Hola DEVMARK, vengo del asistente con IA y quiero hablar con alguien del equipo.',
+    askAdvisor: 'Hablar con un asesor',
+    askAdvisorText: 'Quiero hablar con un asesor',
+    advisorWaiting: 'Listo, avisé al equipo. Una persona te responderá aquí mismo en unos minutos (lun a vie, 9:00 a 18:00). Si prefieres, déjanos tu correo o WhatsApp en este chat.',
+    advisorJoined: (n: string) => `${n} se unió a la conversación.`,
+    advisorBack: 'La conversación volvió al asistente con IA.',
+    advisorClosed: 'El asesor cerró la conversación. Si escribes de nuevo, te responde el asistente.',
+    team: 'Equipo DEVMARK',
   },
   en: {
     status: 'Online · instant answers',
@@ -93,6 +107,13 @@ const UI = {
     humanText: 'We reply on WhatsApp Monday to Friday, 9:00 to 18:00 (Lima time).',
     humanCta: 'Message us',
     humanMessage: 'Hi DEVMARK, I come from the AI assistant and want to talk to someone on the team.',
+    askAdvisor: 'Talk to an advisor',
+    askAdvisorText: 'I want to talk to an advisor',
+    advisorWaiting: 'Done, I let the team know. A person will reply right here in a few minutes (Mon to Fri, 9:00 to 18:00 Lima time). You can also leave your email or WhatsApp in this chat.',
+    advisorJoined: (n: string) => `${n} joined the conversation.`,
+    advisorBack: 'The conversation is back with the AI assistant.',
+    advisorClosed: 'The advisor closed the conversation. If you write again, the assistant will reply.',
+    team: 'DEVMARK team',
   },
 } as const;
 
@@ -135,6 +156,10 @@ function getOrCreateSessionId(lang: 'es' | 'en'): string {
   return id;
 }
 
+function conversacionKey(lang: 'es' | 'en') {
+  return `devmark_chat_conversacion_${lang}`;
+}
+
 function loadStoredMessages(lang: 'es' | 'en'): Message[] | null {
   if (typeof window === 'undefined') return null;
   try {
@@ -165,6 +190,12 @@ export function AiChatbot(props: AiChatbotProps) {
   const [leadStatus, setLeadStatus] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const sessionIdRef = useRef('');
+  // Conversacion en el ERP y, si un asesor la atiende, su estado y nombre.
+  const conversacionRef = useRef<string | undefined>(undefined);
+  const [asesor, setAsesor] = useState<{ estado: string; nombre: string | null } | null>(null);
+  const asesorRef = useRef<{ estado: string; nombre: string | null } | null>(null);
+  const vistosRef = useRef<Set<string>>(new Set());
+  const ultimoRef = useRef<string | undefined>(undefined);
 
   useEffect(() => {
     const stored = loadStoredMessages(lang);
@@ -172,6 +203,8 @@ export function AiChatbot(props: AiChatbotProps) {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMessages(stored ?? [{ role: 'model', content: props.initialMessage }]);
     sessionIdRef.current = getOrCreateSessionId(lang);
+    conversacionRef.current = window.localStorage.getItem(conversacionKey(lang)) ?? undefined;
+    for (const m of stored ?? []) if (m.metadata?.id) vistosRef.current.add(m.metadata.id);
     // Solo al montar: no queremos que un re-render por cambio de idioma pise
     // una conversación ya cargada.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -190,6 +223,42 @@ export function AiChatbot(props: AiChatbotProps) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }
   }, [messages, isLoading]);
+
+  const t0 = UI[lang];
+  const consultarAsesor = useCallback(async () => {
+    const id = conversacionRef.current;
+    if (!id) return;
+    const p = new URLSearchParams({ id, visitante: sessionIdRef.current, ...(ultimoRef.current ? { despues: ultimoRef.current } : {}) });
+    const res = await fetch(`/api/chat/conversacion?${p}`, { cache: 'no-store' }).catch(() => null);
+    if (!res?.ok) return;
+    const d = (await res.json()) as { estado: string; asesor: string | null; mensajes: MensajeErp[] };
+    if (d.mensajes.length) ultimoRef.current = d.mensajes[d.mensajes.length - 1].creadoEn;
+    const nuevos = d.mensajes.filter((m) => m.autor === 'ASESOR' && !vistosRef.current.has(m.id));
+    nuevos.forEach((m) => vistosRef.current.add(m.id));
+    const previo = asesorRef.current;
+    const nombre = d.asesor ?? previo?.nombre ?? null;
+    const termino = d.estado === 'IA' || d.estado === 'CERRADA';
+    const antes: Message[] = d.estado === 'CON_ASESOR' && nombre && !previo?.nombre ? [{ role: 'model', content: t0.advisorJoined(nombre), metadata: { source: 'asesor' } }] : [];
+    const llegados: Message[] = nuevos.map((m) => ({ role: 'model', content: m.texto, metadata: { source: 'asesor', asesor: m.asesor ?? nombre ?? t0.team, id: m.id } }));
+    const despues: Message[] = termino && previo ? [{ role: 'model', content: d.estado === 'IA' ? t0.advisorBack : t0.advisorClosed, metadata: { source: 'asesor' } }] : [];
+    if (antes.length || llegados.length || despues.length) setMessages((ms) => [...ms, ...antes, ...llegados, ...despues]);
+    const siguiente = termino ? null : { estado: d.estado, nombre };
+    asesorRef.current = siguiente;
+    setAsesor(siguiente);
+  }, [t0]);
+
+  // Al volver a la pagina: si la conversacion guardada la atiende (o espera) un asesor, se retoma.
+  useEffect(() => {
+    if (conversacionRef.current) void consultarAsesor();
+  }, [consultarAsesor]);
+
+  useEffect(() => {
+    if (!asesor) return;
+    const timer = setInterval(() => {
+      if (document.visibilityState === 'visible') void consultarAsesor();
+    }, CADA_CONSULTA_MS);
+    return () => clearInterval(timer);
+  }, [asesor, consultarAsesor]);
 
   const serviceOptions = [
     'Desarrollo web a medida',
@@ -310,10 +379,12 @@ export function AiChatbot(props: AiChatbotProps) {
     }
   };
 
-  const enviar = async (texto: string) => {
+  // forzarConversacion: el boton "Hablar con un asesor" siempre va a la conversacion, aunque el chat
+  // este pidiendo los datos del interesado.
+  const enviar = async (texto: string, forzarConversacion = false) => {
     if (!texto.trim() || isLoading) return;
 
-    if (mode === 'lead') {
+    if (mode === 'lead' && !forzarConversacion) {
       await handleLeadFlow(texto);
       return;
     }
@@ -340,7 +411,26 @@ export function AiChatbot(props: AiChatbotProps) {
           copy[copy.length - 1] = { role: 'model', content: last.content + delta };
           return copy;
         });
-      });
+      }, { visitante: sessionIdRef.current, conversacionId: conversacionRef.current, pagina: window.location.pathname });
+
+      if (meta.conversacionId && meta.conversacionId !== conversacionRef.current) {
+        conversacionRef.current = meta.conversacionId;
+        window.localStorage.setItem(conversacionKey(lang), meta.conversacionId);
+      }
+
+      // Un asesor atiende (o se le espera): no hay respuesta de la IA; se consultan sus mensajes.
+      if (meta.source === 'asesor') {
+        const yaAtendido = asesorRef.current !== null;
+        setMessages(prev => {
+          const copy = prev.slice(0, -1);
+          return yaAtendido ? copy : [...copy, { role: 'model', content: UI[lang].advisorWaiting, metadata: { source: 'asesor' } }];
+        });
+        if (!asesorRef.current) {
+          asesorRef.current = { estado: meta.estado ?? 'ESPERANDO_ASESOR', nombre: null };
+          setAsesor(asesorRef.current);
+        }
+        return;
+      }
 
       setMessages(prev => {
         const copy = [...prev];
@@ -380,6 +470,12 @@ export function AiChatbot(props: AiChatbotProps) {
   // Empieza de cero: borra el historial guardado y vuelve al saludo.
   const reiniciar = () => {
     window.localStorage.removeItem(historyKey(lang));
+    window.localStorage.removeItem(conversacionKey(lang));
+    conversacionRef.current = undefined;
+    ultimoRef.current = undefined;
+    vistosRef.current.clear();
+    asesorRef.current = null;
+    setAsesor(null);
     setMode('ai');
     setLeadStep('service');
     setLeadStatus(null);
@@ -399,7 +495,14 @@ export function AiChatbot(props: AiChatbotProps) {
 
         return (
           <div key={index} className={cn('step-in flex items-end gap-2', msg.role === 'user' && 'justify-end')}>
-            {msg.role === 'model' && <AiAvatar />}
+            {msg.role === 'model' &&
+              (msg.metadata?.asesor ? (
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-[9px] bg-primary text-white" title={msg.metadata.asesor}>
+                  <Headset className="h-4 w-4" />
+                </span>
+              ) : (
+                <AiAvatar />
+              ))}
             <div
               className={cn(
                 'max-w-[85%] rounded-2xl px-4 py-2.5',
@@ -414,6 +517,7 @@ export function AiChatbot(props: AiChatbotProps) {
                 </div>
               ) : (
                 <p className="whitespace-pre-wrap text-sm leading-relaxed">
+                  {msg.metadata?.asesor && <span className="mb-0.5 block text-xs font-medium text-primary">{msg.metadata.asesor} · DEVMARK</span>}
                   {msg.content}
                   {isCurrentlyStreaming && <span className="ml-0.5 inline-block h-3.5 w-[2px] animate-pulse bg-primary align-middle" />}
                 </p>
@@ -429,6 +533,19 @@ export function AiChatbot(props: AiChatbotProps) {
               {q}
             </button>
           ))}
+        </div>
+      )}
+      {!asesor && !sinConversacion && !isLoading && leadStep !== 'done' && (
+        <div className="flex pl-10">
+          <button
+            type="button"
+            onClick={() => {
+              setMode('ai');
+              void enviar(t.askAdvisorText, true);
+            }} className="tag inline-flex items-center gap-1.5 rounded-[7px] border border-ink/15 bg-white px-3 py-1.5 text-sm text-ink/75 transition-colors hover:border-primary hover:text-primary">
+            <Headset className="h-3.5 w-3.5" />
+            {t.askAdvisor}
+          </button>
         </div>
       )}
       {mode === 'lead' && leadStep === 'service' && (
