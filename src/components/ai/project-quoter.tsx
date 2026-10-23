@@ -7,14 +7,13 @@ import { useSearchParams } from 'next/navigation';
 import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { ArrowLeft, ArrowRight, Bot, Check, Download, MessageSquare, Sparkles } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CalendarClock, Check, Coins, Download, FileText, FolderKanban, LayoutGrid, Lightbulb, ListChecks, Loader2, Mail, MessageSquare, MessageSquareText, Palette, Pencil, Sparkles, User, Wallet } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/site/whatsapp-icon';
 import { type FormState, quoteProjectAction, notifyProposalDownloaded } from '@/app/actions/quoter';
 import { ProposalDocument } from '@/components/ai/proposal-document';
 import { cn } from '@/lib/utils';
@@ -148,6 +147,12 @@ function readPrefilledProjectType(value: string | null): FormData['projectType']
 // (form.trigger igual valida y no bloquea si están vacíos).
 const STEP_FIELDS = ['responsibleName', 'projectName', 'projectType', 'features', 'design', 'timeline', 'currency', 'additionalInfo', 'contactEmail'] as const;
 type StepField = (typeof STEP_FIELDS)[number];
+const STEP_ICONS = [User, FolderKanban, LayoutGrid, ListChecks, Palette, CalendarClock, Coins, MessageSquareText, Mail];
+const STEP_LABELS = {
+  es: ['Tus datos', 'Proyecto', 'Tipo de proyecto', 'Funcionalidades', 'Diseño', 'Plazo', 'Moneda', 'Detalles', 'Correo'],
+  en: ['Your details', 'Project', 'Project type', 'Features', 'Design', 'Timeline', 'Currency', 'Details', 'Email'],
+} as const;
+const campo = 'field-light h-12';
 
 // Texto legible de lo ya respondido, para la lista que queda visible arriba
 // de la pregunta activa (no se oculta lo ya contestado).
@@ -322,520 +327,502 @@ export function ProjectQuoter({ content }: ProjectQuoterProps) {
   }, [state, toast]);
 
 
-  return (
-    <section id="project-quoter" className="py-12 md:py-20">
-      <div className="text-center max-w-3xl mx-auto mb-12">
-        <div className="inline-flex items-center gap-2.5 px-4 py-2.5 mb-5 rounded-2xl bg-brand-lavender/80 backdrop-blur-md text-brand-navy border border-brand-lavender/50 shadow-lg shadow-brand-blue/15 animate-fade-in-up">
-          <Sparkles className="w-4 h-4 text-brand-blue shrink-0" />
-          <span className="font-medium text-[11px] sm:text-sm tracking-wider uppercase">{content.badgeLabel}</span>
-        </div>
-        <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter text-gradient">{content.title}</h1>
-        <p className="mt-4 text-lg text-muted-foreground">{content.description}</p>
-      </div>
+  const step = STEP_FIELDS[currentStep];
+  const labels = STEP_LABELS[content.lang];
+  const fecha = (d: Date) => new Intl.DateTimeFormat(content.lang === 'es' ? 'es-PE' : 'en-US', { day: '2-digit', month: 'long', year: 'numeric' }).format(d);
+  const stepOf = content.lang === 'es' ? `Paso ${currentStep + 1} de ${STEP_FIELDS.length}` : `Step ${currentStep + 1} of ${STEP_FIELDS.length}`;
+  const avance = showForm ? currentStep : STEP_FIELDS.length;
 
-      <div className="max-w-3xl mx-auto space-y-6">
+  // Opciones de radio como tarjetas seleccionables.
+  const radios = (items: { value: string; label: string }[], value: string | undefined, onChange: (v: string) => void) => (
+    <RadioGroup onValueChange={onChange} value={value} className="grid gap-2.5 sm:grid-cols-2">
+      {items.map((item) => (
+        <FormItem key={item.value} className="space-y-0">
+          <FormLabel className={cn('opt', value === item.value && 'opt-on')}>
+            <FormControl>
+              <RadioGroupItem value={item.value} />
+            </FormControl>
+            {item.label}
+          </FormLabel>
+        </FormItem>
+      ))}
+    </RadioGroup>
+  );
+
+  return (
+    <section id="project-quoter" className="grid gap-4 lg:grid-cols-[300px_1fr] lg:items-start lg:gap-6">
+      {/* Avance: cada respuesta queda a la vista y se puede editar. */}
+      <aside className="relative hidden overflow-hidden rounded-3xl bg-ink p-6 text-white lg:sticky lg:top-28 lg:block">
+        <div aria-hidden className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-primary/50 blur-[70px]" />
+        <p className="relative flex items-center gap-2 text-sm text-ink-muted">
+          <Sparkles className="h-4 w-4 text-periwinkle" />
+          {content.badgeLabel}
+        </p>
+        <div className="relative mt-4 h-1.5 overflow-hidden rounded-full bg-white/10">
+          <span className="block h-full rounded-full bg-periwinkle transition-[width] duration-500" style={{ width: `${(avance / STEP_FIELDS.length) * 100}%` }} />
+        </div>
+        <ol className="relative mt-6 space-y-1">
+          {STEP_FIELDS.map((field, i) => {
+            const Icon = STEP_ICONS[i];
+            const hecho = i < avance;
+            const actual = showForm && i === currentStep;
+            const contenido = (
+              <>
+                <span className={cn('grid h-8 w-8 shrink-0 place-items-center rounded-[9px] transition-colors', hecho ? 'bg-periwinkle text-ink' : actual ? 'bg-primary text-white' : 'bg-white/[0.07] text-white/45')}>
+                  {hecho ? <Check className="h-4 w-4" /> : <Icon className="h-4 w-4" />}
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className={cn('block text-sm', actual || hecho ? 'text-white' : 'text-white/50')}>{labels[i]}</span>
+                  {hecho && <span className="block truncate text-xs text-ink-muted">{summarizeStep(field, form.getValues(), content, content.lang)}</span>}
+                </span>
+              </>
+            );
+            return (
+              <li key={field}>
+                {hecho ? (
+                  <button type="button" onClick={() => { setShowForm(true); setCurrentStep(i); }} className="flex w-full items-center gap-3 rounded-xl p-1.5 text-left transition-colors hover:bg-white/[0.06]" title={content.form.editStepButton}>
+                    {contenido}
+                  </button>
+                ) : (
+                  <div className={cn('flex items-center gap-3 rounded-xl p-1.5', actual && 'bg-white/[0.06]')}>{contenido}</div>
+                )}
+              </li>
+            );
+          })}
+        </ol>
+      </aside>
+
+      <div className="min-w-0 space-y-4">
         {showForm ? (
-          <Card className="bg-primary/5 backdrop-blur-sm border-primary/10">
-            <CardHeader className="p-8 pb-0">
-              <div className="flex items-center justify-between mb-1">
-                <CardTitle>{content.form[STEP_FIELDS[currentStep]].label}</CardTitle>
-                <span className="text-xs font-semibold text-muted-foreground shrink-0 ml-4">{currentStep + 1} / {STEP_FIELDS.length}</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                {STEP_FIELDS.map((_, i) => (
-                  <div key={i} className={cn('h-1.5 flex-1 rounded-full transition-colors duration-300', i <= currentStep ? 'bg-brand-blue' : 'bg-primary/10')} />
-                ))}
-              </div>
-            </CardHeader>
-            <CardContent className="p-8">
-              {currentStep > 0 && (
-                <div className="mb-6 divide-y divide-border/50 border-b border-border/50">
+          <div className="rounded-3xl bg-white p-6 shadow-[0_24px_60px_-30px_rgba(17,12,41,0.35)] sm:p-10">
+            <div className="flex items-center justify-between gap-4 text-sm text-ink/55">
+              <span>{stepOf}</span>
+              <span className="lg:hidden">{labels[currentStep]}</span>
+            </div>
+            <div className="mt-3 flex gap-1 lg:hidden">
+              {STEP_FIELDS.map((_, i) => (
+                <span key={i} className={cn('h-1.5 flex-1 rounded-full transition-colors duration-300', i <= currentStep ? 'bg-primary' : 'bg-ink/10')} />
+              ))}
+            </div>
+            <h2 key={step} className="headline step-in mt-5 text-[clamp(1.6rem,3vw,2.25rem)]">{content.form[step].label}</h2>
+
+            {currentStep > 0 && (
+              <details className="mt-5 rounded-xl bg-mist px-4 py-3 text-sm lg:hidden">
+                <summary className="cursor-pointer text-ink/70">
+                  {content.lang === 'es' ? `Tus respuestas (${currentStep})` : `Your answers (${currentStep})`}
+                </summary>
+                <ul className="mt-2 divide-y divide-ink/10">
                   {STEP_FIELDS.slice(0, currentStep).map((field, i) => (
-                    <div key={field} className="flex items-center gap-3 py-3 animate-fade-in-up">
-                      <div className="w-6 h-6 rounded-full bg-brand-blue/10 text-brand-blue flex items-center justify-center shrink-0">
-                        <Check className="w-3.5 h-3.5" />
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <p className="text-xs text-muted-foreground">{content.form[field].label}</p>
-                        <p className="text-sm font-semibold truncate">{summarizeStep(field, form.getValues(), content, content.lang)}</p>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => setCurrentStep(i)}
-                        className="text-xs font-semibold text-brand-blue shrink-0 hover:underline"
-                      >
+                    <li key={field} className="flex items-center gap-3 py-2">
+                      <span className="min-w-0 flex-1">
+                        <span className="block text-xs text-ink/55">{labels[i]}</span>
+                        <span className="block truncate text-ink">{summarizeStep(field, form.getValues(), content, content.lang)}</span>
+                      </span>
+                      <button type="button" onClick={() => setCurrentStep(i)} className="shrink-0 text-xs font-medium text-primary">
                         {content.form.editStepButton}
                       </button>
-                    </div>
+                    </li>
                   ))}
-                </div>
-              )}
+                </ul>
+              </details>
+            )}
 
-              <Form {...form}>
-                <form
-                  onSubmit={form.handleSubmit((data) => {
-                    startTransition(() => formAction(data));
-                  })}
-                  onKeyDown={(e) => {
-                    const target = e.target as HTMLElement;
-                    if (e.key === 'Enter' && target.tagName !== 'TEXTAREA' && !isLastStep) {
-                      e.preventDefault();
-                      goNext();
-                    }
-                  }}
-                  className="space-y-8"
-                >
-                   <input type="hidden" {...form.register('lang')} />
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit((data) => {
+                  startTransition(() => formAction(data));
+                })}
+                onKeyDown={(e) => {
+                  const target = e.target as HTMLElement;
+                  if (e.key === 'Enter' && target.tagName !== 'TEXTAREA' && !isLastStep) {
+                    e.preventDefault();
+                    goNext();
+                  }
+                }}
+                className="mt-7 space-y-6"
+              >
+                <input type="hidden" {...form.register('lang')} />
 
-                  {currentStep === 0 && (
-                    <div className="space-y-6 animate-fade-in-up">
-                      <FormField
-                        control={form.control}
-                        name="responsibleName"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>{content.form.responsibleName.label}</FormLabel>
-                            <FormControl>
-                              <Input placeholder={content.form.responsibleName.placeholder} {...field} className="bg-background/50" />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="companyName"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>{content.form.companyName.label}</FormLabel>
-                            <FormControl>
-                              <Input placeholder={content.form.companyName.placeholder} {...field} className="bg-background/50" />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                  )}
-
-                  {currentStep === 1 && (
+                {currentStep === 0 && (
+                  <div className="step-in grid gap-5 sm:grid-cols-2">
                     <FormField
                       control={form.control}
-                      name="projectName"
+                      name="responsibleName"
                       render={({ field }) => (
-                        <FormItem className="animate-fade-in-up">
-                          <FormLabel>{content.form.projectName.label}</FormLabel>
+                        <FormItem>
+                          <FormLabel className="text-sm text-ink/70">{content.lang === 'es' ? 'Nombre' : 'Name'}</FormLabel>
                           <FormControl>
-                            <Input placeholder={content.form.projectName.placeholder} {...field} className="bg-background/50" />
+                            <Input autoFocus placeholder={content.form.responsibleName.placeholder} {...field} className={campo} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
                     />
-                  )}
-
-                  {currentStep === 2 && (
                     <FormField
                       control={form.control}
-                      name="projectType"
+                      name="companyName"
                       render={({ field }) => (
-                        <FormItem className="space-y-3 animate-fade-in-up">
-                          <FormLabel>{content.form.projectType.label}</FormLabel>
+                        <FormItem>
+                          <FormLabel className="text-sm text-ink/70">{content.form.companyName.label}</FormLabel>
                           <FormControl>
-                            <RadioGroup
-                              onValueChange={field.onChange}
-                              defaultValue={field.value}
-                              className="flex flex-col space-y-1"
-                            >
-                              {content.form.projectType.items.map(item => (
-                                <FormItem key={item.value} className="flex items-center space-x-3 space-y-0">
-                                  <FormControl>
-                                    <RadioGroupItem value={item.value} />
-                                  </FormControl>
-                                  <FormLabel className="font-normal">{item.label}</FormLabel>
-                                </FormItem>
-                              ))}
-                            </RadioGroup>
+                            <Input placeholder={content.form.companyName.placeholder} {...field} className={campo} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
                     />
-                  )}
+                  </div>
+                )}
 
-                  {currentStep === 2 && watchedProjectType === 'other' && (
-                    <FormField
-                      control={form.control}
-                      name="projectTypeOther"
-                      render={({ field }) => (
-                        <FormItem className="animate-fade-in-up">
-                          <FormLabel>{content.form.projectType.otherLabel}</FormLabel>
-                          <FormControl>
-                            <Input placeholder={content.form.projectType.otherPlaceholder} {...field} className="bg-background/50" />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  )}
+                {currentStep === 1 && (
+                  <FormField
+                    control={form.control}
+                    name="projectName"
+                    render={({ field }) => (
+                      <FormItem className="step-in">
+                        <FormLabel className="sr-only">{content.form.projectName.label}</FormLabel>
+                        <FormControl>
+                          <Input autoFocus placeholder={content.form.projectName.placeholder} {...field} className={campo} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                )}
 
-                  {currentStep === 3 && (
-                    <FormField
-                      control={form.control}
-                      name="features"
-                      render={() => (
-                        <FormItem className="animate-fade-in-up">
-                          <div className="mb-4">
-                            <FormLabel>{content.form.features.label}</FormLabel>
-                            <FormDescription>{content.form.features.description}</FormDescription>
-                          </div>
+                {currentStep === 2 && (
+                  <FormField
+                    control={form.control}
+                    name="projectType"
+                    render={({ field }) => (
+                      <FormItem className="step-in">
+                        <FormControl>{radios(content.form.projectType.items, field.value, field.onChange)}</FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                )}
+
+                {currentStep === 2 && watchedProjectType === 'other' && (
+                  <FormField
+                    control={form.control}
+                    name="projectTypeOther"
+                    render={({ field }) => (
+                      <FormItem className="step-in">
+                        <FormLabel className="text-sm text-ink/70">{content.form.projectType.otherLabel}</FormLabel>
+                        <FormControl>
+                          <Input placeholder={content.form.projectType.otherPlaceholder} {...field} className={campo} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                )}
+
+                {currentStep === 3 && (
+                  <FormField
+                    control={form.control}
+                    name="features"
+                    render={() => (
+                      <FormItem className="step-in">
+                        <FormDescription className="-mt-3 mb-4 text-ink/60">{content.form.features.description}</FormDescription>
+                        <div className="grid gap-2.5 sm:grid-cols-2">
                           {content.form.features.items.map((item) => (
                             <FormField
                               key={item.id}
                               control={form.control}
                               name="features"
                               render={({ field }) => {
+                                const marcado = field.value?.includes(item.id);
                                 return (
-                                  <FormItem
-                                    key={item.id}
-                                    className="flex flex-row items-start space-x-3 space-y-0"
-                                  >
-                                    <FormControl>
-                                      <Checkbox
-                                        checked={field.value?.includes(item.id)}
-                                        onCheckedChange={(checked) => {
-                                          return checked
-                                            ? field.onChange([...(field.value || []), item.id])
-                                            : field.onChange(
-                                                field.value?.filter(
-                                                  (value) => value !== item.id
-                                                )
-                                              )
-                                        }}
-                                      />
-                                    </FormControl>
-                                    <FormLabel className="font-normal">
+                                  <FormItem className="space-y-0">
+                                    <FormLabel className={cn('opt', marcado && 'opt-on')}>
+                                      <FormControl>
+                                        <Checkbox
+                                          checked={marcado}
+                                          onCheckedChange={(checked) =>
+                                            checked ? field.onChange([...(field.value || []), item.id]) : field.onChange(field.value?.filter((value) => value !== item.id))
+                                          }
+                                        />
+                                      </FormControl>
                                       {item.label}
                                     </FormLabel>
                                   </FormItem>
-                                )
+                                );
                               }}
                             />
                           ))}
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  )}
-
-                  {currentStep === 4 && (
-                    <FormField
-                      control={form.control}
-                      name="design"
-                      render={({ field }) => (
-                        <FormItem className="space-y-3 animate-fade-in-up">
-                          <FormLabel>{content.form.design.label}</FormLabel>
-                          <FormControl>
-                            <RadioGroup
-                              onValueChange={field.onChange}
-                              defaultValue={field.value}
-                              className="flex flex-col space-y-1"
-                            >
-                               {content.form.design.items.map(item => (
-                                <FormItem key={item.value} className="flex items-center space-x-3 space-y-0">
-                                  <FormControl>
-                                    <RadioGroupItem value={item.value} />
-                                  </FormControl>
-                                  <FormLabel className="font-normal">{item.label}</FormLabel>
-                                </FormItem>
-                              ))}
-                            </RadioGroup>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  )}
-
-                  {currentStep === 5 && (
-                    <FormField
-                      control={form.control}
-                      name="timeline"
-                      render={({ field }) => (
-                        <FormItem className="space-y-3 animate-fade-in-up">
-                          <FormLabel>{content.form.timeline.label}</FormLabel>
-                          <FormControl>
-                            <RadioGroup
-                              onValueChange={field.onChange}
-                              defaultValue={field.value}
-                              className="flex flex-col space-y-1"
-                            >
-                               {content.form.timeline.items.map(item => (
-                                <FormItem key={item.value} className="flex items-center space-x-3 space-y-0">
-                                  <FormControl>
-                                    <RadioGroupItem value={item.value} />
-                                  </FormControl>
-                                  <FormLabel className="font-normal">{item.label}</FormLabel>
-                                </FormItem>
-                              ))}
-                            </RadioGroup>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  )}
-
-                  {currentStep === 6 && (
-                    <FormField
-                      control={form.control}
-                      name="currency"
-                      render={({ field }) => (
-                        <FormItem className="space-y-3 animate-fade-in-up">
-                          <FormLabel>{content.form.currency.label}</FormLabel>
-                          <FormControl>
-                            <RadioGroup
-                              onValueChange={field.onChange}
-                              defaultValue={field.value}
-                              className="flex flex-col space-y-1"
-                            >
-                               {content.form.currency.items.map(item => (
-                                <FormItem key={item.value} className="flex items-center space-x-3 space-y-0">
-                                  <FormControl>
-                                    <RadioGroupItem value={item.value} />
-                                  </FormControl>
-                                  <FormLabel className="font-normal">{item.label}</FormLabel>
-                                </FormItem>
-                              ))}
-                            </RadioGroup>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  )}
-
-                  {currentStep === 6 && watchedCurrency === 'other' && (
-                    <FormField
-                      control={form.control}
-                      name="currencyOther"
-                      render={({ field }) => (
-                        <FormItem className="animate-fade-in-up">
-                          <FormLabel>{content.form.currency.otherLabel}</FormLabel>
-                          <FormControl>
-                            <Input placeholder={content.form.currency.otherPlaceholder} {...field} className="bg-background/50" />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  )}
-
-                  {currentStep === 7 && (
-                    <FormField
-                      control={form.control}
-                      name="additionalInfo"
-                      render={({ field }) => (
-                        <FormItem className="animate-fade-in-up">
-                          <FormLabel>{content.form.additionalInfo.label}</FormLabel>
-                          <FormControl>
-                            <Textarea placeholder={content.form.additionalInfo.placeholder} className="bg-background/50" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  )}
-
-                  {currentStep === 8 && (
-                     <FormField
-                      control={form.control}
-                      name="contactEmail"
-                      render={({ field }) => (
-                        <FormItem className="animate-fade-in-up">
-                          <FormLabel>{content.form.contactEmail.label}</FormLabel>
-                          <FormControl>
-                            <Input placeholder={content.form.contactEmail.placeholder} {...field} className="bg-background/50" />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  )}
-
-                  <div className={cn('flex items-center gap-3 pt-2', currentStep === 0 ? 'justify-center' : 'justify-between')}>
-                    {currentStep > 0 && (
-                      <Button
-                        type="button"
-                        variant="outline"
-                        onClick={goBack}
-                        className="h-[52px] px-6 rounded-2xl font-semibold text-sm"
-                      >
-                        {content.form.backButton} <ArrowLeft className="ml-2 h-4 w-4" />
-                      </Button>
+                        </div>
+                        <FormMessage />
+                      </FormItem>
                     )}
+                  />
+                )}
 
-                    {isLastStep ? (
-                      <Button type="submit" disabled={isPendingTransition} className={cn('h-[52px] px-8 rounded-2xl font-semibold text-sm border-2 border-transparent bg-brand-blue hover:bg-brand-navy-dark text-white shadow-xl shadow-brand-blue/30 hover:shadow-brand-blue/40 hover:-translate-y-1 transition-all duration-300', currentStep === 0 ? 'w-full sm:w-auto sm:px-16' : 'flex-1')}>
-                        {isPendingTransition ? (
-                          <>
-                            {content.form.submitButtonPending}
-                            <Bot className="ml-2 h-4 w-4 animate-spin" />
-                          </>
-                        ) : (
-                          content.form.submitButton
-                        )}
-                      </Button>
-                    ) : (
-                      <Button
-                        type="button"
-                        onClick={goNext}
-                        className={cn('h-[52px] px-8 rounded-2xl font-semibold text-sm border-2 border-transparent bg-brand-blue hover:bg-brand-navy-dark text-white shadow-xl shadow-brand-blue/30 hover:shadow-brand-blue/40 hover:-translate-y-1 transition-all duration-300', currentStep === 0 ? 'w-full sm:w-auto sm:px-16' : 'flex-1')}
-                      >
-                        {content.form.nextButton} <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
+                {currentStep === 4 && (
+                  <FormField
+                    control={form.control}
+                    name="design"
+                    render={({ field }) => (
+                      <FormItem className="step-in">
+                        <FormControl>{radios(content.form.design.items, field.value, field.onChange)}</FormControl>
+                        <FormMessage />
+                      </FormItem>
                     )}
-                  </div>
-                </form>
-              </Form>
-            </CardContent>
-          </Card>
+                  />
+                )}
+
+                {currentStep === 5 && (
+                  <FormField
+                    control={form.control}
+                    name="timeline"
+                    render={({ field }) => (
+                      <FormItem className="step-in">
+                        <FormControl>{radios(content.form.timeline.items, field.value, field.onChange)}</FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                )}
+
+                {currentStep === 6 && (
+                  <FormField
+                    control={form.control}
+                    name="currency"
+                    render={({ field }) => (
+                      <FormItem className="step-in">
+                        <FormControl>{radios(content.form.currency.items, field.value, field.onChange)}</FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                )}
+
+                {currentStep === 6 && watchedCurrency === 'other' && (
+                  <FormField
+                    control={form.control}
+                    name="currencyOther"
+                    render={({ field }) => (
+                      <FormItem className="step-in">
+                        <FormLabel className="text-sm text-ink/70">{content.form.currency.otherLabel}</FormLabel>
+                        <FormControl>
+                          <Input placeholder={content.form.currency.otherPlaceholder} {...field} className={campo} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                )}
+
+                {currentStep === 7 && (
+                  <FormField
+                    control={form.control}
+                    name="additionalInfo"
+                    render={({ field }) => (
+                      <FormItem className="step-in">
+                        <FormLabel className="sr-only">{content.form.additionalInfo.label}</FormLabel>
+                        <FormControl>
+                          <Textarea autoFocus rows={5} placeholder={content.form.additionalInfo.placeholder} className={cn(campo, 'h-auto min-h-[140px] py-3')} {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                )}
+
+                {currentStep === 8 && (
+                  <FormField
+                    control={form.control}
+                    name="contactEmail"
+                    render={({ field }) => (
+                      <FormItem className="step-in">
+                        <FormLabel className="sr-only">{content.form.contactEmail.label}</FormLabel>
+                        <FormControl>
+                          <Input autoFocus type="email" placeholder={content.form.contactEmail.placeholder} {...field} className={campo} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                )}
+
+                <div className="flex flex-wrap items-center justify-between gap-3 border-t border-ink/10 pt-6">
+                  {currentStep > 0 ? (
+                    <button type="button" onClick={goBack} className="btn-outline btn-sm">
+                      <span className="btn-tile">
+                        <ArrowLeft className="h-4 w-4" />
+                      </span>
+                      {content.form.backButton}
+                    </button>
+                  ) : (
+                    <span />
+                  )}
+                  {isLastStep ? (
+                    <button type="submit" disabled={isPendingTransition} className="btn-ink disabled:opacity-70">
+                      <span className="btn-tile">{isPendingTransition ? <Loader2 className="h-5 w-5 animate-spin" /> : <Sparkles className="h-5 w-5" />}</span>
+                      {isPendingTransition ? content.form.submitButtonPending : content.form.submitButton}
+                    </button>
+                  ) : (
+                    <button type="button" onClick={goNext} className="btn-ink">
+                      <span className="btn-tile">
+                        <ArrowRight className="h-5 w-5" />
+                      </span>
+                      {content.form.nextButton}
+                    </button>
+                  )}
+                </div>
+              </form>
+            </Form>
+          </div>
         ) : (
-          <Card className="bg-primary/5 backdrop-blur-sm border-primary/10 animate-fade-in-up">
-            <CardContent className="flex items-center justify-between gap-4 py-5">
-              <div className="min-w-0">
-                <p className="text-xs text-muted-foreground">{content.results.projectLabel}</p>
-                <p className="font-semibold truncate">{state.projectName}</p>
-              </div>
-              <Button type="button" variant="outline" size="sm" onClick={() => setShowForm(true)} className="shrink-0 rounded-xl">
-                {content.form.editButton}
-              </Button>
-            </CardContent>
-          </Card>
+          <div className="flex items-center justify-between gap-4 rounded-2xl bg-white p-4 pl-6">
+            <div className="min-w-0">
+              <p className="text-xs text-ink/55">{content.results.projectLabel}</p>
+              <p className="truncate font-medium text-ink">{state.projectName}</p>
+            </div>
+            <button type="button" onClick={() => setShowForm(true)} className="btn-outline btn-sm shrink-0">
+              <span className="btn-tile">
+                <Pencil className="h-4 w-4" />
+              </span>
+              {content.form.editButton}
+            </button>
+          </div>
         )}
-      </div>
 
-      {state.data && (
-        <div className="max-w-5xl mx-auto mt-6">
-          <Card className="bg-primary/5 backdrop-blur-sm border-primary/10 animate-fade-in-up" ref={resultsRef}>
-            <CardHeader>
-              <CardTitle>
-                {state.projectName ? `${content.results.title} ${state.projectName}` : content.results.title}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div key={state.projectName}>
-                <div className="space-y-6 bg-background p-6 rounded-lg">
-                    {proposalMeta && (
-                      <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground animate-fade-in-up">
-                        <span><strong className="text-foreground">{content.results.generatedLabel}:</strong> {new Intl.DateTimeFormat(content.lang === 'es' ? 'es-PE' : 'en-US', { day: '2-digit', month: 'long', year: 'numeric' }).format(proposalMeta.generatedAt)}</span>
-                        <span><strong className="text-foreground">{content.results.validUntilLabel}:</strong> {new Intl.DateTimeFormat(content.lang === 'es' ? 'es-PE' : 'en-US', { day: '2-digit', month: 'long', year: 'numeric' }).format(proposalMeta.validUntil)}</span>
+        {state.data && (
+          <article ref={resultsRef} key={state.projectName} className="step-in scroll-mt-28 overflow-hidden rounded-3xl bg-white shadow-[0_24px_60px_-30px_rgba(17,12,41,0.35)]">
+            <header className="relative overflow-hidden bg-ink p-6 text-white sm:p-8">
+              <div aria-hidden className="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full bg-primary/60 blur-[80px]" />
+              <div className="relative flex flex-wrap items-end justify-between gap-6">
+                <div className="min-w-0">
+                  <p className="flex items-center gap-2 text-sm text-ink-muted">
+                    <FileText className="h-4 w-4 text-periwinkle" />
+                    {content.results.title}
+                  </p>
+                  <h2 className="headline mt-2 text-[clamp(1.75rem,3.5vw,2.5rem)] text-white">{state.projectName}</h2>
+                  {proposalMeta && (
+                    <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-ink-muted">
+                      <span>{content.results.generatedLabel}: {fecha(proposalMeta.generatedAt)}</span>
+                      <span>{content.results.validUntilLabel}: {fecha(proposalMeta.validUntil)}</span>
+                    </p>
+                  )}
+                </div>
+                <div className="rounded-2xl bg-white/[0.08] px-5 py-4 ring-1 ring-white/10">
+                  <p className="text-xs text-ink-muted">{content.results.totalLabel}</p>
+                  <p className="headline mt-1 text-[clamp(1.75rem,3.5vw,2.5rem)] tabular-nums text-white">{state.data.price}</p>
+                </div>
+              </div>
+            </header>
+
+            <div className="grid gap-8 p-6 sm:p-8 lg:grid-cols-[1.35fr_1fr]">
+              <div className="space-y-8">
+                <section>
+                  <h3 className="text-sm font-medium text-ink/55">{content.results.summaryLabel}</h3>
+                  <p className="mt-2 text-[16px] leading-relaxed text-ink/80">{state.data.summary}</p>
+                </section>
+                <section>
+                  <h3 className="text-sm font-medium text-ink/55">{content.results.scopeLabel}</h3>
+                  <ul className="mt-3 divide-y divide-ink/10 rounded-2xl border border-ink/10">
+                    {(state.data.items ?? []).map((item, i) => (
+                      <li key={i} className="flex items-start gap-4 p-4">
+                        <span className="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-mist text-xs font-semibold tabular-nums text-ink">{i + 1}</span>
+                        <div className="min-w-0 flex-1">
+                          <p className="text-[15px] font-medium text-ink">{item.title}</p>
+                          <p className="mt-0.5 text-sm text-ink/60">{item.description}</p>
+                        </div>
+                        <p className="whitespace-nowrap text-[15px] font-semibold tabular-nums text-primary">{item.price}</p>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-3 text-xs leading-relaxed text-ink/50">{content.results.disclaimer}</p>
+                </section>
+              </div>
+              <div className="space-y-4">
+                <section className="rounded-2xl bg-mist p-5">
+                  <h3 className="flex items-center gap-2 text-sm font-medium text-ink">
+                    <Lightbulb className="h-4 w-4 text-primary" />
+                    {content.results.recommendationsLabel}
+                  </h3>
+                  <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-ink/75">{state.data.recommendations}</p>
+                </section>
+                <section className="rounded-2xl border border-ink/10 p-5">
+                  <h3 className="flex items-center gap-2 text-sm font-medium text-ink">
+                    <Wallet className="h-4 w-4 text-primary" />
+                    {content.results.paymentMethodsLabel}
+                  </h3>
+                  <div className="mt-2 flex items-start gap-4">
+                    <p className="flex-1 text-sm leading-relaxed text-ink/75">{state.data.paymentMethods}</p>
+                    {!qrError && (
+                      <div className="w-24 shrink-0 text-center">
+                        <div className="grid h-24 w-24 place-items-center overflow-hidden rounded-xl border border-ink/10 bg-white p-1.5">
+                          <Image src="/payment-qr.png" alt="QR Yape / Plin" width={96} height={96} className="h-full w-full object-contain" onError={() => setQrError(true)} />
+                        </div>
+                        <p className="mt-1 text-[10px] leading-tight text-ink/50">{content.results.qrCaption}</p>
                       </div>
                     )}
-                    <div className="animate-fade-in-up">
-                        <h3 className="font-semibold mb-2 text-primary">{content.results.summaryLabel}</h3>
-                        <p className="text-muted-foreground">{state.data.summary}</p>
-                    </div>
-                    <div className="animate-fade-in-up stagger-1">
-                        <h3 className="font-semibold mb-2 text-primary">{content.results.scopeLabel}</h3>
-                        <div className="space-y-3">
-                          {(state.data.items ?? []).map((item, i) => (
-                            <div key={i} className="flex items-start justify-between gap-4 pb-3 border-b border-border/50 last:border-0">
-                              <div>
-                                <p className="text-sm font-semibold">{item.title}</p>
-                                <p className="text-xs text-muted-foreground mt-0.5">{item.description}</p>
-                              </div>
-                              <p className="text-sm font-bold text-primary whitespace-nowrap">{item.price}</p>
-                            </div>
-                          ))}
-                        </div>
-                    </div>
-                    <div className="animate-fade-in-up stagger-2">
-                        <h3 className="font-semibold mb-2 text-primary">{content.results.priceLabel}</h3>
-                        <p className="text-2xl font-bold text-gradient">{state.data.price}</p>
-                        <p className="text-xs text-muted-foreground mt-2">{content.results.disclaimer}</p>
-                    </div>
-                    <div className="animate-fade-in-up stagger-3">
-                        <h3 className="font-semibold mb-2 text-primary">{content.results.recommendationsLabel}</h3>
-                        <div className="p-4 rounded-md bg-background/50 prose prose-invert prose-sm max-w-none">
-                            <p>{state.data.recommendations}</p>
-                        </div>
-                    </div>
-                    <div className="animate-fade-in-up stagger-4">
-                        <h3 className="font-semibold mb-2 text-primary">{content.results.paymentMethodsLabel}</h3>
-                        <div className="flex items-start gap-5">
-                          <p className="text-muted-foreground flex-1">{state.data.paymentMethods}</p>
-                          {!qrError && (
-                            <div className="shrink-0 w-24 text-center">
-                              <div className="w-24 h-24 rounded-xl border-2 border-border bg-white flex items-center justify-center overflow-hidden p-1.5">
-                                <Image
-                                  src="/payment-qr.png"
-                                  alt="QR Yape / Plin"
-                                  width={96}
-                                  height={96}
-                                  className="w-full h-full object-contain"
-                                  onError={() => setQrError(true)}
-                                />
-                              </div>
-                              <p className="text-[10px] text-muted-foreground mt-1 leading-tight">{content.results.qrCaption}</p>
-                            </div>
-                          )}
-                        </div>
-                    </div>
-                </div>
-                <div className="flex flex-wrap gap-3 pt-6 animate-fade-in-up stagger-4">
-                    <Button onClick={handleDownloadPdf} variant="outline" className={cn('h-[52px] px-6 rounded-2xl font-semibold text-sm', 'border-primary/50 text-primary hover:bg-primary/10 hover:text-primary')}>
-                        {content.results.downloadButton} <Download className="ml-2 h-4 w-4" />
-                    </Button>
-                    <Button asChild className={cn('h-[52px] px-6 rounded-2xl font-semibold text-sm', 'border-2 border-transparent bg-brand-blue hover:bg-brand-navy-dark text-white shadow-xl shadow-brand-blue/30 hover:shadow-brand-blue/40 hover:-translate-y-1 transition-all duration-300')}>
-                        <a href={content.lang === 'en' ? '/en/contact' : '/contacto'}>
-                            {content.results.contactButton} <MessageSquare className="ml-2 h-4 w-4" />
-                        </a>
-                    </Button>
-                    <Button onClick={handleWhatsappClick} className={cn('h-[52px] px-6 rounded-2xl font-semibold text-sm', 'border-2 border-transparent bg-[#25D366] hover:bg-[#1ea952] text-white shadow-xl shadow-[#25D366]/30 hover:shadow-[#25D366]/40 hover:-translate-y-1 transition-all duration-300')}>
-                        {content.results.whatsappButton} <MessageSquare className="ml-2 h-4 w-4" />
-                    </Button>
-                </div>
-
-                {proposalMeta && (
-                  <div style={{ position: 'fixed', left: '-9999px', top: 0, pointerEvents: 'none' }} aria-hidden="true">
-                    <ProposalDocument
-                      ref={documentRef}
-                      content={{
-                        lang: content.lang,
-                        documentTitle: content.results.documentTitle,
-                        generatedLabel: content.results.generatedLabel,
-                        validUntilLabel: content.results.validUntilLabel,
-                        projectLabel: content.results.projectLabel,
-                        contactLabel: content.results.contactLabel,
-                        preparedForLabel: content.results.preparedForLabel,
-                        summaryLabel: content.results.summaryLabel,
-                        itemsLabel: content.results.scopeLabel,
-                        totalLabel: content.results.totalLabel,
-                        recommendationsLabel: content.results.recommendationsLabel,
-                        paymentMethodsLabel: content.results.paymentMethodsLabel,
-                        qrCaption: content.results.qrCaption,
-                        disclaimer: content.results.disclaimer,
-                        signatureRepName: content.results.signatureRepName,
-                        signatureRepRole: content.results.signatureRepRole,
-                        signatureAiRole: content.results.signatureAiRole,
-                        signatureNote: content.results.signatureNote,
-                      }}
-                      responsibleName={form.getValues('responsibleName')}
-                      companyName={form.getValues('companyName')}
-                      projectName={state.projectName ?? ''}
-                      contactEmail={form.getValues('contactEmail')}
-                      data={state.data}
-                      generatedAt={proposalMeta.generatedAt}
-                      validUntil={proposalMeta.validUntil}
-                    />
                   </div>
-                )}
+                </section>
               </div>
-            </CardContent>
-          </Card>
-        </div>
-      )}
+            </div>
+
+            <footer className="flex flex-wrap gap-3 border-t border-ink/10 p-6 sm:px-8">
+              <button type="button" onClick={handleWhatsappClick} className="btn-ink">
+                <span className="btn-tile">
+                  <WhatsAppIcon className="h-5 w-5" />
+                </span>
+                {content.results.whatsappButton}
+              </button>
+              <button type="button" onClick={handleDownloadPdf} className="btn-outline">
+                <span className="btn-tile">
+                  <Download className="h-5 w-5" />
+                </span>
+                {content.results.downloadButton}
+              </button>
+              <a href={content.lang === 'en' ? '/en/contact' : '/contacto'} className="btn-outline">
+                <span className="btn-tile">
+                  <MessageSquare className="h-5 w-5" />
+                </span>
+                {content.results.contactButton}
+              </a>
+            </footer>
+
+            {proposalMeta && (
+                <div style={{ position: 'fixed', left: '-9999px', top: 0, pointerEvents: 'none' }} aria-hidden="true">
+                  <ProposalDocument
+                    ref={documentRef}
+                    content={{
+                      lang: content.lang,
+                      documentTitle: content.results.documentTitle,
+                      generatedLabel: content.results.generatedLabel,
+                      validUntilLabel: content.results.validUntilLabel,
+                      projectLabel: content.results.projectLabel,
+                      contactLabel: content.results.contactLabel,
+                      preparedForLabel: content.results.preparedForLabel,
+                      summaryLabel: content.results.summaryLabel,
+                      itemsLabel: content.results.scopeLabel,
+                      totalLabel: content.results.totalLabel,
+                      recommendationsLabel: content.results.recommendationsLabel,
+                      paymentMethodsLabel: content.results.paymentMethodsLabel,
+                      qrCaption: content.results.qrCaption,
+                      disclaimer: content.results.disclaimer,
+                      signatureRepName: content.results.signatureRepName,
+                      signatureRepRole: content.results.signatureRepRole,
+                      signatureAiRole: content.results.signatureAiRole,
+                      signatureNote: content.results.signatureNote,
+                    }}
+                    responsibleName={form.getValues('responsibleName')}
+                    companyName={form.getValues('companyName')}
+                    projectName={state.projectName ?? ''}
+                    contactEmail={form.getValues('contactEmail')}
+                    data={state.data}
+                    generatedAt={proposalMeta.generatedAt}
+                    validUntil={proposalMeta.validUntil}
+                  />
+                </div>
+              )}
+          </article>
+        )}
+      </div>
     </section>
   );
 }

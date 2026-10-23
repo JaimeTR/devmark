@@ -79,25 +79,25 @@ export function ServicesShowcase({ lang }: { lang: Lang }) {
                           </li>
                         ))}
                       </ul>
-                      <div className="mt-auto flex flex-wrap items-end justify-between gap-4 border-t border-ink/10 pt-5">
+                      <div className="mt-auto flex flex-col items-start gap-4 border-t border-ink/10 pt-5">
                         {s.from && (
                           <p className="text-sm text-ink/60">
                             {t.from} <span className="headline block text-3xl tabular-nums text-ink">{s.from}</span>
                           </p>
                         )}
                         <div className="flex flex-wrap gap-2">
+                          <a href={whatsappHref(t.quoteMessage(s.title))} target="_blank" rel="noopener noreferrer" className="btn-ink btn-sm">
+                            <span className="btn-tile">
+                              <WhatsAppIcon className="h-4 w-4" />
+                            </span>
+                            {t.ctaShort}
+                          </a>
                           <Link href={s.href} className="btn-outline btn-sm">
                             <span className="btn-tile">
                               <ArrowUpRight className="h-4 w-4" />
                             </span>
                             {t.details}
                           </Link>
-                          <a href={whatsappHref(t.quoteMessage(s.title))} target="_blank" rel="noopener noreferrer" className="btn-ink btn-sm">
-                            <span className="btn-tile">
-                              <WhatsAppIcon className="h-4 w-4" />
-                            </span>
-                            {t.cta}
-                          </a>
                         </div>
                       </div>
                     </div>

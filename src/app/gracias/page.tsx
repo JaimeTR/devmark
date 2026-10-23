@@ -174,19 +174,18 @@ function GraciasContent() {
               <CardContent className="p-8 md:p-12 space-y-6">
                 {/* Botones de acción */}
                 <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
-                  <Button asChild size="lg" className="w-full sm:w-auto rounded-2xl btn-gradient group">
-                    <Link href={config.ctaLink}>
-                      {config.ctaText}
-                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </Button>
-
-                  <Button asChild size="lg" variant="outline" className="w-full sm:w-auto rounded-2xl bg-white border-2 border-brand-blue text-brand-blue hover:bg-transparent">
-                    <Link href="/ai-assistant">
-                      Hablar con asistente IA
-                      <Sparkles className="ml-2 h-5 w-5" />
-                    </Link>
-                  </Button>
+                  <Link href={config.ctaLink} className="btn-ink w-full sm:w-auto">
+                    <span className="btn-tile">
+                      <ArrowRight className="h-5 w-5" />
+                    </span>
+                    {config.ctaText}
+                  </Link>
+                  <Link href="/ai-assistant" className="btn-outline w-full sm:w-auto">
+                    <span className="btn-tile">
+                      <Sparkles className="h-5 w-5" />
+                    </span>
+                    Hablar con asistente IA
+                  </Link>
                 </div>
 
                 {/* Contador de redirección */}

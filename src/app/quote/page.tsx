@@ -2,6 +2,7 @@
 import { Suspense } from 'react';
 import { Footer } from '@/components/home/footer';
 import { Header } from '@/components/home/header';
+import { AiHero } from '@/components/ai/ai-hero';
 import { ProjectQuoter } from '@/components/ai/project-quoter';
 
 const headerContent = {
@@ -134,11 +135,12 @@ export default function QuotePage() {
     <div className="bg-paper">
       <Header {...headerContent} />
       <main id="main-content">
-        <section className="panel-mist mt-2 pb-16 pt-28 sm:mt-3 sm:pt-36">
+        <AiHero lang="es" kind="quote" />
+        <section className="panel-mist mt-2 py-14 sm:mt-3 sm:py-20">
           <div className="panel-inner">
-          <Suspense fallback={null}>
-            <ProjectQuoter content={quoterContent} />
-          </Suspense>
+            <Suspense fallback={null}>
+              <ProjectQuoter content={quoterContent} />
+            </Suspense>
           </div>
         </section>
       </main>

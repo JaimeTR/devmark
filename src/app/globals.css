@@ -626,10 +626,19 @@ html {
     box-shadow: inset 0 0 0 1px rgba(61, 52, 188, 0.35), 0 16px 32px -14px rgba(17, 12, 41, 0.22);
   }
   .btn-sm {
-    @apply h-11 pl-1.5 pr-4 text-sm gap-2.5 rounded-xl;
+    @apply h-11 pl-1.5 pr-4 text-sm gap-2.5 rounded-[12px];
   }
   .btn-sm .btn-tile {
-    @apply h-8 w-8 rounded-lg;
+    @apply h-8 w-8 rounded-[8px];
+  }
+
+  /* Opcion seleccionable (radio o casilla) como tarjeta. */
+  .opt {
+    @apply flex w-full cursor-pointer items-center gap-3 rounded-xl border border-ink/10 bg-white px-4 py-3.5 text-[15px] font-normal leading-snug text-ink transition-colors hover:border-primary/40;
+  }
+  .opt-on {
+    @apply border-primary bg-primary/[0.05];
+    box-shadow: inset 0 0 0 1px hsl(var(--primary));
   }
 
   /* Campos de formulario sobre tinta y sobre papel. */
