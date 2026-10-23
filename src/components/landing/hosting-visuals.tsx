@@ -19,7 +19,7 @@ function CorreosVisual({ lang }: { lang: Lang }) {
             {c}
             <span className="text-white/45">{lang === 'en' ? 'yourcompany.com' : 'tuempresa.com'}</span>
           </span>
-          <span className="lv lv-pop lv-4 ml-auto grid h-4 w-4 place-items-center rounded-full bg-emerald-400 text-ink" style={stagger(i)}>
+          <span className="lv lv-pop lv-4 ml-auto grid h-4 w-4 place-items-center rounded-[5px] bg-emerald-400 text-ink" style={stagger(i)}>
             <Check className="h-2.5 w-2.5" />
           </span>
         </div>
@@ -75,7 +75,7 @@ function RendimientoVisual() {
           <span key={i} className={`lv lv-bar lv-2 flex-1 rounded-t ${i === barras.length - 1 ? 'bg-emerald-400' : 'bg-white/20'}`} style={{ height: `${h}%`, ...stagger(i) }} />
         ))}
       </div>
-      <div className="lv lv-pop lv-4 mb-1 grid h-14 w-14 shrink-0 place-items-center rounded-full border-4 border-emerald-400 text-emerald-300">
+      <div className="lv lv-pop lv-4 mb-1 grid h-14 w-14 shrink-0 place-items-center rounded-2xl border-4 border-emerald-400 text-emerald-300">
         <Gauge className="h-6 w-6" />
       </div>
     </div>
@@ -107,7 +107,7 @@ export function DomainVisual({ lang }: { lang: Lang }) {
               <span className="text-white/50">{lang === 'en' ? 'yourcompany' : 'tuempresa'}</span>
               {e}
             </span>
-            <span className={`lv lv-pop lv-4 grid h-4 w-4 place-items-center rounded-full ${i === 3 ? 'bg-white/20 text-white/60' : 'bg-emerald-400 text-ink'}`} style={stagger(i)}>
+            <span className={`lv lv-pop lv-4 grid h-4 w-4 place-items-center rounded-[5px] ${i === 3 ? 'bg-white/20 text-white/60' : 'bg-emerald-400 text-ink'}`} style={stagger(i)}>
               <Check className="h-2.5 w-2.5" />
             </span>
           </div>

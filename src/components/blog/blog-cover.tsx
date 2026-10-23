@@ -185,7 +185,7 @@ function ConsultingVisual({ lang }: { lang: 'es' | 'en' }) {
     <Frame className="flex flex-col justify-center gap-3 p-5">
       {steps.map((s, i) => (
         <div key={s} className={cn('lv flex items-center gap-3', stages[i])}>
-          <span className={cn('grid h-7 w-7 shrink-0 place-items-center rounded-full text-[11px] font-semibold', i < 2 ? 'bg-periwinkle text-ink' : 'bg-white/10 text-white')}>
+          <span className={cn('grid h-7 w-7 shrink-0 place-items-center rounded-md text-[11px] font-semibold', i < 2 ? 'bg-periwinkle text-ink' : 'bg-white/10 text-white')}>
             {i < 2 ? <Check className="h-3.5 w-3.5" /> : i + 1}
           </span>
           <span className="text-sm text-white">{s}</span>

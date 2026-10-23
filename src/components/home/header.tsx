@@ -181,8 +181,8 @@ export function Header({ lang = 'es', aiAssistant }: HeaderProps) {
           <DropdownMenu>
             <DropdownMenuTrigger
               className={cn(
-                'hidden h-10 w-10 place-items-center rounded-lg text-xs font-semibold tracking-wide transition-colors sm:grid',
-                dark ? 'hover:bg-white/10' : 'hover:bg-ink/[0.06]',
+                'hidden h-10 w-10 place-items-center rounded-[10px] text-xs font-semibold tracking-wide transition-colors sm:grid',
+                dark ? 'bg-white/10 hover:bg-white/[0.16]' : 'bg-ink/[0.06] hover:bg-ink/10',
               )}
               aria-label={t.language}
             >
@@ -202,7 +202,7 @@ export function Header({ lang = 'es', aiAssistant }: HeaderProps) {
 
           <DropdownMenu>
             <DropdownMenuTrigger
-              className={cn('hidden h-10 w-10 place-items-center rounded-lg transition-colors sm:grid', dark ? 'hover:bg-white/10' : 'hover:bg-ink/[0.06]')}
+              className={cn('hidden h-10 w-10 place-items-center rounded-[10px] transition-colors sm:grid', dark ? 'bg-white/10 hover:bg-white/[0.16]' : 'bg-ink/[0.06] hover:bg-ink/10')}
               aria-label={aiAssistant}
             >
               <Bot className="h-5 w-5" />
@@ -236,7 +236,7 @@ export function Header({ lang = 'es', aiAssistant }: HeaderProps) {
 
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger
-              className={cn('grid h-11 w-11 place-items-center rounded-lg lg:hidden', dark ? 'bg-white/10' : 'bg-ink/[0.06]')}
+              className={cn('grid h-11 w-11 place-items-center rounded-[11px] lg:hidden', dark ? 'bg-white/10' : 'bg-ink/[0.06]')}
               aria-label={t.menu}
             >
               <Menu className="h-5 w-5" />
