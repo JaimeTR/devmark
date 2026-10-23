@@ -313,7 +313,8 @@ function TopicVisual({ topic, lang }: { topic: BlogTopic; lang: 'es' | 'en' }) {
 }
 
 /** Portada ilustrada. Ocupa todo su contenedor (que debe tener alto y posicion relativa). */
-export function BlogCover({ topic, lang, label = true, className }: { topic: BlogTopic; lang: 'es' | 'en'; label?: boolean; className?: string }) {
+/** `centrado`: la ilustracion va al medio (portadas altas, como la destacada del blog). */
+export function BlogCover({ topic, lang, label = true, centrado = false, className }: { topic: BlogTopic; lang: 'es' | 'en'; label?: boolean; centrado?: boolean; className?: string }) {
   const Icon = TOPIC_ICON[topic];
   return (
     <div aria-hidden className={cn('live-hover zoom absolute inset-0 overflow-hidden bg-ink', className)}>
@@ -322,7 +323,7 @@ export function BlogCover({ topic, lang, label = true, className }: { topic: Blo
         className="pointer-events-none absolute inset-0 opacity-40"
         style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.14) 1px, transparent 1px)', backgroundSize: '18px 18px' }}
       />
-      <div className="zoom-target absolute inset-x-0 bottom-[-8%] top-[20%] mx-auto w-[76%] max-w-[560px]">
+      <div className={cn('zoom-target absolute inset-x-0 mx-auto w-[76%] max-w-[560px]', centrado ? 'inset-y-0 my-auto h-[62%] max-h-[340px]' : 'bottom-[-8%] h-[88%] max-h-[320px]')}>
         <TopicVisual topic={topic} lang={lang} />
       </div>
       {label && (
