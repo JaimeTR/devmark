@@ -1,5 +1,6 @@
 import { Hand } from 'lucide-react';
-import { clients, homeContent, type Lang } from '@/content/home';
+import { homeContent, type Lang } from '@/content/home';
+import { CLIENT_LOGOS } from '@/data/client-logos';
 import { testimonials } from '@/content/home-data';
 import { CLIENT_ARCS, CLIENT_COUNTRIES, LIMA } from '@/data/client-countries';
 import { WHATSAPP_GREETING, whatsappHref } from '@/lib/contact';
@@ -42,7 +43,7 @@ export function Testimonials({ lang }: { lang: Lang }) {
   const t = homeContent[lang].testimonials;
   const c = copy[lang];
   const items = testimonials[lang];
-  const loop = [...clients, ...clients];
+  const loop = [...CLIENT_LOGOS, ...CLIENT_LOGOS];
 
   return (
     <section id="clientes" className="panel-paper py-20 sm:py-24">
@@ -99,13 +100,21 @@ export function Testimonials({ lang }: { lang: Lang }) {
         <p className="panel-inner text-sm text-ink/60">{c.clientsLabel}</p>
         <div className="marquee mt-5 overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]" style={{ ['--marquee-speed' as string]: '110s' }}>
           <ul className="marquee-track items-center">
-            {loop.map((name, i) => (
+            {loop.map((logo, i) => (
               <li
                 key={i}
-                aria-hidden={i >= clients.length}
-                className="mx-1.5 grid h-20 shrink-0 place-items-center rounded-2xl bg-mist px-8 font-logo text-xl tracking-wider text-ink/55 transition-colors duration-300 hover:bg-band hover:text-ink sm:text-2xl"
+                aria-hidden={i >= CLIENT_LOGOS.length}
+                className={`lift mx-1.5 flex h-24 shrink-0 items-center justify-center gap-3 rounded-2xl px-9 ${logo.oscuro ? 'bg-ink' : 'bg-mist'}`}
               >
-                {name}
+                {logo.src ? (
+                  <>
+                    {/* eslint-disable-next-line @next/next/no-img-element -- logos pequenos y ya optimizados (webp) */}
+                    <img src={logo.src} alt={logo.nombre} loading="lazy" className={logo.icono ? 'h-10 w-10' : 'max-h-12 w-auto max-w-[190px] object-contain'} />
+                    {logo.icono && <span className="text-xl font-semibold tracking-tight text-ink/80">{logo.nombre}</span>}
+                  </>
+                ) : (
+                  <span className="font-logo text-xl tracking-wider text-ink/55 sm:text-2xl">{logo.nombre}</span>
+                )}
               </li>
             ))}
           </ul>

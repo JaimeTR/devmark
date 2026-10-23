@@ -66,8 +66,9 @@ Confirmado como real por Jaime (22 oct 2026):
   +100 proyectos entregados para negocios en Peru.
 - Clientes: ADLIM, JOPCO, TAKLAB, LUCE INMOBILIARIA, MEMORANDUM, MM TECH, DETALZONE,
   SUPERPROFE, NEWDENIM, OFFROADPERU, BREEZE LINGO, AS ABOGADOS, ZONA DENTAL, DENTALLIFE,
-  DROTHON (clinica dental), VISUAL MEDICAL, MATARRAÑA AVENTURA, GEOPARQUE MAESTRAZGO,
-  ESPAÑA ABOGADOS, AMYSA SHOP, SEGITTUR, URBAZN, ENOVA.
+  DORTHON (clinica dental), VISUAL MEDICA, MATARRAÑA AVENTURA, GEOPARQUE MAESTRAZGO,
+  ESPAÑA ABOGADOS, AMYSA SHOP, SEGITTUR, URBANZ, ENOVA.
+- Logos en public/clientes/ (bajados de la web oficial de cada marca); lista en src/data/client-logos.ts.
 - Clientes en 11 paises: Peru, Ecuador, Bolivia, Chile, Argentina, Colombia, Venezuela,
   Mexico, Estados Unidos, Espana e Italia.
 - Horario: lunes a viernes, 9:00 a 18:00 (Lima), el mismo de Google.

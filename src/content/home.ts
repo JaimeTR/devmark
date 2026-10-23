@@ -428,14 +428,14 @@ export const clients = [
   'AS ABOGADOS',
   'ZONA DENTAL',
   'DENTALLIFE',
-  'DROTHON',
-  'VISUAL MEDICAL',
+  'DORTHON',
+  'VISUAL MEDICA',
   'MATARRAÑA AVENTURA',
   'GEOPARQUE MAESTRAZGO',
   'ESPAÑA ABOGADOS',
   'AMYSA SHOP',
   'SEGITTUR',
-  'URBAZN',
+  'URBANZ',
   'ENOVA',
 ] as const;
 
