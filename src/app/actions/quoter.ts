@@ -4,7 +4,8 @@
 
 import { z } from 'zod';
 import { quoteProject, type QuoteProjectOutput } from '@/ai/flows/quote-project-flow';
-import { visitanteDentroDelLimite } from '@/lib/rate-limit';
+import { ipDelVisitante, visitanteDentroDelLimite } from '@/lib/rate-limit';
+import { registrarMensaje } from '@/lib/erp-sitio';
 import { supabase, type QuoteRecord, isSupabaseConfigured } from '@/lib/supabase';
 import { buildTransporter, escapeHtml, ADMIN_NOTIFICATION_EMAILS } from '@/app/actions/quoter-shared';
 
@@ -200,8 +201,36 @@ export async function quoteProjectAction(
   try {
     const result = await quoteProject(validatedFields.data);
 
-    // Guardar en Supabase si está configurado
-    if (isSupabaseConfigured() && supabase) {
+    // La cotizacion queda en el panel del ERP (Mensajes de los sitios). Sin ERP, en el Supabase de la web, como antes.
+    const d = validatedFields.data;
+    const enErp = await registrarMensaje(
+      {
+        tipo: 'COTIZACION',
+        nombre: d.responsibleName,
+        correo: d.contactEmail,
+        empresaCliente: d.companyName || undefined,
+        servicio: d.projectType === 'other' ? d.projectTypeOther || 'Otro' : d.projectType,
+        asunto: d.projectName,
+        mensaje: [result.summary, d.additionalInfo ? `Información adicional: ${d.additionalInfo}` : ''].filter(Boolean).join('\n\n') || d.projectName,
+        idioma: d.lang,
+        datos: {
+          proyecto: d.projectName,
+          tipo: d.projectType === 'other' ? d.projectTypeOther : d.projectType,
+          funcionalidades: d.features,
+          diseno: d.design,
+          plazo: d.timeline,
+          moneda: d.currency === 'other' ? d.currencyOther : d.currency,
+          precio: result.price,
+          items: result.items.map((it) => ({ titulo: it.title ?? '', descripcion: it.description ?? '', precio: it.price ?? '' })),
+          recomendaciones: result.recommendations,
+          formasDePago: result.paymentMethods,
+        },
+        origen: d.lang === 'en' ? 'https://devmarkpe.com/en/quote' : 'https://devmarkpe.com/quote',
+      },
+      await ipDelVisitante(),
+    );
+
+    if (!enErp && isSupabaseConfigured() && supabase) {
       try {
         const quoteRecord: QuoteRecord = {
           responsible_name: validatedFields.data.responsibleName,

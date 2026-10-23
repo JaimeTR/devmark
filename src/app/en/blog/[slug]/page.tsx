@@ -8,14 +8,14 @@ import type { Metadata } from 'next';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug, 'en');
+  const post = await getPostBySlug(slug, 'en');
 
   if (!post) {
     return {};
   }
 
   const canonicalUrl = `https://devmarkpe.com/en/blog/${slug}`;
-  const esSlug = getTranslatedSlug(slug, 'en');
+  const esSlug = await getTranslatedSlug(slug, 'en');
 
   return {
     title: post.title,
@@ -68,7 +68,7 @@ const footerContent = {
 };
 
 export async function generateStaticParams() {
-  const posts = getPosts('en');
+  const posts = await getPosts('en');
   return posts.map((post) => ({
     slug: post.slug,
   }));
@@ -76,13 +76,13 @@ export async function generateStaticParams() {
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
-  const post = getPostBySlug(resolvedParams.slug, 'en');
+  const post = await getPostBySlug(resolvedParams.slug, 'en');
 
   if (!post) {
     notFound();
   }
 
-  const recentPosts = getPosts('en').filter((p) => p.slug !== post.slug).slice(0, 3);
+  const recentPosts = (await getPosts('en')).filter((p) => p.slug !== post.slug).slice(0, 3);
   const canonicalUrl = `https://devmarkpe.com/en/blog/${resolvedParams.slug}`;
   const absoluteImage = `https://devmarkpe.com/en/blog/${post.slug}/opengraph-image`;
 

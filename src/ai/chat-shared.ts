@@ -3,17 +3,21 @@
 // los archivos 'use server' solo pueden exportar funciones async, y aquí hay
 // constantes y funciones síncronas que necesita tanto el server action
 // (src/ai/flows/ask-devmark.ts) como la API route de streaming (src/app/api/chat/route.ts).
-
 import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 import { supabaseProjects } from '@/lib/supabase-projects';
 import { formatServicesForPrompt } from '@/data/services';
+import { erpLeer } from '@/lib/erp-sitio';
 
 export type Message = {
   role: 'user' | 'model';
   content: string;
   metadata?: {
-    source?: 'groq' | 'openai' | 'fallback';
+    source?: 'groq' | 'openai' | 'fallback' | 'asesor';
     leadCapture?: boolean;
+    /** Nombre del asesor del equipo que escribio este mensaje (conversaciones del ERP). */
+    asesor?: string;
+    /** Id del mensaje en el ERP, para no repetirlo al consultar. */
+    id?: string;
   };
 };
 
@@ -167,8 +171,6 @@ export function getFallbackResponse(question: string, lang: 'es' | 'en'): string
 }
 
 async function fetchKnowledgeDocs(question: string, lang: 'es' | 'en'): Promise<string> {
-  if (!isSupabaseConfigured() || !supabase) return '';
-
   const keywords = Array.from(new Set(
     question
       .toLowerCase()
@@ -177,6 +179,19 @@ async function fetchKnowledgeDocs(question: string, lang: 'es' | 'en'): Promise<
   )).slice(0, 4);
 
   const term = keywords[0] ?? '';
+
+  // Primero lo que se carga en el ERP (Sitios > Asistente IA); si no hay ERP, la tabla de Supabase de antes.
+  const erp = await erpLeer<{ notas: { titulo: string; contenido: string; etiquetas: string[] }[] }>(
+    `/conocimiento?idioma=${lang}${term ? `&q=${encodeURIComponent(term)}` : ''}`,
+  );
+  if (erp) {
+    return erp.notas
+      .slice(0, 5)
+      .map((n) => `- ${n.titulo}: ${n.contenido}${n.etiquetas.length ? ` (tags: ${n.etiquetas.join(', ')})` : ''}`)
+      .join('\n');
+  }
+
+  if (!isSupabaseConfigured() || !supabase) return '';
 
   const query = supabase
     .from('knowledge_docs')
@@ -203,6 +218,17 @@ async function fetchKnowledgeDocs(question: string, lang: 'es' | 'en'): Promise<
 }
 
 async function fetchPortfolioContext(lang: 'es' | 'en'): Promise<string> {
+  const erp = await erpLeer<{ proyectos: { titulo: string; tituloEn: string | null; categoria: string; rubro: string | null; tecnologias: string[] }[] }>('/portafolio');
+  if (erp && erp.proyectos.length > 0) {
+    return erp.proyectos
+      .slice(0, 8)
+      .map((p) => {
+        const meta = [p.rubro || p.categoria, p.tecnologias.join(', ')].filter(Boolean).join(' · ');
+        return `- ${(lang === 'en' ? p.tituloEn : null) || p.titulo}${meta ? ` (${meta})` : ''}`;
+      })
+      .join('\n');
+  }
+
   if (!supabaseProjects) return '';
 
   const { data, error } = await supabaseProjects

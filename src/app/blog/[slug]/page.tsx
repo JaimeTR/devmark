@@ -8,14 +8,14 @@ import type { Metadata } from 'next';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug, 'es');
+  const post = await getPostBySlug(slug, 'es');
 
   if (!post) {
     return {};
   }
 
   const canonicalUrl = `https://devmarkpe.com/blog/${slug}`;
-  const enSlug = getTranslatedSlug(slug, 'es');
+  const enSlug = await getTranslatedSlug(slug, 'es');
 
   return {
     title: post.title,
@@ -69,7 +69,7 @@ const footerContent = {
 
 
 export async function generateStaticParams() {
-  const posts = getPosts('es');
+  const posts = await getPosts('es');
   return posts.map((post) => ({
     slug: post.slug,
   }));
@@ -77,13 +77,13 @@ export async function generateStaticParams() {
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
-  const post = getPostBySlug(resolvedParams.slug, 'es');
+  const post = await getPostBySlug(resolvedParams.slug, 'es');
 
   if (!post) {
     notFound();
   }
 
-  const allPosts = getPosts('es');
+  const allPosts = await getPosts('es');
   const recentPosts = allPosts.filter(p => p.slug !== post.slug).slice(0, 3);
 
   const canonicalUrl = `https://devmarkpe.com/blog/${resolvedParams.slug}`;

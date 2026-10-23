@@ -1,6 +1,7 @@
 'use server';
 
 import { supabase } from '@/lib/supabase';
+import { erpConectado } from '@/lib/erp-sitio';
 
 export async function logChatMessage(params: {
   sessionId: string;
@@ -8,7 +9,8 @@ export async function logChatMessage(params: {
   content: string;
   lang: 'es' | 'en';
 }) {
-  if (!supabase || !params.sessionId || !params.content.trim()) return;
+  // Con el ERP conectado, la conversacion ya queda alla (la registra /api/chat): no se duplica aqui.
+  if (erpConectado() || !supabase || !params.sessionId || !params.content.trim()) return;
 
   try {
     await supabase.from('chat_messages').insert({
