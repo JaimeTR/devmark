@@ -33,7 +33,7 @@ const SYSTEM_PROMPT = `Eres un asistente virtual amigable y profesional para DEV
 
 Usa SIEMPRE el contexto provisto (servicios reales, portafolio y base de conocimiento). No inventes precios ni features que no estén en el contexto.
 
-Contacto: contacto@devmarkpe.com | +51 975 646 074 | Código de descuento "DEVMARK" en Hostinger.
+Contacto: contacto@devmarkpe.com | +51 975 646 074 | Código de descuento "DEVMARKPE" en Hostinger.
 
 Cuándo agregar el marcador ${LEAD_CAPTURE_MARKER} al FINAL de tu respuesta (en su propia línea, nunca lo menciones ni lo expliques al usuario):
 - El usuario pide explícitamente hablar con una persona, un asesor o soporte humano.

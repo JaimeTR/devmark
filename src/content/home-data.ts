@@ -101,7 +101,7 @@ export const hostingContent = {
   es: {
     badge: "HOSTINGER PARTNER",
     title: "Hosting dinámico como tu negocio",
-    subtitle: "Somos socios directos de Hostinger. Con nuestro código DEVMARK tienes descuento en todos sus servicios: hosting, VPS, dominios y correos corporativos. Además configuramos gratis tus correos profesionales y el certificado SSL.",
+    subtitle: "Somos socios directos de Hostinger. Con nuestro código DEVMARKPE tienes descuento en todos sus servicios: hosting, VPS, dominios y correos corporativos. Además configuramos gratis tus correos profesionales y el certificado SSL.",
     features: [
       "Descuento en hosting, VPS, dominios y correos",
       "Migración de dominios y sitios web gratis",
@@ -110,16 +110,16 @@ export const hostingContent = {
     ],
     guaranteeText: "Garantía de reembolso de 30 días",
     ctaButton: "Obtener descuento",
-    couponCode: "DEVMARK",
+    couponCode: "DEVMARKPE",
     copyButton: "Copiar código",
     copiedButton: "¡Código copiado!",
     discountText: "20% de descuento",
-    referralLink: "https://hostinger.com?REFERRALCODE=JAIMETRDEV"
+    referralLink: "https://www.hostinger.com?REFERRALCODE=DEVMARKPE"
   },
   en: {
     badge: "HOSTINGER PARTNER",
     title: "Hosting as dynamic as your business",
-    subtitle: "We are direct Hostinger partners. With our DEVMARK code you get a discount on all their services: hosting, VPS, domains and professional email. We also set up your professional email and SSL certificate for free.",
+    subtitle: "We are direct Hostinger partners. With our DEVMARKPE code you get a discount on all their services: hosting, VPS, domains and professional email. We also set up your professional email and SSL certificate for free.",
     features: [
       "Discount on hosting, VPS, domains and email",
       "Free domain and website migration",
@@ -128,10 +128,10 @@ export const hostingContent = {
     ],
     guaranteeText: "30-day money-back guarantee",
     ctaButton: "Get discount",
-    couponCode: "DEVMARK",
+    couponCode: "DEVMARKPE",
     copyButton: "Copy code",
     copiedButton: "Code copied!",
     discountText: "20% discount",
-    referralLink: "https://hostinger.com?REFERRALCODE=JAIMETRDEV"
+    referralLink: "https://www.hostinger.com?REFERRALCODE=DEVMARKPE"
   },
 } as const;

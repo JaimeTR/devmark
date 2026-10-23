@@ -28,7 +28,7 @@ Each service below has a Spanish page and an English page. Prices are starting p
 - [SEO and web optimization](https://devmarkpe.com/servicios/seo-optimizacion) — technical SEO, organic traffic growth, conversion rate optimization, from S/ 300/month. English: [SEO and web optimization](https://devmarkpe.com/en/services/seo-optimization)
 - [Web support and maintenance](https://devmarkpe.com/servicios/soporte-mantenimiento) — updates, backups, uptime monitoring, and technical support, from S/ 60/month. English: [Web support and maintenance](https://devmarkpe.com/en/services/support-maintenance)
 - [Technology consulting](https://devmarkpe.com/servicios/consultoria-tecnologica) — digital transformation strategy and tooling advice, from S/ 30/hour (or 15- and 30-hour packs). English: [Technology consulting](https://devmarkpe.com/en/services/tech-consulting)
-- [Hosting and domains](https://devmarkpe.com/hosting) — direct Hostinger partner: the DEVMARK code gives a discount on hosting, VPS, domains and corporate email; email and SSL setup included. English: [Hosting and domains](https://devmarkpe.com/en/hosting)
+- [Hosting and domains](https://devmarkpe.com/hosting) — direct Hostinger partner: the DEVMARKPE code gives a discount on hosting, VPS, domains and corporate email; email and SSL setup included. English: [Hosting and domains](https://devmarkpe.com/en/hosting)
 
 ## Own products
 
