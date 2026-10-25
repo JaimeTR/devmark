@@ -26,8 +26,9 @@ Para regenerar: `pip install fonttools && python3 scripts/marca/generar-logo.py 
 
 Logotipo propio de la tienda, de la misma familia y con los mismos colores que la agencia: el isotipo
 convertido en bolsa (con asa), DEVMARK y debajo STORE, una línea fina y el lema "Tecnología con IA".
-La bolsa, con su asa, se alinea arriba con DEVMARK y abajo con STORE, y el lema termina donde termina
-DEVMARK. La versión `-sin-lema` deja solo STORE debajo.
+El cuerpo de la bolsa tiene la misma altura que el bloque de texto, igual que el isotipo de la agencia
+(arriba con DEVMARK, abajo con STORE), y el asa sobresale hacia arriba: es lo que distingue a la
+tienda de un vistazo. El lema termina donde termina DEVMARK. La versión `-sin-lema` deja solo STORE debajo.
 
 | Archivo | Uso |
 |---|---|
