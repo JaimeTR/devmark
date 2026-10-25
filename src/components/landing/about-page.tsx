@@ -4,6 +4,7 @@ import { Footer } from '@/components/home/footer';
 import { Contact } from '@/components/home/contact';
 import { GlobalReach } from '@/components/globe/global-reach';
 import { PageHero } from '@/components/site/page-hero';
+import { Cifras } from '@/components/site/cifras';
 import { RevealWords } from '@/components/site/reveal-words';
 import { WhatsAppIcon } from '@/components/site/whatsapp-icon';
 import { contactContent } from '@/content/home-data';
@@ -84,14 +85,7 @@ export function AboutPage({ lang }: { lang: Lang }) {
             <div className="space-y-6">
               <RevealWords as="p" parts={[t.story[0]]} className="text-[clamp(1.25rem,2vw,1.6rem)] leading-snug text-ink" />
               <p className="reveal max-w-[60ch] text-[17px] leading-relaxed text-ink/70">{t.story[1]}</p>
-              <dl className="reveal grid grid-cols-2 gap-6 border-t border-ink/10 pt-8 sm:grid-cols-4">
-                {homeContent[lang].intro.stats.map((s) => (
-                  <div key={s.label} className="flex flex-col-reverse gap-1.5">
-                    <dt className="text-sm text-ink/60">{s.label}</dt>
-                    <dd className="headline text-[clamp(2rem,4vw,3.25rem)] tabular-nums">{s.value}</dd>
-                  </div>
-                ))}
-              </dl>
+              <Cifras stats={homeContent[lang].intro.stats} className="reveal" />
             </div>
           </div>
         </section>
