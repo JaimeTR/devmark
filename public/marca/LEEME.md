@@ -24,15 +24,17 @@ Para regenerar: `pip install fonttools && python3 scripts/marca/generar-logo.py 
 
 ## DevmarkPE Store (`tienda/`)
 
-Logotipo propio de la tienda, de la misma familia que la agencia: el isotipo convertido en bolsa (con asa), DEVMARK y debajo STORE con el lema "Tecnología con IA".
+Logotipo propio de la tienda, de la misma familia y con los mismos colores que la agencia: el isotipo
+convertido en bolsa (con asa), DEVMARK y debajo STORE, una línea fina y el lema "Tecnología con IA".
+La bolsa, con su asa, se alinea arriba con DEVMARK y abajo con STORE, y el lema termina donde termina
+DEVMARK. La versión `-sin-lema` deja solo STORE debajo.
 
 | Archivo | Uso |
 |---|---|
-| `tienda/devmarkstore-logotipo.svg` | Principal, sobre fondo claro. |
-| `tienda/devmarkstore-logotipo-sin-lema.svg` | Barra de la tienda y tamaños chicos. |
-| `tienda/devmarkstore-logotipo-fondo-oscuro.svg` (y `-sin-lema-`) | Sobre tinta o fotos oscuras. |
-| `tienda/devmarkstore-logotipo-blanco.svg` | Sobre índigo o un color de marca. |
-| `tienda/devmarkstore-logotipo-tinta.svg` | Una sola tinta. |
-| `tienda/devmarkstore-isotipo*.svg` | La bolsa sola: color, blanco tonal y tinta (favicon, redes). |
+| `tienda/devmarkstore-logotipo.svg` | **Principal**, sobre fondo claro. |
+| `tienda/devmarkstore-logotipo-fondo-oscuro.svg` | La principal sobre tinta o fotos oscuras (pie de la tienda). |
+| `tienda/devmarkstore-logotipo-cabecera.svg` | Barra de la tienda sobre oscuro: bolsa índigo y todo el texto en blanco. |
+| `tienda/devmarkstore-logotipo-indigo.svg` / `-blanco` / `-oscuro` | Una sola tinta. |
+| `tienda/devmarkstore-isotipo.svg` (y `-indigo`, `-blanco`, `-oscuro`) | La bolsa sola (favicon en índigo, redes). |
 
-Para regenerar: `python3 scripts/marca/generar-logo-tienda.py public/marca/tienda`.
+Cada logotipo tiene su versión `-sin-lema`. Para regenerar: `python3 scripts/marca/generar-logo-tienda.py public/marca/tienda`.
