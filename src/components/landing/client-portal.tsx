@@ -11,7 +11,7 @@ function PortalMock({ lang }: { lang: Lang }) {
     <div className="overflow-hidden rounded-2xl border border-white/10 bg-ink-soft shadow-[0_30px_70px_-30px_rgba(0,0,0,0.6)]">
       <div className="flex items-center justify-between border-b border-white/10 px-5 py-3.5">
         {/* eslint-disable-next-line @next/next/no-img-element -- logo decorativo de la maqueta */}
-        <img src="/marca/devmark-logotipo-sin-lema-fondo-oscuro.svg" alt="DEVMARK" width={142} height={14} className="h-[14px] w-auto" />
+        <img src="/marca/devmark-logotipo-fondo-oscuro-sin-lema.svg" alt="DEVMARK" width={142} height={14} className="h-[14px] w-auto" />
         <span className="grid h-7 w-7 place-items-center rounded-md bg-band text-[11px] font-semibold text-ink">TN</span>
       </div>
       <div className="grid gap-3 p-5">
