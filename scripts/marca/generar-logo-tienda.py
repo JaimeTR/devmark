@@ -33,6 +33,8 @@ def bolsa(c):
 # Caja exacta de la bolsa (asa incluida) en coordenadas del original de 1254 px: el asa llega a
 # y = 175 - 185 - 40 (radio y medio trazo) = -50 y el cuerpo baja hasta 1101.
 BOLSA = (118, -50, 996, 1151)
+# Cuerpo de la bolsa sin el asa (el isotipo de la agencia): es lo que se alinea con el texto.
+CUERPO = (118, 173, 996, 928)
 
 # ------------------------------------------------------------------ texto ---
 # DEVMARK con las mismas proporciones que el logotipo de la agencia (generar-logo.py): mayusculas de
@@ -63,9 +65,11 @@ def ancho_tracking(cadena, alto, tracking, trazo):
     return ancho_letras(cadena, alto, 1.0, trazo, MICHROMA) + alto * tracking * (len(letras) - 1 + cadena.count(" ") * 2)
 
 def logotipo(t, con_lema=True):
-    # La bolsa (con su asa) mide lo mismo que el bloque de texto: arriba con DEVMARK, abajo con STORE.
-    bx, by, bw, bh = BOLSA
+    # El cuerpo de la bolsa mide lo mismo que el bloque de texto (arriba con DEVMARK, abajo con STORE),
+    # como el isotipo de la agencia; el asa sobresale hacia arriba y distingue a la tienda.
+    bx, by, bw, bh = CUERPO
     s = ALTO / bh
+    asa_alto = (by - BOLSA[1]) * s
     iso = f'<g transform="scale({f(s)}) translate({f(-bx)} {f(-by)})">{bolsa(t["iso"])}</g>'
     tx = bw * s + 43 * ALTO / 288
     base2 = ALTO
@@ -91,7 +95,7 @@ def logotipo(t, con_lema=True):
         cuerpo += con_tracking(LEMA, x_lema, base2 - (FILA2_ALTO - lh) / 2, lh, tracking, t["lema"], lt)[0]
     w = tx + ANCHO_NOMBRE + TRAZO
     titulo = "DevmarkPE Store, tecnología con IA"
-    return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -4 {f(w + 8)} {f(ALTO + 8)}" role="img" aria-label="{titulo}"><title>DevmarkPE Store</title>{cuerpo}</svg>\n'
+    return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 {f(-asa_alto - 4)} {f(w + 8)} {f(ALTO + asa_alto + 8)}" role="img" aria-label="{titulo}"><title>DevmarkPE Store</title>{cuerpo}</svg>\n'
 
 def isotipo(c):
     x, y, w, h = BOLSA
