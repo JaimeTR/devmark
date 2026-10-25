@@ -54,7 +54,7 @@ automatizacion y software a medida.
 
 ## Brand Commitments
 
-- Nombre: DEVMARK (wordmark en tipografia Braze, src/fonts). Logo en public/logo-mark*.svg.
+- Nombre: DEVMARK. Logotipo e isotipo en public/marca (ver public/marca/LEEME.md); imagen para redes en public/og-image.png.
 - Color de marca: indigo #3D34BC, compartido con el ERP (decision de Jaime, 22 oct 2026).
 - Voz: cercana, directa, sin letra chica; espanol neutro peruano; frases en
   formato oracion (sin Title Case).
