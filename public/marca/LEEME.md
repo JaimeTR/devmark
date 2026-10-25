@@ -2,9 +2,12 @@
 
 SVG vectoriales del isotipo y el logotipo nuevos (octubre 2026), redibujados sobre los originales.
 
+En todas las versiones el isotipo se alinea con el texto: arriba con las mayúsculas de DEVMARK y abajo con el lema (o con la base de DEVMARK en las versiones sin lema).
+
 | Archivo | Uso |
 |---|---|
 | `devmark-logotipo.svg` | Principal, sobre fondo claro. |
+| `devmark-logotipo-cabecera.svg` | Encabezado de devmarkpe.com sobre fondo oscuro: isotipo en el índigo de los botones y el texto en blanco. `-clara`: el mismo sobre fondo claro, con el texto en tinta. `-sin-lema`: sin el lema. |
 | `devmark-logotipo-sin-lema.svg` | Cabeceras y tamaños chicos. El isotipo mide lo mismo que las letras y queda alineado con ellas arriba y abajo. También en `-fondo-oscuro`, `-blanco` (todo blanco) e `-indigo`. |
 | `devmark-logotipo-fondo-oscuro.svg` | Sobre tinta o fotos oscuras. |
 | `devmark-logotipo-blanco.svg` | Sobre índigo o un color de marca (isotipo en blancos con profundidad). |

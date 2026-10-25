@@ -59,7 +59,7 @@ export const ProposalDocument = forwardRef<HTMLDivElement, ProposalDocumentProps
       >
         <div className="flex items-start justify-between pb-6 border-b-2 border-brand-blue/20">
           <div className="flex items-center gap-3">
-            <Image src="/marca/devmark-logotipo.svg" alt="DEVMARK" width={250} height={40} className="h-10 w-auto" />
+            <Image src="/marca/devmark-logotipo.svg" alt="DEVMARK" width={302} height={40} className="h-10 w-auto" />
             <div>
               <span className="text-xs text-slate-500">{content.documentTitle}</span>
             </div>

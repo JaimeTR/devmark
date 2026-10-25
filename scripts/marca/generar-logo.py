@@ -156,17 +156,13 @@ guardar("devmark-isotipo-vidrio.svg", iso_svg(("url(#v1)", "url(#v2)", "url(#v3)
 OX, OY = 81, 185
 def logotipo(tonos, con_lema=True, defs="", extra_iso="", extra_txt=""):
     cap_h, trazo = 160.0, 6.0
-    if con_lema:
-        # Con lema, el isotipo abarca el nombre y el lema, como en el original.
-        iso_alto = 288.0
-        tx = 429 - OX
-        base = 397 - OY
-    else:
-        # Sin lema (cabeceras): el isotipo mide lo mismo que las mayusculas y se alinea con ellas
-        # arriba y abajo. El hueco entre simbolo y nombre es el del original, a la nueva escala.
-        iso_alto = cap_h
-        tx = (ix1 - ix0) * cap_h / (iy1 - iy0) + 43 * cap_h / 288
-        base = cap_h
+    # El isotipo se alinea con el texto arriba y abajo: arriba con las mayusculas de DEVMARK y abajo
+    # con el lema (o con la base de DEVMARK si no hay lema). Separaciones del original (2000 x 667):
+    # nombre y = 237-397, lema y = 438-466, hueco isotipo-nombre 43 a la escala del isotipo de 288.
+    base = cap_h
+    lema_base = (466 - 237) if con_lema else None
+    iso_alto = lema_base if con_lema else cap_h
+    tx = (ix1 - ix0) * iso_alto / (iy1 - iy0) + 43 * iso_alto / 288
     s_iso = iso_alto / (iy1 - iy0)
     sx_rel = (203 - trazo) / ((caja("D")[2] - caja("D")[0]) * (cap_h - trazo) / BRAZE.cap)  # la D mide 203 de ancho
     ancho_nombre = 1920 - 429
@@ -184,7 +180,7 @@ def logotipo(tonos, con_lema=True, defs="", extra_iso="", extra_txt=""):
         ancho_lema = 1906 - 428
         # Entre palabras va el triple del hueco entre letras (hueco + espacio de 2 huecos).
         hueco_l = (ancho_lema - ancho_letras(lema, lh, 1.0, lt, MICHROMA)) / (len(letras) - 1 + palabras * 2)
-        l_svg, _ = texto(lema, 428 - OX, 466 - OY, lh, 1.0, hueco_l, lt, tonos["lema"], hueco_espacio=hueco_l * 2, extra=extra_txt, fu=MICHROMA)
+        l_svg, _ = texto(lema, tx - 1, lema_base, lh, 1.0, hueco_l, lt, tonos["lema"], hueco_espacio=hueco_l * 2, extra=extra_txt, fu=MICHROMA)
         cuerpo += l_svg
     ancho = tx + ancho_nombre + trazo
     return ancho, alto, cuerpo, defs
@@ -219,3 +215,10 @@ INDIGO_T = {"iso": (INDIGO, INDIGO, INDIGO), "dev": INDIGO, "m": INDIGO, "ark": 
 guardar_logo("devmark-logotipo-indigo.svg", INDIGO_T)
 guardar_logo("devmark-logotipo-sin-lema-indigo.svg", INDIGO_T, False)
 guardar("devmark-isotipo-indigo.svg", iso_svg((INDIGO, INDIGO, INDIGO), "DEVMARK"))
+# Encabezado de devmarkpe.com: isotipo en el indigo de los botones y todo el texto en blanco.
+CABECERA_T = {"iso": (INDIGO, INDIGO, INDIGO), "dev": "#FFFFFF", "m": "#FFFFFF", "ark": "#FFFFFF", "lema": "#FFFFFF"}
+guardar_logo("devmark-logotipo-cabecera.svg", CABECERA_T)
+guardar_logo("devmark-logotipo-cabecera-sin-lema.svg", CABECERA_T, False)
+# La misma idea sobre fondo claro: isotipo indigo y texto en la tinta de la web.
+CABECERA_CLARA_T = {"iso": (INDIGO, INDIGO, INDIGO), "dev": "#110C29", "m": "#110C29", "ark": "#110C29", "lema": "#110C29"}
+guardar_logo("devmark-logotipo-cabecera-clara.svg", CABECERA_CLARA_T)
