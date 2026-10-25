@@ -13,6 +13,11 @@ de DEVMARK en las versiones sin lema). Cada logotipo tiene su versión `-sin-lem
 | `devmark-logotipo-blanco.svg` | Todo en blanco, sobre índigo, tinta o fotos. |
 | `devmark-logotipo-oscuro.svg` | Todo en tinta, sobre fondos claros (impresión a una tinta, sellos). |
 | `devmark-isotipo.svg` (y `-indigo`, `-blanco`, `-oscuro`) | El símbolo solo (redes, favicon, avatar). |
+| `devmark-logotipo.png` / `devmark-isotipo-512.png` | En PNG para donde no aceptan SVG: datos estructurados de Google, correos, avatar de redes. |
+
+Dónde se usa: cabecera de la web (`-cabecera`, y la principal al bajar), pie y documentos (`-fondo-oscuro`
+o la principal), portadas del blog (`-fondo-oscuro-sin-lema`), favicon (isotipo índigo),
+`public/og-image.png` (imagen al compartir) y el panel del ERP (login, barra lateral y favicon).
 
 Colores (de `tailwind.config.ts`): índigo `#3D34BC` (botones), índigo claro `#5B53D0`, periwinkle `#A9B4FF`,
 tinta `#110C29`, navy `#35347B` (lema) y `#B4B1D6` (lema sobre oscuro).
@@ -37,5 +42,9 @@ tienda de un vistazo. El lema termina donde termina DEVMARK. La versión `-sin-l
 | `tienda/devmarkstore-logotipo-cabecera.svg` | Barra de la tienda sobre oscuro: bolsa índigo y todo el texto en blanco. |
 | `tienda/devmarkstore-logotipo-indigo.svg` / `-blanco` / `-oscuro` | Una sola tinta. |
 | `tienda/devmarkstore-isotipo.svg` (y `-indigo`, `-blanco`, `-oscuro`) | La bolsa sola (favicon en índigo, redes). |
+
+En la tienda: la barra (`-cabecera` sobre el hero, la principal al bajar), el pie (`-fondo-oscuro`), las
+páginas de cuenta, gracias, pedido y políticas (la principal) y su `og-image.png`. El logo de MemoAI queda
+solo en la landing de ese producto.
 
 Cada logotipo tiene su versión `-sin-lema`. Para regenerar: `python3 scripts/marca/generar-logo-tienda.py public/marca/tienda`.
