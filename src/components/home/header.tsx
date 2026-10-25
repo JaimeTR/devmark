@@ -150,7 +150,7 @@ export function Header({ lang = 'es', aiAssistant }: HeaderProps) {
         <Link href={homeHref} className="flex min-w-0 shrink-0 items-center gap-2.5" aria-label={t.home}>
           {/* Logotipo nuevo: version clara u oscura segun el panel que hay debajo. */}
           <Image
-            src={dark ? '/marca/devmark-logotipo-cabecera.svg' : '/marca/devmark-logotipo-cabecera-clara.svg'}
+            src={dark ? '/marca/devmark-logotipo-cabecera.svg' : '/marca/devmark-logotipo.svg'}
             alt="DEVMARK, agencia de desarrollo web y software"
             width={302}
             height={40}

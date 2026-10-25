@@ -1,25 +1,24 @@
-# Marca DEVMARK
+# Marca DEVMARK (juego definitivo, octubre 2026)
 
-SVG vectoriales del isotipo y el logotipo nuevos (octubre 2026), redibujados sobre los originales.
-
-En todas las versiones el isotipo se alinea con el texto: arriba con las mayúsculas de DEVMARK y abajo con el lema (o con la base de DEVMARK en las versiones sin lema).
+SVG vectoriales del isotipo y el logotipo, en los colores de devmarkpe.com. En todas las versiones el
+isotipo se alinea con el texto: arriba con las mayúsculas de DEVMARK y abajo con el lema (o con la base
+de DEVMARK en las versiones sin lema). Cada logotipo tiene su versión `-sin-lema` para tamaños chicos.
 
 | Archivo | Uso |
 |---|---|
-| `devmark-logotipo.svg` | Principal, sobre fondo claro. |
-| `devmark-logotipo-cabecera.svg` | Encabezado de devmarkpe.com sobre fondo oscuro: isotipo en el índigo de los botones y el texto en blanco. `-clara`: el mismo sobre fondo claro, con el texto en tinta. `-sin-lema`: sin el lema. |
-| `devmark-logotipo-sin-lema.svg` | Cabeceras y tamaños chicos. El isotipo mide lo mismo que las letras y queda alineado con ellas arriba y abajo. También en `-fondo-oscuro`, `-blanco` (todo blanco) e `-indigo`. |
-| `devmark-logotipo-fondo-oscuro.svg` | Sobre tinta o fotos oscuras. |
-| `devmark-logotipo-blanco.svg` | Sobre índigo o un color de marca (isotipo en blancos con profundidad). |
-| `devmark-logotipo-blanco-solido.svg` | Todo en blanco, sin transparencias. |
-| `devmark-logotipo-indigo.svg` | Todo en el índigo de los botones de la web (`#3D34BC`), sobre fondo claro. |
-| `devmark-logotipo-tinta.svg` | Una sola tinta (impresión, sellos). |
-| `devmark-logotipo-vidrio.svg` | Efecto vidrio, sobre fondos oscuros o fotos. |
-| `devmark-isotipo*.svg` | El símbolo solo: color, blanco (tonal y sólido), índigo, tinta y vidrio. |
+| `devmark-logotipo.svg` | **Principal**, sobre fondo claro: isotipo en tres tonos de índigo, DEV en tinta, MARK en índigo. |
+| `devmark-logotipo-fondo-oscuro.svg` | La principal sobre tinta o fotos oscuras. |
+| `devmark-logotipo-cabecera.svg` | Encabezado de la web: isotipo índigo entero y todo el texto en blanco, sobre oscuro. |
+| `devmark-logotipo-indigo.svg` | Todo en el índigo de los botones, sobre fondo claro. |
+| `devmark-logotipo-blanco.svg` | Todo en blanco, sobre índigo, tinta o fotos. |
+| `devmark-logotipo-oscuro.svg` | Todo en tinta, sobre fondos claros (impresión a una tinta, sellos). |
+| `devmark-isotipo.svg` (y `-indigo`, `-blanco`, `-oscuro`) | El símbolo solo (redes, favicon, avatar). |
 
-Colores: índigo de la web `#3D34BC`, tinta `#010F35`, azul eléctrico `#0039FB` / `#0132FC`, azul medio `#0C70FD` / `#0165FC`, azul claro `#9AB3FA`, lema `#12214F`.
+Colores (de `tailwind.config.ts`): índigo `#3D34BC` (botones), índigo claro `#5B53D0`, periwinkle `#A9B4FF`,
+tinta `#110C29`, navy `#35347B` (lema) y `#B4B1D6` (lema sobre oscuro).
 
-Tipografía: el nombre es Braze (ajustada al ancho del original); el lema es Michroma (licencia OFL). En los SVG el texto ya está convertido a trazos: no hace falta instalar las fuentes.
+Tipografía: el nombre es Braze (ajustada al ancho del original); el lema es Michroma (licencia OFL). En
+los SVG el texto ya está convertido a trazos: no hace falta instalar las fuentes.
 
 Para regenerar: `pip install fonttools && python3 scripts/marca/generar-logo.py public/marca`.
 
