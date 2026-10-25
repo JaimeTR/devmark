@@ -14,7 +14,7 @@ export async function blogOgImage(slug: string, lang: 'es' | 'en') {
   const [sans, serif, logo] = await Promise.all([
     readFile(join(process.cwd(), 'src/fonts/SchibstedGrotesk-Medium.ttf')),
     readFile(join(process.cwd(), 'src/fonts/InstrumentSerif-Italic.ttf')),
-    readFile(join(process.cwd(), 'public/marca/devmark-logotipo-sin-lema-fondo-oscuro.svg')),
+    readFile(join(process.cwd(), 'public/marca/devmark-logotipo-fondo-oscuro-sin-lema.svg')),
   ]);
   const title = post?.title ?? 'DEVMARK';
   const topic = TOPIC_LABEL[post ? topicOf(post) : 'web'][lang];

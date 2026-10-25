@@ -122,10 +122,18 @@ def svg(w, h, cuerpo, titulo, defs=""):
 def guardar(nombre, contenido):
     open(f"{OUT}/{nombre}", "w").write(contenido)
 
-COLOR = (AZUL, MEDIO, CLARO)
+# ------------------------------------------------- juego definitivo (2026) ---
+# Colores de devmarkpe.com (tailwind.config.ts y globals.css). El azul electrico del logo original
+# queda solo en la tienda (generar-logo-tienda.py).
+WEB_INDIGO = "#3D34BC"      # --primary, el de los botones
+WEB_INDIGO_CLARO = "#5B53D0"  # brand.blue-dark: hsl(244 57% 57%)
+WEB_PERIWINKLE = "#A9B4FF"
+WEB_TINTA = "#110C29"       # ink
+WEB_NAVY = "#35347B"        # brand.navy
+WEB_INK_MUTED = "#B4B1D6"   # ink.muted
 BLANCO = ("#FFFFFF", "#FFFFFF", "#FFFFFF")
-# Blanco con tres opacidades: conserva la profundidad del isotipo sobre color.
-BLANCO_TONAL = ("rgba(255,255,255,1)", "rgba(255,255,255,0.78)", "rgba(255,255,255,0.5)")
+ISO_MARCA = (WEB_INDIGO, WEB_INDIGO_CLARO, WEB_PERIWINKLE)
+uno = lambda c: (c, c, c)
 
 # Isotipo cuadrado con margen interno minimo.
 ix0, iy0, ix1, iy1 = ISO_BBOX
@@ -134,21 +142,6 @@ iso_vb = (ix0 - pad, iy0 - pad, ix1 - ix0 + 2 * pad, iy1 - iy0 + 2 * pad)
 def iso_svg(colores, titulo, defs="", extra=""):
     x, y, w, h = iso_vb
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{f(x)} {f(y)} {f(w)} {f(h)}" role="img" aria-label="{titulo}"><title>{titulo}</title>{defs}{iso_grupo(colores, extra=extra)}</svg>\n'
-
-guardar("devmark-isotipo.svg", iso_svg(COLOR, "DEVMARK"))
-guardar("devmark-isotipo-blanco.svg", iso_svg(BLANCO_TONAL, "DEVMARK"))
-guardar("devmark-isotipo-blanco-solido.svg", iso_svg(BLANCO, "DEVMARK"))
-guardar("devmark-isotipo-tinta.svg", iso_svg((INK, INK, INK), "DEVMARK"))
-
-# Version vidrio: piezas blancas con degradado azul hacia la arista, como el original.
-VIDRIO_DEFS = (
-    '<defs>'
-    '<linearGradient id="v1" x1="0.35" y1="1" x2="0.55" y2="0.35"><stop offset="0" stop-color="#6F93FA"/><stop offset="0.55" stop-color="#E6EDFE"/><stop offset="1" stop-color="#FFFFFF"/></linearGradient>'
-    '<linearGradient id="v2" x1="0.6" y1="1" x2="0.4" y2="0"><stop offset="0" stop-color="#7E9EFB"/><stop offset="0.7" stop-color="#E3EBFE"/><stop offset="1" stop-color="#F7F9FF"/></linearGradient>'
-    '<linearGradient id="v3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#EEF2FE"/></linearGradient>'
-    '</defs>'
-)
-guardar("devmark-isotipo-vidrio.svg", iso_svg(("url(#v1)", "url(#v2)", "url(#v3)"), "DEVMARK", VIDRIO_DEFS, ' stroke="#B9C9FC" stroke-width="2"'))
 
 # Logotipo horizontal, en pixeles del original (2000 x 667) restando su esquina (81, 185):
 # isotipo 305 x 288, nombre de x=429 a 1920 con mayusculas de 160 (y 237-397),
@@ -190,35 +183,25 @@ def guardar_logo(nombre, tonos, con_lema=True, defs="", extra_iso="", extra_txt=
     m = 4
     guardar(nombre, f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{f(-m)} {f(-m)} {f(w + 2 * m)} {f(h + 2 * m)}" role="img" aria-label="DEVMARK, agencia de desarrollo web y software"><title>DEVMARK</title>{defs}{cuerpo}</svg>\n')
 
-COLOR_T = {"iso": COLOR, "dev": INK, "m": M_COLOR, "ark": ARK_COLOR, "lema": LEMA}
-OSCURO_T = {"iso": COLOR, "dev": "#FFFFFF", "m": "#3D8BFF", "ark": "#5B7BFF", "lema": "#B4B1D6"}
-BLANCO_T = {"iso": BLANCO_TONAL, "dev": "#FFFFFF", "m": "#FFFFFF", "ark": "#FFFFFF", "lema": "#FFFFFF"}
-TINTA_T = {"iso": (INK, INK, INK), "dev": INK, "m": INK, "ark": INK, "lema": INK}
+VERSIONES = {
+    # Principal, sobre fondo claro: isotipo en tres tonos de indigo, DEV en tinta, MARK en indigo.
+    "": {"iso": ISO_MARCA, "dev": WEB_TINTA, "m": WEB_INDIGO_CLARO, "ark": WEB_INDIGO, "lema": WEB_NAVY},
+    # Principal sobre fondo oscuro (tinta o fotos).
+    "-fondo-oscuro": {"iso": ISO_MARCA, "dev": "#FFFFFF", "m": WEB_PERIWINKLE, "ark": "#8C85EE", "lema": WEB_INK_MUTED},
+    # Encabezado de devmarkpe.com: isotipo indigo entero y todo el texto en blanco.
+    "-cabecera": {"iso": uno(WEB_INDIGO), "dev": "#FFFFFF", "m": "#FFFFFF", "ark": "#FFFFFF", "lema": "#FFFFFF"},
+    # Una sola tinta.
+    "-indigo": {"iso": uno(WEB_INDIGO), "dev": WEB_INDIGO, "m": WEB_INDIGO, "ark": WEB_INDIGO, "lema": WEB_INDIGO},
+    "-blanco": {"iso": BLANCO, "dev": "#FFFFFF", "m": "#FFFFFF", "ark": "#FFFFFF", "lema": "#FFFFFF"},
+    "-oscuro": {"iso": uno(WEB_TINTA), "dev": WEB_TINTA, "m": WEB_TINTA, "ark": WEB_TINTA, "lema": WEB_TINTA},
+}
 
-guardar_logo("devmark-logotipo.svg", COLOR_T)
-guardar_logo("devmark-logotipo-sin-lema.svg", COLOR_T, False)
-guardar_logo("devmark-logotipo-fondo-oscuro.svg", OSCURO_T)
-guardar_logo("devmark-logotipo-blanco.svg", BLANCO_T)
-guardar_logo("devmark-logotipo-tinta.svg", TINTA_T)
-VIDRIO_T = {"iso": ("url(#v1)", "url(#v2)", "url(#v3)"), "dev": "#F3F6FF", "m": "url(#vt)", "ark": "#EEF2FF", "lema": "#F1F4FF"}
-guardar_logo("devmark-logotipo-vidrio.svg", VIDRIO_T, True, VIDRIO_DEFS.replace("</defs>", '<linearGradient id="vt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3F6FF"/><stop offset="1" stop-color="#C9D6FD"/></linearGradient></defs>'), ' stroke="#B9C9FC" stroke-width="2"')
+for sufijo, tonos in VERSIONES.items():
+    guardar_logo(f"devmark-logotipo{sufijo}.svg", tonos)
+    guardar_logo(f"devmark-logotipo{sufijo}-sin-lema.svg", tonos, False)
+
+guardar("devmark-isotipo.svg", iso_svg(ISO_MARCA, "DEVMARK"))
+guardar("devmark-isotipo-indigo.svg", iso_svg(uno(WEB_INDIGO), "DEVMARK"))
+guardar("devmark-isotipo-blanco.svg", iso_svg(BLANCO, "DEVMARK"))
+guardar("devmark-isotipo-oscuro.svg", iso_svg(uno(WEB_TINTA), "DEVMARK"))
 print("ok")
-
-# Variantes sin lema para cabeceras (fondo oscuro y blanco).
-guardar_logo("devmark-logotipo-sin-lema-fondo-oscuro.svg", OSCURO_T, False)
-# Blanco entero (isotipo solido) para cabeceras sobre indigo o fotos.
-BLANCO_SOLIDO_T = {"iso": BLANCO, "dev": "#FFFFFF", "m": "#FFFFFF", "ark": "#FFFFFF", "lema": "#FFFFFF"}
-guardar_logo("devmark-logotipo-sin-lema-blanco.svg", BLANCO_SOLIDO_T, False)
-guardar_logo("devmark-logotipo-blanco-solido.svg", BLANCO_SOLIDO_T)
-# Todo en el indigo de los botones de la web (una sola tinta de marca).
-INDIGO_T = {"iso": (INDIGO, INDIGO, INDIGO), "dev": INDIGO, "m": INDIGO, "ark": INDIGO, "lema": INDIGO}
-guardar_logo("devmark-logotipo-indigo.svg", INDIGO_T)
-guardar_logo("devmark-logotipo-sin-lema-indigo.svg", INDIGO_T, False)
-guardar("devmark-isotipo-indigo.svg", iso_svg((INDIGO, INDIGO, INDIGO), "DEVMARK"))
-# Encabezado de devmarkpe.com: isotipo en el indigo de los botones y todo el texto en blanco.
-CABECERA_T = {"iso": (INDIGO, INDIGO, INDIGO), "dev": "#FFFFFF", "m": "#FFFFFF", "ark": "#FFFFFF", "lema": "#FFFFFF"}
-guardar_logo("devmark-logotipo-cabecera.svg", CABECERA_T)
-guardar_logo("devmark-logotipo-cabecera-sin-lema.svg", CABECERA_T, False)
-# La misma idea sobre fondo claro: isotipo indigo y texto en la tinta de la web.
-CABECERA_CLARA_T = {"iso": (INDIGO, INDIGO, INDIGO), "dev": "#110C29", "m": "#110C29", "ark": "#110C29", "lema": "#110C29"}
-guardar_logo("devmark-logotipo-cabecera-clara.svg", CABECERA_CLARA_T)
