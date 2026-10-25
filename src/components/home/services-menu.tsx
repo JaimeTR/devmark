@@ -67,7 +67,7 @@ export function ServicesMenu({ lang, dark, active }: { lang: Lang; dark: boolean
         aria-controls="menu-servicios"
         onClick={() => setOpen((v) => !v)}
         className={cn(
-          'flex items-center gap-1 rounded-lg px-2.5 py-2 text-[15px] font-medium transition-colors xl:px-3',
+          'flex items-center gap-1 rounded-lg px-2 py-2 text-[14px] font-medium transition-colors xl:px-3 xl:text-[15px]',
           active || open ? (dark ? 'bg-white/[0.12] text-white' : 'bg-ink/[0.06] text-ink') : dark ? 'text-white/75 hover:text-white' : 'text-ink/70 hover:text-ink',
         )}
       >

@@ -150,11 +150,11 @@ export function Header({ lang = 'es', aiAssistant }: HeaderProps) {
         <Link href={homeHref} className="flex min-w-0 shrink-0 items-center gap-2.5" aria-label={t.home}>
           {/* Logotipo nuevo: version clara u oscura segun el panel que hay debajo. */}
           <Image
-            src={dark ? '/marca/devmark-logotipo-sin-lema-fondo-oscuro.svg' : '/marca/devmark-logotipo-sin-lema.svg'}
-            alt="DEVMARK"
-            width={213}
-            height={34}
-            className="h-[30px] w-auto sm:h-[34px]"
+            src={dark ? '/marca/devmark-logotipo-cabecera.svg' : '/marca/devmark-logotipo-cabecera-clara.svg'}
+            alt="DEVMARK, agencia de desarrollo web y software"
+            width={302}
+            height={40}
+            className="h-[34px] w-auto xl:h-[40px]"
             priority
           />
         </Link>
@@ -164,7 +164,7 @@ export function Header({ lang = 'es', aiAssistant }: HeaderProps) {
             const servicios = link.href === servicesHref;
             if (servicios) return <ServicesMenu key={link.href} lang={lang} dark={dark} active={isActive(link.href)} />;
             const clase = cn(
-              'flex items-center gap-1.5 rounded-lg px-2.5 py-2 text-[15px] font-medium transition-colors xl:px-3',
+              'flex items-center gap-1.5 rounded-lg px-2 py-2 text-[14px] xl:text-[15px] font-medium transition-colors xl:px-3',
               isActive(link.href)
                 ? dark
                   ? 'bg-white/[0.12] text-white'
@@ -253,7 +253,7 @@ export function Header({ lang = 'es', aiAssistant }: HeaderProps) {
             <SheetContent side="right" className="flex w-[min(88vw,380px)] flex-col gap-0 border-none bg-ink p-0 text-white">
               <SheetTitle className="sr-only">{t.menu}</SheetTitle>
               <div className="flex items-center gap-2.5 px-6 pb-6 pt-7">
-                <Image src="/marca/devmark-logotipo-sin-lema-fondo-oscuro.svg" alt="DEVMARK" width={213} height={34} className="h-[34px] w-auto" />
+                <Image src="/marca/devmark-logotipo-cabecera.svg" alt="DEVMARK, agencia de desarrollo web y software" width={302} height={40} className="h-[40px] w-auto" />
               </div>
               <nav className="flex min-h-0 flex-1 flex-col overflow-y-auto px-3">
                 {navLinks.map((link) => {

@@ -84,7 +84,7 @@ export function Footer({ lang = 'es', copyright }: FooterProps) {
     <footer className="mx-2 mb-2 mt-2 grid gap-2 sm:mx-3 sm:mb-3 sm:mt-3 sm:gap-3 lg:grid-cols-[1fr_2fr]">
       <div className="flex flex-col rounded-panel bg-mist p-7 text-ink sm:p-9">
         <Link href={lang === 'en' ? '/en' : '/'} className="inline-flex items-center gap-2.5">
-          <Image src="/marca/devmark-logotipo.svg" alt="DEVMARK, agencia de desarrollo web y software" width={376} height={60} className="h-[52px] w-auto sm:h-[60px]" />
+          <Image src="/marca/devmark-logotipo.svg" alt="DEVMARK, agencia de desarrollo web y software" width={453} height={60} className="h-[52px] w-auto sm:h-[60px]" />
         </Link>
         <p className="mt-5 max-w-[42ch] text-[15px] leading-relaxed text-ink/70">{t.tagline}</p>
         <p className="mt-9 text-sm font-medium text-ink/60">{t.follow}</p>

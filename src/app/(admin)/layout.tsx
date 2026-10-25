@@ -12,7 +12,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <div className="flex min-h-screen">
           <aside className="w-64 bg-brand-navy text-white p-6 flex flex-col gap-6">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/marca/devmark-logotipo-sin-lema-fondo-oscuro.svg" alt="DEVMARK" width={188} height={30} className="h-[30px] w-auto" />
+            <img src="/marca/devmark-logotipo-sin-lema-fondo-oscuro.svg" alt="DEVMARK" width={183} height={18} className="h-[18px] w-auto" />
             <nav className="flex flex-col gap-1">
               <a href="/admin" className="px-3 py-2 rounded-lg hover:bg-white/10 text-sm font-medium">Dashboard</a>
               <a href="/admin/proyectos" className="px-3 py-2 rounded-lg hover:bg-white/10 text-sm font-medium">Proyectos</a>
