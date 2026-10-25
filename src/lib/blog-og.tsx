@@ -26,7 +26,7 @@ export async function blogOgImage(slug: string, lang: 'es' | 'en') {
         <div style={{ position: 'absolute', right: -160, top: -220, width: 720, height: 720, borderRadius: 720, background: 'radial-gradient(circle closest-side, rgba(61,52,188,0.75) 0%, rgba(61,52,188,0) 100%)', display: 'flex' }} />
         <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
           {/* eslint-disable-next-line @next/next/no-img-element -- ImageResponse solo acepta <img> */}
-          <img src={logoSrc} width={300} height={48} alt="" />
+          <img src={logoSrc} width={305} height={30} alt="" />
           <span style={{ marginLeft: 18, fontSize: 24, padding: '8px 18px', borderRadius: 12, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.14)', color: '#CBD5FA' }}>{topic}</span>
         </div>
         <div style={{ display: 'flex', fontSize: title.length > 70 ? 54 : 64, lineHeight: 1.08, letterSpacing: -1.5, maxWidth: 1000 }}>{title}</div>

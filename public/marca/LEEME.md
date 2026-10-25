@@ -5,14 +5,16 @@ SVG vectoriales del isotipo y el logotipo nuevos (octubre 2026), redibujados sob
 | Archivo | Uso |
 |---|---|
 | `devmark-logotipo.svg` | Principal, sobre fondo claro. |
-| `devmark-logotipo-sin-lema.svg` | Cuando el lema no se lee (tamaños chicos, cabeceras). |
+| `devmark-logotipo-sin-lema.svg` | Cabeceras y tamaños chicos. El isotipo mide lo mismo que las letras y queda alineado con ellas arriba y abajo. También en `-fondo-oscuro`, `-blanco` (todo blanco) e `-indigo`. |
 | `devmark-logotipo-fondo-oscuro.svg` | Sobre tinta o fotos oscuras. |
-| `devmark-logotipo-blanco.svg` | Sobre índigo o un color de marca. |
+| `devmark-logotipo-blanco.svg` | Sobre índigo o un color de marca (isotipo en blancos con profundidad). |
+| `devmark-logotipo-blanco-solido.svg` | Todo en blanco, sin transparencias. |
+| `devmark-logotipo-indigo.svg` | Todo en el índigo de los botones de la web (`#3D34BC`), sobre fondo claro. |
 | `devmark-logotipo-tinta.svg` | Una sola tinta (impresión, sellos). |
 | `devmark-logotipo-vidrio.svg` | Efecto vidrio, sobre fondos oscuros o fotos. |
-| `devmark-isotipo*.svg` | El símbolo solo: color, blanco (tonal y sólido), tinta y vidrio. |
+| `devmark-isotipo*.svg` | El símbolo solo: color, blanco (tonal y sólido), índigo, tinta y vidrio. |
 
-Colores: tinta `#010F35`, azul eléctrico `#0039FB` / `#0132FC`, azul medio `#0C70FD` / `#0165FC`, azul claro `#9AB3FA`, lema `#12214F`.
+Colores: índigo de la web `#3D34BC`, tinta `#010F35`, azul eléctrico `#0039FB` / `#0132FC`, azul medio `#0C70FD` / `#0165FC`, azul claro `#9AB3FA`, lema `#12214F`.
 
 Tipografía: el nombre es Braze (ajustada al ancho del original); el lema es Michroma (licencia OFL). En los SVG el texto ya está convertido a trazos: no hace falta instalar las fuentes.
 

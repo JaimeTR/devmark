@@ -11,6 +11,8 @@ from fontTools.pens.transformPen import TransformPen
 
 OUT = sys.argv[1]
 INK, AZUL, MEDIO, CLARO, M_COLOR, ARK_COLOR, LEMA = "#010F35", "#0039FB", "#0C70FD", "#9AB3FA", "#0165FC", "#0132FC", "#12214F"
+# Indigo de los botones de devmarkpe.com (--primary: hsl(244 57% 47%)).
+INDIGO = "#3D34BC"
 
 def f(n):
     s = f"{n:.2f}".rstrip("0").rstrip(".")
@@ -153,11 +155,19 @@ guardar("devmark-isotipo-vidrio.svg", iso_svg(("url(#v1)", "url(#v2)", "url(#v3)
 # lema de 28 de alto (y 438-466) a lo ancho de x=428 a 1906.
 OX, OY = 81, 185
 def logotipo(tonos, con_lema=True, defs="", extra_iso="", extra_txt=""):
-    iso_alto = 288.0
-    s_iso = iso_alto / (iy1 - iy0)
     cap_h, trazo = 160.0, 6.0
-    tx = 429 - OX
-    base = 397 - OY
+    if con_lema:
+        # Con lema, el isotipo abarca el nombre y el lema, como en el original.
+        iso_alto = 288.0
+        tx = 429 - OX
+        base = 397 - OY
+    else:
+        # Sin lema (cabeceras): el isotipo mide lo mismo que las mayusculas y se alinea con ellas
+        # arriba y abajo. El hueco entre simbolo y nombre es el del original, a la nueva escala.
+        iso_alto = cap_h
+        tx = (ix1 - ix0) * cap_h / (iy1 - iy0) + 43 * cap_h / 288
+        base = cap_h
+    s_iso = iso_alto / (iy1 - iy0)
     sx_rel = (203 - trazo) / ((caja("D")[2] - caja("D")[0]) * (cap_h - trazo) / BRAZE.cap)  # la D mide 203 de ancho
     ancho_nombre = 1920 - 429
     hueco = (ancho_nombre - ancho_letras("DEVMARK", cap_h, sx_rel, trazo)) / 6
@@ -176,7 +186,7 @@ def logotipo(tonos, con_lema=True, defs="", extra_iso="", extra_txt=""):
         hueco_l = (ancho_lema - ancho_letras(lema, lh, 1.0, lt, MICHROMA)) / (len(letras) - 1 + palabras * 2)
         l_svg, _ = texto(lema, 428 - OX, 466 - OY, lh, 1.0, hueco_l, lt, tonos["lema"], hueco_espacio=hueco_l * 2, extra=extra_txt, fu=MICHROMA)
         cuerpo += l_svg
-    ancho = 1920 - OX + trazo
+    ancho = tx + ancho_nombre + trazo
     return ancho, alto, cuerpo, defs
 
 def guardar_logo(nombre, tonos, con_lema=True, defs="", extra_iso="", extra_txt=""):
@@ -200,4 +210,12 @@ print("ok")
 
 # Variantes sin lema para cabeceras (fondo oscuro y blanco).
 guardar_logo("devmark-logotipo-sin-lema-fondo-oscuro.svg", OSCURO_T, False)
-guardar_logo("devmark-logotipo-sin-lema-blanco.svg", BLANCO_T, False)
+# Blanco entero (isotipo solido) para cabeceras sobre indigo o fotos.
+BLANCO_SOLIDO_T = {"iso": BLANCO, "dev": "#FFFFFF", "m": "#FFFFFF", "ark": "#FFFFFF", "lema": "#FFFFFF"}
+guardar_logo("devmark-logotipo-sin-lema-blanco.svg", BLANCO_SOLIDO_T, False)
+guardar_logo("devmark-logotipo-blanco-solido.svg", BLANCO_SOLIDO_T)
+# Todo en el indigo de los botones de la web (una sola tinta de marca).
+INDIGO_T = {"iso": (INDIGO, INDIGO, INDIGO), "dev": INDIGO, "m": INDIGO, "ark": INDIGO, "lema": INDIGO}
+guardar_logo("devmark-logotipo-indigo.svg", INDIGO_T)
+guardar_logo("devmark-logotipo-sin-lema-indigo.svg", INDIGO_T, False)
+guardar("devmark-isotipo-indigo.svg", iso_svg((INDIGO, INDIGO, INDIGO), "DEVMARK"))
