@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import '../globals.css';
+import { RaizDelSitio } from '@/components/site/raiz-del-sitio';
 
 export const metadata: Metadata = {
   title: {
@@ -49,13 +51,19 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  other: {
+    'geo.region': 'PE-LIM',
+    'geo.placename': 'Lima, Peru',
+    'geo.position': '-12.0464;-77.0428',
+    'ICBM': '-12.0464, -77.0428',
+    'language': 'en',
+    'target-country': 'PE',
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  },
 };
 
-export default function EnLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  // El <html> del sitio es es-PE; aqui se declara el idioma real del contenido en ingles.
-  return <div lang="en">{children}</div>;
+export default function EnLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return <RaizDelSitio lang="en">{children}</RaizDelSitio>;
 }

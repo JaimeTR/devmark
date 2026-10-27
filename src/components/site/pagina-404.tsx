@@ -70,7 +70,7 @@ const copy = {
   },
 };
 
-export default function NotFound() {
+export default function Pagina404() {
   const pathname = usePathname();
   const router = useRouter();
   // window.history.length > 1 no garantiza que la página anterior sea de

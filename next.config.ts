@@ -3,6 +3,8 @@ import type {NextConfig} from 'next';
 const nextConfig: NextConfig = {
   // Hostinger ejecuta un unico "node server.js": el standalone se empaqueta con scripts/empaquetar-standalone.mjs.
   output: 'standalone',
+  // 404 global con su propio <html>: hay un layout raiz por idioma y ninguno cubre las rutas inexistentes.
+  experimental: { globalNotFound: true },
   typescript: {
     ignoreBuildErrors: false,
   },

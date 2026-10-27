@@ -104,3 +104,85 @@ export function normalizarEncabezados(html: string): string {
     .replace(/<(\/?)h4(?=[\s>])/gi, '<$1h3')
     .replace(/<(\/?)h5(?=[\s>])/gi, '<$1h4');
 }
+
+const REDES = [
+  'https://www.instagram.com/devmark.pe/',
+  'https://www.facebook.com/devmark.pe/',
+  'https://www.linkedin.com/company/devmark.pe/',
+  'https://github.com/JaimeTR',
+];
+const PAISES = ['PE', 'EC', 'BO', 'CL', 'AR', 'CO', 'VE', 'MX', 'US', 'ES', 'IT'];
+
+/**
+ * Datos estructurados del sitio, uno por idioma de pagina: la misma entidad de organizacion (mismo @id) a la que
+ * se enlazan el negocio local, el sitio web, el autor, los servicios y los articulos; solo cambian los textos.
+ */
+export function grafoSitio(lang: 'es' | 'en') {
+  const es = lang === 'es';
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': `${SITIO}/#organizacion`,
+        name: 'DEVMARK',
+        alternateName: ['Devmark', 'Devmark Perú', 'DEVMARKPE'],
+        url: es ? SITIO : `${SITIO}/en`,
+        logo: { '@type': 'ImageObject', url: `${SITIO}/marca/devmark-isotipo-512.png`, width: 512, height: 512 },
+        image: `${SITIO}/og-image.png`,
+        email: 'contacto@devmarkpe.com',
+        telephone: '+51975646074',
+        sameAs: REDES,
+        slogan: es
+          ? 'Desarrollo web, software a medida e inteligencia artificial desde Lima, Perú'
+          : 'Web development, custom software and artificial intelligence from Lima, Peru',
+        knowsAbout: es
+          ? ['Desarrollo web a medida', 'Software a medida y ERP', 'Chatbots con inteligencia artificial', 'SEO y GEO (optimización para buscadores y para IA)', 'Automatización de procesos', 'Marketing digital', 'Tiendas online']
+          : ['Custom web development', 'Custom software and ERP', 'AI chatbots', 'SEO and GEO (search engine and AI optimization)', 'Process automation', 'Digital marketing', 'Online stores'],
+        contactPoint: [
+          {
+            '@type': 'ContactPoint',
+            contactType: es ? 'ventas' : 'sales',
+            telephone: '+51975646074',
+            email: 'contacto@devmarkpe.com',
+            availableLanguage: ['es', 'en'],
+            areaServed: PAISES,
+          },
+        ],
+      },
+      {
+        '@type': ['LocalBusiness', 'ProfessionalService'],
+        '@id': `${SITIO}/#negocio`,
+        name: 'Devmark',
+        description: es
+          ? 'Agencia de desarrollo web y software a medida en Lima, Perú'
+          : 'Web development and custom software agency in Lima, Peru',
+        url: es ? SITIO : `${SITIO}/en`,
+        image: `${SITIO}/og-image.png`,
+        email: 'contacto@devmarkpe.com',
+        telephone: '+51975646074',
+        priceRange: '$$',
+        parentOrganization: { '@id': `${SITIO}/#organizacion` },
+        areaServed: PAISES,
+        address: { '@type': 'PostalAddress', addressLocality: 'Lima', addressRegion: 'Lima', addressCountry: 'PE' },
+        geo: { '@type': 'GeoCoordinates', latitude: '-12.0464', longitude: '-77.0428' },
+        sameAs: REDES,
+        openingHoursSpecification: {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+          opens: '09:00',
+          closes: '18:00',
+        },
+      },
+      {
+        '@type': 'WebSite',
+        '@id': `${SITIO}/#sitio`,
+        url: SITIO,
+        name: 'DEVMARK',
+        inLanguage: ['es-PE', 'en'],
+        publisher: { '@id': `${SITIO}/#organizacion` },
+      },
+      autorJsonLd,
+    ],
+  };
+}
