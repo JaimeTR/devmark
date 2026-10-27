@@ -56,5 +56,6 @@ export default function EnLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  // El <html> del sitio es es-PE; aqui se declara el idioma real del contenido en ingles.
+  return <div lang="en">{children}</div>;
 }

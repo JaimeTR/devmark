@@ -45,7 +45,7 @@ export function Contador({ valor, duracion = 1400 }: { valor: string; duracion?:
 
   if (!m) return <span>{valor}</span>;
   return (
-    <span ref={ref} aria-label={valor}>
+    <span ref={ref} role="img" aria-label={valor}>
       <span aria-hidden="true">
         {prefijo}
         {actual ?? final}
