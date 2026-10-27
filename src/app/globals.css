@@ -723,7 +723,7 @@ html {
 /* Entrada del hero al cargar (una sola vez). */
 @media (prefers-reduced-motion: no-preference) {
   .hero-in > * {
-    animation: hero-in 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: hero-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
   .hero-in > *:nth-child(2) {
     animation-delay: 0.08s;
@@ -742,13 +742,11 @@ html {
 @keyframes hero-in {
   from {
     opacity: 0;
-    transform: translateY(24px);
-    filter: blur(12px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
     transform: none;
-    filter: none;
   }
 }
 

@@ -73,10 +73,10 @@ export function Testimonials({ lang }: { lang: Lang }) {
 
         <div data-tone="dark" className="relative overflow-hidden rounded-2xl bg-ink">
           <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/40 blur-[90px]" />
-          <div role="img" aria-label={c.globe} className="relative aspect-square max-h-[440px] w-full sm:aspect-[4/3]">
+          <div role="img" aria-label={c.globe} className="relative hidden aspect-square max-h-[440px] w-full sm:block sm:aspect-[4/3]">
             <WorldGlobe arcs={CLIENT_ARCS} focus={LIMA} view={VISTA} tone="dark" interactive autoRotate={false} className="absolute inset-0 sm:left-[16%] sm:-right-[6%]" />
           </div>
-          <p className="chip glass-dark pointer-events-none absolute right-3 top-3 py-1 pl-1 pr-3 text-xs text-white">
+          <p className="chip glass-dark pointer-events-none absolute right-3 top-3 hidden sm:inline-flex py-1 pl-1 pr-3 text-xs text-white">
             <span className="chip-tile h-6 w-6 bg-white/10">
               <Hand className="h-3.5 w-3.5" />
             </span>
