@@ -193,7 +193,7 @@ export default function ProcessAutomationPage() {
               },
               {
                 "@type": "Country",
-                "name": "Peru"
+                "name": "Perú"
               }
             ],
             "url": "https://devmarkpe.com/servicios/automatizacion-procesos",

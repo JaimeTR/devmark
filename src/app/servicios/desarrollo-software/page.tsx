@@ -192,7 +192,7 @@ export default function CustomSoftwarePage() {
               },
               {
                 "@type": "Country",
-                "name": "Peru"
+                "name": "Perú"
               }
             ],
             "url": "https://devmarkpe.com/servicios/desarrollo-software",

@@ -196,7 +196,7 @@ export default function DigitalMarketingPage() {
               },
               {
                 "@type": "Country",
-                "name": "Peru"
+                "name": "Perú"
               }
             ],
             "url": "https://devmarkpe.com/servicios/marketing-digital",

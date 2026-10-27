@@ -191,7 +191,7 @@ export default function TechConsultingPage() {
               },
               {
                 "@type": "Country",
-                "name": "Peru"
+                "name": "Perú"
               }
             ],
             "url": "https://devmarkpe.com/servicios/consultoria-tecnologica",

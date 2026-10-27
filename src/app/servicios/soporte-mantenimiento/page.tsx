@@ -196,7 +196,7 @@ export default function MaintenancePage() {
               },
               {
                 "@type": "Country",
-                "name": "Peru"
+                "name": "Perú"
               }
             ],
             "url": "https://devmarkpe.com/servicios/soporte-mantenimiento",

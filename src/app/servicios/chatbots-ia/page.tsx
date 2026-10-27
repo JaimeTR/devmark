@@ -193,7 +193,7 @@ export default function AIChatbotsPage() {
               },
               {
                 "@type": "Country",
-                "name": "Peru"
+                "name": "Perú"
               }
             ],
             "url": "https://devmarkpe.com/servicios/chatbots-ia",

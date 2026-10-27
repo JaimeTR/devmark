@@ -192,7 +192,7 @@ export default function CMSDevelopmentPage() {
               },
               {
                 "@type": "Country",
-                "name": "Peru"
+                "name": "Perú"
               }
             ],
             "url": "https://devmarkpe.com/servicios/desarrollo-cms",

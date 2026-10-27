@@ -192,7 +192,7 @@ export default function UiUxDesignPage() {
               },
               {
                 "@type": "Country",
-                "name": "Peru"
+                "name": "Perú"
               }
             ],
             "url": "https://devmarkpe.com/servicios/diseno-ui-ux",

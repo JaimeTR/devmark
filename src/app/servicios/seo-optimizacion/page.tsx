@@ -193,7 +193,7 @@ export default function SeoOptimizationPage() {
               },
               {
                 "@type": "Country",
-                "name": "Peru"
+                "name": "Perú"
               }
             ],
             "url": "https://devmarkpe.com/servicios/seo-optimizacion",

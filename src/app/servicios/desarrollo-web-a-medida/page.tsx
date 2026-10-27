@@ -78,16 +78,16 @@ const faqContent = {
   title: "Preguntas frecuentes",
   items: [
     {
-      question: "Cuanto tiempo toma desarrollar un sitio web a medida?",
-      answer: "El tiempo de desarrollo varia segun la complejidad del proyecto, pero generalmente oscila entre 4 y 12 semanas. Te proporcionaremos un cronograma detallado al inicio del proyecto."
+      question: "¿Cuánto tiempo toma desarrollar un sitio web a medida?",
+      answer: "El tiempo de desarrollo varía según la complejidad del proyecto, pero generalmente oscila entre 4 y 12 semanas. Te proporcionaremos un cronograma detallado al inicio del proyecto."
     },
     {
-      question: "Que tipo de soporte ofrecen despues del lanzamiento?",
-      answer: "Ofrecemos planes de mantenimiento y soporte continuo para asegurar que tu sitio web se mantenga actualizado, seguro y funcionando de manera optima."
+      question: "¿Qué tipo de soporte ofrecen después del lanzamiento?",
+      answer: "Ofrecemos planes de mantenimiento y soporte continuo para asegurar que tu sitio web se mantenga actualizado, seguro y funcionando de manera óptima."
     },
     {
-      question: "Pueden integrar mi sitio con otras plataformas?",
-      answer: "Por supuesto. Nos especializamos en la integracion con una amplia variedad de sistemas, incluyendo CRMs, ERPs, sistemas de pago y mas, para centralizar tus operaciones."
+      question: "¿Pueden integrar mi sitio con otras plataformas?",
+      answer: "Por supuesto. Nos especializamos en la integración con una amplia variedad de sistemas, incluyendo CRMs, ERPs, sistemas de pago y más, para centralizar tus operaciones."
     }
   ]
 };
@@ -197,7 +197,7 @@ export default function CustomWebDevelopmentPage() {
               },
               {
                 "@type": "Country",
-                "name": "Peru"
+                "name": "Perú"
               }
             ],
             "url": "https://devmarkpe.com/servicios/desarrollo-web-a-medida",
@@ -214,26 +214,26 @@ export default function CustomWebDevelopmentPage() {
             "mainEntity": [
               {
                 "@type": "Question",
-                "name": "Cuanto tiempo toma desarrollar un sitio web a medida?",
+                "name": "¿Cuánto tiempo toma desarrollar un sitio web a medida?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "El tiempo de desarrollo varia segun la complejidad del proyecto, pero generalmente oscila entre 4 y 12 semanas. Te proporcionaremos un cronograma detallado al inicio del proyecto."
+                  "text": "El tiempo de desarrollo varía según la complejidad del proyecto, pero generalmente oscila entre 4 y 12 semanas. Te proporcionaremos un cronograma detallado al inicio del proyecto."
                 }
               },
               {
                 "@type": "Question",
-                "name": "Que tipo de soporte ofrecen despues del lanzamiento?",
+                "name": "¿Qué tipo de soporte ofrecen después del lanzamiento?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Ofrecemos planes de mantenimiento y soporte continuo para asegurar que tu sitio web se mantenga actualizado, seguro y funcionando de manera optima."
+                  "text": "Ofrecemos planes de mantenimiento y soporte continuo para asegurar que tu sitio web se mantenga actualizado, seguro y funcionando de manera óptima."
                 }
               },
               {
                 "@type": "Question",
-                "name": "Pueden integrar mi sitio con otras plataformas?",
+                "name": "¿Pueden integrar mi sitio con otras plataformas?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Por supuesto. Nos especializamos en la integracion con una amplia variedad de sistemas, incluyendo CRMs, ERPs, sistemas de pago y mas, para centralizar tus operaciones."
+                  "text": "Por supuesto. Nos especializamos en la integración con una amplia variedad de sistemas, incluyendo CRMs, ERPs, sistemas de pago y más, para centralizar tus operaciones."
                 }
               }
             ]

@@ -39,8 +39,8 @@ export const metadata: Metadata = {
     default: 'Devmark - Agencia de desarrollo web y software en Lima, Perú',
     template: '%s | Devmark',
   },
-  description: 'Agencia de desarrollo web en Peru. Creamos paginas web, tiendas online, software a medida, chatbots con IA y SEO en Lima. Soluciones digitales para empresas peruanas.',
-  keywords: 'desarrollo web peru, agencia desarrollo web lima, software a medida peru, paginas web peru, tiendas online lima, chatbots IA peru, SEO lima, marketing digital peru, automatizacion procesos, desarrollo apps peru',
+  description: 'Agencia de desarrollo web en Perú. Creamos páginas web, tiendas online, software a medida, chatbots con IA y SEO en Lima. Soluciones digitales para empresas peruanas.',
+  keywords: 'desarrollo web Perú, agencia de desarrollo web en Lima, software a medida Perú, páginas web Perú, tiendas online Lima, chatbots con IA Perú, SEO Lima, marketing digital Perú, automatización de procesos, desarrollo de apps Perú',
   metadataBase: new URL('https://devmarkpe.com'),
   alternates: {
     canonical: 'https://devmarkpe.com',
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     locale: 'es_PE',
     url: 'https://devmarkpe.com',
     title: 'Devmark - Agencia de desarrollo web y software en Lima, Perú',
-    description: 'Agencia de desarrollo web en Lima, Peru. Paginas web, software a medida, chatbots IA y SEO para empresas peruanas.',
+    description: 'Agencia de desarrollo web en Lima, Perú. Páginas web, software a medida, chatbots con IA y SEO para empresas peruanas.',
     siteName: 'Devmark Perú',
     countryName: 'Peru',
     images: [
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Devmark - Agencia de desarrollo web y software en Lima, Perú',
-    description: 'Desarrollo web, software a medida y chatbots IA en Lima, Peru.',
+    description: 'Desarrollo web, software a medida y chatbots con IA en Lima, Perú.',
     images: ['/og-image.png'],
   },
   robots: {
