@@ -5,6 +5,7 @@ import { Footer } from '@/components/home/footer';
 import { Header } from '@/components/home/header';
 import { BlogArticle } from '@/components/landing/blog-article';
 import type { Metadata } from 'next';
+import { descripcionSeo, tituloSeo } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -18,8 +19,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const enSlug = await getTranslatedSlug(slug, 'es');
 
   return {
-    title: post.title,
-    description: post.description,
+    title: tituloSeo(post.title),
+    description: descripcionSeo(post.description),
     alternates: {
       canonical: canonicalUrl,
       languages: enSlug
