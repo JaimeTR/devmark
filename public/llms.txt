@@ -2,6 +2,8 @@
 
 > Devmark is a web and software development agency based in Lima, Peru. It designs, builds, and maintains websites, custom software, AI chatbots, and digital marketing programs for businesses in Peru and remotely across Latin America.
 
+- Full reference (all services with plans, FAQ, products and blog index): [llms-full.txt](https://devmarkpe.com/llms-full.txt)
+
 ## Company facts
 
 - Legal/brand name: Devmark

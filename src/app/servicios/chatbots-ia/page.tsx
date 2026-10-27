@@ -9,7 +9,7 @@ import { ServiceFaq } from '@/components/home/service-faq';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Chatbots con Inteligencia Artificial para tu Negocio',
+  title: 'Chatbots con IA para tu negocio',
   description: 'Chatbots inteligentes para tu web, e-commerce o redes sociales, entrenados con tu información para dar soporte 24/7 y aumentar tus ventas en Perú.',
   alternates: {
     canonical: 'https://devmarkpe.com/servicios/chatbots-ia',

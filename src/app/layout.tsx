@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { FloatingAssistant } from "@/components/floating-assistant"
 import { ButtonPress } from "@/components/site/button-press"
 import { GoogleAnalytics } from "@/components/analytics/google-analytics"
+import { autorJsonLd } from '@/lib/seo';
 import { Instrument_Serif, Schibsted_Grotesk } from 'next/font/google';
 import localFont from 'next/font/local';
 
@@ -174,6 +175,7 @@ const datosEstructurados = {
       inLanguage: ['es-PE', 'en'],
       publisher: { '@id': `${SITIO}/#organizacion` },
     },
+    autorJsonLd,
   ],
 };
 

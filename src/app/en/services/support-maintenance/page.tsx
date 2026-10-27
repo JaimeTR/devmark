@@ -8,7 +8,7 @@ import { ServiceFaq } from '@/components/home/service-faq';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Web Support & Maintenance Plans for Peace of Mind',
+  title: 'Website support and maintenance plans',
   description: "We keep your website or application running optimally, securely, and up to date, with flexible maintenance plans that fit your budget and needs.",
   alternates: {
     canonical: 'https://devmarkpe.com/en/services/support-maintenance',

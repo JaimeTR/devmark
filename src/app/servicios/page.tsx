@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { ServicesIndex } from '@/components/landing/services-index';
 
 export const metadata: Metadata = {
-  title: 'Servicios | Desarrollo Web, Software y Marketing Digital',
+  title: 'Servicios de desarrollo web y software en Lima',
   description: 'Descubre nuestra amplia gama de servicios: desarrollo web a medida, software personalizado, chatbots con IA, SEO, marketing digital y más para tu negocio.',
   alternates: {
     canonical: 'https://devmarkpe.com/servicios',

@@ -37,6 +37,8 @@ interface NavLink {
 }
 
 const STORE_URL = 'https://devmarkpe.store';
+// La tienda sale del menu hasta que devmarkpe.store este publicada: se enciende con NEXT_PUBLIC_MOSTRAR_TIENDA=1.
+const MOSTRAR_TIENDA = process.env.NEXT_PUBLIC_MOSTRAR_TIENDA === '1';
 
 interface HeaderProps {
   lang?: 'es' | 'en';
@@ -52,6 +54,10 @@ interface HeaderProps {
 // Menú canónico del sitio — una sola fuente de verdad para que ninguna
 // página se quede con un header incompleto o desactualizado.
 function buildNavLinks(lang: 'es' | 'en'): NavLink[] {
+  return menuCompleto(lang).filter((l) => MOSTRAR_TIENDA || l.href !== STORE_URL);
+}
+
+function menuCompleto(lang: 'es' | 'en'): NavLink[] {
   if (lang === 'en') {
     return [
       { href: '/en/about', label: 'About' },

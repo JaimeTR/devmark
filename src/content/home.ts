@@ -127,6 +127,10 @@ export const homeContent = {
     hero: {
       proof: '+100 clientes satisfechos',
       title: ['Agencia de desarrollo', { em: 'web y software' }, 'en Lima, Perú.'],
+      rotante: {
+        label: 'Te ayudamos con',
+        frases: ['páginas web que venden', 'software a medida y ERP', 'chatbots con inteligencia artificial', 'SEO y GEO para aparecer en Google y en la IA', 'automatización de procesos', 'tiendas online que convierten'],
+      },
       description:
         'Creamos páginas web, tiendas online, software a medida, automatizaciones, chatbots con IA y estrategias SEO y GEO para que tu negocio venda más en internet.',
       whatsapp: 'Hablemos por WhatsApp',
@@ -290,6 +294,10 @@ export const homeContent = {
     hero: {
       proof: '+100 happy clients',
       title: ['Web and software', { em: 'development agency' }, 'in Lima, Peru.'],
+      rotante: {
+        label: 'We help you with',
+        frases: ['websites that sell', 'custom software and ERP', 'AI chatbots', 'SEO and GEO to show up on Google and in AI answers', 'process automation', 'online stores that convert'],
+      },
       description:
         'We build websites, online stores, custom software, automations, AI chatbots and SEO & GEO strategies so your business sells more online.',
       whatsapp: "Let's talk on WhatsApp",
