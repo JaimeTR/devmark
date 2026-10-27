@@ -4,7 +4,7 @@ const http = require('http');
 const log = (o) => console.log(JSON.stringify(o));
 const t0 = Date.now();
 log({ arranque: process.version, cwd: process.cwd() });
-const hijo = spawn(process.execPath, ['server.js'], { cwd: __dirname, env: { ...process.env, PORT: '3055', HOSTNAME: '127.0.0.1', NODE_OPTIONS: '' }, stdio: ['ignore', 'pipe', 'pipe'] });
+const hijo = spawn(process.execPath, ['--v8-pool-size=1', 'server.js'], { cwd: __dirname, env: { ...process.env, PORT: '3055', HOSTNAME: '127.0.0.1', NODE_OPTIONS: '', UV_THREADPOOL_SIZE: '1' }, stdio: ['ignore', 'pipe', 'pipe'] });
 hijo.stdout.on('data', (d) => log({ out: String(d).slice(0, 2000), ms: Date.now() - t0 }));
 hijo.stderr.on('data', (d) => log({ err: String(d).slice(0, 3000), ms: Date.now() - t0 }));
 hijo.on('exit', (code, senal) => log({ hijoSalio: code, senal, ms: Date.now() - t0 }));
