@@ -1,22 +1,19 @@
-// Diagnostico temporal: Hostinger solo guarda en el log las lineas JSON; aqui se reenvian los errores y la salida de error del proceso.
-const log = (o) => console.log(JSON.stringify(o));
-const ew = process.stderr.write.bind(process.stderr);
-process.stderr.write = (c, ...a) => { log({ stderr: String(c).slice(0, 3000) }); return ew(c, ...a); };
-process.on('uncaughtException', (e) => log({ uncaught: String(e && e.stack || e).slice(0, 3000) }));
-process.on('unhandledRejection', (e) => log({ unhandled: String(e && e.stack || e).slice(0, 3000) }));
-process.on('exit', (c) => log({ exit: c, mem: process.memoryUsage().rss }));
-for (const s of ['SIGTERM', 'SIGINT', 'SIGHUP']) process.on(s, () => log({ signal: s }));
-log({ arranque: process.version, cwd: process.cwd(), mem: process.memoryUsage().rss });
-try { require('./server.js'); } catch (e) { log({ requireError: String(e && e.stack || e).slice(0, 3000) }); }
-// Diagnostico: cuando llegan peticiones y cuanto vive el proceso.
-const t0 = Date.now();
+// Diagnostico temporal: ejecuta server.js como proceso hijo y registra su salida, su codigo/senal de salida y si responde.
+const { spawn } = require('child_process');
 const http = require('http');
-const emitOriginal = http.Server.prototype.emit;
-http.Server.prototype.emit = function (ev, req) {
-  if (ev === 'request') log({ peticion: req.method + ' ' + req.url, msDesdeArranque: Date.now() - t0 });
-  return emitOriginal.apply(this, arguments);
-};
-const listenOriginal = http.Server.prototype.listen;
-http.Server.prototype.listen = function () { log({ listen: Array.from(arguments).filter((x) => typeof x !== 'function'), msDesdeArranque: Date.now() - t0 }); return listenOriginal.apply(this, arguments); };
-let n = 0;
-setInterval(() => { n += 1; log({ vivo: n * 250, rss: process.memoryUsage().rss }); }, 250).unref();
+const log = (o) => console.log(JSON.stringify(o));
+const t0 = Date.now();
+log({ arranque: process.version, cwd: process.cwd() });
+const hijo = spawn(process.execPath, ['server.js'], { cwd: __dirname, env: { ...process.env, PORT: '3055', HOSTNAME: '127.0.0.1', NODE_OPTIONS: '' }, stdio: ['ignore', 'pipe', 'pipe'] });
+hijo.stdout.on('data', (d) => log({ out: String(d).slice(0, 2000), ms: Date.now() - t0 }));
+hijo.stderr.on('data', (d) => log({ err: String(d).slice(0, 3000), ms: Date.now() - t0 }));
+hijo.on('exit', (code, senal) => log({ hijoSalio: code, senal, ms: Date.now() - t0 }));
+hijo.on('error', (e) => log({ hijoError: String(e) }));
+for (const espera of [1500, 4000, 8000]) {
+  setTimeout(() => {
+    const r = http.get({ host: '127.0.0.1', port: 3055, path: '/robots.txt', timeout: 5000 }, (res) => { log({ prueba: res.statusCode, enMs: Date.now() - t0 }); res.resume(); });
+    r.on('error', (e) => log({ pruebaError: String(e.message), enMs: Date.now() - t0 }));
+  }, espera);
+}
+setInterval(() => log({ padreVivo: Date.now() - t0 }), 2000).unref();
+setTimeout(() => process.exit(0), 20000);
