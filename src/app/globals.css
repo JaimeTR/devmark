@@ -1105,3 +1105,28 @@ html {
   --btn-tile-w: 32px;
   --btn-pad: 6px;
 }
+
+
+/* Frases que rotan en la portada, sin JavaScript. Todas ocupan la misma celda: la altura es la de la mas larga. */
+.frases-rotantes {
+  display: inline-grid;
+  color: #cbd5fa;
+}
+.frases-rotantes .frase {
+  grid-area: 1 / 1;
+  opacity: 0;
+  font-family: var(--font-serif), serif;
+  font-style: italic;
+  animation: frase-rota calc(var(--n) * 3.2s) infinite both;
+}
+@keyframes frase-rota {
+  0% { opacity: 0; transform: translateY(8px); }
+  3% { opacity: 1; transform: translateY(0); }
+  14% { opacity: 1; transform: translateY(0); }
+  17% { opacity: 0; transform: translateY(-8px); }
+  100% { opacity: 0; transform: translateY(-8px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .frases-rotantes .frase { animation: none; }
+  .frases-rotantes .frase:first-child { opacity: 1; }
+}

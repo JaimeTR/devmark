@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { HostingPage } from '@/components/landing/hosting-page';
 
 export const metadata: Metadata = {
-  title: 'Hosting & Domains: Official Hostinger Partner in Peru',
+  title: 'Hosting and domains: Hostinger partner in Peru',
   description: 'Professional hosting, domains, corporate email, and SSL certificates. As official Hostinger partners, we offer an extra 20% discount on every plan.',
   alternates: {
     canonical: 'https://devmarkpe.com/en/hosting',

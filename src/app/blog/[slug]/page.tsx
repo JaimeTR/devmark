@@ -5,7 +5,7 @@ import { Footer } from '@/components/home/footer';
 import { Header } from '@/components/home/header';
 import { BlogArticle } from '@/components/landing/blog-article';
 import type { Metadata } from 'next';
-import { descripcionSeo, tituloSeo } from '@/lib/seo';
+import { articuloJsonLd, AUTOR, descripcionSeo, tituloSeo } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: post.description,
       siteName: 'Devmark',
       publishedTime: post.date,
-      authors: [post.author],
+      authors: [AUTOR.nombre],
     },
     twitter: {
       card: 'summary_large_image',
@@ -95,33 +95,17 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BlogPosting',
-            headline: post.title,
-            description: post.description,
-            image: [absoluteImage],
-            datePublished: post.date,
-            dateModified: post.date,
-            inLanguage: 'es-PE',
-            mainEntityOfPage: {
-              '@type': 'WebPage',
-              '@id': canonicalUrl,
-            },
-            author: {
-              '@type': 'Person',
-              name: post.author,
-            },
-            publisher: {
-              '@type': 'Organization',
-              name: 'Devmark',
-              url: 'https://devmarkpe.com',
-              logo: {
-                '@type': 'ImageObject',
-                url: 'https://devmarkpe.com/marca/devmark-logotipo.png',
-              },
-            },
-          }),
+          __html: JSON.stringify(
+            articuloJsonLd({
+              lang: 'es',
+              titulo: post.title,
+              descripcion: post.description,
+              fecha: post.date,
+              url: canonicalUrl,
+              imagen: absoluteImage,
+              etiquetas: post.tags,
+            }),
+          ),
         }}
       />
       <Header {...headerContent} />
