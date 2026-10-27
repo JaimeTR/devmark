@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     description: 'Schedule a meeting or request a quote with Devmark.',
     url: 'https://devmarkpe.com/en/contact',
     type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'DEVMARK' }],
   },
   robots: { index: true, follow: true },
 };

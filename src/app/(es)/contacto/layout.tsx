@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     description: 'Agenda una reunion o cotiza tu proyecto con Devmark.',
     url: 'https://devmarkpe.com/contacto',
     type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'DEVMARK' }],
   },
   robots: { index: true, follow: true },
 };

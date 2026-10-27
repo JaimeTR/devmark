@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'DEVMARK' }],
     locale: 'es_PE',
     url: 'https://devmarkpe.com/blog',
     title: 'Blog - Devmark | Artículos de Desarrollo Web y Software',
