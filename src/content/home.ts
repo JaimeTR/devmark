@@ -187,6 +187,7 @@ export const homeContent = {
         features: ['Proyectos, hitos, tareas y horas', 'Cobros recurrentes, facturas y recibos', 'Contratos con aceptación y comprobantes', 'Tickets con plazos y monitoreo de sitios'],
         cta: 'Quiero un ERP así',
         whatsapp: 'Hola DEVMARK, quiero un ERP como el de ustedes para mi empresa.',
+        quote: { title: 'Cotiza con nuestra IA', text: 'Una propuesta en PDF al momento, sin esperar.' },
       },
       academia: {
         badge: 'Muy pronto',
@@ -354,6 +355,7 @@ export const homeContent = {
         features: ['Projects, milestones, tasks and hours', 'Recurring billing, invoices and receipts', 'Contracts with online acceptance', 'Tickets with SLAs and site monitoring'],
         cta: 'I want an ERP like this',
         whatsapp: 'Hi DEVMARK, I want an ERP like yours for my company.',
+        quote: { title: 'Quote with our AI', text: 'A PDF proposal right away, no waiting.' },
       },
       academia: {
         badge: 'Coming soon',

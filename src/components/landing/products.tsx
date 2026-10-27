@@ -1,4 +1,4 @@
-import { ArrowUpRight, Check } from 'lucide-react';
+import { ArrowUpRight, Check, Sparkles } from 'lucide-react';
 import { homeContent, type Lang } from '@/content/home';
 import { whatsappHref } from '@/lib/contact';
 import { TitleText } from '@/components/site/title-text';
@@ -81,6 +81,16 @@ export function Products({ lang }: { lang: Lang }) {
                 <Feature key={f}>{f}</Feature>
               ))}
             </ul>
+            <a href={lang === 'es' ? '/quote' : '/en/quote'} className="lift group relative mt-8 flex items-center gap-4 overflow-hidden rounded-2xl border border-primary/20 bg-primary/10 p-4">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-primary text-white">
+                <Sparkles className="icon-tilt h-5 w-5" />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-[15px] font-medium">{t.erp.quote.title}</span>
+                <span className="block text-sm text-ink/70">{t.erp.quote.text}</span>
+              </span>
+              <ArrowUpRight className="icon-nudge h-5 w-5 shrink-0" />
+            </a>
             <div className="mt-auto pt-8">
               <a href={whatsappHref(t.erp.whatsapp)} target="_blank" rel="noopener noreferrer" className="btn-ink btn-sm">
                 <span className="btn-tile">
