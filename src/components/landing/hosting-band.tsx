@@ -6,7 +6,7 @@ import { hostingContent } from '@/content/home-data';
 import type { Lang } from '@/content/home';
 import { Btn } from '@/components/site/btn';
 
-/** Hosting de Hostinger con el cupon de DEVMARK, cruzado por una cinta inclinada. */
+/** Hosting de Hostinger con el cupon de DEVMARK, con una cinta recta que corre arriba. */
 export function HostingBand({ lang }: { lang: Lang }) {
   const t = hostingContent[lang];
   const [copied, setCopied] = useState(false);
@@ -25,7 +25,7 @@ export function HostingBand({ lang }: { lang: Lang }) {
 
   return (
     <section id="hosting" className="panel bg-band pb-20 pt-24 text-ink sm:pb-24">
-      <div aria-hidden className="marquee pointer-events-none absolute -left-4 -right-4 top-6 -rotate-[2.5deg] bg-primary py-3 text-white" style={{ ['--marquee-speed' as string]: '30s' }}>
+      <div aria-hidden className="marquee pointer-events-none absolute -left-4 -right-4 top-6 bg-primary py-3 text-white" style={{ ['--marquee-speed' as string]: '30s' }}>
         <div className="marquee-track items-center">
           {loop.map((r, i) => (
             <span key={i} className="flex shrink-0 items-center gap-5 px-5 text-xl font-medium sm:text-2xl">
