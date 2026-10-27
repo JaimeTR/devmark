@@ -8,7 +8,7 @@ import { ServiceFaq } from '@/components/home/service-faq';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Diseño UI/UX Centrado en el Usuario para tu Producto',
+  title: 'Diseño UI/UX centrado en el usuario',
   description: 'Interfaces intuitivas y atractivas centradas en el usuario. Investigamos, prototipamos y diseñamos productos digitales que convierten visitas en clientes.',
   alternates: {
     canonical: 'https://devmarkpe.com/servicios/diseno-ui-ux',

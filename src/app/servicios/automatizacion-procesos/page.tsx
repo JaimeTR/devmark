@@ -9,7 +9,7 @@ import { ServiceFaq } from '@/components/home/service-faq';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Automatización de Procesos con Zapier y Make en Perú',
+  title: 'Automatización de procesos con Zapier y Make',
   description: 'Optimizamos tus flujos de trabajo y eliminamos tareas repetitivas con automatizaciones a medida usando Zapier, Make o APIs. Ahorra tiempo y reduce errores.',
   alternates: {
     canonical: 'https://devmarkpe.com/servicios/automatizacion-procesos',

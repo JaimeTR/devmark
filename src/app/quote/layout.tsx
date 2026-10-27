@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Cotizador de Proyectos con Presupuestos Personalizados',
+  title: 'Cotizador de proyectos web y software con IA',
   description: 'Obtén un presupuesto personalizado para tu proyecto de desarrollo web o software en minutos, con nuestro cotizador inteligente impulsado por IA.',
   keywords: 'cotizador, presupuesto, desarrollo web, software, precio, estimación',
   metadataBase: new URL('https://devmarkpe.com'),

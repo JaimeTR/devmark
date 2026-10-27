@@ -14,7 +14,7 @@ import { cn } from '@/lib/utils';
 
 const copy = {
   es: {
-    title: ['Nuestro', { em: 'portafolio' }] as const,
+    title: ['Portafolio de', { em: 'desarrollo web y software' }, 'en Lima.'] as const,
     description: 'Webs, tiendas, sistemas y automatizaciones que ya están trabajando para negocios en Perú y fuera del país.',
     whatsapp: 'Quiero un proyecto así',
     message: 'Hola DEVMARK, vi su portafolio y quiero un proyecto parecido.',
@@ -30,7 +30,7 @@ const copy = {
     copyright: 'DEVMARK. Todos los derechos reservados.',
   },
   en: {
-    title: ['Our', { em: 'portfolio' }] as const,
+    title: ['Web and software', { em: 'development portfolio' }, 'from Lima.'] as const,
     description: 'Websites, stores, systems and automations already at work for businesses in Peru and abroad.',
     whatsapp: 'I want a project like this',
     message: 'Hi DEVMARK, I saw your portfolio and want a similar project.',

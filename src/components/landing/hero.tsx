@@ -4,6 +4,7 @@ import { CLIENT_AVATARS } from '@/data/client-logos';
 import { whatsappHref } from '@/lib/contact';
 import { Btn } from '@/components/site/btn';
 import { TitleText } from '@/components/site/title-text';
+import { FrasesRotantes } from '@/components/site/frases-rotantes';
 import { WhatsAppIcon } from '@/components/site/whatsapp-icon';
 import { HeroShowcase } from './hero-showcase';
 
@@ -35,7 +36,9 @@ export function Hero({ lang }: { lang: Lang }) {
             <TitleText parts={t.title} />
           </h1>
 
-          <p className="mt-7 max-w-[54ch] text-[17px] leading-relaxed text-ink-muted">{t.description}</p>
+          <FrasesRotantes label={t.rotante.label} frases={t.rotante.frases} />
+
+          <p className="mt-5 max-w-[54ch] text-[17px] leading-relaxed text-ink-muted">{t.description}</p>
 
           <div className="mt-9 flex flex-wrap gap-3">
             <Btn href={whatsappHref(t.whatsappMessage)} icon={<WhatsAppIcon />} variant="light">

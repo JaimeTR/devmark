@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'SEO y GEO: posiciona tu negocio en Google y en la IA',
+  title: 'SEO y GEO: aparece en Google y en la IA',
   description: 'Posicionamos tu web en Google (SEO) y en ChatGPT, Gemini y Perplexity (GEO) para atraer más clientes en todo el Perú.',
   alternates: {
     canonical: 'https://devmarkpe.com/servicios/seo-optimizacion',

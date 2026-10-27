@@ -9,7 +9,7 @@ import { ServiceFaq } from '@/components/home/service-faq';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Consultoría Tecnológica para la Transformación Digital',
+  title: 'Consultoría tecnológica y transformación digital',
   description: 'Te guiamos en la transformación digital de tu negocio en Perú: elegimos herramientas, optimizamos procesos y construimos una estrategia tecnológica sólida.',
   alternates: {
     canonical: 'https://devmarkpe.com/servicios/consultoria-tecnologica',
