@@ -23,12 +23,12 @@ export const testimonials: Record<'es' | 'en', Testimonial[]> = {
 
 export const processSteps = {
   es: [
-      { number: '01', title: 'Agendar cita', description: 'Coordinamos una reunion para conocer tu negocio, tus objetivos y el tipo de web que necesitas.', deliverable: 'Una reunión por videollamada para conocer tu negocio y resolver tus dudas.' },
-      { number: '02', title: 'Definimos tus objetivos', description: 'Analizamos tu empresa, tus servicios y el publico al que deseas llegar para construir una web alineada a tus metas.', deliverable: 'Un resumen con tus objetivos, tu público y lo que tu web debe lograr.' },
-      { number: '03', title: 'Diseñamos la estructura', description: 'Organizamos el contenido en secciones claras y una navegacion intuitiva para mejorar la experiencia del usuario.', deliverable: 'El mapa del sitio: las páginas, sus secciones y el orden del contenido.' },
+      { number: '01', title: 'Agendar cita', description: 'Coordinamos una reunión para conocer tu negocio, tus objetivos y el tipo de web que necesitas.', deliverable: 'Una reunión por videollamada para conocer tu negocio y resolver tus dudas.' },
+      { number: '02', title: 'Definimos tus objetivos', description: 'Analizamos tu empresa, tus servicios y el público al que deseas llegar para construir una web alineada a tus metas.', deliverable: 'Un resumen con tus objetivos, tu público y lo que tu web debe lograr.' },
+      { number: '03', title: 'Diseñamos la estructura', description: 'Organizamos el contenido en secciones claras y una navegación intuitiva para mejorar la experiencia del usuario.', deliverable: 'El mapa del sitio: las páginas, sus secciones y el orden del contenido.' },
       { number: '04', title: 'Creamos el diseño visual', description: 'Desarrollamos una interfaz atractiva, moderna y profesional que represente la identidad de tu marca.', deliverable: 'El diseño de tu web para que lo revises y pidas cambios antes de programar.' },
-      { number: '05', title: 'Construimos tu sitio web', description: 'Maquetamos cada pagina con enfoque estrategico, utilizando llamadas a la accion pensadas para captar la atencion.', deliverable: 'Tu web programada página por página, con avances que puedes revisar.' },
-      { number: '06', title: 'Revisamos y optimizamos', description: 'Validamos cada seccion, optimizamos la velocidad de carga y verificamos la correcta visualizacion en todos los dispositivos.', deliverable: 'Pruebas de velocidad, celular, formularios y SEO básico antes de publicar.' },
+      { number: '05', title: 'Construimos tu sitio web', description: 'Maquetamos cada página con enfoque estratégico, utilizando llamadas a la acción pensadas para captar la atención.', deliverable: 'Tu web programada página por página, con avances que puedes revisar.' },
+      { number: '06', title: 'Revisamos y optimizamos', description: 'Validamos cada sección, optimizamos la velocidad de carga y verificamos la correcta visualización en todos los dispositivos.', deliverable: 'Pruebas de velocidad, celular, formularios y SEO básico antes de publicar.' },
       { number: '07', title: 'Lanzamos tu sitio', description: 'Publicamos tu web y la dejamos lista para que empieces a recibir visitas y potenciales clientes.', deliverable: 'Tu web publicada en tu dominio y lista para recibir clientes.' },
     ],
   en: [

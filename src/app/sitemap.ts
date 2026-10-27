@@ -27,7 +27,8 @@ const enServices = [
   'tech-consulting',
 ];
 
-const lastModified = new Date();
+// Fecha del ultimo cambio de contenido de las paginas fijas: no se reinventa en cada compilacion.
+const lastModified = new Date('2026-10-26');
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://devmarkpe.com';

@@ -5,14 +5,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { ArrowUpRight, Bot, Calculator, Check, ChevronDown, Menu } from 'lucide-react';
+import { ArrowUpRight, Bot, Calculator, ChevronDown, Globe, Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { WHATSAPP_GREETING, whatsappHref } from '@/lib/contact';
 import { WhatsAppIcon } from '@/components/site/whatsapp-icon';
 import { homeContent } from '@/content/home';
 import { SERVICE_ICONS } from '@/components/landing/service-band';
 import { ServicesMenu } from './services-menu';
+import { MenuCabecera } from './menu-cabecera';
 
 /** Etiqueta "Nuevo". `esquina` la cuelga arriba a la derecha del enlace para no ocupar ancho en la barra. */
 function NuevoBadge({ label, esquina }: { label: string; esquina?: boolean }) {
@@ -37,6 +37,8 @@ interface NavLink {
 }
 
 const STORE_URL = 'https://devmarkpe.store';
+// La tienda sale del menu hasta que devmarkpe.store este publicada: se enciende con NEXT_PUBLIC_MOSTRAR_TIENDA=1.
+const MOSTRAR_TIENDA = process.env.NEXT_PUBLIC_MOSTRAR_TIENDA === '1';
 
 interface HeaderProps {
   lang?: 'es' | 'en';
@@ -52,6 +54,10 @@ interface HeaderProps {
 // Menú canónico del sitio — una sola fuente de verdad para que ninguna
 // página se quede con un header incompleto o desactualizado.
 function buildNavLinks(lang: 'es' | 'en'): NavLink[] {
+  return menuCompleto(lang).filter((l) => MOSTRAR_TIENDA || l.href !== STORE_URL);
+}
+
+function menuCompleto(lang: 'es' | 'en'): NavLink[] {
   if (lang === 'en') {
     return [
       { href: '/en/about', label: 'About' },
@@ -75,8 +81,8 @@ function buildNavLinks(lang: 'es' | 'en'): NavLink[] {
 }
 
 const copy = {
-  es: { whatsapp: 'Hablemos por WhatsApp', short: 'WhatsApp', ai: 'Asistente con IA', quote: 'Cotizador con IA', language: 'Idioma', menu: 'Abrir menú', nuevo: 'Nuevo', services: 'Servicios', allServices: 'Ver todos los servicios', skip: 'Saltar al contenido principal', home: 'DEVMARK, inicio' },
-  en: { whatsapp: "Let's talk on WhatsApp", short: 'WhatsApp', ai: 'AI assistant', quote: 'AI quoter', language: 'Language', menu: 'Open menu', nuevo: 'New', services: 'Services', allServices: 'See all services', skip: 'Skip to main content', home: 'DEVMARK, home' },
+  es: { whatsapp: 'Hablemos por WhatsApp', short: 'WhatsApp', ai: 'Asistente con IA', aiText: 'Resuelve dudas sobre servicios y proyectos al instante.', quote: 'Cotizador con IA', quoteText: 'Propuesta con alcance y precio en 2 minutos.', language: 'Idioma', menu: 'Abrir menú', nuevo: 'Nuevo', services: 'Servicios', allServices: 'Ver todos los servicios', skip: 'Saltar al contenido principal', home: 'DEVMARK, inicio' },
+  en: { whatsapp: "Let's talk on WhatsApp", short: 'WhatsApp', ai: 'AI assistant', aiText: 'Get instant answers about our services and projects.', quote: 'AI quoter', quoteText: 'A proposal with scope and price in 2 minutes.', language: 'Language', menu: 'Open menu', nuevo: 'New', services: 'Services', allServices: 'See all services', skip: 'Skip to main content', home: 'DEVMARK, home' },
 } as const;
 
 /**
@@ -98,8 +104,8 @@ export function Header({ lang = 'es', aiAssistant }: HeaderProps) {
   const aiQuoterLink = lang === 'en' ? '/en/quote' : '/quote';
   const whatsapp = whatsappHref(WHATSAPP_GREETING[lang]);
   const languageOptions = [
-    { code: 'es' as const, label: 'Español', href: '/' },
-    { code: 'en' as const, label: 'English', href: '/en' },
+    { code: 'es' as const, label: 'Español', sub: 'Latinoamérica', href: '/' },
+    { code: 'en' as const, label: 'English', sub: 'Global', href: '/en' },
   ];
 
   useEffect(() => {
@@ -187,48 +193,29 @@ export function Header({ lang = 'es', aiAssistant }: HeaderProps) {
         </nav>
 
         <div className="flex items-center gap-1.5">
-          <DropdownMenu>
-            <DropdownMenuTrigger
-              className={cn(
-                'hidden h-10 w-10 place-items-center rounded-[10px] text-xs font-semibold tracking-wide transition-colors sm:grid',
-                dark ? 'bg-white/10 hover:bg-white/[0.16]' : 'bg-ink/[0.06] hover:bg-ink/10',
-              )}
-              aria-label={t.language}
-            >
-              {lang.toUpperCase()}
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="rounded-xl">
-              {languageOptions.map((option) => (
-                <DropdownMenuItem key={option.code} asChild className="cursor-pointer rounded-lg">
-                  <Link href={option.href} className="flex items-center justify-between gap-3">
-                    {option.label}
-                    {option.code === lang && <Check className="h-4 w-4 text-primary" />}
-                  </Link>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <MenuCabecera
+            dark={dark}
+            etiqueta={t.language}
+            ancho={240}
+            disparador={
+              <>
+                <Globe className="h-4 w-4" />
+                {lang.toUpperCase()}
+              </>
+            }
+            opciones={languageOptions.map((o) => ({ href: o.href, titulo: o.label, texto: o.sub, marca: o.code.toUpperCase(), activa: o.code === lang }))}
+          />
 
-          <DropdownMenu>
-            <DropdownMenuTrigger
-              className={cn('hidden h-10 w-10 place-items-center rounded-[10px] transition-colors sm:grid', dark ? 'bg-white/10 hover:bg-white/[0.16]' : 'bg-ink/[0.06] hover:bg-ink/10')}
-              aria-label={aiAssistant}
-            >
-              <Bot className="h-5 w-5" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="rounded-xl">
-              <DropdownMenuItem asChild className="cursor-pointer rounded-lg">
-                <Link href={aiAssistantLink} className="flex items-center justify-between gap-3">
-                  {t.ai} <Bot className="h-4 w-4" />
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild className="cursor-pointer rounded-lg">
-                <Link href={aiQuoterLink} className="flex items-center justify-between gap-3">
-                  {t.quote} <Calculator className="h-4 w-4" />
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <MenuCabecera
+            dark={dark}
+            etiqueta={aiAssistant}
+            ancho={320}
+            disparador={<Bot className="h-5 w-5" />}
+            opciones={[
+              { href: aiAssistantLink, titulo: t.ai, texto: t.aiText, marca: <Bot className="h-5 w-5" /> },
+              { href: aiQuoterLink, titulo: t.quote, texto: t.quoteText, marca: <Calculator className="h-5 w-5" /> },
+            ]}
+          />
 
           <a
             href={whatsapp}

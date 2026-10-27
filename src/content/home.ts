@@ -127,6 +127,10 @@ export const homeContent = {
     hero: {
       proof: '+100 clientes satisfechos',
       title: ['Agencia de desarrollo', { em: 'web y software' }, 'en Lima, Perú.'],
+      rotante: {
+        label: 'Te ayudamos con',
+        frases: ['páginas web que venden', 'software a medida y ERP', 'chatbots con inteligencia artificial', 'SEO y GEO para aparecer en Google y en la IA', 'automatización de procesos', 'tiendas online que convierten'],
+      },
       description:
         'Creamos páginas web, tiendas online, software a medida, automatizaciones, chatbots con IA y estrategias SEO y GEO para que tu negocio venda más en internet.',
       whatsapp: 'Hablemos por WhatsApp',
@@ -183,6 +187,25 @@ export const homeContent = {
         features: ['Proyectos, hitos, tareas y horas', 'Cobros recurrentes, facturas y recibos', 'Contratos con aceptación y comprobantes', 'Tickets con plazos y monitoreo de sitios'],
         cta: 'Quiero un ERP así',
         whatsapp: 'Hola DEVMARK, quiero un ERP como el de ustedes para mi empresa.',
+        quote: { title: 'Cotiza con nuestra IA', text: 'Una propuesta en PDF al momento, sin esperar.' },
+      },
+      academia: {
+        badge: 'Muy pronto',
+        name: 'DEVMARK Academy',
+        tagline: 'Educación con IA.',
+        description: 'Clases privadas, cursos y cursos de verano de inteligencia artificial, programación y tecnología, para niños, jóvenes y adultos.',
+        features: ['Clases privadas y cursos en grupo', 'Cursos de verano de IA y programación', 'Para niños, jóvenes y adultos', 'Proyectos reales, no solo teoría'],
+        cta: 'Unirme a la lista de espera',
+        whatsapp: 'Hola DEVMARK, quiero unirme a la lista de espera de DEVMARK Academy.',
+      },
+      tienda: {
+        badge: 'Muy pronto',
+        name: 'DEVMARK Store',
+        tagline: 'Tecnología con IA, lista para usar.',
+        description: 'Una tienda de dispositivos con inteligencia artificial. Empezamos con MemoAI, una grabadora inteligente que transcribe y resume tus reuniones. Envío gratis a todo el Perú.',
+        features: ['MemoAI: grabadora inteligente con IA', 'Precio de lanzamiento S/ 299', 'Envío gratis a todo el Perú', 'Soporte de DEVMARK'],
+        cta: 'Preguntar por MemoAI',
+        whatsapp: 'Hola DEVMARK, quiero información sobre MemoAI y DEVMARK Store.',
       },
     },
     portal: {
@@ -272,6 +295,10 @@ export const homeContent = {
     hero: {
       proof: '+100 happy clients',
       title: ['Web and software', { em: 'development agency' }, 'in Lima, Peru.'],
+      rotante: {
+        label: 'We help you with',
+        frases: ['websites that sell', 'custom software and ERP', 'AI chatbots', 'SEO and GEO to show up on Google and in AI answers', 'process automation', 'online stores that convert'],
+      },
       description:
         'We build websites, online stores, custom software, automations, AI chatbots and SEO & GEO strategies so your business sells more online.',
       whatsapp: "Let's talk on WhatsApp",
@@ -328,6 +355,25 @@ export const homeContent = {
         features: ['Projects, milestones, tasks and hours', 'Recurring billing, invoices and receipts', 'Contracts with online acceptance', 'Tickets with SLAs and site monitoring'],
         cta: 'I want an ERP like this',
         whatsapp: 'Hi DEVMARK, I want an ERP like yours for my company.',
+        quote: { title: 'Quote with our AI', text: 'A PDF proposal right away, no waiting.' },
+      },
+      academia: {
+        badge: 'Coming soon',
+        name: 'DEVMARK Academy',
+        tagline: 'Education with AI.',
+        description: 'Private classes, courses and summer courses in artificial intelligence, programming and technology, for children, teenagers and adults.',
+        features: ['Private classes and group courses', 'Summer courses in AI and programming', 'For children, teenagers and adults', 'Real projects, not just theory'],
+        cta: 'Join the waiting list',
+        whatsapp: 'Hi DEVMARK, I want to join the DEVMARK Academy waiting list.',
+      },
+      tienda: {
+        badge: 'Coming soon',
+        name: 'DEVMARK Store',
+        tagline: 'Technology with AI, ready to use.',
+        description: 'A store for devices with artificial intelligence. We start with MemoAI, a smart recorder that transcribes and summarises your meetings. Free shipping across Peru.',
+        features: ['MemoAI: smart voice recorder with AI', 'Launch price S/ 299', 'Free shipping across Peru', 'Support from DEVMARK'],
+        cta: 'Ask about MemoAI',
+        whatsapp: 'Hi DEVMARK, I want information about MemoAI and DEVMARK Store.',
       },
     },
     portal: {

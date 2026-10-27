@@ -1,4 +1,4 @@
-import { ArrowUpRight, Mail, Phone, Sparkles, Video } from 'lucide-react';
+import { Mail, Phone, Video } from 'lucide-react';
 import { BOOKING_URL, WHATSAPP_GREETING, whatsappHref } from '@/lib/contact';
 import { cn } from '@/lib/utils';
 import type { TitleParts } from '@/content/home';
@@ -43,7 +43,6 @@ const detailTile = 'grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-whi
 /** Panel oscuro de contacto: WhatsApp primero, formulario al lado. */
 export function Contact(props: ContactProps) {
   const es = props.lang === 'es';
-  const quoteLink = es ? '/quote' : '/en/quote';
 
   return (
     <section id="contact" data-tone="dark" className={cn('panel-ink py-20 sm:py-28', props.first && 'mt-2 pt-32 sm:mt-3 sm:pt-40')}>
@@ -90,17 +89,6 @@ export function Contact(props: ContactProps) {
                 <span className="block text-xs text-ink-muted">{props.phoneLabel.replace(':', '')}</span>
                 <span className="block text-[15px]">{props.phone}</span>
               </span>
-            </a>
-            <a href={quoteLink} className="lift group relative flex items-center gap-4 overflow-hidden rounded-2xl border border-periwinkle/25 bg-primary/20 p-4">
-              <span aria-hidden className="pointer-events-none absolute -right-10 -top-16 h-40 w-40 rounded-full bg-primary/50 blur-3xl" />
-              <span className="relative grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white text-primary">
-                <Sparkles className="icon-tilt h-5 w-5" />
-              </span>
-              <span className="relative min-w-0 flex-1">
-                <span className="block text-[15px] font-medium">{props.quoteButton}</span>
-                <span className="block text-sm text-ink-muted">{es ? 'Una propuesta en PDF al momento, sin esperar.' : 'A PDF proposal right away, no waiting.'}</span>
-              </span>
-              <ArrowUpRight className="icon-nudge relative h-5 w-5 shrink-0" />
             </a>
           </div>
         </div>

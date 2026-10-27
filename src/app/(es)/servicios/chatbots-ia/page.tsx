@@ -1,0 +1,254 @@
+
+import { Header } from '@/components/home/header';
+import { Footer } from '@/components/home/footer';
+import { ServiceHero } from '@/components/home/service-hero';
+import { ServiceMethodology } from '@/components/home/service-methodology';
+import { Pricing } from '@/components/home/pricing';
+import { Contact } from '@/components/home/contact';
+import { ServiceFaq } from '@/components/home/service-faq';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Chatbots con IA para tu negocio',
+  description: 'Chatbots inteligentes para tu web, e-commerce o redes sociales, entrenados con tu información para dar soporte 24/7 y aumentar tus ventas en Perú.',
+  alternates: {
+    canonical: 'https://devmarkpe.com/servicios/chatbots-ia',
+    languages: {
+      es: 'https://devmarkpe.com/servicios/chatbots-ia',
+      en: 'https://devmarkpe.com/en/services/ai-chatbots',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'es_PE',
+    url: 'https://devmarkpe.com/servicios/chatbots-ia',
+    title: 'Chatbots con Inteligencia Artificial | Devmark Perú',
+    description: 'Chatbots inteligentes entrenados con tu información para soporte 24/7 y más ventas.',
+    siteName: 'Devmark',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Chatbots con IA - DEVMARK' }],
+  },
+};
+
+const headerContent = {
+  lang: 'es' as const,
+  navLinks: [],
+  contactButton: 'Contactar',
+  aiAssistant: 'Asistente IA',
+  aiAssistantTooltip: '¡Hola! Soy tu asistente de IA.',
+};
+
+const heroContent = {
+  badge: "Asistentes Virtuales",
+  title: "Chatbots con inteligencia artificial",
+  description: "Implementamos chatbots inteligentes en tu web, e-commerce o redes sociales, entrenados con tu propia información para ofrecer soporte 24/7 y potenciar tus ventas.",
+  lang: 'es' as const,
+  form: {
+    title: 'Cuéntanos sobre tu proyecto',
+    firstNameLabel: 'Nombres',
+    firstNamePlaceholder: 'Tus nombres',
+    emailLabel: 'Correo',
+    emailPlaceholder: 'tu@email.com',
+    phoneLabel: 'Teléfono',
+    phonePlaceholder: 'Tu número de teléfono',
+    messageLabel: 'Mensaje',
+    messagePlaceholder: 'Cuéntanos qué necesitas para tu proyecto...',
+    submitButton: 'Solicitar información',
+    successMessage: '¡Mensaje enviado! Un asesor te contactará pronto.',
+    errorMessage: 'Hubo un error al enviar. Por favor inténtalo de nuevo.',
+  },
+};
+
+const methodologyContent = {
+  badge: 'Nuestra metodología',
+  title: 'Cómo implementamos tu chatbot',
+  subtitle: 'Un proceso guiado para que tu asistente virtual atienda a tus clientes desde el primer día.',
+  steps: [
+    { title: 'Entrenamiento personalizado', description: 'Entrenamos al chatbot con tu base de conocimiento (documentos, web, FAQs) para que responda de forma precisa y coherente con tu marca.' },
+    { title: 'Soporte 24/7', description: 'Tu chatbot atenderá consultas, resolverá dudas y guiará a los usuarios en cualquier momento, mejorando la satisfacción del cliente.' },
+    { title: 'Asistente de ventas', description: 'El chatbot puede recomendar productos, responder preguntas sobre ellos y guiar a los clientes en el proceso de compra, aumentando las conversiones.' },
+    { title: 'Integración multicanal', description: 'Desplegamos tu chatbot en tu sitio web, WhatsApp, Messenger y otras plataformas para que estés donde estén tus clientes.' },
+  ],
+};
+
+const faqContent = {
+  title: "Preguntas frecuentes",
+  items: [
+    {
+      question: "¿El chatbot puede entender preguntas complejas?",
+      answer: "Sí, utilizamos modelos de lenguaje avanzados que permiten al chatbot comprender el contexto, la intención y las variaciones en las preguntas de los usuarios para dar respuestas coherentes y útiles."
+    },
+    {
+      question: "¿Qué pasa si el chatbot no sabe la respuesta?",
+      answer: "Configuramos un sistema de escalado para que, si el chatbot no puede resolver una consulta, pueda transferir la conversación a un agente humano de forma transparente."
+    },
+    {
+      question: "¿Puedo ver las conversaciones que tiene el chatbot?",
+      answer: "Sí, tendrás acceso a un panel donde podrás revisar las conversaciones, analizar las preguntas más frecuentes y obtener información valiosa sobre las necesidades de tus clientes."
+    }
+  ]
+};
+
+const pricingContent = {
+    title: "Planes y precios",
+    subtitle: "Soluciones a la medida de tu negocio. Elige el plan que mejor se adapte a tus necesidades y presupuesto.",
+    plans: [
+      {
+        name: "Emprendedor",
+        price: "S/ 1200",
+        description: "Chatbot con flujos en WhatsApp o tu web.",
+        features: [
+          "Chatbot base conversacional",
+          "Flujos y menús predefinidos",
+          "Integración con WhatsApp",
+          "Entrenamiento inicial",
+          "Soporte por email"
+        ],
+        buttonText: "Cotizar servicio",
+        priceId: "price_1..." // Reemplazar con tu Price ID de Stripe
+      },
+      {
+        name: "Negocio",
+        price: "S/ 2500",
+        description: "Chatbot con IA entrenado con tu negocio.",
+        features: [
+          "Todo lo del plan Emprendedor",
+          "IA generativa personalizada",
+          "Entrenamiento con tu info",
+          "Integración multicanal",
+          "Panel de conversaciones",
+          "Soporte prioritario"
+        ],
+        buttonText: "Cotizar servicio",
+        priceId: "price_2...", // Reemplazar con tu Price ID de Stripe
+        recommended: true
+      },
+      {
+        name: "Empresa",
+        price: "A medida",
+        description: "Asistente IA integrado a tu operación.",
+        features: [
+          "Todo lo del plan Negocio",
+          "Integración con CRM/ERP",
+          "Asistente de ventas",
+          "Automatización de pedidos",
+          "Soporte 24/7"
+        ],
+        buttonText: "Contactar",
+        priceId: ""
+      }
+    ]
+  };
+
+const contactContent = {
+    lang: 'es' as const,
+    title: "Hablemos de tu proyecto",
+    description: "¿Listo para llevar tu negocio al siguiente nivel? Completa el formulario o agenda una reunión y nuestro equipo se pondrá en contacto contigo.",
+    contactSubtitle: "Contáctanos ahora",
+    emailLabel: "Correo:",
+    email: "contacto@devmarkpe.com",
+    phoneLabel: "Teléfono:",
+    phone: "+51 975 646 074",
+    timeZoneLabel: "Horario:",
+    formTitle: "Formulario de contacto",
+    formDescription: "Envíanos un mensaje y empecemos a construir algo increíble juntos.",
+    firstNameLabel: "Nombres",
+    firstNamePlaceholder: "Tus nombres",
+    lastNameLabel: "Apellidos",
+    lastNamePlaceholder: "Tus apellidos",
+    emailFormLabel: "Dirección de Correo",
+    emailPlaceholder: "tu@email.com",
+    phoneFormLabel: "Teléfono",
+    phonePlaceholder: "Tu número de teléfono",
+    messageLabel: "Mensaje",
+    messagePlaceholder: "Cuéntanos sobre tu proyecto...",
+    submitButton: "Enviar Mensaje",
+    scheduleButton: 'Agendar videollamada',
+    quoteButton: "Cotiza tu proyecto con IA"
+};
+
+const footerContent = {
+    copyright: "DEVMARK. Todos los derechos reservados."
+};
+
+export default function AIChatbotsPage() {
+  return (
+    <div className="bg-paper">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Chatbots con inteligencia artificial",
+            "description": "Implementamos chatbots inteligentes en tu web, e-commerce o redes sociales, entrenados con tu propia información para ofrecer soporte 24/7 y potenciar tus ventas.",
+            "provider": {
+              "@type": "Organization",
+              "name": "Devmark",
+              "url": "https://devmarkpe.com"
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Lima"
+              },
+              {
+                "@type": "Country",
+                "name": "Perú"
+              }
+            ],
+            "url": "https://devmarkpe.com/servicios/chatbots-ia",
+            "inLanguage": "es-PE"
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "¿El chatbot puede entender preguntas complejas?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Sí, utilizamos modelos de lenguaje avanzados que permiten al chatbot comprender el contexto, la intención y las variaciones en las preguntas de los usuarios para dar respuestas coherentes y útiles."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Qué pasa si el chatbot no sabe la respuesta?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Configuramos un sistema de escalado para que, si el chatbot no puede resolver una consulta, pueda transferir la conversación a un agente humano de forma transparente."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Puedo ver las conversaciones que tiene el chatbot?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Sí, tendrás acceso a un panel donde podrás revisar las conversaciones, analizar las preguntas más frecuentes y obtener información valiosa sobre las necesidades de tus clientes."
+                }
+              }
+            ]
+          }),
+        }}
+      />
+      <Header {...headerContent} />
+      <main id="main-content" className="flex flex-col gap-2 sm:gap-3">
+        <ServiceHero {...heroContent} />
+
+        <Pricing {...pricingContent} />
+
+        <ServiceMethodology {...methodologyContent} />
+
+        <ServiceFaq title={faqContent.title} items={faqContent.items} />
+
+        <Contact {...contactContent} />
+      </main>
+      <Footer copyright={footerContent.copyright} />
+    </div>
+  );
+}

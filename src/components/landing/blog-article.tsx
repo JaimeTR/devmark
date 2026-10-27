@@ -24,6 +24,7 @@ const copy = {
     base: '/blog',
     back: 'Blog',
     recent: 'Entradas recientes',
+    aboutAuthor: 'Sobre el autor',
     servicesTitle: 'Conoce nuestros servicios',
     services: [
       { label: 'Desarrollo web', href: '/servicios/desarrollo-web-a-medida' },
@@ -42,6 +43,7 @@ const copy = {
     base: '/en/blog',
     back: 'Blog',
     recent: 'Recent posts',
+    aboutAuthor: 'About the author',
     servicesTitle: 'Explore our services',
     services: [
       { label: 'Web development', href: '/en/services/custom-web-development' },
@@ -59,6 +61,8 @@ const copy = {
 } as const;
 
 /** Articulo del blog: cabecera tinta, lectura en papel con columna lateral y cierre con WhatsApp. */
+import { AUTOR, normalizarEncabezados } from '@/lib/seo';
+
 export function BlogArticle({ post, recent, lang }: { post: PostLike; recent: PostLike[]; lang: 'es' | 'en' }) {
   const t = copy[lang];
   const fmt = (d: string) => format(parseISO(d), t.date, { locale: t.locale });
@@ -76,7 +80,13 @@ export function BlogArticle({ post, recent, lang }: { post: PostLike; recent: Po
             <h1 className="display mt-6 text-[clamp(2.2rem,4.8vw,4rem)] leading-[1.02]">{post.title}</h1>
             <p className="mt-6 max-w-[56ch] text-[17px] leading-relaxed text-ink-muted">{post.description}</p>
             <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-ink-muted">
-              <span>{post.author}</span>
+              <span className="flex items-center gap-2.5">
+                {/* eslint-disable-next-line @next/next/no-img-element -- foto de autor de 32 px */}
+                <img src={AUTOR.foto} alt={AUTOR.nombre} width={32} height={32} className="h-8 w-8 rounded-full object-cover object-top" />
+                <a href={AUTOR.url} rel="author noopener" className="font-medium text-white hover:underline">
+                  {AUTOR.nombre}
+                </a>
+              </span>
               <time dateTime={post.date}>{fmt(post.date)}</time>
               <span className="flex flex-wrap gap-1.5">
                 {post.tags.map((tag) => (
@@ -95,7 +105,25 @@ export function BlogArticle({ post, recent, lang }: { post: PostLike; recent: Po
 
       <section className="panel-paper py-14 sm:py-20">
         <div className="panel-inner grid gap-14 lg:grid-cols-[minmax(0,68ch)_1fr] lg:justify-between">
-          <article className="article" dangerouslySetInnerHTML={{ __html: post.content }} />
+          <div>
+            <article className="article" dangerouslySetInnerHTML={{ __html: normalizarEncabezados(post.content) }} />
+            <aside aria-label={t.aboutAuthor} className="mt-12 flex items-start gap-5 rounded-2xl bg-mist p-6">
+              {/* eslint-disable-next-line @next/next/no-img-element -- foto de autor */}
+              <img src={AUTOR.foto} alt={`${AUTOR.nombre}, ${AUTOR.nombreCompleto}`} width={80} height={80} className="h-20 w-20 shrink-0 rounded-2xl object-cover object-top" />
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-ink/50">{t.aboutAuthor}</p>
+                <p className="headline mt-1 text-xl">
+                  <a href={AUTOR.url} rel="author noopener">{AUTOR.nombre}</a> <span className="text-ink/50">· {AUTOR.nombreCompleto}</span>
+                </p>
+                <p className="mt-1 text-sm text-ink/60">{AUTOR.cargo[lang]}</p>
+                <p className="mt-3 text-[15px] leading-relaxed text-ink/75">{AUTOR.bio[lang]}</p>
+                <p className="mt-3 flex gap-4 text-sm font-medium">
+                  <a href={AUTOR.url} rel="author noopener" className="text-primary hover:underline">jaimetr.dev</a>
+                  <a href="https://github.com/JaimeTR" rel="noopener" className="text-primary hover:underline">GitHub</a>
+                </p>
+              </div>
+            </aside>
+          </div>
           <aside className="lg:sticky lg:top-28 lg:self-start">
             <h2 className="headline text-xl">{t.recent}</h2>
             <ul className="mt-4 space-y-3">

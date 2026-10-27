@@ -1,6 +1,10 @@
 import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
+  // Hostinger ejecuta un unico "node server.js": el standalone se empaqueta con scripts/empaquetar-standalone.mjs.
+  output: 'standalone',
+  // 404 global con su propio <html>: hay un layout raiz por idioma y ninguno cubre las rutas inexistentes.
+  experimental: { globalNotFound: true },
   typescript: {
     ignoreBuildErrors: false,
   },
@@ -46,9 +50,6 @@ const nextConfig: NextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 60 * 60 * 24 * 365, // 1 year
-  },
-  turbopack: {
-    root: __dirname,
   },
 };
 

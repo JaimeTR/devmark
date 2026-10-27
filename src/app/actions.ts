@@ -6,11 +6,11 @@ import { optimizeContentForSeo, type OptimizeContentOutput } from '@/ai/flows/op
 
 const schema = z.object({
   content: z.string({
-    error: (iss) => (iss.input === undefined ? "Content cannot be empty." : undefined),
+    error: "Content cannot be empty.",
   }).min(20, { message: 'Content must be at least 20 characters long.' })
     .max(8000, { message: 'Content must be at most 8000 characters long.' }),
   keywords: z.string({
-    error: (iss) => (iss.input === undefined ? "Keywords cannot be empty." : undefined),
+    error: "Keywords cannot be empty.",
   }).min(3, { message: 'Please enter at least one keyword.' }).max(300),
 });
 

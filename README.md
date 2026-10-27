@@ -17,7 +17,8 @@ por correo.
   del chat.
 - **Supabase** compartido con jaimetr.dev (portafolio de respaldo) y **nodemailer** para los avisos por SMTP.
 - **Stripe** opcional; sin claves no se ofrecen pagos.
-- Publicado en **Vercel**.
+- Publicado en **Hostinger** como aplicación Node.js: `npm run build` compila en modo standalone (con
+  webpack) y `scripts/empaquetar-standalone.mjs` copia los estáticos para que Hostinger ejecute `server.js`.
 
 ## Estructura
 
@@ -36,7 +37,7 @@ scripts/marca/      Generadores de los logos (Python + fonttools)
 
 ## Instalar y arrancar
 
-Requisitos: Git y **Node 22** (`.nvmrc`; mínimo 20.9). La guía para instalar los tres proyectos (ERP, web
+Requisitos: Git y **Node 22** (`.nvmrc`). La guía para instalar los tres proyectos (ERP, web
 y tienda) en otra computadora está en el ERP: `docs/instalar-en-otra-computadora.md`.
 
 ```bash
@@ -45,15 +46,15 @@ cp .env.example .env.local      # Windows (PowerShell): Copy-Item .env.example .
 npm run dev -- -p 3200          # http://localhost:3200
 ```
 
-Las claves se bajan de Vercel: `npx vercel link` y luego `npx vercel env pull .env.local`. `.env.local` no
-se sube nunca.
+Los valores se copian de la configuración de la aplicación en hPanel (Hostinger). `.env.local` no se sube
+nunca.
 
 ## Comandos
 
 | Comando | Qué hace |
 |---|---|
 | `npm run dev` | Servidor de desarrollo |
-| `npm run build` / `npm start` | Compilar y servir como en producción |
+| `npm run build` / `npm start` | Compilar (standalone para Hostinger) y servir como en producción |
 | `npm run lint` | ESLint, sin advertencias permitidas |
 | `npm run typecheck` | TypeScript |
 | `pip install fonttools && python3 scripts/marca/generar-logo.py public/marca` | Regenerar los logos |
@@ -73,7 +74,7 @@ Todas están en `.env.example`, con para qué sirve cada una. Las importantes:
 ## Dependencias
 
 `npm audit` en 0 al 27 de octubre de 2026. En `package.json`, `overrides` fuerza
-`postcss-selector-parser ^7.1.6` porque Tailwind 3 trae una versión con una falla de consumo de CPU (el CSS
+`postcss-selector-parser ^7.1.7` porque Tailwind 3 trae una versión con una falla de consumo de CPU (el CSS
 generado sale idéntico). Quitarlo al migrar a Tailwind 4. Cómo actualizar sin romper nada: ver la guía del
 ERP.
 

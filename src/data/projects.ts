@@ -1,4 +1,5 @@
 import { supabaseProjects, type ProjectRow } from '@/lib/supabase-projects';
+import { DESCRIPCIONES_EN } from '@/data/projects-en';
 import { erpLeer } from '@/lib/erp-sitio';
 
 export interface Project {
@@ -51,7 +52,7 @@ function normalizeCategory(raw: string | null): string {
 
 function mapRow(row: ProjectRow, lang: 'es' | 'en'): Project {
   const title = (lang === 'en' ? row.title_en : row.title_es) || row.title;
-  const description = (lang === 'en' ? row.description_en : row.description_es) || row.description;
+  const description = (lang === 'en' ? row.description_en || DESCRIPCIONES_EN[Number(row.id)] : row.description_es) || row.description;
   const image = row.cover_url || row.image_url || '';
   const externalLink = row.link_url || row.website_url || row.demo_url || undefined;
   // Segunda imagen para la galería del modal, solo si es distinta de la principal.
