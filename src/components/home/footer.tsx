@@ -117,7 +117,7 @@ export function Footer({ lang = 'es', copyright }: FooterProps) {
             <ul className="mt-4 space-y-2.5">
               {t.links.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="title-link text-[15px] text-ink-muted transition-colors hover:text-white">
+                  <Link href={l.href} prefetch={false} className="title-link text-[15px] text-ink-muted transition-colors hover:text-white">
                     {l.label}
                   </Link>
                 </li>
@@ -129,7 +129,7 @@ export function Footer({ lang = 'es', copyright }: FooterProps) {
             <ul className="mt-4 space-y-2.5">
               {t.services.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="title-link text-[15px] text-ink-muted transition-colors hover:text-white">
+                  <Link href={l.href} prefetch={false} className="title-link text-[15px] text-ink-muted transition-colors hover:text-white">
                     {l.label}
                   </Link>
                 </li>
@@ -168,7 +168,7 @@ export function Footer({ lang = 'es', copyright }: FooterProps) {
           <p>
             © {year} {copyright}
           </p>
-          <Link href="/libro-de-reclamaciones" className="group inline-flex items-center gap-2 rounded-[7px] border border-white/15 px-3 py-1.5 text-white transition-colors hover:border-white/30 hover:bg-white/5">
+          <Link href="/libro-de-reclamaciones" prefetch={false} className="group inline-flex items-center gap-2 rounded-[7px] border border-white/15 px-3 py-1.5 text-white transition-colors hover:border-white/30 hover:bg-white/5">
             <BookOpen className="icon-tilt h-4 w-4" />
             {t.complaints}
           </Link>

@@ -18,8 +18,8 @@ export function erpConectado(): boolean {
   return config() !== null;
 }
 
-/** Lectura con cache (por defecto 5 minutos). null si no hay ERP, no responde o da error. */
-export async function erpLeer<T>(ruta: string, { revalidar = 300 }: { revalidar?: number } = {}): Promise<T | null> {
+/** Lectura con cache (por defecto 30 minutos: cada vencimiento regenera las paginas que la usan). null si no hay ERP, no responde o da error. */
+export async function erpLeer<T>(ruta: string, { revalidar = 1800 }: { revalidar?: number } = {}): Promise<T | null> {
   const c = config();
   if (!c) return null;
   try {
