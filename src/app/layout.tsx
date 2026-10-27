@@ -47,6 +47,7 @@ export const metadata: Metadata = {
       'es-PE': 'https://devmarkpe.com',
       'es': 'https://devmarkpe.com',
       'en': 'https://devmarkpe.com/en',
+      'x-default': 'https://devmarkpe.com',
     },
   },
   openGraph: {
@@ -95,6 +96,87 @@ export const metadata: Metadata = {
   },
 };
 
+const SITIO = 'https://devmarkpe.com';
+const REDES = [
+  'https://www.instagram.com/devmark.pe/',
+  'https://www.facebook.com/devmark.pe/',
+  'https://www.linkedin.com/company/devmark.pe/',
+  'https://github.com/JaimeTR',
+];
+
+/**
+ * Datos estructurados del sitio: una sola entidad de organizacion con identificador estable (@id) a la que
+ * se refieren el negocio local, el sitio web y las paginas de servicio y de blog. Es lo que leen Google y los
+ * asistentes de IA para saber quien es DEVMARK, donde esta y que ofrece.
+ */
+const datosEstructurados = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${SITIO}/#organizacion`,
+      name: 'DEVMARK',
+      alternateName: ['Devmark', 'Devmark Perú', 'DEVMARKPE'],
+      url: SITIO,
+      logo: { '@type': 'ImageObject', url: `${SITIO}/marca/devmark-isotipo-512.png`, width: 512, height: 512 },
+      image: `${SITIO}/og-image.png`,
+      email: 'contacto@devmarkpe.com',
+      telephone: '+51975646074',
+      sameAs: REDES,
+      slogan: 'Desarrollo web, software a medida e inteligencia artificial desde Lima, Perú',
+      knowsAbout: [
+        'Desarrollo web a medida',
+        'Software a medida y ERP',
+        'Chatbots con inteligencia artificial',
+        'SEO y GEO (optimización para buscadores y para IA)',
+        'Automatización de procesos',
+        'Marketing digital',
+        'Tiendas online',
+      ],
+      contactPoint: [
+        {
+          '@type': 'ContactPoint',
+          contactType: 'ventas',
+          telephone: '+51975646074',
+          email: 'contacto@devmarkpe.com',
+          availableLanguage: ['es', 'en'],
+          areaServed: ['PE', 'EC', 'BO', 'CL', 'AR', 'CO', 'VE', 'MX', 'US', 'ES', 'IT'],
+        },
+      ],
+    },
+    {
+      '@type': ['LocalBusiness', 'ProfessionalService'],
+      '@id': `${SITIO}/#negocio`,
+      name: 'Devmark',
+      description: 'Agencia de desarrollo web y software a medida en Lima, Peru',
+      url: SITIO,
+      image: `${SITIO}/og-image.png`,
+      email: 'contacto@devmarkpe.com',
+      telephone: '+51975646074',
+      priceRange: '$',
+      parentOrganization: { '@id': `${SITIO}/#organizacion` },
+      areaServed: ['PE', 'EC', 'BO', 'CL', 'AR', 'CO', 'VE', 'MX', 'US', 'ES', 'IT'],
+      address: { '@type': 'PostalAddress', addressLocality: 'Lima', addressRegion: 'Lima', addressCountry: 'PE' },
+      geo: { '@type': 'GeoCoordinates', latitude: '-12.0464', longitude: '-77.0428' },
+      sameAs: REDES,
+      openingHoursSpecification: {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '09:00',
+        closes: '18:00',
+      },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITIO}/#sitio`,
+      url: SITIO,
+      name: 'DEVMARK',
+      inLanguage: ['es-PE', 'en'],
+      publisher: { '@id': `${SITIO}/#organizacion` },
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -118,42 +200,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'LocalBusiness',
-              name: 'Devmark',
-              description: 'Agencia de desarrollo web y software a medida en Lima, Peru',
-              url: 'https://devmarkpe.com',
-              email: 'contacto@devmarkpe.com',
-              telephone: '+51975646074',
-              priceRange: '$$',
-              areaServed: ['PE', 'EC', 'BO', 'CL', 'AR', 'CO', 'VE', 'MX', 'US', 'ES', 'IT'],
-              address: {
-                '@type': 'PostalAddress',
-                addressLocality: 'Lima',
-                addressRegion: 'Lima',
-                addressCountry: 'PE',
-              },
-              geo: {
-                '@type': 'GeoCoordinates',
-                latitude: '-12.0464',
-                longitude: '-77.0428',
-              },
-              sameAs: [
-                'https://www.instagram.com/devmark.pe/',
-                'https://www.facebook.com/devmark.pe/',
-                'https://www.linkedin.com/company/devmark.pe/',
-                'https://github.com/JaimeTR',
-              ],
-              openingHoursSpecification: {
-                '@type': 'OpeningHoursSpecification',
-                dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-                opens: '09:00',
-                closes: '18:00',
-              },
-            }),
-          }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(datosEstructurados) }}
         />
         {children}
         <div className="print:hidden">

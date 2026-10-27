@@ -28,7 +28,7 @@ function Feature({ children, dark }: { children: React.ReactNode; dark?: boolean
   );
 }
 
-/** Productos propios: DEVMARK AI y DEVMARK ERP. */
+/** Productos propios: DEVMARK AI y DEVMARK ERP, y los que vienen: Academy y Store. */
 export function Products({ lang }: { lang: Lang }) {
   const t = homeContent[lang].products;
   return (
@@ -90,6 +90,32 @@ export function Products({ lang }: { lang: Lang }) {
               </a>
             </div>
           </article>
+        </div>
+
+        <div className="mt-3 grid gap-3 lg:grid-cols-2">
+          {[t.academia, t.tienda].map((p) => (
+            <article key={p.name} className="reveal lift flex flex-col rounded-2xl bg-white p-7 sm:p-9">
+              <div className="flex items-center justify-between gap-3">
+                <p className="font-logo text-2xl tracking-wider">{p.name}</p>
+                <span className="rounded-full bg-band px-3 py-1 text-[12px] font-semibold uppercase tracking-wide text-ink">{p.badge}</span>
+              </div>
+              <h3 className="headline mt-5 text-[clamp(1.5rem,2.4vw,2.1rem)]">{p.tagline}</h3>
+              <p className="mt-4 text-[15px] leading-relaxed text-ink/70">{p.description}</p>
+              <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
+                {p.features.map((f) => (
+                  <Feature key={f}>{f}</Feature>
+                ))}
+              </ul>
+              <div className="mt-auto pt-8">
+                <a href={whatsappHref(p.whatsapp)} target="_blank" rel="noopener noreferrer" className="btn-ink btn-sm">
+                  <span className="btn-tile">
+                    <WhatsAppIcon className="h-4 w-4" />
+                  </span>
+                  {p.cta}
+                </a>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>

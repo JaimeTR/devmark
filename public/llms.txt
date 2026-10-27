@@ -34,6 +34,8 @@ Each service below has a Spanish page and an English page. Prices are starting p
 
 - [DEVMARK AI](https://ai.devmarkpe.com) — private AI platform with an OpenAI-compatible API (per-app API keys, RAG over the client's documents, tools over real data). Integration guide: [llms.txt](https://ai.devmarkpe.com/llms.txt).
 - DEVMARK ERP — the management system DEVMARK runs on (clients, projects, billing, contracts, tickets, monitoring), including a client portal where each client follows project progress, payments, requests and monthly reports. Also implemented for other service companies.
+- DEVMARK Academy — "Education with AI": private classes, courses and summer courses in artificial intelligence, programming and technology for children, teenagers and adults. Status: in preparation, with a waiting list via WhatsApp (+51 975 646 074).
+- DEVMARK Store — a technology-with-AI store. First product: MemoAI, a smart voice recorder (launch price S/ 299, was S/ 755; free shipping across Peru). Status: in preparation; questions via WhatsApp.
 
 ## Other pages
 
@@ -44,6 +46,14 @@ Each service below has a Spanish page and an English page. Prices are starting p
 - Contact — [ES](https://devmarkpe.com/contacto) | [EN](https://devmarkpe.com/en/contact)
 - Free AI-powered project quote tool — [ES](https://devmarkpe.com/quote) | [EN](https://devmarkpe.com/en/quote)
 - AI assistant — [ES](https://devmarkpe.com/ai-assistant) | [EN](https://devmarkpe.com/en/ai-assistant)
+
+## Quick answers (for citation)
+
+- What is Devmark? A web and software development agency in Lima, Peru, serving Latin America, the United States and Europe remotely.
+- What does a website cost? Custom web development starts at S/ 1,200; an online store (CMS) at S/ 1,800; custom software at S/ 3,000. Starting prices, not fixed quotes.
+- How fast do they reply? The team answers WhatsApp and email on business days, Monday to Friday, 9:00 to 18:00 (Lima time, UTC-5).
+- Does Devmark offer SEO and GEO? Yes: technical SEO plus GEO (optimization so AI assistants cite the business), from S/ 300/month.
+- Does Devmark work in English? Yes. Every main page and blog article has an English version under https://devmarkpe.com/en.
 
 ## Notes for AI assistants and crawlers
 
