@@ -17,8 +17,9 @@ por correo.
   del chat.
 - **Supabase** compartido con jaimetr.dev (portafolio de respaldo) y **nodemailer** para los avisos por SMTP.
 - **Stripe** opcional; sin claves no se ofrecen pagos.
-- Publicado en **Hostinger** como aplicación Node.js: `npm run build` compila en modo standalone (con
-  webpack) y `scripts/empaquetar-standalone.mjs` copia los estáticos para que Hostinger ejecute `server.js`.
+- Publicado hoy en **Vercel**; se muda a **Hostinger** (decidido el 26 de octubre). El build ya está listo para
+  Hostinger: `npm run build` compila en modo standalone (con webpack) y `scripts/empaquetar-standalone.mjs`
+  copia los estáticos para que Hostinger ejecute `server.js`. Pasos en el ERP: `docs/puesta-en-marcha.md`.
 
 ## Estructura
 
@@ -46,8 +47,8 @@ cp .env.example .env.local      # Windows (PowerShell): Copy-Item .env.example .
 npm run dev -- -p 3200          # http://localhost:3200
 ```
 
-Los valores se copian de la configuración de la aplicación en hPanel (Hostinger). `.env.local` no se sube
-nunca.
+Los valores se bajan de Vercel (`npx vercel link` y `npx vercel env pull .env.local`); después de la mudanza,
+de la configuración de la aplicación en hPanel. `.env.local` no se sube nunca.
 
 ## Comandos
 
