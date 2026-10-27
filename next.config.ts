@@ -3,8 +3,6 @@ import type {NextConfig} from 'next';
 const nextConfig: NextConfig = {
   // Hostinger ejecuta un unico "node server.js": el standalone se empaqueta con scripts/empaquetar-standalone.mjs.
   output: 'standalone',
-  // Diagnostico: Next precarga todas las paginas al arrancar; en Hostinger el proceso moria justo ahi.
-  experimental: { preloadEntriesOnStart: false },
   typescript: {
     ignoreBuildErrors: false,
   },
