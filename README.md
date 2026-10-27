@@ -1,174 +1,84 @@
-# 🚀 DevMark - Tu Socio Digital
+# DEVMARK · devmarkpe.com
 
-Plataforma web de DevMark, una agencia de desarrollo digital que ofrece soluciones tecnológicas integrales para empresas. Desde desarrollo web y software hasta chatbots con IA y automatización de procesos.
+Sitio de la agencia de desarrollo web y software DEVMARK (Lima, Perú). Español en `/` e inglés en `/en`.
 
-## 📋 Características Principales
+**El administrador del sitio es el ERP DEVMARK** (`Devmark-PE/ERP-Devmark`): de ahí salen el blog, el
+portafolio y lo que sabe el asistente, y allá llegan los formularios, las cotizaciones, el chat y el Libro
+de Reclamaciones. Si el ERP no está configurado o no responde, el sitio usa su contenido de respaldo y avisa
+por correo.
 
-### 🛠️ Servicios Ofrecidos
+## Stack
 
-- **Desarrollo Web a Medida**: Webs corporativas, landing pages y PWAs personalizadas
-- **Desarrollo CMS y E-commerce**: WordPress, Shopify e integraciones de pago
-- **Software Personalizado**: ERP, CRM, SaaS y APIs
-- **Automatización de Procesos**: Flujos automáticos con Zapier/Make
-- **Chatbots con IA**: Soluciones de soporte 24/7 entrenadas con tu base de conocimiento
-- **SEO y Optimización Web**: Estrategia SEO, Core Web Vitals y optimización de conversiones
-- **Diseño UI/UX**: Prototipado, wireframes y interfaces modernas
-- **Marketing Digital**: Estrategias de crecimiento y campañas digitales
-- **Consultoría Tecnológica**: Asesoramiento estratégico en transformación digital
-- **Soporte y Mantenimiento**: Mantenimiento continuo y soporte técnico
+- **Next.js 16** (App Router, Turbopack) con React 19 y TypeScript. Ojo: esta versión de Next cambia APIs;
+  ver `AGENTS.md`.
+- **Tailwind CSS 3** con los tokens de `tailwind.config.ts` (tinta, índigo, periwinkle). Tipografía:
+  Schibsted Grotesk, Instrument Serif y Braze (solo el nombre de la marca).
+- **Groq** (`groq-sdk`) para el asistente, el cotizador y la herramienta SEO; **OpenAI** solo como respaldo
+  del chat.
+- **Supabase** compartido con jaimetr.dev (portafolio de respaldo) y **nodemailer** para los avisos por SMTP.
+- **Stripe** opcional; sin claves no se ofrecen pagos.
+- Publicado en **Vercel**.
 
-### 🤖 Funcionalidades de IA Integradas
-
-- **Asistente de IA**: Chatbot interactivo en tiempo real
-- **Cotizador de Proyectos**: Generación automática de presupuestos con IA
-- **Optimizador de SEO**: Herramienta para optimizar contenido
-- **Sistema de Flows**: Automatizaciones con Genkit y Google AI
-
-## 🏗️ Stack Tecnológico
-
-### Frontend & Framework
-- **Next.js 15** con TypeScript
-- **React 19** para componentes UI
-- **Tailwind CSS** para estilos
-- **Radix UI** para componentes accesibles
-
-### AI & Automación
-- **Google Genkit** para orquestación de IA
-- **Google AI / OpenAI** para modelos de lenguaje
-- **Stripe** para procesamiento de pagos
-
-### Base de Datos & Backend
-- **Firebase** para autenticación y hosting
-- **Supabase** (opcional) para datos
-- **App Hosting de Firebase** para deployment
-
-### Herramientas de Desarrollo
-- **Turborepo** para compilación rápida
-- **TypeScript** para seguridad de tipos
-- **ESLint** para linting
-
-## 📂 Estructura del Proyecto
+## Estructura
 
 ```
 src/
-├── app/              # Rutas Next.js (pages & layouts)
-├── components/       # Componentes React reutilizables
-│   ├── ai/          # Componentes de IA (chatbot, cotizador, SEO)
-│   ├── landing/     # Componentes de landing page
-│   └── ui/          # Componentes UI base
-├── ai/              # Lógica de IA y flows
-│   └── flows/       # Flows de Genkit
-├── actions/         # Server actions de Next.js
-├── hooks/           # Custom React hooks
-├── lib/             # Utilidades compartidas
-└── data/            # Datos estáticos (posts, proyectos)
+├── app/            Rutas: inicio, servicios, portfolio, blog, hosting, nosotros, contacto, quote,
+│                   ai-assistant, libro-de-reclamaciones, gracias, (admin) y sus pares en /en
+│   └── api/        chat (asistente), erp (exportar el blog al ERP), reclamaciones
+├── ai/             Groq, OpenAI y los flujos (cotizador, SEO)
+├── components/     home (cabecera, pie), landing, site, ai, blog, portfolio, libro, ui
+├── data/           Respaldo del contenido (artículos, proyectos, servicios)
+└── lib/            Conexión con el ERP (erp-sitio.ts, reclamaciones.ts), contacto, utilidades
+public/marca/       Logotipos e isotipos (ver public/marca/LEEME.md)
+scripts/marca/      Generadores de los logos (Python + fonttools)
 ```
 
-## 🚀 Comenzar
+## Instalar y arrancar
 
-### Requisitos previos
-- Node.js 18+
-- npm o yarn
-
-### Instalación
+Requisitos: Git y **Node 22** (`.nvmrc`; mínimo 20.9). La guía para instalar los tres proyectos (ERP, web
+y tienda) en otra computadora está en el ERP: `docs/instalar-en-otra-computadora.md`.
 
 ```bash
-npm install
+npm ci
+cp .env.example .env.local      # Windows (PowerShell): Copy-Item .env.example .env.local
+npm run dev -- -p 3200          # http://localhost:3200
 ```
 
-### Desarrollo
+Las claves se bajan de Vercel: `npx vercel link` y luego `npx vercel env pull .env.local`. `.env.local` no
+se sube nunca.
 
-```bash
-# Iniciar el servidor de desarrollo
-npm run dev
+## Comandos
 
-# En otra terminal, iniciar Genkit (para IA)
-npm run genkit:dev
-```
+| Comando | Qué hace |
+|---|---|
+| `npm run dev` | Servidor de desarrollo |
+| `npm run build` / `npm start` | Compilar y servir como en producción |
+| `npm run lint` | ESLint, sin advertencias permitidas |
+| `npm run typecheck` | TypeScript |
+| `pip install fonttools && python3 scripts/marca/generar-logo.py public/marca` | Regenerar los logos |
 
-Abre [http://localhost:9002](http://localhost:9002) en tu navegador.
+## Variables de entorno
 
-### Build para Producción
+Todas están en `.env.example`, con para qué sirve cada una. Las importantes:
 
-```bash
-npm run build
-npm start
-```
+| Grupo | Variables | Sin ellas |
+|---|---|---|
+| ERP | `ERP_API_URL`, `SITIO_SIGNING_SECRET`, `SITIO_SLUG`, `ERP_EMPRESA_ID` | Contenido de respaldo; formularios solo por correo |
+| Correo | `SMTP_HOST`, `SMTP_PORT`, `SMTP_EMAIL`, `SMTP_PASSWORD` | No salen los avisos |
+| IA | `GROQ_API_KEY` (y opcional `OPENAI_API_KEY`) | El asistente y el cotizador no responden |
+| Supabase | `NEXT_PUBLIC_SUPABASE_*`, `NEXT_PUBLIC_PROJECTS_SUPABASE_*` | Sin portafolio de respaldo |
+| Sitio | `NEXT_PUBLIC_URL`, `NEXT_PUBLIC_WHATSAPP_NUMBER`, `NEXT_PUBLIC_CAL_LINK`, analítica | Valores por defecto |
 
-## 🔄 Scripts Disponibles
+## Dependencias
 
-- `npm run dev` - Inicia servidor dev con Turbopack
-- `npm run genkit:dev` - Inicia Genkit para IA
-- `npm run genkit:watch` - Genkit en modo watch
-- `npm run build` - Compila para producción
-- `npm start` - Inicia servidor de producción
-- `npm run lint` - Ejecuta ESLint
-- `npm run typecheck` - Verifica tipos TypeScript
+`npm audit` en 0 al 27 de octubre de 2026. En `package.json`, `overrides` fuerza
+`postcss-selector-parser ^7.1.6` porque Tailwind 3 trae una versión con una falla de consumo de CPU (el CSS
+generado sale idéntico). Quitarlo al migrar a Tailwind 4. Cómo actualizar sin romper nada: ver la guía del
+ERP.
 
-## 📱 Idiomas Soportados
+## Más documentación
 
-- 🇪🇸 Español
-- 🇬🇧 Inglés (en/*)
-
-## 🌐 Deployment
-
-El proyecto está configurado para desplegarse en **Firebase App Hosting**:
-
-```yaml
-# apphosting.yaml
-runConfig:
-  maxInstances: 1
-```
-
-## 📝 Variables de Entorno
-
-Crea un archivo `.env.local`:
-
-```
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
-STRIPE_SECRET_KEY=
-GOOGLE_GENAI_API_KEY=
-OPENAI_API_KEY=
-```
-
-## 📚 Documentación Adicional
-
-### 🚀 Configuración del Entorno
-
-- **[INICIO_RAPIDO.md](./INICIO_RAPIDO.md)** - Guía rápida para empezar en 5 minutos
-- **[SETUP_ENTORNO.md](./SETUP_ENTORNO.md)** - Guía completa de configuración del entorno
-- **[CONFIGURACION_CURSOR_MCP.md](./CONFIGURACION_CURSOR_MCP.md)** - Configuración de Cursor IDE con MCP
-- **[SOLUCION_PROBLEMA_IA.md](./SOLUCION_PROBLEMA_IA.md)** - Solución de problemas del chat de IA
-
-### 📖 Arquitectura y Desarrollo
-
-- [blueprint.md](docs/blueprint.md) - Arquitectura detallada del proyecto
-- [docs/SUPABASE_SETUP.md](docs/SUPABASE_SETUP.md) - Configuración de Supabase
-- Consulta `src/app/page.tsx` para la página principal
-
-### ✅ Verificar Configuración
-
-Ejecuta el script de verificación para asegurarte de que todo está configurado:
-
-```bash
-npm run check-env
-```
-
-### 🔌 Configurar MCP para Cursor (Opcional pero Recomendado)
-
-Para que Cursor IDE pueda acceder directamente a tu base de datos Supabase:
-
-```bash
-# Primero asegúrate de tener .env.local configurado
-npm run setup-mcp
-```
-
-Luego reinicia Cursor IDE. Ver [GUIA_CONFIGURACION_MCP.md](./GUIA_CONFIGURACION_MCP.md) para más detalles.
-
-## 👨‍💻 Desarrollado por
-
-**DevMark** - Agencia de Desarrollo Digital
-- 🌍 Soluciones globales
-- 💡 Tecnología de punta
-- 🎯 Resultados garantizados
+- `PRODUCT.md` y `DESIGN.md`: para quién es el sitio y su sistema visual.
+- `public/marca/LEEME.md`: qué logo va en cada lugar.
+- `docs/`: notas de páginas de agradecimiento, testimonios y la configuración histórica de Supabase.
