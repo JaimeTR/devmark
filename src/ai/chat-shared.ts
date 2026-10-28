@@ -33,7 +33,7 @@ export function stripLeadMarker(content: string): { text: string; leadCapture: b
   return { text, leadCapture };
 }
 
-const SYSTEM_PROMPT = `Eres un asistente virtual amigable y profesional para DEVMARK, una empresa de desarrollo web y soluciones digitales en Lima, Perú. Responde preguntas sobre la empresa, sus servicios y precios de forma concisa y útil.
+const SYSTEM_PROMPT = `Eres Devi, el asistente virtual de DEVMARK y su mascota: amigable y profesional. Si te preguntan tu nombre, eres Devi. DEVMARK es una empresa de desarrollo web y soluciones digitales en Lima, Perú. Responde preguntas sobre la empresa, sus servicios y precios de forma concisa y útil.
 
 Usa SIEMPRE el contexto provisto (servicios reales, portafolio y base de conocimiento). No inventes precios ni features que no estén en el contexto.
 
@@ -89,8 +89,8 @@ export function getFallbackResponse(question: string, lang: 'es' | 'en'): string
 
   const responses: Record<string, { es: string; en: string }> = {
     greeting: {
-      es: '¡Hola! 👋 Soy el asistente virtual de DEVMARK. Puedo ayudarte con información sobre nuestros servicios, precios y soluciones digitales. ¿En qué puedo ayudarte?',
-      en: 'Hello! 👋 I\'m DEVMARK\'s virtual assistant. I can help you with information about our services, prices, and digital solutions. How can I help you?',
+      es: '¡Hola! 👋 Soy Devi, el asistente virtual de DEVMARK. Puedo ayudarte con información sobre nuestros servicios, precios y soluciones digitales. ¿En qué puedo ayudarte?',
+      en: 'Hello! 👋 I\'m Devi, DEVMARK\'s virtual assistant. I can help you with information about our services, prices, and digital solutions. How can I help you?',
     },
     price: {
       es: '💰 Nuestros precios varían según el proyecto:\n\n• Desarrollo web: desde S/ 800\n• CMS/E-commerce: desde S/ 1500\n• Software a medida: desde S/ 3000\n• Otros servicios: consultar\n\n¿Te gustaría una cotización personalizada? Contacta: 📧 contacto@devmarkpe.com o 📱 +51 975 646 074.',
@@ -121,8 +121,8 @@ export function getFallbackResponse(question: string, lang: 'es' | 'en'): string
       en: '🔍 We offer SEO & GEO:\n\n• Keyword analysis\n• On-page optimization\n• Link building\n• Core Web Vitals\n• Content strategies\n• Google ranking improvement\n• GEO: get recommended by ChatGPT, Gemini and Perplexity\n\nWant to improve your online visibility?',
     },
     default: {
-      es: '💼 ¡Hola! Soy el asistente de DEVMARK. Puedo ayudarte con:\n\n• Información sobre nuestros servicios\n• Precios y cotizaciones\n• Desarrollo web, e-commerce, software\n• Chatbots con IA, SEO, marketing digital\n\nEscribe preguntas como: "precios", "servicios", "desarrollo web", "contacto", etc.\n\nPara consultas más específicas: 📧 contacto@devmarkpe.com | 📱 +51 975 646 074',
-      en: '💼 Hello! I\'m DEVMARK\'s assistant. I can help you with:\n\n• Information about our services\n• Prices and quotes\n• Web development, e-commerce, software\n• AI chatbots, SEO, digital marketing\n\nWrite questions like: "prices", "services", "web development", "contact", etc.\n\nFor more specific inquiries: 📧 contacto@devmarkpe.com | 📱 +51 975 646 074',
+      es: '💼 ¡Hola! Soy Devi, el asistente de DEVMARK. Puedo ayudarte con:\n\n• Información sobre nuestros servicios\n• Precios y cotizaciones\n• Desarrollo web, e-commerce, software\n• Chatbots con IA, SEO, marketing digital\n\nEscribe preguntas como: "precios", "servicios", "desarrollo web", "contacto", etc.\n\nPara consultas más específicas: 📧 contacto@devmarkpe.com | 📱 +51 975 646 074',
+      en: '💼 Hello! I\'m Devi, DEVMARK\'s assistant. I can help you with:\n\n• Information about our services\n• Prices and quotes\n• Web development, e-commerce, software\n• AI chatbots, SEO, digital marketing\n\nWrite questions like: "prices", "services", "web development", "contact", etc.\n\nFor more specific inquiries: 📧 contacto@devmarkpe.com | 📱 +51 975 646 074',
     },
   };
 

@@ -15,7 +15,7 @@ const headerContent = {
 
 const quoterContent = {
   lang: 'en' as const,
-  badgeLabel: 'DEVMARKAI Quoter',
+  badgeLabel: 'Quoter with Devi',
   title: 'AI project quoter',
   description:
     "Tell us about your idea, and our AI will generate a preliminary proposal with scope, estimated price, and recommendations. Let's build something amazing together!",
@@ -121,8 +121,8 @@ const quoterContent = {
     totalLabel: 'Estimated total',
     signatureRepName: 'Jaime Tarazona',
     signatureRepRole: 'Founder · DEVMARK',
-    signatureAiRole: 'DEVMARK AI · Quoter',
-    signatureNote: 'Proposal generated automatically by DEVMARK AI, pending confirmation from the team.',
+    signatureAiRole: 'Devi · DEVMARK Quoter',
+    signatureNote: 'Proposal generated automatically by Devi, the DEVMARK virtual assistant, pending confirmation from the team.',
   },
 };
 

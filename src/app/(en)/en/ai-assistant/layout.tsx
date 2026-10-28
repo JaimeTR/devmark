@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: 'AI Assistant - Devmark | Chat with AI',
     description: 'Chat with our AI assistant to answer questions about our web development and software services.',
     siteName: 'Devmark',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'DEVMARK AI assistant' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Devi, DEVMARK virtual assistant' }],
   },
 };
 

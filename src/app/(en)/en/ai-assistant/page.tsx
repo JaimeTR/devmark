@@ -13,13 +13,13 @@ const headerContent = {
 
 const chatbotContent = {
     badge: "VIRTUAL ASSISTANT",
-    title: "DEVMARKAI",
+    title: "Devi",
     subtitle: "Chat with our AI",
     description: "Ask me any questions about our services, prices, or any other inquiries you may have.",
     inputPlaceholder: "Type your question here...",
     submitButton: "Send",
     loadingMessage: "Thinking...",
-    initialMessage: "Hello! I am DEVMARKAI. You can ask me about our services, plans, prices, or any other questions you may have. I'm here to help!",
+    initialMessage: "Hello! I am Devi, DEVMARK's virtual assistant. You can ask me about our services, plans, prices, or any other questions you may have. I'm here to help!",
     lang: 'en' as const,
 }
 

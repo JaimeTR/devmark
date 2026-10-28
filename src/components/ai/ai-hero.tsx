@@ -21,7 +21,7 @@ const copy = {
     },
     assistant: {
       title: ['Pregúntale', { em: 'a nuestra IA' }] as const,
-      text: 'DEVMARKAI conoce nuestros servicios, planes y precios. Resuelve tus dudas al instante, de día o de noche, y si quieres te conecta con el equipo.',
+      text: 'Devi, el asistente virtual de DEVMARK, conoce nuestros servicios, planes y precios. Resuelve tus dudas al instante, de día o de noche, y si quieres te conecta con el equipo.',
       perks: [
         { icon: MessageSquare, title: 'Responde al instante', text: 'Servicios, planes, plazos y precios.' },
         { icon: Sparkles, title: 'Te orienta', text: 'Te dice qué solución encaja con tu negocio.' },
@@ -45,7 +45,7 @@ const copy = {
     },
     assistant: {
       title: ['Ask', { em: 'our AI' }] as const,
-      text: 'DEVMARKAI knows our services, plans and prices. It answers instantly, day or night, and connects you with the team whenever you want.',
+      text: 'Devi, DEVMARK\'s virtual assistant, knows our services, plans and prices. It answers instantly, day or night, and connects you with the team whenever you want.',
       perks: [
         { icon: MessageSquare, title: 'Instant answers', text: 'Services, plans, timelines and prices.' },
         { icon: Sparkles, title: 'Guides you', text: 'Tells you which solution fits your business.' },
@@ -85,7 +85,7 @@ export function AiHero({ lang, kind }: { lang: Lang; kind: 'quote' | 'assistant'
       }
       aside={
         <div className="hero-in grid gap-3">
-          <DeviImg version="completo" estado="saludo" tamano={170} alt={lang === 'es' ? 'Devi, la mascota de DEVMARK, saluda' : 'Devi, the DEVMARK mascot, waves hello'} className="mx-auto hidden md:block" />
+          <DeviImg estado="saludo" tamano={150} alt={lang === 'es' ? 'Devi, la mascota de DEVMARK, saluda' : 'Devi, the DEVMARK mascot, waves hello'} className="mx-auto hidden md:block" />
           <ul className="grid gap-3">
             {c.perks.map(({ icon: Icon, title, text }) => (
               <li key={title} className="lift flex items-center gap-4 rounded-2xl bg-white/[0.06] p-4 ring-1 ring-white/10">

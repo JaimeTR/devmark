@@ -12,7 +12,7 @@ const WHATSAPP_NUMBER = '+51975646074';
 
 const copy = {
   es: {
-    label: 'DEVMARKAI',
+    label: 'Devi',
     quoteLink: '/quote',
     quoteLabel: 'Cotizar con IA',
     status: 'En línea · responde al instante',
@@ -26,17 +26,17 @@ const copy = {
     dismissGreetingLabel: 'Cerrar mensaje',
     chatbot: {
       badge: 'ASISTENTE VIRTUAL',
-      title: 'DEVMARKAI',
+      title: 'Devi',
       subtitle: 'Chatea con nuestra IA',
       description: 'Hazme cualquier pregunta sobre nuestros servicios, precios o cualquier otra consulta que tengas.',
       inputPlaceholder: 'Escribe tu pregunta aquí...',
       submitButton: 'Enviar',
       loadingMessage: 'Pensando...',
-      initialMessage: '¡Hola! Soy DEVMARKAI. Pregúntame sobre servicios, precios o lo que necesites. Si prefieres, también puedes cotizar tu proyecto o escribirnos por WhatsApp desde aquí.',
+      initialMessage: '¡Hola! Soy Devi, el asistente virtual de DEVMARK. Pregúntame sobre servicios, precios o lo que necesites. Si prefieres, también puedes cotizar tu proyecto o escribirnos por WhatsApp desde aquí.',
     },
   },
   en: {
-    label: 'DEVMARKAI',
+    label: 'Devi',
     quoteLink: '/en/quote',
     quoteLabel: 'Quote with AI',
     status: 'Online · instant answers',
@@ -50,13 +50,13 @@ const copy = {
     dismissGreetingLabel: 'Dismiss message',
     chatbot: {
       badge: 'VIRTUAL ASSISTANT',
-      title: 'DEVMARKAI',
+      title: 'Devi',
       subtitle: 'Chat with our AI',
       description: 'Ask me anything about our services, pricing, or anything else you need.',
       inputPlaceholder: 'Type your question here...',
       submitButton: 'Send',
       loadingMessage: 'Thinking...',
-      initialMessage: "Hi! I'm DEVMARKAI. Ask me about services, pricing, or anything you need. You can also quote your project or message us on WhatsApp right from here.",
+      initialMessage: "Hi! I'm Devi, DEVMARK's virtual assistant. Ask me about services, pricing, or anything you need. You can also quote your project or message us on WhatsApp right from here.",
     },
   },
 };
@@ -127,14 +127,14 @@ export function FloatingAssistant() {
           aria-label={isOpen ? t.closeLabel : t.openLabel}
           aria-expanded={isOpen}
           title={isOpen ? undefined : t.greeting}
-          className={`group relative grid h-14 w-14 shrink-0 place-items-center rounded-[14px] text-white transition-transform duration-300 hover:-translate-y-0.5 ${isOpen ? 'bg-gradient-to-b from-[#4b42d0] to-[#3d34bc] shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_14px_30px_-12px_rgba(61,52,188,0.8)]' : 'bg-white text-ink shadow-[0_14px_30px_-12px_rgba(17,12,41,0.55)] ring-1 ring-ink/10'}`}
+          className={`group relative grid h-14 w-14 shrink-0 place-items-center rounded-[14px] text-white transition-transform duration-300 hover:-translate-y-0.5 ${isOpen ? 'bg-gradient-to-b from-[#4b42d0] to-[#3d34bc] shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_14px_30px_-12px_rgba(61,52,188,0.8)]' : 'text-ink'}`}
         >
-          {!isOpen && <span aria-hidden className="absolute inset-0 animate-ping rounded-[14px] bg-primary/30 [animation-duration:2.6s]" />}
           {isOpen ? (
             <X className="relative h-5 w-5" />
           ) : (
-            <span className="relative transition-transform duration-300 group-hover:-rotate-6">
-              <DeviImg estado="saludo" tamano={46} />
+            // Solo la mascota, sin fondo: la sombra la despega de cualquier seccion (clara u oscura).
+            <span className="relative drop-shadow-[0_8px_14px_rgba(17,12,41,0.35)] transition-transform duration-300 group-hover:-rotate-6">
+              <DeviImg estado="saludo" tamano={56} />
             </span>
           )}
           {!isOpen && <span className="absolute -right-1 -top-1 rounded-[5px] bg-periwinkle px-1.5 py-0.5 text-[9px] font-semibold leading-none text-ink">IA</span>}

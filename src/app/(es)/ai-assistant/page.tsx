@@ -19,13 +19,13 @@ const headerContent = {
 
 const chatbotContent = {
     badge: "ASISTENTE VIRTUAL",
-    title: "DEVMARKAI",
+    title: "Devi",
     subtitle: "Chatea con nuestra IA",
     description: "Hazme cualquier pregunta sobre nuestros servicios, precios o cualquier otra consulta que tengas.",
     inputPlaceholder: "Escribe tu pregunta aquí...",
     submitButton: "Enviar",
     loadingMessage: "Pensando...",
-    initialMessage: "¡Hola! Soy DEVMARKAI. Puedes preguntarme sobre nuestros servicios, planes, precios o cualquier otra duda que tengas. ¡Estoy aquí para ayudarte!",
+    initialMessage: "¡Hola! Soy Devi, el asistente virtual de DEVMARK. Puedes preguntarme sobre nuestros servicios, planes, precios o cualquier otra duda que tengas. ¡Estoy aquí para ayudarte!",
     lang: 'es' as const,
 }
 

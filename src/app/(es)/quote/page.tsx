@@ -15,7 +15,7 @@ const headerContent = {
 
 const quoterContent = {
   lang: 'es' as const,
-  badgeLabel: 'Cotizador DEVMARKAI',
+  badgeLabel: 'Cotizador con Devi',
   title: 'Cotizador de proyectos con IA',
   description:
     'Cuéntanos tu idea y nuestra IA generará una propuesta preliminar con alcance, precio estimado y recomendaciones. ¡Construyamos algo increíble juntos!',
@@ -121,8 +121,8 @@ const quoterContent = {
     totalLabel: 'Total estimado',
     signatureRepName: 'Jaime Tarazona',
     signatureRepRole: 'Fundador · DEVMARK',
-    signatureAiRole: 'DEVMARK AI · Cotizador',
-    signatureNote: 'Propuesta generada automáticamente por DEVMARK AI, pendiente de confirmación por el equipo.',
+    signatureAiRole: 'Devi · Cotizador de DEVMARK',
+    signatureNote: 'Propuesta generada automáticamente por Devi, el asistente virtual de DEVMARK, pendiente de confirmación por el equipo.',
   },
 };
 
