@@ -1,4 +1,6 @@
 import { erpLeer } from '@/lib/erp-sitio';
+import { ctaButtonLinks, ctaContent } from './blog-cta';
+import { postsNuevos } from './blog-posts-nuevos';
 
 export interface Post {
   slug: string;
@@ -11,114 +13,6 @@ export interface Post {
   content: string;
   tags: string[];
 }
-
-const ctaContent = {
-  es: {
-    web: {
-      title: '¿Necesitas un desarrollo web a medida?',
-      text: 'En DEVMARK, nos especializamos en crear sitios web y aplicaciones de alto rendimiento, seguras y escalables que impulsan tu negocio. No te conformes con plantillas genéricas. Construyamos juntos una solución única que te diferencie de la competencia.',
-    },
-    software: {
-      title: '¿Buscas una solución de software personalizada?',
-      text: 'Deja de adaptar tus procesos a un software genérico. En DEVMARK, construimos CRMs, ERPs y plataformas SaaS a la medida de tus necesidades, optimizando tus flujos de trabajo y aumentando la productividad de tu equipo.',
-    },
-    seo: {
-      title: '¿Quieres dominar los rankings de búsqueda?',
-      text: 'Un sitio web increíble no sirve de nada si nadie lo encuentra. Nuestro equipo de expertos en SEO técnico y de contenidos puede auditar tu web, crear una estrategia ganadora y llevar tu tráfico orgánico al siguiente nivel.',
-    },
-    automation: {
-      title: '¿Listo para automatizar tu negocio?',
-      text: 'Libera a tu equipo de las tareas repetitivas y enfócalo en lo que realmente importa. En DEVMARK, diseñamos flujos de trabajo inteligentes que conectan tus herramientas, ahorran tiempo y reducen errores. ¡Trabaja de forma más inteligente, no más dura!',
-    },
-    chatbot: {
-      title: '¿Quieres un chatbot que realmente venda?',
-      text: 'Ofrece a tus clientes soporte 24/7 y un asistente de ventas incansable. Implementamos chatbots con IA, entrenados con tu propia información, para revolucionar tu servicio al cliente y aumentar tus conversiones.',
-    },
-    uiux: {
-      title: '¿Tu producto digital no enamora a tus usuarios?',
-      text: 'Una experiencia de usuario excepcional es la clave del éxito. Nuestro equipo de diseño UI/UX investiga, prototipa y diseña interfaces intuitivas y atractivas que no solo funcionan bien, sino que deleitan a tus clientes.',
-    },
-    marketing: {
-      title: '¿Necesitas una estrategia de marketing para crecer?',
-      text: 'Atrae a tus primeros clientes y gana tracción en el mercado. En DEVMARK, creamos estrategias de marketing digital de alto impacto, combinando SEO, marketing de contenidos y redes sociales para que tu startup despegue.',
-    },
-    cms: {
-      title: '¿Necesitas un sitio WordPress profesional?',
-      text: 'En DEVMARK hacemos que tu WordPress sea rápido, seguro y fácil de gestionar. Desde el desarrollo de temas y plugins a medida hasta la migración y optimización de sitios existentes, tu contenido queda en buenas manos.',
-    },
-    consulting: {
-      title: '¿No sabes por dónde empezar tecnológicamente?',
-      text: 'Te asesoramos para elegir la tecnología correcta, optimizar tus procesos y planificar tu crecimiento digital. Un consultor estratégico para cada una de tus decisiones tecnológicas.',
-    },
-    contactButton: 'Hablemos de tu proyecto',
-  },
-  en: {
-    web: {
-      title: 'Need a custom web development?',
-      text: 'At DEVMARK, we specialize in creating high-performance, secure, and scalable websites and applications that drive your business. Don\'t settle for generic templates. Let\'s build a unique solution together that sets you apart from the competition.',
-    },
-    software: {
-      title: 'Looking for a custom software solution?',
-      text: 'Stop adapting your processes to generic software. At DEVMARK, we build CRMs, ERPs, and SaaS platforms tailored to your needs, optimizing your workflows and increasing your team\'s productivity.',
-    },
-    seo: {
-      title: 'Want to dominate the search rankings?',
-      text: 'An amazing website is useless if no one can find it. Our team of experts in technical and content SEO can audit your site, create a winning strategy, and take your organic traffic to the next level.',
-    },
-    automation: {
-      title: 'Ready to automate your business?',
-      text: 'Free your team from repetitive tasks and focus them on what really matters. At DEVMARK, we design intelligent workflows that connect your tools, save time, and reduce errors. Work smarter, not harder!',
-    },
-    chatbot: {
-      title: 'Want a chatbot that actually sells?',
-      text: 'Offer your customers 24/7 support and a tireless sales assistant. We implement AI-powered chatbots, trained with your own information, to revolutionize your customer service and increase your conversions.',
-    },
-    uiux: {
-      title: 'Is your digital product not winning over users?',
-      text: 'An exceptional user experience is the key to success. Our UI/UX design team researches, prototypes, and designs intuitive and attractive interfaces that not only work well but also delight your customers.',
-    },
-    marketing: {
-      title: 'Need a marketing strategy to grow?',
-      text: 'Attract your first customers and gain traction in the market. At DEVMARK, we create high-impact digital marketing strategies, combining SEO, content marketing, and social media to make your startup take off.',
-    },
-    cms: {
-      title: 'Need a professional WordPress site?',
-      text: 'At DEVMARK, we make your WordPress fast, secure, and easy to manage. From custom theme and plugin development to the migration and optimization of existing sites, your content is in good hands.',
-    },
-    consulting: {
-      title: 'Not sure where to start tech-wise?',
-      text: 'We advise you on choosing the right technology, optimizing your processes, and planning your digital growth. A strategic consultant for every one of your technology decisions.',
-    },
-    contactButton: 'Let\'s talk about your project',
-  }
-}
-
-const ctaButtonLinks: Record<'es' | 'en', Record<string, string>> = {
-  es: {
-    web: '/servicios/desarrollo-web-a-medida',
-    software: '/servicios/desarrollo-software',
-    seo: '/servicios/seo-optimizacion',
-    automation: '/servicios/automatizacion-procesos',
-    chatbot: '/servicios/chatbots-ia',
-    uiux: '/servicios/diseno-ui-ux',
-    marketing: '/servicios/marketing-digital',
-    cms: '/servicios/desarrollo-cms',
-    support: '/servicios/soporte-mantenimiento',
-    consulting: '/servicios/consultoria-tecnologica',
-  },
-  en: {
-    web: '/en/services/custom-web-development',
-    software: '/en/services/custom-software-development',
-    seo: '/en/services/seo-optimization',
-    automation: '/en/services/process-automation',
-    chatbot: '/en/services/ai-chatbots',
-    uiux: '/en/services/ui-ux-design',
-    marketing: '/en/services/digital-marketing',
-    cms: '/en/services/cms-development',
-    support: '/en/services/support-maintenance',
-    consulting: '/en/services/tech-consulting',
-  },
-};
 
 const posts: Record<'es' | 'en', Post[]> = {
   es: [
@@ -506,40 +400,6 @@ const posts: Record<'es' | 'en', Post[]> = {
         <p>Una empresa puede empezar con costo cero usando herramientas gratuitas. Un desarrollo personalizado tiene costo variable según complejidad.</p>
         <h3>La IA puede reemplazar a mis empleados?</h3>
         <p>No. Automatiza tareas repetitivas. El trabajo que requiere criterio y decisiones complejas sigue siendo humano.</p>
-      `,
-    },
-    {
-      slug: 'cuanto-cuesta-pagina-web-peru',
-      title: 'Cuánto cuesta una página web en Perú (precios actualizados 2026)',
-      description: 'Descubre cuánto cuesta realmente crear una página web en Perú. Precios por tipo: landing page, web corporativa, e-commerce y web apps. Factores que influyen en el costo final.',
-      date: '2026-07-15',
-      author: 'Jaime Tarazona',
-      image: '/illustrations/programming.svg',
-      imageHint: 'precios de páginas web en Perú',
-      tags: ['Paginas Web', 'Precios', 'Peru'],
-      content: `
-        <p>Si estás pensando en crear una página web para tu negocio en Perú, una de las primeras preguntas que surge es: <strong>¿cuánto cuesta?</strong> La respuesta no es única, ya que el precio depende de múltiples factores como el tipo de web, las funcionalidades requeridas y la experiencia del proveedor. En esta guía actualizada a 2026 te explicamos todos los costos involucrados para que puedas tomar una decisión informada.</p>
-        <h2>Precios de páginas web en Perú por tipo</h2>
-        <table><thead><tr><th>Tipo de Web</th><th>Precio Estimado (USD)</th><th>Incluye</th></tr></thead><tbody>
-        <tr><td>Landing Page</td><td>$200 - $500</td><td>1 página optimizada, formulario de contacto, diseño responsive, hosting básico</td></tr>
-        <tr><td>Web Corporativa (5-10 páginas)</td><td>$500 - $1,500</td><td>Diseño personalizado, secciones institucionales, blog básico, SEO inicial, formularios avanzados</td></tr>
-        <tr><td>E-commerce</td><td>$1,000 - $5,000</td><td>Catálogo de productos, carrito de compras, pasarela de pagos, panel de administración, gestión de inventario</td></tr>
-        <tr><td>Web App a medida</td><td>$3,000 - $15,000+</td><td>Desarrollo full-stack, funcionalidades personalizadas, base de datos, panel de administración, APIs, alta escalabilidad</td></tr>
-        </tbody></table>
-        <h2>Factores que influyen en el costo de una página web</h2>
-        <h3>1. Diseño y personalización</h3>
-        <p>Un diseño único y personalizado requiere más horas de trabajo que una plantilla predefinida. Si buscas diferenciarte de tu competencia, invertir en un diseño UI/UX profesional es clave. Las agencias especializadas en diseño cobran más, pero el resultado impacta directamente en la conversión y percepción de tu marca.</p>
-        <h3>2. Funcionalidades y complejidad técnica</h3>
-        <p>Cada funcionalidad adicional suma al costo: integración con pasarelas de pago locales (Culqi, Niubiz, Izipay), sistema de reservas, membresías, dashboard de analytics, integración con CRM o ERP. Mientras más complejo sea el desarrollo backend, mayor será la inversión necesaria.</p>
-        <h3>3. Sistema de gestión de contenidos (CMS)</h3>
-        <p>¿Necesitas poder actualizar el contenido tú mismo? Un CMS como WordPress puede ser más económico inicialmente pero con limitaciones de personalización. Un CMS a medida o headless (como Strapi + Next.js) ofrece más flexibilidad y mejor rendimiento, aunque con un costo mayor de desarrollo.</p>
-        <h3>4. SEO y optimización</h3>
-        <p>Una web sin SEO es como una tienda sin letrero. La optimización para motores de búsqueda debe ser parte del desarrollo: URLs amigables, meta tags, velocidad de carga, datos estructurados, sitemap. Algunas agencias lo incluyen, otras lo cobran como servicio adicional.</p>
-        <h3>5. Mantenimiento y soporte</h3>
-        <p>El costo no termina con el lanzamiento. Considera el mantenimiento mensual (actualizaciones de seguridad, backups, soporte técnico, hosting de calidad). Un plan de mantenimiento típico en Perú va desde $30 hasta $150 mensuales dependiendo de la complejidad del sitio.</p>
-        <h2>¿Vale la pena invertir en una web profesional?</h2>
-        <p>Absolutamente. En un mercado donde más del 70% de los peruanos investiga online antes de comprar, tu página web es tu principal activo de ventas 24/7. Una inversión de $1,000 en una web profesional puede retornar muchas veces ese valor en nuevos clientes. Lo barato sale caro: una web mal hecha puede dañar tu reputación y alejar clientes potenciales.</p>
-        <div class="cta-block"><h3>${ctaContent.es.web.title}</h3><p>${ctaContent.es.web.text}</p><a href="${ctaButtonLinks.es.web}" class="cta-button">${ctaContent.es.contactButton}</a></div>
       `,
     },
     {
@@ -965,6 +825,7 @@ const posts: Record<'es' | 'en', Post[]> = {
         <div class="cta-block"><h3>${ctaContent.es.consulting.title}</h3><p>${ctaContent.es.consulting.text}</p><a href="${ctaButtonLinks.es.consulting}" class="cta-button">${ctaContent.es.contactButton}</a></div>
       `,
     },
+    ...postsNuevos.es,
   ],
   en: [
     {
@@ -1322,40 +1183,6 @@ const posts: Record<'es' | 'en', Post[]> = {
         <h3>How much does it cost to implement AI in a small business?</h3>
         <p>You can start at zero cost with free tools. Custom development costs vary by complexity.</p>
         <div class="cta-block"><h3>${ctaContent.en.chatbot.title}</h3><p>${ctaContent.en.chatbot.text}</p><a href="${ctaButtonLinks.en.chatbot}" class="cta-button">${ctaContent.en.contactButton}</a></div>
-      `,
-    },
-    {
-      slug: 'how-much-does-website-cost-peru',
-      title: 'How much does a website cost in Peru? (updated prices 2026)',
-      description: 'Discover the real cost of creating a website in Peru. Prices by type: landing pages, corporate websites, e-commerce, and web apps. Key factors that influence the final cost.',
-      date: '2026-07-15',
-      author: 'Jaime Tarazona',
-      image: '/illustrations/programming.svg',
-      imageHint: 'website prices in Peru',
-      tags: ['Websites', 'Pricing', 'Peru'],
-      content: `
-        <p>If you are thinking about creating a website for your business in Peru, one of the first questions that comes up is: <strong>how much does it cost?</strong> There is no single answer, as the price depends on multiple factors such as the type of website, the required features, and the provider's experience. In this guide updated for 2026, we explain all the costs involved so you can make an informed decision.</p>
-        <h2>Website prices in Peru by type</h2>
-        <table><thead><tr><th>Website Type</th><th>Estimated Price (USD)</th><th>Includes</th></tr></thead><tbody>
-        <tr><td>Landing Page</td><td>$200 - $500</td><td>1 optimized page, contact form, responsive design, basic hosting</td></tr>
-        <tr><td>Corporate Website (5-10 pages)</td><td>$500 - $1,500</td><td>Custom design, company sections, basic blog, initial SEO, advanced forms</td></tr>
-        <tr><td>E-commerce</td><td>$1,000 - $5,000</td><td>Product catalog, shopping cart, payment gateway, admin panel, inventory management</td></tr>
-        <tr><td>Custom Web App</td><td>$3,000 - $15,000+</td><td>Full-stack development, custom features, database, admin panel, APIs, high scalability</td></tr>
-        </tbody></table>
-        <h2>Factors that influence the cost of a website</h2>
-        <h3>1. Design and customization</h3>
-        <p>A unique and custom design requires more work hours than a pre-made template. If you want to stand out from your competition, investing in professional UI/UX design is key. Specialized design agencies charge more, but the result directly impacts conversion rates and brand perception.</p>
-        <h3>2. Features and technical complexity</h3>
-        <p>Each additional feature adds to the cost: integration with local payment gateways (Culqi, Niubiz, Izipay), booking systems, memberships, analytics dashboards, CRM or ERP integration. The more complex the backend development, the greater the investment required.</p>
-        <h3>3. Content Management System (CMS)</h3>
-        <p>Do you need to update content yourself? A CMS like WordPress may be cheaper initially but has customization limitations. A custom or headless CMS (like Strapi + Next.js) offers more flexibility and better performance, though at a higher development cost.</p>
-        <h3>4. SEO and optimization</h3>
-        <p>A website without SEO is like a store without a sign. Search engine optimization should be part of the development: clean URLs, meta tags, loading speed, structured data, sitemaps. Some agencies include it, others charge it as an additional service.</p>
-        <h3>5. Maintenance and support</h3>
-        <p>The cost does not end with the launch. Consider monthly maintenance (security updates, backups, technical support, quality hosting). A typical maintenance plan in Peru ranges from $30 to $150 per month depending on the site's complexity.</p>
-        <h2>Is it worth investing in a professional website?</h2>
-        <p>Absolutely. In a market where over 70% of Peruvians research online before buying, your website is your main 24/7 sales asset. An investment of $1,000 in a professional website can return many times that value in new customers. Cheap turns out expensive: a poorly built website can damage your reputation and drive away potential clients.</p>
-        <div class="cta-block"><h3>${ctaContent.en.web.title}</h3><p>${ctaContent.en.web.text}</p><a href="${ctaButtonLinks.en.web}" class="cta-button">${ctaContent.en.contactButton}</a></div>
       `,
     },
     {
@@ -1781,6 +1608,7 @@ const posts: Record<'es' | 'en', Post[]> = {
         <div class="cta-block"><h3>${ctaContent.en.consulting.title}</h3><p>${ctaContent.en.consulting.text}</p><a href="${ctaButtonLinks.en.consulting}" class="cta-button">${ctaContent.en.contactButton}</a></div>
       `,
     },
+    ...postsNuevos.en,
   ],
 };
 
