@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { ArrowUpRight, Bot, Headset, Lightbulb, Loader2, RotateCcw, SendHorizontal } from 'lucide-react';
+import { DeviImg } from '@/components/site/devi-img';
+import { ArrowUpRight, Headset, Lightbulb, Loader2, RotateCcw, SendHorizontal } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/site/whatsapp-icon';
 import { whatsappHref } from '@/lib/contact';
 import { type Message } from '@/ai/flows/ask-devmark';
@@ -70,10 +71,11 @@ async function streamChatResponse(
   return meta;
 }
 
-function AiAvatar() {
+/** Devi, la cara de la IA: piensa mientras espera la respuesta y escribe mientras llegan las palabras. */
+function AiAvatar({ estado = 'reposo' }: { estado?: 'reposo' | 'pensando' | 'escribiendo' }) {
   return (
-    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-[9px] bg-ink text-periwinkle">
-      <Bot className="h-4 w-4" />
+    <span className="grid h-8 w-8 shrink-0 place-items-center overflow-hidden rounded-[9px] bg-white ring-1 ring-ink/10">
+      <DeviImg estado={estado} tamano={30} />
     </span>
   );
 }
@@ -501,7 +503,7 @@ export function AiChatbot(props: AiChatbotProps) {
                   <Headset className="h-4 w-4" />
                 </span>
               ) : (
-                <AiAvatar />
+                <AiAvatar estado={isPending ? 'pensando' : isCurrentlyStreaming ? 'escribiendo' : 'reposo'} />
               ))}
             <div
               className={cn(
@@ -651,8 +653,10 @@ export function ChatHeader({ title, status, onReset, resetLabel, children }: { t
   return (
     <div className="relative flex shrink-0 items-center gap-3 overflow-hidden bg-ink px-4 py-3.5 text-white sm:px-5">
       <div aria-hidden className="pointer-events-none absolute -left-10 -top-16 h-32 w-32 rounded-full bg-primary/50 blur-[50px]" />
-      <span className="relative grid h-10 w-10 shrink-0 place-items-center rounded-[11px] bg-gradient-to-b from-[#4b42d0] to-[#3d34bc] shadow-[inset_0_1px_0_rgba(255,255,255,0.35)]">
-        <Bot className="h-5 w-5" />
+      <span className="relative grid h-10 w-10 shrink-0 place-items-center rounded-[11px] bg-white shadow-[inset_0_1px_0_rgba(255,255,255,0.35)]">
+        <span className="grid h-10 w-10 place-items-center overflow-hidden rounded-[11px]">
+          <DeviImg estado="saludo" tamano={38} />
+        </span>
         <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-ink bg-emerald-400" />
       </span>
       <span className="relative min-w-0 flex-1">

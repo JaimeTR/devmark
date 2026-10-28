@@ -14,6 +14,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { ArrowLeft, ArrowRight, CalendarClock, Check, Coins, Download, FileText, FolderKanban, LayoutGrid, Lightbulb, ListChecks, Loader2, Mail, MessageSquare, MessageSquareText, Palette, Pencil, Sparkles, User, Wallet } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/site/whatsapp-icon';
+import { DeviImg } from '@/components/site/devi-img';
 import { type FormState, quoteProjectAction, notifyProposalDownloaded } from '@/app/actions/quoter';
 import { ProposalDocument } from '@/components/ai/proposal-document';
 import { cn } from '@/lib/utils';
@@ -332,6 +333,12 @@ export function ProjectQuoter({ content }: ProjectQuoterProps) {
   const fecha = (d: Date) => new Intl.DateTimeFormat(content.lang === 'es' ? 'es-PE' : 'en-US', { day: '2-digit', month: 'long', year: 'numeric' }).format(d);
   const stepOf = content.lang === 'es' ? `Paso ${currentStep + 1} de ${STEP_FIELDS.length}` : `Step ${currentStep + 1} of ${STEP_FIELDS.length}`;
   const avance = showForm ? currentStep : STEP_FIELDS.length;
+  // Devi acompana el cotizador: piensa mientras se arma la propuesta y celebra cuando esta lista.
+  const estadoDevi = isPendingTransition ? 'pensando' : state.data ? 'exito' : 'saludo';
+  const textoDevi =
+    content.lang === 'es'
+      ? { pensando: 'Estoy armando tu propuesta…', exito: 'Tu propuesta está lista.', saludo: 'Respóndeme y armo tu propuesta.' }[estadoDevi]
+      : { pensando: "I'm putting your proposal together…", exito: 'Your proposal is ready.', saludo: 'Answer me and I will build your proposal.' }[estadoDevi];
 
   // Opciones de radio como tarjetas seleccionables.
   const radios = (items: { value: string; label: string }[], value: string | undefined, onChange: (v: string) => void) => (
@@ -390,6 +397,14 @@ export function ProjectQuoter({ content }: ProjectQuoterProps) {
             );
           })}
         </ol>
+        <div className="relative mt-6 flex items-center gap-3 border-t border-white/10 pt-5">
+          <span className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-[11px] bg-white">
+            <DeviImg estado={estadoDevi} tamano={44} />
+          </span>
+          <p className="text-sm text-ink-muted" aria-live="polite">
+            {textoDevi}
+          </p>
+        </div>
       </aside>
 
       <div className="min-w-0 space-y-4">
@@ -397,7 +412,10 @@ export function ProjectQuoter({ content }: ProjectQuoterProps) {
           <div className="rounded-3xl bg-white p-6 shadow-[0_24px_60px_-30px_rgba(17,12,41,0.35)] sm:p-10">
             <div className="flex items-center justify-between gap-4 text-sm text-ink/55">
               <span>{stepOf}</span>
-              <span className="lg:hidden">{labels[currentStep]}</span>
+              <span className="flex items-center gap-2 lg:hidden">
+                <DeviImg estado={estadoDevi} tamano={28} />
+                {labels[currentStep]}
+              </span>
             </div>
             <div className="mt-3 flex gap-1 lg:hidden">
               {STEP_FIELDS.map((_, i) => (

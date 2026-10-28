@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { Bot, Sparkles, X } from 'lucide-react';
+import { Sparkles, X } from 'lucide-react';
+import { DeviImg } from '@/components/site/devi-img';
 import { WhatsAppIcon } from '@/components/site/whatsapp-icon';
 import { AiChatbot, ChatHeader } from '@/components/ai/ai-chatbot';
 
@@ -126,10 +127,16 @@ export function FloatingAssistant() {
           aria-label={isOpen ? t.closeLabel : t.openLabel}
           aria-expanded={isOpen}
           title={isOpen ? undefined : t.greeting}
-          className="group relative grid h-14 w-14 shrink-0 place-items-center rounded-[14px] bg-gradient-to-b from-[#4b42d0] to-[#3d34bc] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_14px_30px_-12px_rgba(61,52,188,0.8)] transition-transform duration-300 hover:-translate-y-0.5"
+          className={`group relative grid h-14 w-14 shrink-0 place-items-center rounded-[14px] text-white transition-transform duration-300 hover:-translate-y-0.5 ${isOpen ? 'bg-gradient-to-b from-[#4b42d0] to-[#3d34bc] shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_14px_30px_-12px_rgba(61,52,188,0.8)]' : 'bg-white text-ink shadow-[0_14px_30px_-12px_rgba(17,12,41,0.55)] ring-1 ring-ink/10'}`}
         >
           {!isOpen && <span aria-hidden className="absolute inset-0 animate-ping rounded-[14px] bg-primary/30 [animation-duration:2.6s]" />}
-          {isOpen ? <X className="relative h-5 w-5" /> : <Bot className="relative h-5 w-5 transition-transform duration-300 group-hover:-rotate-12" />}
+          {isOpen ? (
+            <X className="relative h-5 w-5" />
+          ) : (
+            <span className="relative transition-transform duration-300 group-hover:-rotate-6">
+              <DeviImg estado="saludo" tamano={46} />
+            </span>
+          )}
           {!isOpen && <span className="absolute -right-1 -top-1 rounded-[5px] bg-periwinkle px-1.5 py-0.5 text-[9px] font-semibold leading-none text-ink">IA</span>}
         </button>
         {!isOpen && (

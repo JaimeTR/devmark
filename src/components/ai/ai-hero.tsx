@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Bot, Clock, FileText, MessageSquare, Sparkles, Wallet } from 'lucide-react';
 import { PageHero } from '@/components/site/page-hero';
 import { WhatsAppIcon } from '@/components/site/whatsapp-icon';
+import { DeviImg } from '@/components/site/devi-img';
 import { whatsappHref } from '@/lib/contact';
 
 type Lang = 'es' | 'en';
@@ -83,19 +84,22 @@ export function AiHero({ lang, kind }: { lang: Lang; kind: 'quote' | 'assistant'
         </>
       }
       aside={
-        <ul className="hero-in grid gap-3">
-          {c.perks.map(({ icon: Icon, title, text }) => (
-            <li key={title} className="lift flex items-center gap-4 rounded-2xl bg-white/[0.06] p-4 ring-1 ring-white/10">
-              <span className="icon-tilt grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white/10 text-periwinkle">
-                <Icon className="h-5 w-5" />
-              </span>
-              <span>
-                <span className="block font-medium text-white">{title}</span>
-                <span className="block text-sm text-ink-muted">{text}</span>
-              </span>
-            </li>
-          ))}
-        </ul>
+        <div className="hero-in grid gap-3">
+          <DeviImg version="completo" estado="saludo" tamano={170} alt={lang === 'es' ? 'Devi, la mascota de DEVMARK, saluda' : 'Devi, the DEVMARK mascot, waves hello'} className="mx-auto hidden md:block" />
+          <ul className="grid gap-3">
+            {c.perks.map(({ icon: Icon, title, text }) => (
+              <li key={title} className="lift flex items-center gap-4 rounded-2xl bg-white/[0.06] p-4 ring-1 ring-white/10">
+                <span className="icon-tilt grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white/10 text-periwinkle">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <span>
+                  <span className="block font-medium text-white">{title}</span>
+                  <span className="block text-sm text-ink-muted">{text}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
       }
     />
   );

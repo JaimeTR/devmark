@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { ArrowLeft, Home } from 'lucide-react';
 import { Header } from '@/components/home/header';
 import { Footer } from '@/components/home/footer';
+import { DeviImg } from '@/components/site/devi-img';
 
 const copy = {
   es: {
@@ -91,7 +92,8 @@ export default function Pagina404() {
             <p className="display text-[clamp(7rem,22vw,15rem)] leading-none text-white/90">
               4<em>0</em>4
             </p>
-            <h1 className="headline mt-6 text-[clamp(1.75rem,3.4vw,2.75rem)]">{t.title}</h1>
+            <DeviImg version="patitas" estado="buscando" tamano={150} alt={lang === 'es' ? 'Devi, la mascota de DEVMARK, buscando la página' : 'Devi, the DEVMARK mascot, looking for the page'} className="mt-4" />
+            <h1 className="headline mt-4 text-[clamp(1.75rem,3.4vw,2.75rem)]">{t.title}</h1>
             <p className="mt-4 max-w-[46ch] text-[17px] text-ink-muted">{t.subtitle}</p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <Link href={t.homeHref} className="btn-light">
