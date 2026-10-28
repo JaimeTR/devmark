@@ -3,7 +3,9 @@
 'use client';
 
 import {useMemo, useState} from 'react';
-import { useClientValue } from '@/hooks/use-client-value';
+import Link from 'next/link';
+import { useCurrency } from '@/hooks/use-currency';
+import { CurrencyToggle } from '@/components/site/money';
 import {loadStripe} from '@stripe/stripe-js/pure';
 import {usePathname} from 'next/navigation';
 import {CheckCircle, Star} from 'lucide-react';
@@ -13,8 +15,8 @@ import {cn} from '@/lib/utils';
 import {
   convertPenToCurrency,
   convertUsdToPen,
-  detectCurrency,
   formatCurrency,
+  roundPrice,
   type CurrencyCode,
 } from '@/lib/currency';
 
@@ -71,12 +73,9 @@ export function Pricing({title, subtitle, plans, lang, baseCurrency = 'PEN', wha
     return 'es';
   }, [lang, pathname]);
 
-  // La moneda depende del navegador (zona horaria e idioma): en el servidor se
-  // usa la del idioma de la pagina y al hidratar se ajusta.
-  const currency = useClientValue<CurrencyCode>(
-    () => detectCurrency(inferredLang),
-    inferredLang === 'es' ? 'PEN' : 'USD',
-  );
+  // La moneda es la que eligio el visitante o, si no, la que sugiere su navegador
+  // (zona horaria e idioma). En el servidor se usa la del idioma de la pagina.
+  const currency = useCurrency(inferredLang);
 
   const openWhatsApp = (plan: Plan, priceLabel: string) => {
     const number = whatsappNumber.replace(/[^0-9]/g, '');
@@ -120,28 +119,18 @@ export function Pricing({title, subtitle, plans, lang, baseCurrency = 'PEN', wha
     })();
 
     if (penAmount === null) return plan.price;
-    const converted = convertPenToCurrency(penAmount, currency);
+    const converted = roundPrice(convertPenToCurrency(penAmount, currency));
     const prefix = inferredLang === 'es' ? 'Desde ' : 'From ';
     const formatted = formatCurrency(converted, currency);
     const suffix = plan.period ? ` ${plan.period}` : '';
     return `${prefix}${formatted}${suffix}`;
   };
 
-  const currencyLabel: Record<CurrencyCode, {es: string; en: string}> = {
-    PEN: {es: 'soles (PEN)', en: 'soles (PEN)'},
-    USD: {es: 'dólares (USD)', en: 'US dollars (USD)'},
-    EUR: {es: 'euros (EUR)', en: 'euros (EUR)'},
-    MXN: {es: 'pesos mexicanos (MXN)', en: 'Mexican pesos (MXN)'},
-    COP: {es: 'pesos colombianos (COP)', en: 'Colombian pesos (COP)'},
-    CLP: {es: 'pesos chilenos (CLP)', en: 'Chilean pesos (CLP)'},
-    ARS: {es: 'pesos argentinos (ARS)', en: 'Argentine pesos (ARS)'},
-    VES: {es: 'bolívares (VES)', en: 'bolívares (VES)'},
-    BOB: {es: 'bolivianos (BOB)', en: 'bolivianos (BOB)'},
-  };
-
-  const currencyNote = inferredLang === 'es'
-    ? `Mostramos precios en ${currencyLabel[currency]?.es ?? currency} según tu idioma o región. Base de cálculo: soles (PEN).`
-    : `Showing prices in ${currencyLabel[currency]?.en ?? currency} based on your language or region. Base currency: soles (PEN).`;
+  const quoteHref = inferredLang === 'es' ? '/quote' : '/en/quote';
+  const disclaimer = inferredLang === 'es'
+    ? 'Precios referenciales: parten del servicio más básico. El monto final se define en una cotización según el alcance, la complejidad y los plazos de tu proyecto. Los dólares se calculan con un tipo de cambio de referencia.'
+    : 'Reference prices: they start at the most basic service. The final amount is set in a quote based on your project’s scope, complexity and timeline. Dollar prices use a reference exchange rate.';
+  const disclaimerCta = inferredLang === 'es' ? 'Pide tu cotización' : 'Get your quote';
 
   return (
     <section id="pricing" className="panel-paper py-20 sm:py-28">
@@ -150,7 +139,7 @@ export function Pricing({title, subtitle, plans, lang, baseCurrency = 'PEN', wha
           <h2 className="headline reveal text-[clamp(2rem,4.2vw,3.5rem)]">{title}</h2>
           <div className="reveal">
             <p className="max-w-[46ch] text-[17px] leading-relaxed text-ink/70">{subtitle}</p>
-            <p className="mt-2 text-sm text-ink/50">{currencyNote}</p>
+            <CurrencyToggle lang={inferredLang} className="mt-4" />
           </div>
         </div>
         <div className="mt-12 grid grid-cols-1 items-stretch gap-3 md:grid-cols-3">
@@ -201,6 +190,12 @@ export function Pricing({title, subtitle, plans, lang, baseCurrency = 'PEN', wha
             );
           })}
         </div>
+        <p className="mt-6 max-w-[72ch] text-sm leading-relaxed text-ink/70">
+          {disclaimer}{' '}
+          <Link href={quoteHref} className="font-medium text-ink underline underline-offset-4">
+            {disclaimerCta}
+          </Link>
+        </p>
       </div>
     </section>
   );

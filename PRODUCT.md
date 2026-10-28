@@ -58,6 +58,17 @@ automatizacion y software a medida.
 - Color de marca: indigo #3D34BC, compartido con el ERP (decision de Jaime, 22 oct 2026).
 - Voz: cercana, directa, sin letra chica; espanol neutro peruano; frases en
   formato oracion (sin Title Case).
+- Excepcion a "sin letra chica" (decision de Jaime, 28 oct 2026): los precios
+  publicados son "desde" y referenciales, y eso se aclara siempre con una nota
+  corta y legible junto a los planes, con enlace a la cotizacion. Es una aclaracion
+  visible (contraste suficiente, nunca escondida al pie), no una clausula escondida.
+  Otras aclaraciones de este tipo solo se agregan cuando evitan una falsa
+  expectativa, y con la misma regla: legibles y cerca de lo que aclaran.
+- Moneda: soles por defecto; dolares para visitas de fuera de Peru (por zona
+  horaria e idioma), con un selector S/ | US$ visible que manda sobre la
+  deteccion. Los precios base estan en soles (src/data/services.ts) y los dolares
+  salen de un tipo de cambio de referencia (NEXT_PUBLIC_PEN_TO_USD_RATE, 3.4 por
+  defecto), redondeados.
 
 ## Evidence on Hand
 

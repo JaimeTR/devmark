@@ -93,8 +93,8 @@ export function getFallbackResponse(question: string, lang: 'es' | 'en'): string
       en: 'Hello! 👋 I\'m DEVMARK\'s virtual assistant. I can help you with information about our services, prices, and digital solutions. How can I help you?',
     },
     price: {
-      es: '💰 Nuestros precios varían según el proyecto:\n\n• Desarrollo web: desde S/ 1200\n• CMS/E-commerce: desde S/ 1800\n• Software a medida: desde S/ 3000\n• Otros servicios: consultar\n\n¿Te gustaría una cotización personalizada? Contacta: 📧 contacto@devmarkpe.com o 📱 +51 975 646 074.',
-      en: '💰 Our prices vary by project:\n\n• Web development: from S/ 1200\n• CMS/E-commerce: from S/ 1800\n• Custom software: from S/ 3000\n• Other services: inquire\n\nWould you like a personalized quote? Contact: 📧 contacto@devmarkpe.com or 📱 +51 975 646 074.',
+      es: '💰 Nuestros precios varían según el proyecto:\n\n• Desarrollo web: desde S/ 800\n• CMS/E-commerce: desde S/ 1500\n• Software a medida: desde S/ 3000\n• Otros servicios: consultar\n\n¿Te gustaría una cotización personalizada? Contacta: 📧 contacto@devmarkpe.com o 📱 +51 975 646 074.',
+      en: '💰 Our prices vary by project:\n\n• Web development: from S/ 800\n• CMS/E-commerce: from S/ 1500\n• Custom software: from S/ 3000\n• Other services: inquire\n\nWould you like a personalized quote? Contact: 📧 contacto@devmarkpe.com or 📱 +51 975 646 074.',
     },
     services: {
       es: '🛠️ Ofrecemos los siguientes servicios:\n\n• Desarrollo web a medida\n• CMS/E-commerce (WordPress, Shopify)\n• Software personalizado\n• Automatización de procesos\n• Chatbots con IA\n• SEO y GEO (Google y buscadores con IA)\n• Diseño UI/UX\n• Marketing digital\n• Consultoría tecnológica\n• Soporte y mantenimiento\n\n¿Qué servicio te interesa más?',
@@ -105,12 +105,12 @@ export function getFallbackResponse(question: string, lang: 'es' | 'en'): string
       en: '📞 You can reach us at:\n\n• Email: contacto@devmarkpe.com\n• Phone: +51 975 646 074\n\nWe\'re available to answer your questions and help with your digital project. Write us or call us!',
     },
     website: {
-      es: '🌐 Desarrollamos sitios web modernos y optimizados:\n\n• Landing pages: desde S/ 1200\n• Sitios corporativos completos\n• Diseño responsive (móvil, tablet, desktop)\n• SEO básico incluido\n• Optimización de velocidad\n• Panel de administración\n\n¿Qué tipo de sitio necesitas?',
-      en: '🌐 We develop modern and optimized websites:\n\n• Landing pages: from S/ 1200\n• Complete corporate sites\n• Responsive design (mobile, tablet, desktop)\n• Basic SEO included\n• Speed optimization\n• Admin panel\n\nWhat type of site do you need?',
+      es: '🌐 Desarrollamos sitios web modernos y optimizados:\n\n• Landing pages: desde S/ 800\n• Sitios corporativos completos\n• Diseño responsive (móvil, tablet, desktop)\n• SEO básico incluido\n• Optimización de velocidad\n• Panel de administración\n\n¿Qué tipo de sitio necesitas?',
+      en: '🌐 We develop modern and optimized websites:\n\n• Landing pages: from S/ 800\n• Complete corporate sites\n• Responsive design (mobile, tablet, desktop)\n• Basic SEO included\n• Speed optimization\n• Admin panel\n\nWhat type of site do you need?',
     },
     ecommerce: {
-      es: '🛒 Desarrollamos tiendas online profesionales:\n\n• Plataformas: WordPress/WooCommerce, Shopify\n• Integración de pagos seguros\n• Gestión de productos y catálogo\n• Carrito de compras\n• Panel de administración\n• Precio desde S/ 1800\n\n¿Necesitas más detalles?',
-      en: '🛒 We develop professional online stores:\n\n• Platforms: WordPress/WooCommerce, Shopify\n• Secure payment integration\n• Product and catalog management\n• Shopping cart\n• Admin panel\n• Price from S/ 1800\n\nNeed more details?',
+      es: '🛒 Desarrollamos tiendas online profesionales:\n\n• Plataformas: WordPress/WooCommerce, Shopify\n• Integración de pagos seguros\n• Gestión de productos y catálogo\n• Carrito de compras\n• Panel de administración\n• Precio desde S/ 1500\n\n¿Necesitas más detalles?',
+      en: '🛒 We develop professional online stores:\n\n• Platforms: WordPress/WooCommerce, Shopify\n• Secure payment integration\n• Product and catalog management\n• Shopping cart\n• Admin panel\n• Price from S/ 1500\n\nNeed more details?',
     },
     chatbot: {
       es: '🤖 Desarrollamos chatbots con Inteligencia Artificial:\n\n• Entrenamiento personalizado con tu base de conocimiento\n• Disponibles 24/7\n• Atención al cliente automatizada\n• Asistente de ventas\n• Soporte técnico\n\n¿Te interesa implementar uno?',

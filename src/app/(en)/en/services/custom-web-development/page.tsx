@@ -93,7 +93,7 @@ const pricingContent = {
   plans: [
     {
       name: "Starter",
-      price: "S/ 1200",
+      price: "S/ 800",
       description: "Basic website with 1 to 3 pages. Great to start.",
       features: [
         "1 to 3 custom pages",

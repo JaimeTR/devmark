@@ -270,7 +270,7 @@ export const homeContent = {
       items: [
         {
           q: '¿Cuánto cuesta una página web?',
-          a: 'Una web a medida empieza en S/ 1200 (plan Emprendedor) y una tienda con CMS en S/ 1800. Cada servicio tiene sus planes publicados; los proyectos grandes se cotizan a medida.',
+          a: 'Una web a medida empieza en S/ 800 (plan Emprendedor) y una tienda con CMS en S/ 1500. Cada servicio tiene sus planes publicados; los proyectos grandes se cotizan a medida.',
         },
         {
           q: '¿Trabajan con negocios fuera de Lima?',
@@ -438,7 +438,7 @@ export const homeContent = {
       items: [
         {
           q: 'How much does a website cost?',
-          a: 'A custom website starts at S/ 1200 (Entrepreneur plan) and a CMS store at S/ 1800. Every service has published plans; large projects are quoted individually.',
+          a: 'A custom website starts at S/ 800 (Entrepreneur plan) and a CMS store at S/ 1500. Every service has published plans; large projects are quoted individually.',
         },
         {
           q: 'Do you work with businesses outside Lima?',

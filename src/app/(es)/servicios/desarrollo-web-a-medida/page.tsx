@@ -98,7 +98,7 @@ const pricingContent = {
     plans: [
       {
         name: "Emprendedor",
-        price: "S/ 1200",
+        price: "S/ 800",
         description: "Web básica de 1 a 3 páginas. Ideal para empezar.",
         features: [
           "1 a 3 páginas personalizadas",

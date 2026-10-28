@@ -93,7 +93,7 @@ const pricingContent = {
     plans: [
       {
         name: "Starter",
-        price: "S/ 1800",
+        price: "S/ 1500",
         description: "CMS-managed website.",
         features: [
           "Administration dashboard",

@@ -93,7 +93,7 @@ const pricingContent = {
     plans: [
       {
         name: "Emprendedor",
-        price: "S/ 1800",
+        price: "S/ 1500",
         description: "Web adminitrable con CMS.",
         features: [
           "Dashboard de administración",

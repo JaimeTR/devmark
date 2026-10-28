@@ -5,6 +5,7 @@ import { Footer } from '@/components/home/footer';
 import { PageHero } from '@/components/site/page-hero';
 import { WhatsAppIcon } from '@/components/site/whatsapp-icon';
 import { getStartingPrice } from '@/data/services';
+import { CurrencyToggle, Money } from '@/components/site/money';
 import { whatsappHref } from '@/lib/contact';
 import type { Lang } from '@/content/home';
 import { ServicesShowcase } from './services-showcase';
@@ -92,7 +93,10 @@ export function ServicesIndex({ lang }: { lang: Lang }) {
               <h2 className="headline reveal text-[clamp(2rem,4.2vw,3.5rem)]">
                 {t.extraTitle[0]} <em>{t.extraTitle[1].em}</em>
               </h2>
-              <p className="reveal max-w-[46ch] text-[17px] text-ink/70">{t.extraText}</p>
+              <div className="reveal">
+                <p className="max-w-[46ch] text-[17px] text-ink/70">{t.extraText}</p>
+                <CurrencyToggle lang={lang} className="mt-4" />
+              </div>
             </div>
             <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {t.extra.map((s, i) => {
@@ -108,7 +112,7 @@ export function ServicesIndex({ lang }: { lang: Lang }) {
                     <div className="mt-auto flex items-end justify-between gap-3 pt-8">
                       {from && (
                         <p className="text-sm text-ink/55 group-hover:text-ink-muted">
-                          {t.from} <span className="headline block text-2xl text-ink group-hover:text-white">{from}</span>
+                          {t.from} <span className="headline block text-2xl text-ink group-hover:text-white"><Money text={from} lang={lang} /></span>
                         </p>
                       )}
                       <span className="grid h-10 w-10 place-items-center rounded-lg bg-ink text-white transition-colors group-hover:bg-white group-hover:text-ink">

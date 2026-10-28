@@ -94,7 +94,7 @@ const pricingContent = {
     plans: [
       {
         name: "Emprendedor",
-        price: "S/ 1200",
+        price: "S/ 500",
         description: "Chatbot con flujos en WhatsApp o tu web.",
         features: [
           "Chatbot base conversacional",

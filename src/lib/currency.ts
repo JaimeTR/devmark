@@ -11,7 +11,7 @@ export type CurrencyCode =
 
 const fallbackRatesFromPen: Record<CurrencyCode, number> = {
   PEN: 1,
-  USD: 0.27, // 1 sol ≈ 0.27 USD
+  USD: 0.294, // 1 sol ≈ 0.294 USD (tipo de cambio 3.4; se ajusta con NEXT_PUBLIC_PEN_TO_USD_RATE)
   EUR: 0.25, // 1 sol ≈ 0.25 EUR
   MXN: 4.6,  // 1 sol ≈ 4.6 MXN
   COP: 1100, // 1 sol ≈ 1100 COP
@@ -32,29 +32,6 @@ const envRateKey: Partial<Record<CurrencyCode, string>> = {
   BOB: 'NEXT_PUBLIC_PEN_TO_BOB_RATE',
 };
 
-const regionCurrencyMap: Record<string, CurrencyCode> = {
-  PE: 'PEN',
-  US: 'USD',
-  CA: 'USD',
-  AU: 'USD',
-  NZ: 'USD',
-  GB: 'USD',
-  IE: 'EUR',
-  ES: 'EUR',
-  FR: 'EUR',
-  DE: 'EUR',
-  IT: 'EUR',
-  PT: 'EUR',
-  NL: 'EUR',
-  BE: 'EUR',
-  MX: 'MXN',
-  CO: 'COP',
-  CL: 'CLP',
-  AR: 'ARS',
-  VE: 'VES',
-  BO: 'BOB',
-};
-
 function rateFromEnvOrFallback(code: CurrencyCode): number {
   const envKey = envRateKey[code];
   if (envKey) {
@@ -63,6 +40,9 @@ function rateFromEnvOrFallback(code: CurrencyCode): number {
   }
   return fallbackRatesFromPen[code];
 }
+
+/** Solo dos monedas: soles para quien visita desde Perú, dólares para el resto. El visitante puede cambiarla a mano. */
+export const SELECTABLE_CURRENCIES: CurrencyCode[] = ['PEN', 'USD'];
 
 export function detectCurrency(preferredLang: 'es' | 'en' = 'es'): CurrencyCode {
   if (typeof navigator !== 'undefined') {
@@ -77,12 +57,15 @@ export function detectCurrency(preferredLang: 'es' | 'en' = 'es'): CurrencyCode 
 
     const locale = navigator.language || navigator.languages?.[0];
     const region = locale?.split('-')[1]?.toUpperCase();
-    if (region && regionCurrencyMap[region]) {
-      return regionCurrencyMap[region];
-    }
+    if (region) return region === 'PE' ? 'PEN' : 'USD';
   }
 
   return preferredLang === 'es' ? 'PEN' : 'USD';
+}
+
+/** Precio de lista: sin centavos raros al convertir (US$ 235 en vez de US$ 235.29). */
+export function roundPrice(amount: number): number {
+  return amount >= 100 ? Math.round(amount / 5) * 5 : Math.round(amount);
 }
 
 export function convertPenToCurrency(amountPen: number, currency: CurrencyCode): number {

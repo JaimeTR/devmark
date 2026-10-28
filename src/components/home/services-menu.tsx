@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { ArrowUpRight, ChevronDown, Sparkles } from 'lucide-react';
 import { homeContent, type Lang } from '@/content/home';
 import { SERVICE_ICONS } from '@/components/landing/service-band';
+import { Money } from '@/components/site/money';
 import { cn } from '@/lib/utils';
 
 const copy = {
@@ -99,7 +100,7 @@ export function ServicesMenu({ lang, dark, active }: { lang: Lang; dark: boolean
                       <span className="mt-0.5 line-clamp-2 text-[13px] leading-snug text-ink/60">{item.description}</span>
                       {item.from && (
                         <span className="mt-1.5 block text-xs text-primary">
-                          {t.from} {item.from}
+                          {t.from} <Money text={item.from} lang={lang} />
                         </span>
                       )}
                     </span>

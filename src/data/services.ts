@@ -26,7 +26,7 @@ export const SERVICES: ServiceInfo[] = [
     descriptionEs: 'Sitios corporativos, landing pages y PWAs programados desde cero.',
     descriptionEn: 'Corporate sites, landing pages and PWAs built from scratch.',
     plans: [
-      { name: 'Emprendedor', price: 'S/ 1200' },
+      { name: 'Emprendedor', price: 'S/ 800' },
       { name: 'Negocio', price: 'S/ 2500' },
       { name: 'Empresa', price: 'A medida' },
     ],
@@ -38,7 +38,7 @@ export const SERVICES: ServiceInfo[] = [
     descriptionEs: 'Sitios y tiendas online con WordPress, Shopify y otras plataformas.',
     descriptionEn: 'Websites and online stores with WordPress, Shopify and other platforms.',
     plans: [
-      { name: 'Emprendedor', price: 'S/ 1800' },
+      { name: 'Emprendedor', price: 'S/ 1500' },
       { name: 'Negocio', price: 'S/ 3200' },
       { name: 'Empresa', price: 'A medida' },
     ],
@@ -74,7 +74,7 @@ export const SERVICES: ServiceInfo[] = [
     descriptionEs: 'Chatbots entrenados con tu base de conocimiento, 24/7.',
     descriptionEn: 'Chatbots trained with your knowledge base, 24/7.',
     plans: [
-      { name: 'Emprendedor', price: 'S/ 1200' },
+      { name: 'Emprendedor', price: 'S/ 500' },
       { name: 'Negocio', price: 'S/ 2500' },
       { name: 'Empresa', price: 'A medida' },
     ],
