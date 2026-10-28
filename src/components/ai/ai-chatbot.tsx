@@ -74,8 +74,8 @@ async function streamChatResponse(
 /** Devi, la cara de la IA: piensa mientras espera la respuesta y escribe mientras llegan las palabras. */
 function AiAvatar({ estado = 'reposo' }: { estado?: 'reposo' | 'pensando' | 'escribiendo' }) {
   return (
-    <span className="grid h-8 w-8 shrink-0 place-items-center overflow-hidden rounded-[9px] bg-white ring-1 ring-ink/10">
-      <DeviImg estado={estado} tamano={30} />
+    <span className="grid h-8 w-8 shrink-0 place-items-center">
+      <DeviImg estado={estado} tamano={32} />
     </span>
   );
 }
@@ -653,11 +653,10 @@ export function ChatHeader({ title, status, onReset, resetLabel, children }: { t
   return (
     <div className="relative flex shrink-0 items-center gap-3 overflow-hidden bg-ink px-4 py-3.5 text-white sm:px-5">
       <div aria-hidden className="pointer-events-none absolute -left-10 -top-16 h-32 w-32 rounded-full bg-primary/50 blur-[50px]" />
-      <span className="relative grid h-10 w-10 shrink-0 place-items-center rounded-[11px] bg-white shadow-[inset_0_1px_0_rgba(255,255,255,0.35)]">
-        <span className="grid h-10 w-10 place-items-center overflow-hidden rounded-[11px]">
-          <DeviImg estado="saludo" tamano={38} />
-        </span>
-        <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-ink bg-emerald-400" />
+      {/* Solo la mascota, sin baldosa: el punto verde marca que esta en linea. */}
+      <span className="relative grid h-10 w-10 shrink-0 place-items-center">
+        <DeviImg estado="saludo" tamano={42} />
+        <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-ink bg-emerald-400" />
       </span>
       <span className="relative min-w-0 flex-1">
         <span className="block font-logo text-sm tracking-wide">{title}</span>

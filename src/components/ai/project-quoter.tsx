@@ -398,8 +398,8 @@ export function ProjectQuoter({ content }: ProjectQuoterProps) {
           })}
         </ol>
         <div className="relative mt-6 flex items-center gap-3 border-t border-white/10 pt-5">
-          <span className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-[11px] bg-white">
-            <DeviImg estado={estadoDevi} tamano={44} />
+          <span className="grid h-12 w-12 shrink-0 place-items-center">
+            <DeviImg estado={estadoDevi} tamano={48} />
           </span>
           <p className="text-sm text-ink-muted" aria-live="polite">
             {textoDevi}
