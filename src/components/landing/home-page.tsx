@@ -17,6 +17,7 @@ import { BlogTeaser } from './blog-teaser';
 import { Faq } from './faq';
 import { Products } from './products';
 import { ClientPortal } from './client-portal';
+import { DeviBand } from './devi-band';
 
 const headerCopy = {
   es: { contactButton: 'Contactar', aiAssistant: 'Asistente IA', aiAssistantTooltip: '¡Hola! Soy tu asistente de IA.' },
@@ -44,6 +45,7 @@ export function HomePage({ lang }: { lang: Lang }) {
           <Projects lang={lang} />
         </Suspense>
         <Products lang={lang} />
+        <DeviBand lang={lang} />
         <HostingBand lang={lang} />
         <Testimonials lang={lang} />
         <Contact {...contactContent[lang]} heading={homeContent[lang].contact.title} />
